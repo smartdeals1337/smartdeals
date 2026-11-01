@@ -88,6 +88,15 @@
   .about summary::after { content: "›"; margin-left: auto; transition: transform .15s; font-size: 1.2rem; }
   .about[open] summary::after { transform: rotate(90deg); }
   .about ul { margin: 6px 0; padding-left: 18px; }
+  .about summary .score { margin-top: 10px; }
+  /* the real badge, shown so people know what to look for on the cards */
+  .spot { display: flex; align-items: center; gap: 14px; margin: 14px 0 6px; padding: 12px;
+          background: var(--card2); border-radius: 12px; color: var(--text); line-height: 1.45; }
+  .spot .score { margin-top: 10px; }
+  .legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 10px 0 4px; }
+  .legend > div { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+                  background: var(--card2); border-radius: 12px; padding: 14px 6px 10px; font-size: .78rem; line-height: 1.3; }
+  .legend b { color: var(--text); }
   .about b { color: var(--text); }
   .mini { background: var(--yellow); color: #111; font-weight: 900; font-size: .75rem; padding: 3px 6px; border-radius: 6px; }
   /* the drop % sits in the price line (not on the photo, where it hid the product) */
@@ -156,7 +165,14 @@
 
 <main class="wrap wide">
   <details class="about">
-    <summary><img src="so.png" alt="" width="24" height="24" style="border-radius:6px"> C'est quoi le Score SmartDeals?</summary>
+    <summary><span class="score" aria-hidden="true"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">92<small>/100</small></span></span>
+      C'est quoi le Score SmartDeals?</summary>
+    <div class="spot">
+      <span class="score"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">87<small>/100</small></span></span>
+      <div><b>Repère ce badge sur chaque deal.</b><br>
+        Le <b>chiffre</b> = le score du deal sur 100.<br>
+        Les <b>flammes</b> 🔥 = à quel point c'est hot.</div>
+    </div>
     <p>Notre algorithme note chaque deal sur 100, du point de vue de l'acheteur :</p>
     <ul>
       <li><b>Le rabais</b> par rapport au prix habituel du produit</li>
@@ -166,7 +182,12 @@
       <li><b>La popularité</b> du produit sur Amazon.ca</li>
     </ul>
     <p>On publie seulement les deals qui passent nos filtres (vrai bas prix, 4 étoiles et plus, au moins 100 avis).</p>
-    <p>🔥 80+ HOT · 🔥🔥 85+ TRÈS HOT · 🔥🔥🔥 90+ EXCEPTIONNEL (95+ LÉGENDAIRE). Le 100 parfait n'existe pas 😉</p>
+    <div class="legend">
+      <div><span class="score"><span class="logo"><span class="fl">🔥</span></span><span class="num">82<small>/100</small></span></span><span><b>HOT</b><br>80 à 84</span></div>
+      <div><span class="score"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">87<small>/100</small></span></span><span><b>TRÈS HOT</b><br>85 à 89</span></div>
+      <div><span class="score"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">92<small>/100</small></span></span><span><b>EXCEPTIONNEL</b><br>90 et plus</span></div>
+    </div>
+    <p>Le 100 parfait n'existe pas 😉</p>
   </details>
   <div class="list" id="list" aria-live="polite">
     <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>

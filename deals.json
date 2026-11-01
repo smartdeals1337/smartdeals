@@ -1,6 +1,23 @@
 {
- "updated": "2026-11-01T18:32:47-05:00",
+ "updated": "2026-11-01T18:49:13-05:00",
  "deals": [
+  {
+   "asin": "B0CWSBCMDJ",
+   "name": "Bols ramen Silver Buffalo",
+   "title": "Silver Buffalo Disney Lilo & Stitch Stitch Ceramic Ramen Bowl Set, 20oz",
+   "image": "https://m.media-amazon.com/images/I/41f5QSFtq+L.jpg",
+   "price": 25.98,
+   "typical": 51.17,
+   "drop": 49,
+   "record": "tie",
+   "rating": 4.8,
+   "reviews": 1204,
+   "score": 87,
+   "ends": null,
+   "posted": "2026-11-01T18:49:11.864384-05:00",
+   "link": "https://amazon.ca/dp/B0CWSBCMDJ?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0BWR785F8",
    "name": "Sac Bagasin 15,6 pouces",

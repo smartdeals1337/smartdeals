@@ -55,16 +55,19 @@
          display: grid; place-items: center; overflow: hidden; position: relative; }
   .pic img { max-width: 92%; max-height: 92%; object-fit: contain; }
   /* Hotness badge: SO logo with 1-3 flames on top, score in a yellow tab */
-  .act { flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-  .score { position: relative; display: flex; align-items: center; margin-top: 12px;   /* room for the flames */
-           filter: drop-shadow(0 1px 3px rgba(0,0,0,.3)); }
-  .score .logo { position: relative; z-index: 1; width: 30px; height: 30px; border-radius: 8px;
+  /* The free space between the stars and the price row holds the score badge,
+     centred vertically and lined up with the button's right edge */
+  .mid { flex: 1; display: flex; align-items: center; justify-content: flex-end;
+         min-height: 58px; padding: 16px 0 10px; }
+  .score { position: relative; display: flex; align-items: center;
+           filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+  .score .logo { position: relative; z-index: 1; width: 34px; height: 34px; border-radius: 9px;
                  border: 1.5px solid #fff; background: #037281 url(so.png) center / cover; }
-  .score .fl { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); font-size: 13px;
+  .score .fl { position: absolute; left: 50%; bottom: 25px; transform: translateX(-50%); font-size: 14px;
                letter-spacing: -4px; white-space: nowrap; line-height: 1; padding-right: 4px; }
-  .score .num { background: var(--yellow); color: #111; font-weight: 900; font-size: .88rem; line-height: 1;
-                padding: 4px 6px 3px 10px; margin-left: -6px; border-radius: 0 8px 8px 0; }
-  .score small { font-size: .55rem; font-weight: 800; }
+  .score .num { background: var(--yellow); color: #111; font-weight: 900; font-size: .95rem; line-height: 1;
+                padding: 5px 8px 4px 12px; margin-left: -7px; border-radius: 0 9px 9px 0; }
+  .score small { font-size: .58rem; font-weight: 800; }
   .mini.hot { display: inline-flex; gap: 0; }
   .about { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
            padding: 10px 14px; font-size: .85rem; color: var(--muted); }
@@ -90,7 +93,8 @@
   .stars { color: var(--muted); font-size: .78rem; margin-top: 3px; }
   .rate { position: relative; display: inline-block; color: #3b475e; letter-spacing: 1px; line-height: 1; }
   .rate span { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; color: var(--yellow); }
-  .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 6px; }
+  .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
+  .row > div { min-width: 0; flex: 1; }   /* a long "Habituel 1299,98$" wraps instead of pushing the button out */
   .price { font-size: 1.4rem; font-weight: 900; color: var(--yellow); line-height: 1; }
   .was { display: block; color: var(--muted); font-size: .75rem; margin-top: 3px; }
   .was s { opacity: .9; }
@@ -98,7 +102,6 @@
         color: #111; background: var(--yellow); padding: 7px 10px; border-radius: 10px; }
   .side { flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; }
   .when { color: var(--muted); font-size: .72rem; }
-  .was { white-space: nowrap; }
   .deal.is-dead { opacity: .55; }
   .deal.is-dead .pic img { filter: grayscale(1); }
   .deal.is-dead .price { color: var(--muted); text-decoration: line-through; }
@@ -219,15 +222,15 @@ function card(d) {
       ${tags ? `<div class="tags">${tags}</div>` : ""}
       <p class="name" title="${esc(d.title)}">${esc(d.name)}</p>
       ${d.rating ? `<div class="stars">${stars(d.rating)}${String(d.rating).replace(".", ",")} · ${d.reviews.toLocaleString("fr-CA")} avis</div>` : ""}
+      <div class="mid">
+        ${d.score && !d.dead ? `<span class="score" title="Score SmartDeals ${d.score}/100">
+          <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
+          <span class="num">${d.score}<small>/100</small></span></span>` : ""}
+      </div>
       <div class="row">
         <div><span class="price">${money(d.price)}</span>
           ${d.typical && d.typical > d.price ? `<span class="was">Habituel <s>${money(d.typical)}</s></span>` : ""}</div>
-        <div class="act">
-          ${d.score && !d.dead ? `<span class="score" title="Score SmartDeals ${d.score}/100">
-            <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
-            <span class="num">${d.score}<small>/100</small></span></span>` : ""}
-          <span class="go">${d.dead ? "Terminé" : "Voir le deal ›"}</span>
-        </div>
+        <span class="go">${d.dead ? "Terminé" : "Voir le deal ›"}</span>
       </div>
     </div>`;
   return d.dead

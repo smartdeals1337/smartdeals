@@ -1,6 +1,23 @@
 {
- "updated": "2026-11-01T10:37:19-05:00",
+ "updated": "2026-11-01T10:48:06-05:00",
  "deals": [
+  {
+   "asin": "B0FJRM9GKQ",
+   "name": "Barre de son JBL Bar 700",
+   "title": "JBL Bar 700MK2-7.1 Channel soundbar System with Detachable Speakers and Dolby Atmos, 780W max Output Power and a 10\" Wireless subwoofer, Works with Voice Assistant-Enabled Speakers (Black)",
+   "image": "https://m.media-amazon.com/images/I/31V6iL0a9+L.jpg",
+   "price": 799.98,
+   "typical": 1299.98,
+   "drop": 38,
+   "record": "first",
+   "rating": 4.6,
+   "reviews": 132,
+   "score": 85,
+   "ends": null,
+   "posted": "2026-11-01T10:48:05.711268-05:00",
+   "link": "https://amazon.ca/dp/B0FJRM9GKQ?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B08316G583",
    "name": "Siège auto Evenflo Revolve360",

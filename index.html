@@ -69,6 +69,17 @@
   .score .num { background: var(--yellow); color: #111; font-weight: 900; font-size: .95rem; line-height: 1;
                 padding: 5px 8px 4px 12px; margin-left: -7px; border-radius: 0 9px 9px 0; }
   .score small { font-size: .58rem; font-weight: 800; }
+  /* Two copies of the badge: next to the price on phones, and on wider cards a bigger
+     one centred in the free space at the right of the photo + info (away from the button) */
+  .score.big { display: none; }
+  @media (min-width: 600px) {
+    .buy .score { display: none; }
+    .score.big { display: flex; align-self: center; margin: 18px 4px 0 auto; padding-left: 8px; }
+    .score.big .logo { width: 50px; height: 50px; border-radius: 13px; border-width: 2px; }
+    .score.big .fl { font-size: 20px; bottom: 38px; letter-spacing: -5px; }
+    .score.big .num { font-size: 1.4rem; padding: 8px 12px 7px 18px; margin-left: -10px; border-radius: 0 12px 12px 0; }
+    .score.big small { font-size: .8rem; }
+  }
   .mini.hot { display: inline-flex; gap: 0; }
   .about { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
            padding: 10px 14px; font-size: .85rem; color: var(--muted); }
@@ -132,6 +143,7 @@
     <nav class="chips" id="chips" aria-label="Filtres">
       <button class="chip" data-f="all" aria-pressed="true">Tous</button>
       <button class="chip" data-f="top" aria-pressed="false">🔥 Top score</button>
+      <button class="chip" data-f="first" aria-pressed="false">Premier bas prix historique</button>
       <button class="chip" data-f="flash" aria-pressed="false">⚡ Ventes éclair</button>
       <button class="chip" data-f="new" aria-pressed="false">Nouveaux</button>
       <button class="chip" data-f="rec" aria-pressed="false">Bas prix historiques</button>
@@ -200,6 +212,7 @@ const FILTERS = {
   all: () => true,
   top: d => !!d.score,
   flash: d => !!d.ends,
+  first: d => d.record === "first",
   new: isNew,
   rec: d => !!d.record,
   big: d => (d.drop || 0) >= 50,
@@ -212,6 +225,9 @@ function card(d) {
     + (d.ends && !d.dead ? `<span class="tag flash">⚡ Finit ${endsText(d.ends)}</span>` : "")
     + (isNew(d) ? '<span class="tag new">Nouveau</span>' : "")
     + (d.record && !d.dead ? `<span class="tag rec">${RECORD[d.record]}</span>` : "");
+  const badge = big => d.score && !d.dead ? `<span class="score${big ? " big" : ""}" title="Score SmartDeals ${d.score}/100">
+        <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
+        <span class="num">${d.score}<small>/100</small></span></span>` : "";
   const inner = `
     <div class="head">
       <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async">
@@ -221,13 +237,12 @@ function card(d) {
         <p class="name" title="${esc(d.title)}">${esc(d.name)}</p>
         <div class="stars">${d.rating ? `${stars(d.rating)}${String(d.rating).replace(".", ",")} · ${d.reviews.toLocaleString("fr-CA")} avis · ` : ""}<span class="when">il y a ${ago(d.posted)}</span></div>
       </div>
+      ${badge(true)}
     </div>
     <div class="buy">
       <div class="prices"><span class="price">${money(d.price)}</span>
         ${d.typical && d.typical > d.price ? `<span class="was">Habituel <s>${money(d.typical)}</s></span>` : ""}</div>
-      ${d.score && !d.dead ? `<span class="score" title="Score SmartDeals ${d.score}/100">
-        <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
-        <span class="num">${d.score}<small>/100</small></span></span>` : ""}
+      ${badge(false)}
     </div>
     <span class="go">${d.dead ? "Ce deal est terminé"
       : `Voir le deal sur Amazon <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`}</span>`;

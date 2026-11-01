@@ -46,20 +46,21 @@
   /* Deal cards: the whole card is one link */
   .list { display: grid; gap: 12px; padding-top: 14px; padding-bottom: 24px; }
   @media (min-width: 900px) { .list { grid-template-columns: 1fr 1fr; } .wrap.wide { max-width: 1040px; } }
-  .deal { display: flex; gap: 12px; padding: 12px; background: var(--card); border: 1px solid var(--line);
-          border-radius: var(--radius); color: inherit; text-decoration: none; position: relative;
-          transition: transform .12s, background .12s; content-visibility: auto; contain-intrinsic-size: 150px; }
+  /* Deal card (sketch A, 2026-11-01): top = photo + info, middle = price + score,
+     bottom = full-width "buy" button. The whole card is one link. */
+  .deal { display: flex; flex-direction: column; gap: 10px; padding: 12px; background: var(--card);
+          border: 1px solid var(--line); border-radius: var(--radius); color: inherit; text-decoration: none;
+          transition: transform .12s, background .12s; content-visibility: auto; contain-intrinsic-size: 230px; }
   a.deal:active { transform: scale(.985); background: var(--card2); }
-  @media (hover: hover) { a.deal:hover { background: var(--card2); } }
-  .pic { flex: none; width: 112px; height: 112px; border-radius: 12px; background: #fff;
+  @media (hover: hover) { a.deal:hover { background: var(--card2); } a.deal:hover .go { background: #fde047; } }
+  .head { display: flex; gap: 12px; }
+  .pic { flex: none; width: 92px; height: 92px; border-radius: 12px; background: #fff;
          display: grid; place-items: center; overflow: hidden; position: relative; }
-  .pic img { max-width: 92%; max-height: 92%; object-fit: contain; }
+  .pic img { max-width: 90%; max-height: 90%; object-fit: contain; }
+  .buy { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .buy .prices { min-width: 0; display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 8px; }
   /* Hotness badge: SO logo with 1-3 flames on top, score in a yellow tab */
-  /* The free space between the stars and the price row holds the score badge,
-     centred vertically and lined up with the button's right edge */
-  .mid { flex: 1; display: flex; align-items: center; justify-content: flex-end;
-         min-height: 58px; padding: 16px 0 10px; }
-  .score { position: relative; display: flex; align-items: center;
+  .score { flex: none; position: relative; display: flex; align-items: center; margin-top: 10px;   /* room for the flames */
            filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
   .score .logo { position: relative; z-index: 1; width: 34px; height: 34px; border-radius: 9px;
                  border: 1.5px solid #fff; background: #037281 url(so.png) center / cover; }
@@ -90,25 +91,24 @@
   .tag.dead { background: var(--red); color: #fff; }
   .name { font-weight: 700; font-size: 1rem; line-height: 1.25; margin: 0;
           display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .stars { color: var(--muted); font-size: .78rem; margin-top: 3px; }
+  .stars { color: var(--muted); font-size: .78rem; margin-top: 4px; }
   .rate { position: relative; display: inline-block; color: #3b475e; letter-spacing: 1px; line-height: 1; }
   .rate span { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; color: var(--yellow); }
-  .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
-  .row > div { min-width: 0; flex: 1; }   /* a long "Habituel 1299,98$" wraps instead of pushing the button out */
-  .price { font-size: 1.4rem; font-weight: 900; color: var(--yellow); line-height: 1; }
-  .was { display: block; color: var(--muted); font-size: .75rem; margin-top: 3px; }
-  .was s { opacity: .9; }
-  .go { flex: none; display: flex; align-items: center; gap: 2px; font-weight: 800; font-size: .82rem;
-        color: #111; background: var(--yellow); padding: 7px 10px; border-radius: 10px; }
-  .side { flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .when { color: var(--muted); font-size: .72rem; }
+  .price { font-size: 1.6rem; font-weight: 900; color: var(--yellow); line-height: 1.1; }
+  .was { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+  /* The buy button: full width, thumb-sized (52px), the loudest thing on the card */
+  .go { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px;
+        font-weight: 900; font-size: 1.05rem; letter-spacing: .2px; color: #111; background: var(--yellow);
+        border-radius: 12px; transition: background .12s; }
+  .go svg { flex: none; }
+  .when { color: var(--muted); }
   .deal.is-dead { opacity: .55; }
   .deal.is-dead .pic img { filter: grayscale(1); }
   .deal.is-dead .price { color: var(--muted); text-decoration: line-through; }
   .deal.is-dead .go { background: var(--card2); color: var(--muted); }
 
   .empty { text-align: center; color: var(--muted); padding: 48px 0; }
-  .skeleton { height: 136px; border-radius: var(--radius); background: linear-gradient(90deg, var(--card) 0%, var(--card2) 50%, var(--card) 100%);
+  .skeleton { height: 220px; border-radius: var(--radius); background: linear-gradient(90deg, var(--card) 0%, var(--card2) 50%, var(--card) 100%);
               background-size: 200% 100%; animation: shimmer 1.2s infinite; }
   @keyframes shimmer { to { background-position: -200% 0; } }
   footer { color: var(--muted); font-size: .78rem; text-align: center; padding: 8px 0 32px; }
@@ -213,26 +213,24 @@ function card(d) {
     + (isNew(d) ? '<span class="tag new">Nouveau</span>' : "")
     + (d.record && !d.dead ? `<span class="tag rec">${RECORD[d.record]}</span>` : "");
   const inner = `
-    <div class="side">
+    <div class="head">
       <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async">
         ${d.drop && !d.dead ? `<span class="off">-${d.drop}%</span>` : ""}</div>
-      <span class="when">il y a ${ago(d.posted)}</span>
+      <div class="info">
+        ${tags ? `<div class="tags">${tags}</div>` : ""}
+        <p class="name" title="${esc(d.title)}">${esc(d.name)}</p>
+        <div class="stars">${d.rating ? `${stars(d.rating)}${String(d.rating).replace(".", ",")} · ${d.reviews.toLocaleString("fr-CA")} avis · ` : ""}<span class="when">il y a ${ago(d.posted)}</span></div>
+      </div>
     </div>
-    <div class="info">
-      ${tags ? `<div class="tags">${tags}</div>` : ""}
-      <p class="name" title="${esc(d.title)}">${esc(d.name)}</p>
-      ${d.rating ? `<div class="stars">${stars(d.rating)}${String(d.rating).replace(".", ",")} · ${d.reviews.toLocaleString("fr-CA")} avis</div>` : ""}
-      <div class="mid">
-        ${d.score && !d.dead ? `<span class="score" title="Score SmartDeals ${d.score}/100">
-          <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
-          <span class="num">${d.score}<small>/100</small></span></span>` : ""}
-      </div>
-      <div class="row">
-        <div><span class="price">${money(d.price)}</span>
-          ${d.typical && d.typical > d.price ? `<span class="was">Habituel <s>${money(d.typical)}</s></span>` : ""}</div>
-        <span class="go">${d.dead ? "Terminé" : "Voir le deal ›"}</span>
-      </div>
-    </div>`;
+    <div class="buy">
+      <div class="prices"><span class="price">${money(d.price)}</span>
+        ${d.typical && d.typical > d.price ? `<span class="was">Habituel <s>${money(d.typical)}</s></span>` : ""}</div>
+      ${d.score && !d.dead ? `<span class="score" title="Score SmartDeals ${d.score}/100">
+        <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
+        <span class="num">${d.score}<small>/100</small></span></span>` : ""}
+    </div>
+    <span class="go">${d.dead ? "Ce deal est terminé"
+      : `Voir le deal sur Amazon <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`}</span>`;
   return d.dead
     ? `<div class="deal is-dead" aria-disabled="true">${inner}</div>`
     : `<a class="deal" href="${esc(d.link)}" target="_blank" rel="sponsored noopener">${inner}</a>`;

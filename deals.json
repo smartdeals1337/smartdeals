@@ -1,6 +1,21 @@
 {
- "updated": "2026-11-01T09:02:29-05:00",
+ "updated": "2026-11-01T09:18:06-05:00",
  "deals": [
+  {
+   "asin": "B08316G583",
+   "name": "Siège auto Evenflo Revolve360",
+   "title": "Evenflo Revolve360 Rotational All-In-One Convertible Car Seat - Amherst Gray",
+   "image": "https://m.media-amazon.com/images/I/41Lp523oA2L.jpg",
+   "price": 399.0,
+   "typical": 699.0,
+   "drop": 43,
+   "record": "tie",
+   "rating": 4.5,
+   "reviews": 112,
+   "posted": "2026-11-01T09:18:04.732697-05:00",
+   "link": "https://amazon.ca/dp/B08316G583?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0D8M64LF3",
    "name": "Dead Rising Deluxe PS5",

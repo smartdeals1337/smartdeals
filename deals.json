@@ -1,6 +1,23 @@
 {
- "updated": "2026-11-01T14:47:20-05:00",
+ "updated": "2026-11-01T15:05:33-05:00",
  "deals": [
+  {
+   "asin": "B0FM61SDMR",
+   "name": "Sac snowboard Dakine Low",
+   "title": "Dakine Low Roller Snowboard Bag - Port Royale, 175 CM",
+   "image": "https://m.media-amazon.com/images/I/21dt-13NnUL.jpg",
+   "price": 151.2,
+   "typical": 267.9,
+   "drop": 44,
+   "record": "first",
+   "rating": 4.7,
+   "reviews": 231,
+   "score": 86,
+   "ends": null,
+   "posted": "2026-11-01T15:05:32.479069-05:00",
+   "link": "https://amazon.ca/dp/B0FM61SDMR?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B07BB62NRH",
    "name": "Carnets Elan Publishing 5x8",

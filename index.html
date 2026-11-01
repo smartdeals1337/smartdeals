@@ -64,7 +64,8 @@
   .name { font-weight: 700; font-size: 1rem; line-height: 1.25; margin: 0;
           display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .stars { color: var(--muted); font-size: .78rem; margin-top: 3px; }
-  .stars i { font-style: normal; color: var(--yellow); letter-spacing: 1px; }
+  .rate { position: relative; display: inline-block; color: #3b475e; letter-spacing: 1px; line-height: 1; }
+  .rate span { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; color: var(--yellow); }
   .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 6px; }
   .price { font-size: 1.4rem; font-weight: 900; color: var(--yellow); line-height: 1; }
   .was { display: block; color: var(--muted); font-size: .75rem; margin-top: 3px; }
@@ -140,10 +141,9 @@ function ago(iso) {
   const d = Math.round(h / 24);
   return d === 1 ? "hier" : d + " j";
 }
-function stars(r) {
-  const full = Math.round(r * 2) / 2;
-  return "★".repeat(Math.floor(full)) + (full % 1 ? "⯪" : "") + "☆".repeat(5 - Math.ceil(full));
-}
+// Gray stars with yellow ones on top, clipped to the rating (4,6 -> 92%): only the
+// plain ★ glyph, which every phone font has (⯪ and ☆ don't render everywhere).
+const stars = r => `<span class="rate" aria-label="${r} sur 5"><span style="width:${Math.min(r / 5, 1) * 100}%">★★★★★</span>★★★★★</span>`;
 // Amazon serves any size of its product photos: 300px instead of the 2000px original
 const thumb = url => url.replace(/(\/images\/I\/[^./]+)(\.[^/]*)?\.(jpg|png)$/, "$1._AC_SL300_.$3");
 const isNew = d => !d.dead && Date.now() - new Date(d.posted) < NEW_HOURS * 3600e3;
@@ -169,7 +169,7 @@ function card(d) {
     <div class="info">
       ${tags ? `<div class="tags">${tags}</div>` : ""}
       <p class="name" title="${esc(d.title)}">${esc(d.name)}</p>
-      ${d.rating ? `<div class="stars"><i>${stars(d.rating)}</i> ${String(d.rating).replace(".", ",")} · ${d.reviews.toLocaleString("fr-CA")} avis</div>` : ""}
+      ${d.rating ? `<div class="stars">${stars(d.rating)}${String(d.rating).replace(".", ",")} · ${d.reviews.toLocaleString("fr-CA")} avis</div>` : ""}
       <div class="row">
         <div><span class="price">${money(d.price)}</span>
           ${d.typical && d.typical > d.price ? `<span class="was">Habituel <s>${money(d.typical)}</s></span>` : ""}</div>

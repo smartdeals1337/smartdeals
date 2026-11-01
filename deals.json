@@ -1,104 +1,170 @@
 {
- "updated": "2026-11-01T08:47:25-05:00",
+ "updated": "2026-11-01T08:59:18-05:00",
  "deals": [
   {
    "asin": "B0D8M64LF3",
+   "name": "Dead Rising Deluxe PS5",
    "title": "Dead Rising Deluxe Remaster Playstation 5 - Deluxe Remaster Edition",
+   "image": "https://m.media-amazon.com/images/I/81g1RxlOJpL.jpg",
    "price": 28.78,
+   "typical": 58.85,
+   "drop": 51,
+   "record": "first",
+   "rating": 4.6,
+   "reviews": 451,
    "posted": "2026-11-01T07:49:24.438124-05:00",
    "link": "https://amazon.ca/dp/B0D8M64LF3?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B0D8M64LF3.jpg?v=1793539824"
+   "dead": false
   },
   {
    "asin": "B0DK7N9JQ8",
+   "name": "Figurine Marvel Werewolf",
    "title": "Marvel Legends Series Werewolf By Night, Marvel Comics Collectible 6-Inch Scale Action",
+   "image": "https://m.media-amazon.com/images/I/719rTqVhNAL.jpg",
    "price": 18.82,
+   "typical": 38.67,
+   "drop": 51,
+   "record": "first",
+   "rating": 4.6,
+   "reviews": 323,
    "posted": "2026-11-01T06:34:23.963565-05:00",
    "link": "https://amazon.ca/dp/B0DK7N9JQ8?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B0DK7N9JQ8.jpg?v=1793539824"
+   "dead": false
   },
   {
    "asin": "B0CC6K88RZ",
+   "name": "Pinces KNIPEX mini XS",
    "title": "KNIPEX Tools 00 20 72 V04 XS 2 Pc Mini Pliers Set XS in Belt Pouch",
+   "image": "https://m.media-amazon.com/images/I/914HhuoErqL.jpg",
    "price": 109.95,
+   "typical": 248.0,
+   "drop": 56,
+   "record": "first",
+   "rating": 4.7,
+   "reviews": 373,
    "posted": "2026-11-01T06:04:55.272303-05:00",
    "link": "https://amazon.ca/dp/B0CC6K88RZ?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B0CC6K88RZ.jpg?v=1793539824"
+   "dead": false
   },
   {
    "asin": "B0CV27WQQV",
-   "title": "LEGO Technic Porsche GT4 e-Performance Race Car Toy, Remote Control Car with Authentic Details, Interactive Model Porsche Gift for Kids Ages",
+   "name": "LEGO Technic Porsche GT4",
+   "title": "LEGO Technic Porsche GT4 e-Performance Race Car Toy, Remote Control Car with Authentic Details, Interactive Model Porsche Gift for Kids Ages 10 and Up Who Love Luxury Vehicles, 42176",
+   "image": "https://m.media-amazon.com/images/I/8133wGwL5yL.jpg",
    "price": 149.0,
+   "typical": 219.86,
+   "drop": 32,
+   "record": "first",
+   "rating": 4.7,
+   "reviews": 279,
    "posted": "2026-10-31T22:47:55.139715-04:00",
    "link": "https://amazon.ca/dp/B0CV27WQQV?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B0CV27WQQV.jpg?v=1793539824"
+   "dead": false
   },
   {
    "asin": "B08WM1DDHN",
+   "name": "Écouteurs JBL Tune 215",
    "title": "JBL Tune 215 - Bluetooth Wireless in-Ear Headphones with 3-Button Mic/Remote and Flat Cable - Black",
+   "image": "https://m.media-amazon.com/images/I/51YNB5HbW6L.jpg",
    "price": 26.97,
+   "typical": 54.98,
+   "drop": 51,
+   "record": "first",
+   "rating": 4.0,
+   "reviews": 2198,
    "posted": "2026-10-31T21:18:49.812221-04:00",
    "link": "https://amazon.ca/dp/B08WM1DDHN?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B08WM1DDHN.jpg?v=1793539824"
+   "dead": false
   },
   {
    "asin": "B0DQ5NG4CX",
+   "name": "Balles golf TaylorMade",
    "title": "Taylormade 2025 Golf Distance+ White Golf Balls",
+   "image": "https://m.media-amazon.com/images/I/71XX8EMrsML.jpg",
    "price": 17.57,
+   "typical": 58.15,
+   "drop": 70,
+   "record": "tie",
+   "rating": 4.5,
+   "reviews": 1001,
    "posted": "2026-10-31T20:48:54.622902-04:00",
    "link": "https://amazon.ca/dp/B0DQ5NG4CX?tag=sonline02-20",
-   "dead": true,
-   "img": "img/B0DQ5NG4CX.jpg?v=1793539824"
+   "dead": true
   },
   {
    "asin": "B0GND7WQ82",
-   "title": "JBL Tune 780NC - Wireless Over-Ear Adaptive Noise Cancelling Headphones with Powerful Hi-Res JBL Pure Bass Sound and Spatial Sound, with Up ",
+   "name": "Casque JBL Tune 780NC",
+   "title": "JBL Tune 780NC - Wireless Over-Ear Adaptive Noise Cancelling Headphones with Powerful Hi-Res JBL Pure Bass Sound and Spatial Sound, with Up to 76 Hours of Battery Life, Plus Speed Charge - Blue",
+   "image": "https://m.media-amazon.com/images/I/81JGverlsiL.jpg",
    "price": 99.98,
+   "typical": 199.99,
+   "drop": 50,
+   "record": "first",
+   "rating": 4.5,
+   "reviews": 127,
    "posted": "2026-10-31T20:18:59.447178-04:00",
    "link": "https://amazon.ca/dp/B0GND7WQ82?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B0GND7WQ82.jpg?v=1793539824"
+   "dead": false
   },
   {
    "asin": "B0CJT59672",
+   "name": "Draps Laura Ashley",
    "title": "Laura Ashley - Queen Sheets, Cotton Flannel Bedding Set, Brushed for Extra Softness & Comfort (Le Fleur Orange, Queen)",
+   "image": "https://m.media-amazon.com/images/I/81e8NbMmp2L.jpg",
    "price": 60.48,
+   "typical": 82.99,
+   "drop": 27,
+   "record": "first",
+   "rating": 4.4,
+   "reviews": 10404,
    "posted": "2026-10-31T19:53:43.332211-04:00",
    "link": "https://amazon.ca/dp/B0CJT59672?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B0CJT59672.jpg?v=1793539824"
+   "dead": false
   },
   {
    "asin": "B0H4WXSXHS",
-   "title": "iRobot Roomba Max 715 Pet Robot Vacuum, 30,000Pa Suction, Dual Rubber Anti-Tangle Brushes & Side Brush, 90 Days Self-Emptying, PrecisionVisi",
+   "name": "Robot Roomba Max 715",
+   "title": "iRobot Roomba Max 715 Pet Robot Vacuum, 30,000Pa Suction, Dual Rubber Anti-Tangle Brushes & Side Brush, 90 Days Self-Emptying, PrecisionVision AI Obstacle Avoidance, 3D Mapping, Advanced Dirt Detect",
+   "image": "https://m.media-amazon.com/images/I/71KKtInj20L.jpg",
    "price": 499.99,
+   "typical": 899.99,
+   "drop": 44,
+   "record": "first",
+   "rating": 4.0,
+   "reviews": 5809,
    "posted": "2026-10-31T18:37:07.660284-04:00",
    "link": "https://amazon.ca/dp/B0H4WXSXHS?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B0H4WXSXHS.jpg?v=1793539824"
+   "dead": false
   },
   {
    "asin": "B09XJHYBZ2",
+   "name": "Protections TENA Nuit",
    "title": "TENA Sensitive Care Overnight Incontinence Pads Women, Extra Coverage 135ct",
+   "image": "https://m.media-amazon.com/images/I/811KRRL4PSL.jpg",
    "price": 62.27,
+   "typical": 144.57,
+   "drop": 57,
+   "record": "first",
+   "rating": 4.4,
+   "reviews": 8803,
    "posted": "2026-10-31T17:20:00-04:00",
    "link": "https://amazon.ca/dp/B09XJHYBZ2?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B09XJHYBZ2.jpg?v=1793539824"
+   "dead": false
   },
   {
    "asin": "B0BQPNMXQV",
+   "name": "Écouteurs JBL Vibe Beam",
    "title": "JBL Vibe Beam - True Wireless Earbuds - Black",
+   "image": "https://m.media-amazon.com/images/I/41+1Csr1pSL.jpg",
    "price": 44.98,
+   "typical": 99.98,
+   "drop": 55,
+   "record": null,
+   "rating": 4.1,
+   "reviews": 28510,
    "posted": "2026-10-31T16:38:00-04:00",
    "link": "https://amazon.ca/dp/B0BQPNMXQV?tag=sonline02-20",
-   "dead": false,
-   "img": "img/B0BQPNMXQV.jpg?v=1793539824"
+   "dead": false
   }
  ]
 }

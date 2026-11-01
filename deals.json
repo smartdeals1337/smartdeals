@@ -1,6 +1,23 @@
 {
- "updated": "2026-11-01T12:06:04-05:00",
+ "updated": "2026-11-01T12:19:07-05:00",
  "deals": [
+  {
+   "asin": "B0GVT7MWY4",
+   "name": "Friteuse Cuisinart 9 pte",
+   "title": "Cuisinart Air Fryer, Clear Window & Digital Controls, 9-Quart",
+   "image": "https://m.media-amazon.com/images/I/41oNohnZehL.jpg",
+   "price": 169.99,
+   "typical": 299.99,
+   "drop": 43,
+   "record": "first",
+   "rating": 4.4,
+   "reviews": 100,
+   "score": 83,
+   "ends": null,
+   "posted": "2026-11-01T12:19:05.499530-05:00",
+   "link": "https://amazon.ca/dp/B0GVT7MWY4?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0FJRM9GKQ",
    "name": "Barre de son JBL Bar 700",

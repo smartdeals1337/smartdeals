@@ -80,6 +80,7 @@
          text-transform: uppercase; }
   .tag.rec { background: rgba(250, 204, 21, .14); color: var(--yellow); }
   .tag.new { background: rgba(34, 197, 94, .15); color: var(--green); }
+  .tag.flash { background: rgba(239, 68, 68, .16); color: #fca5a5; }
   .tag.dead { background: var(--red); color: #fff; }
   .name { font-weight: 700; font-size: 1rem; line-height: 1.25; margin: 0;
           display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -125,6 +126,7 @@
     <nav class="chips" id="chips" aria-label="Filtres">
       <button class="chip" data-f="all" aria-pressed="true">Tous</button>
       <button class="chip" data-f="top" aria-pressed="false">🔥 Top score</button>
+      <button class="chip" data-f="flash" aria-pressed="false">⚡ Ventes éclair</button>
       <button class="chip" data-f="new" aria-pressed="false">Nouveaux</button>
       <button class="chip" data-f="rec" aria-pressed="false">Bas prix historiques</button>
       <button class="chip" data-f="big" aria-pressed="false">-50% et plus</button>
@@ -181,10 +183,17 @@ const stars = r => `<span class="rate" aria-label="${r} sur 5"><span style="widt
 // Amazon serves any size of its product photos: 300px instead of the 2000px original
 const thumb = url => url.replace(/(\/images\/I\/[^./]+)(\.[^/]*)?\.(jpg|png)$/, "$1._AC_SL300_.$3");
 const flames = s => s >= 90 ? 3 : s >= 85 ? 2 : s >= 80 ? 1 : 0;   // same levels as the images
+// Lightning deals: "à 21h30" today, "demain 2h45" after midnight (viewer's clock)
+function endsText(iso) {
+  const e = new Date(iso), now = new Date();
+  const hm = e.getHours() + "h" + String(e.getMinutes()).padStart(2, "0");
+  return e.toDateString() === now.toDateString() ? "à " + hm : "demain " + hm;
+}
 const isNew = d => !d.dead && Date.now() - new Date(d.posted) < NEW_HOURS * 3600e3;
 const FILTERS = {
   all: () => true,
   top: d => !!d.score,
+  flash: d => !!d.ends,
   new: isNew,
   rec: d => !!d.record,
   big: d => (d.drop || 0) >= 50,
@@ -193,7 +202,8 @@ const FILTERS = {
 
 let deals = [], filter = "all";
 function card(d) {
-  const tags = (d.dead ? '<span class="tag dead">Deal mort</span>' : "")
+  const tags = (d.dead ? `<span class="tag dead">${d.ends ? "Vente éclair terminée" : "Deal mort"}</span>` : "")
+    + (d.ends && !d.dead ? `<span class="tag flash">⚡ Finit ${endsText(d.ends)}</span>` : "")
     + (isNew(d) ? '<span class="tag new">Nouveau</span>' : "")
     + (d.record && !d.dead ? `<span class="tag rec">${RECORD[d.record]}</span>` : "");
   const inner = `
@@ -238,7 +248,8 @@ document.getElementById("chips").addEventListener("click", e => {
 });
 document.getElementById("q").addEventListener("input", render);
 fetch("deals.json?" + Date.now()).then(r => r.json()).then(j => {
-  deals = j.deals;
+  // a lightning deal past its end time is over, even before the next update
+  deals = j.deals.map(d => d.ends && Date.now() > new Date(d.ends) ? { ...d, dead: true } : d);
   const live = deals.filter(d => !d.dead).length;
   document.getElementById("sub").textContent = `${live} deal${live > 1 ? "s" : ""} actif${live > 1 ? "s" : ""} · mis à jour il y a ${ago(j.updated)}`;
   render();

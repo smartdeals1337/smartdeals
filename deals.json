@@ -1,6 +1,23 @@
 {
- "updated": "2026-11-01T16:30:13-05:00",
+ "updated": "2026-11-01T16:35:32-05:00",
  "deals": [
+  {
+   "asin": "B09963YS4P",
+   "name": "Clavier Glorious GMMK PRO",
+   "title": "Glorious Gaming GMMK PRO 75% Barebones Black (Frame Only) - Modular Mechanical Gaming Keyboard, TKL Size (75%), 3.3lb Frame, RGB, Fully Customisable, 5-Pin Switch Support",
+   "image": "https://m.media-amazon.com/images/I/41M0TmRVgTL.jpg",
+   "price": 69.88,
+   "typical": 130.4,
+   "drop": 46,
+   "record": "first",
+   "rating": 4.4,
+   "reviews": 304,
+   "score": 84,
+   "ends": null,
+   "posted": "2026-11-01T16:35:30.927759-05:00",
+   "link": "https://amazon.ca/dp/B09963YS4P?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0FHWNZLKT",
    "name": "Écouteurs Nothing Ear (3)",

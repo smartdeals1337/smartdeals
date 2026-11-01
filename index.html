@@ -90,8 +90,9 @@
   .about ul { margin: 6px 0; padding-left: 18px; }
   .about b { color: var(--text); }
   .mini { background: var(--yellow); color: #111; font-weight: 900; font-size: .75rem; padding: 3px 6px; border-radius: 6px; }
-  .off { position: absolute; top: 6px; left: 6px; background: var(--red); color: #fff; font-weight: 900;
-         font-size: .78rem; padding: 3px 7px; border-radius: 8px; }
+  /* the drop % sits in the price line (not on the photo, where it hid the product) */
+  .off { align-self: center; background: var(--red); color: #fff; font-weight: 900;
+         font-size: .9rem; line-height: 1; padding: 5px 8px; border-radius: 8px; }
   .info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
   .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; }
   .tag { font-size: .66rem; font-weight: 800; letter-spacing: .3px; padding: 3px 7px; border-radius: 6px;
@@ -143,7 +144,7 @@
     <nav class="chips" id="chips" aria-label="Filtres">
       <button class="chip" data-f="all" aria-pressed="true">Tous</button>
       <button class="chip" data-f="top" aria-pressed="false">🔥 Top score</button>
-      <button class="chip" data-f="first" aria-pressed="false">Premier bas prix historique</button>
+      <button class="chip" data-f="first" aria-pressed="false">Premier bas prix</button>
       <button class="chip" data-f="flash" aria-pressed="false">⚡ Ventes éclair</button>
       <button class="chip" data-f="new" aria-pressed="false">Nouveaux</button>
       <button class="chip" data-f="rec" aria-pressed="false">Bas prix historiques</button>
@@ -230,8 +231,7 @@ function card(d) {
         <span class="num">${d.score}<small>/100</small></span></span>` : "";
   const inner = `
     <div class="head">
-      <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async">
-        ${d.drop && !d.dead ? `<span class="off">-${d.drop}%</span>` : ""}</div>
+      <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async"></div>
       <div class="info">
         ${tags ? `<div class="tags">${tags}</div>` : ""}
         <p class="name" title="${esc(d.title)}">${esc(d.name)}</p>
@@ -241,6 +241,7 @@ function card(d) {
     </div>
     <div class="buy">
       <div class="prices"><span class="price">${money(d.price)}</span>
+        ${d.drop && !d.dead ? `<span class="off">-${d.drop}%</span>` : ""}
         ${d.typical && d.typical > d.price ? `<span class="was">Habituel <s>${money(d.typical)}</s></span>` : ""}</div>
       ${badge(false)}
     </div>

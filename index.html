@@ -55,7 +55,8 @@
          display: grid; place-items: center; overflow: hidden; position: relative; }
   .pic img { max-width: 92%; max-height: 92%; object-fit: contain; }
   /* Hotness badge: SO logo with 1-3 flames on top, score in a yellow tab */
-  .score { position: absolute; bottom: 5px; left: 5px; display: flex; align-items: center;
+  .act { flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .score { position: relative; display: flex; align-items: center; margin-top: 12px;   /* room for the flames */
            filter: drop-shadow(0 1px 3px rgba(0,0,0,.3)); }
   .score .logo { position: relative; z-index: 1; width: 30px; height: 30px; border-radius: 8px;
                  border: 1.5px solid #fff; background: #037281 url(so.png) center / cover; }
@@ -211,10 +212,7 @@ function card(d) {
   const inner = `
     <div class="side">
       <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async">
-        ${d.drop && !d.dead ? `<span class="off">-${d.drop}%</span>` : ""}
-        ${d.score && !d.dead ? `<span class="score" title="Score SmartDeals ${d.score}/100">
-          <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
-          <span class="num">${d.score}<small>/100</small></span></span>` : ""}</div>
+        ${d.drop && !d.dead ? `<span class="off">-${d.drop}%</span>` : ""}</div>
       <span class="when">il y a ${ago(d.posted)}</span>
     </div>
     <div class="info">
@@ -224,7 +222,12 @@ function card(d) {
       <div class="row">
         <div><span class="price">${money(d.price)}</span>
           ${d.typical && d.typical > d.price ? `<span class="was">Habituel <s>${money(d.typical)}</s></span>` : ""}</div>
-        <span class="go">${d.dead ? "Terminé" : "Voir le deal ›"}</span>
+        <div class="act">
+          ${d.score && !d.dead ? `<span class="score" title="Score SmartDeals ${d.score}/100">
+            <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
+            <span class="num">${d.score}<small>/100</small></span></span>` : ""}
+          <span class="go">${d.dead ? "Terminé" : "Voir le deal ›"}</span>
+        </div>
       </div>
     </div>`;
   return d.dead

@@ -8,6 +8,8 @@
 <meta name="theme-color" content="#0b1120">
 <link rel="icon" href="logo.jpg">
 <link rel="apple-touch-icon" href="logo.jpg">
+<!-- Anonymous visit counter (GoatCounter: no cookies, no personal data) -->
+<script data-goatcounter="https://smartdeals.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <style>
   :root {
     --bg: #0b1120; --card: #151d2e; --card2: #1c2639; --line: #26324a;
@@ -247,6 +249,14 @@ document.getElementById("chips").addEventListener("click", e => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 document.getElementById("q").addEventListener("input", render);
+// Count each "go to Amazon" click as an anonymous GoatCounter event ("deal-ASIN"),
+// so the morning report knows which deals the page sends to Amazon.
+document.getElementById("list").addEventListener("click", e => {
+  const a = e.target.closest("a.deal");
+  if (!a || !window.goatcounter || !window.goatcounter.count) return;
+  const d = deals.find(x => x.link === a.getAttribute("href"));
+  if (d) window.goatcounter.count({ path: "deal-" + d.asin, title: d.name, event: true });
+});
 fetch("deals.json?" + Date.now()).then(r => r.json()).then(j => {
   // a lightning deal past its end time is over, even before the next update
   deals = j.deals.map(d => d.ends && Date.now() > new Date(d.ends) ? { ...d, dead: true } : d);

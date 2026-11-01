@@ -52,6 +52,19 @@
   .pic { flex: none; width: 112px; height: 112px; border-radius: 12px; background: #fff;
          display: grid; place-items: center; overflow: hidden; position: relative; }
   .pic img { max-width: 92%; max-height: 92%; object-fit: contain; }
+  .score { position: absolute; bottom: 5px; left: 5px; background: var(--yellow); color: #111;
+           font-weight: 900; font-size: .9rem; line-height: 1; padding: 4px 6px 3px; border-radius: 8px;
+           box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+  .score small { font-size: .58rem; font-weight: 800; }
+  .about { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+           padding: 10px 14px; font-size: .85rem; color: var(--muted); }
+  .about summary { cursor: pointer; color: var(--text); font-weight: 700; list-style: none; display: flex; align-items: center; gap: 8px; }
+  .about summary::-webkit-details-marker { display: none; }
+  .about summary::after { content: "›"; margin-left: auto; transition: transform .15s; font-size: 1.2rem; }
+  .about[open] summary::after { transform: rotate(90deg); }
+  .about ul { margin: 6px 0; padding-left: 18px; }
+  .about b { color: var(--text); }
+  .mini { background: var(--yellow); color: #111; font-weight: 900; font-size: .75rem; padding: 3px 6px; border-radius: 6px; }
   .off { position: absolute; top: 6px; left: 6px; background: var(--red); color: #fff; font-weight: 900;
          font-size: .78rem; padding: 3px 7px; border-radius: 8px; }
   .info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
@@ -104,6 +117,7 @@
     </label>
     <nav class="chips" id="chips" aria-label="Filtres">
       <button class="chip" data-f="all" aria-pressed="true">Tous</button>
+      <button class="chip" data-f="top" aria-pressed="false">🔥 Top score</button>
       <button class="chip" data-f="new" aria-pressed="false">Nouveaux</button>
       <button class="chip" data-f="rec" aria-pressed="false">Bas prix historiques</button>
       <button class="chip" data-f="big" aria-pressed="false">-50% et plus</button>
@@ -113,6 +127,18 @@
 </header>
 
 <main class="wrap wide">
+  <details class="about">
+    <summary><span class="mini">81</span> C'est quoi le Score SmartDeals?</summary>
+    <p>Notre algorithme note chaque deal sur 100, du point de vue de l'acheteur :</p>
+    <ul>
+      <li><b>Le rabais</b> par rapport au prix habituel du produit</li>
+      <li><b>Le record</b> : premier bas prix historique, ou retour au plus bas prix jamais vu</li>
+      <li><b>La note</b> des acheteurs (une note de 5 sur 12 avis compte moins qu'un 4,6 sur 10 000)</li>
+      <li><b>Le nombre d'avis</b>, pour la confiance</li>
+      <li><b>La popularité</b> du produit sur Amazon.ca</li>
+    </ul>
+    <p>60+ HOT · 70+ TRÈS HOT · 80+ EXCEPTIONNEL · 90+ LÉGENDAIRE. Le 100 parfait n'existe pas 😉</p>
+  </details>
   <div class="list" id="list" aria-live="polite">
     <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
   </div>
@@ -149,6 +175,7 @@ const thumb = url => url.replace(/(\/images\/I\/[^./]+)(\.[^/]*)?\.(jpg|png)$/, 
 const isNew = d => !d.dead && Date.now() - new Date(d.posted) < NEW_HOURS * 3600e3;
 const FILTERS = {
   all: () => true,
+  top: d => !!d.score,
   new: isNew,
   rec: d => !!d.record,
   big: d => (d.drop || 0) >= 50,
@@ -163,7 +190,8 @@ function card(d) {
   const inner = `
     <div class="side">
       <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async">
-        ${d.drop && !d.dead ? `<span class="off">-${d.drop}%</span>` : ""}</div>
+        ${d.drop && !d.dead ? `<span class="off">-${d.drop}%</span>` : ""}
+        ${d.score && !d.dead ? `<span class="score" title="Score SmartDeals">${d.score}<small>/100</small></span>` : ""}</div>
       <span class="when">il y a ${ago(d.posted)}</span>
     </div>
     <div class="info">
@@ -184,7 +212,8 @@ function render() {
   const q = document.getElementById("q").value.trim().toLowerCase();
   const shown = deals.filter(FILTERS[filter])
     .filter(d => !q || (d.name + " " + d.title).toLowerCase().includes(q))
-    .sort((a, b) => a.dead - b.dead);   // dead deals sink to the bottom, otherwise newest first
+    // dead deals sink to the bottom; "Top score" sorts by score, otherwise newest first
+    .sort((a, b) => a.dead - b.dead || (filter === "top" ? (b.score || 0) - (a.score || 0) : 0));
   document.getElementById("list").innerHTML = shown.length ? shown.map(card).join("")
     : '<p class="empty">Aucun deal ici pour l\'instant.</p>';
 }

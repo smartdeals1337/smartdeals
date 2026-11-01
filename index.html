@@ -207,7 +207,7 @@
 <script>
 const NEW_HOURS = 6;
 const RECORD = { first: "Premier bas prix historique", tie: "Bas prix historique" };
-const money = p => p.toFixed(2).replace(".", ",") + "$";
+const money = p => Number(p).toFixed(2).replace(".", ",") + "$";   // a "139.99" string once broke the page
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 function ago(iso) {
   const min = Math.round((Date.now() - new Date(iso)) / 60000);

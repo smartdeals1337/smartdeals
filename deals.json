@@ -1,6 +1,23 @@
 {
- "updated": "2026-11-01T14:17:47-05:00",
+ "updated": "2026-11-01T14:34:04-05:00",
  "deals": [
+  {
+   "asin": "B07BB62NRH",
+   "name": "Carnets Elan Publishing 5x8",
+   "title": "Elan Publishing Company Field Notebook/Journal - 5\"x8\" - Assorted Patterns - Lined Memo Book - Pack of 5",
+   "image": "https://m.media-amazon.com/images/I/518RoHFuXCL.jpg",
+   "price": 15.39,
+   "typical": 38.48,
+   "drop": 60,
+   "record": "first",
+   "rating": 4.8,
+   "reviews": 4173,
+   "score": 91,
+   "ends": null,
+   "posted": "2026-11-01T14:34:02.361459-05:00",
+   "link": "https://amazon.ca/dp/B07BB62NRH?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0GVT7MWY4",
    "name": "Friteuse Cuisinart 9 pte",

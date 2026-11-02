@@ -85,7 +85,8 @@
 
   /* Price line over the last 12 months: the proof the price is really low */
   .hist { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 6px 8px 5px; }
-  .hist img { display: block; width: 100%; height: auto; aspect-ratio: 640 / 150; }
+  .hist img { display: block; width: 100%; height: auto; aspect-ratio: 720 / 270; }
+  .hist.none { padding: 12px; font-size: .8rem; color: var(--muted); text-align: center; background: var(--soft); }
   .hist figcaption { display: flex; justify-content: space-between; gap: 8px; font-size: .72rem; color: var(--muted); margin-top: 2px; }
   .hist .now { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
   .hist .now::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
@@ -314,8 +315,9 @@ function card(d) {
       </div>
       ${badge(true)}
     </div>
-    ${d.chart ? `<figure class="hist"><img src="${esc(d.chart)}" alt="Historique de prix" loading="lazy" decoding="async" width="640" height="150">
-      <figcaption><span>${esc(d.chart_label || "Historique de prix")}</span><span class="now">aujourd'hui</span></figcaption></figure>` : ""}
+    ${d.chart ? `<figure class="hist"><img src="${esc(d.chart)}" alt="Historique de prix" loading="lazy" decoding="async" width="720" height="270">
+      <figcaption><span>${esc(d.chart_label || "Historique de prix")}</span><span class="now">aujourd'hui</span></figcaption></figure>`
+      : `<p class="hist none">Nouveau produit sur Amazon.ca : son historique de prix commence avec ce deal.</p>`}
     <div class="buy">
       <div class="prices"><span class="price">${money(d.price)}</span>
         ${d.drop && !faded ? `<span class="off">-${d.drop}%</span>` : ""}

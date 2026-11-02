@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T08:54:55-05:00",
+ "updated": "2026-11-02T09:03:05-05:00",
  "deals": [
   {
    "asin": "B0GXW9C8QC",
@@ -18,9 +18,9 @@
     "elle",
     "lui"
    ],
-   "chart": "charts/B0GXW9C8QC-31900.png",
+   "chart": "charts/B0GXW9C8QC-31900-v2.png",
    "chart_label": "Nouveau produit · suivi depuis juillet 2026",
-   "checked": "2026-11-02T07:25:53.746221-05:00",
+   "checked": "2026-11-02T09:03:04-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-02T07:25:53.746221-05:00",
@@ -43,9 +43,9 @@
    "gift": [
     "maison"
    ],
-   "chart": "charts/B0CWSBCMDJ-2598.png",
-   "chart_label": "Prix des 12 derniers mois",
-   "checked": "2026-11-01T18:49:11.864384-05:00",
+   "chart": "charts/B0CWSBCMDJ-2612-v2.png",
+   "chart_label": "Nouveau produit · suivi depuis septembre 2026",
+   "checked": "2026-11-02T09:03:04-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-01T18:49:11.864384-05:00",
@@ -92,8 +92,8 @@
     "elle",
     "lui"
    ],
-   "chart": "charts/B0FHWNZLKT-12599.png",
-   "chart_label": "Prix des 12 derniers mois",
+   "chart": "charts/B0FHWNZLKT-12599-v2.png",
+   "chart_label": "Nouveau produit · suivi depuis août 2026",
    "checked": "2026-11-02T08:48:54-05:00",
    "state": "ok",
    "now_price": null,
@@ -115,7 +115,7 @@
    "score": 86,
    "ends": null,
    "gift": [],
-   "chart": "charts/B0FM61SDMR-15120.png",
+   "chart": "charts/B0FM61SDMR-15120-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:54-05:00",
    "state": "ok",
@@ -138,7 +138,7 @@
    "score": 91,
    "ends": null,
    "gift": [],
-   "chart": "charts/B07BB62NRH-1539.png",
+   "chart": "charts/B07BB62NRH-1539-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:54-05:00",
    "state": "ok",
@@ -163,8 +163,8 @@
    "gift": [
     "maison"
    ],
-   "chart": "charts/B0GVT7MWY4-16999.png",
-   "chart_label": "Nouveau produit · suivi depuis mai 2026",
+   "chart": "charts/B0GVT7MWY4-16999-v2.png",
+   "chart_label": "Nouveau produit · suivi depuis août 2026",
    "checked": "2026-11-02T08:48:54-05:00",
    "state": "ok",
    "now_price": null,
@@ -188,7 +188,7 @@
    "gift": [
     "maison"
    ],
-   "chart": "charts/B0FJRM9GKQ-79998.png",
+   "chart": "charts/B0FJRM9GKQ-79998-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:54-05:00",
    "state": "ok",
@@ -211,7 +211,7 @@
    "score": 82,
    "ends": null,
    "gift": [],
-   "chart": "charts/B08316G583-39900.png",
+   "chart": "charts/B08316G583-39900-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:54-05:00",
    "state": "ok",
@@ -237,7 +237,7 @@
     "ados",
     "gamers"
    ],
-   "chart": "charts/B0D8M64LF3-2878.png",
+   "chart": "charts/B0D8M64LF3-2878-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:54-05:00",
    "state": "ok",
@@ -262,7 +262,7 @@
    "gift": [
     "lui"
    ],
-   "chart": "charts/B0DK7N9JQ8-1792.png",
+   "chart": "charts/B0DK7N9JQ8-1792-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:54-05:00",
    "state": "ok",
@@ -285,7 +285,7 @@
    "score": 86,
    "ends": null,
    "gift": [],
-   "chart": "charts/B0CC6K88RZ-10995.png",
+   "chart": "charts/B0CC6K88RZ-10995-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:08-05:00",
    "state": "ok",
@@ -310,7 +310,7 @@
    "gift": [
     "enfants"
    ],
-   "chart": "charts/B0CV27WQQV-14900.png",
+   "chart": "charts/B0CV27WQQV-14900-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:08-05:00",
    "state": "ok",
@@ -336,7 +336,7 @@
     "elle",
     "lui"
    ],
-   "chart": "charts/B08WM1DDHN-2697.png",
+   "chart": "charts/B08WM1DDHN-2697-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:08-05:00",
    "state": "ok",
@@ -361,8 +361,8 @@
    "gift": [
     "lui"
    ],
-   "chart": "charts/B0DQ5NG4CX-1757.png",
-   "chart_label": "Prix des 12 derniers mois",
+   "chart": "charts/B0DQ5NG4CX-1757-v2.png",
+   "chart_label": "Prix depuis février 2026",
    "checked": "2026-10-31T20:48:54.622902-04:00",
    "state": "ok",
    "now_price": null,
@@ -387,7 +387,7 @@
     "elle",
     "lui"
    ],
-   "chart": "charts/B0GND7WQ82-9998.png",
+   "chart": "charts/B0GND7WQ82-9998-v2.png",
    "chart_label": "Nouveau produit · suivi depuis mai 2026",
    "checked": "2026-11-02T08:48:08-05:00",
    "state": "ok",
@@ -412,7 +412,7 @@
    "gift": [
     "maison"
    ],
-   "chart": "charts/B0CJT59672-5778.png",
+   "chart": "charts/B0CJT59672-5778-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:08-05:00",
    "state": "ok",
@@ -437,7 +437,7 @@
    "gift": [
     "maison"
    ],
-   "chart": "charts/B0H4WXSXHS-49999.png",
+   "chart": "charts/B0H4WXSXHS-49999-v2.png",
    "chart_label": "Nouveau produit · suivi depuis août 2026",
    "checked": "2026-11-02T08:48:08-05:00",
    "state": "ok",
@@ -460,7 +460,7 @@
    "score": 91,
    "ends": null,
    "gift": [],
-   "chart": "charts/B09XJHYBZ2-6227.png",
+   "chart": "charts/B09XJHYBZ2-6227-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:08-05:00",
    "state": "ok",
@@ -486,7 +486,7 @@
     "elle",
     "lui"
    ],
-   "chart": "charts/B0BQPNMXQV-4498.png",
+   "chart": "charts/B0BQPNMXQV-4498-v2.png",
    "chart_label": "Prix des 12 derniers mois",
    "checked": "2026-11-02T08:48:08-05:00",
    "state": "ok",

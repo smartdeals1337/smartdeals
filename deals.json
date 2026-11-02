@@ -1,6 +1,30 @@
 {
- "updated": "2026-11-02T17:47:27-05:00",
+ "updated": "2026-11-02T18:03:46-05:00",
  "deals": [
+  {
+   "asin": "B084JCXF4T",
+   "name": "Nourriture humide Nutro",
+   "title": "Nutro Natural Choice Adult Wet Dog Food, Chicken Flavour, 100 (12 Pack)",
+   "image": "https://m.media-amazon.com/images/I/51W52wC7vbL.jpg",
+   "price": 17.0,
+   "typical": 24.98,
+   "drop": 32,
+   "record": "first",
+   "rating": 4.5,
+   "reviews": 262,
+   "score": 83,
+   "ends": null,
+   "gift": [],
+   "low_since": null,
+   "chart": "charts/B084JCXF4T-1700-v3.png",
+   "chart_label": "Prix des 12 derniers mois",
+   "checked": "2026-11-02T18:03:43.523991-05:00",
+   "state": "ok",
+   "now_price": null,
+   "posted": "2026-11-02T18:03:43.523991-05:00",
+   "link": "https://amazon.ca/dp/B084JCXF4T?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0BY1BB9TG",
    "name": "Perceuse DEWALT 20V MAX",

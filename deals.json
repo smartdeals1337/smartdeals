@@ -1,6 +1,32 @@
 {
- "updated": "2026-11-02T09:17:55-05:00",
+ "updated": "2026-11-02T09:36:02-05:00",
  "deals": [
+  {
+   "asin": "B0GXWFVKT5",
+   "name": "Casque Bose QuietComfort",
+   "title": "Bose QuietComfort Headphones (2nd Gen) - Wireless Headphones, Active Over Ear Noise Cancelling and Mic, Immersive Audio, USB-C Charging and Lossless Audio, Up to 24h of Play time, Eucalyptus Green",
+   "image": "https://m.media-amazon.com/images/I/316lKCYXxSL.jpg",
+   "price": 299.0,
+   "typical": 469.98,
+   "drop": 36,
+   "record": "first",
+   "rating": 4.6,
+   "reviews": 274,
+   "score": 85,
+   "ends": null,
+   "gift": [
+    "elle",
+    "lui"
+   ],
+   "chart": "charts/B0GXWFVKT5-29900-v2.png",
+   "chart_label": "Nouveau produit · suivi depuis août 2026",
+   "checked": "2026-11-02T09:35:59.628018-05:00",
+   "state": "ok",
+   "now_price": null,
+   "posted": "2026-11-02T09:35:59.628018-05:00",
+   "link": "https://amazon.ca/dp/B0GXWFVKT5?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0GXW9C8QC",
    "name": "Casque Bose QuietComfort",

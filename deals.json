@@ -1,6 +1,23 @@
 {
- "updated": "2026-11-02T06:48:03-05:00",
+ "updated": "2026-11-02T07:05:56-05:00",
  "deals": [
+  {
+   "asin": "B0GXWHFTD5",
+   "name": "Casque Bose QC 2e gén",
+   "title": "Bose QuietComfort Headphones (2nd Gen) - Wireless Headphones, Active Over Ear Noise Cancelling and Mic, Immersive Audio, USB-C Charging and Lossless Audio, Up to 24 Hours of Play time, Rosewood Mauve",
+   "image": "https://m.media-amazon.com/images/I/31Qs6G4FS6L.jpg",
+   "price": 319.0,
+   "typical": 479.0,
+   "drop": 33,
+   "record": "first",
+   "rating": 4.6,
+   "reviews": 273,
+   "score": 85,
+   "ends": null,
+   "posted": "2026-11-02T07:05:54.692624-05:00",
+   "link": "https://amazon.ca/dp/B0GXWHFTD5?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0CWSBCMDJ",
    "name": "Bols ramen Silver Buffalo",

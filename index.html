@@ -149,6 +149,19 @@
   .deal.faded .go { background: #cbd5e1; color: #334155; }
   .deal.is-dead { opacity: .6; }
 
+  /* One-line score legend: the three badge levels, always visible */
+  .legendbar { width: 100%; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 6px;
+               background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 4px 12px 6px;
+               font: inherit; color: var(--text); cursor: pointer; text-align: left; }
+  .lb-title { font-weight: 800; font-size: .8rem; line-height: 1.1; }
+  .lb-title span { color: var(--teal); }
+  .lb-item { display: flex; align-items: center; gap: 6px; }
+  .lb-word { display: none; font-size: .78rem; font-weight: 700; color: var(--muted); }
+  @media (min-width: 600px) { .lb-word { display: inline; } .legendbar { justify-content: flex-start; gap: 22px; } }
+  .score.mini { margin-top: 12px; }
+  .score.mini .logo { width: 26px; height: 26px; border-radius: 7px; }
+  .score.mini .fl { font-size: 11px; bottom: 19px; letter-spacing: -3px; }
+  .score.mini .num { font-size: .74rem; padding: 4px 6px 3px 10px; margin-left: -6px; border-radius: 0 7px 7px 0; }
   /* What we check + the score, folded into one line (the promise stays visible) */
   .about { margin-top: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
            padding: 9px 12px; font-size: .85rem; color: var(--muted); }
@@ -228,6 +241,13 @@
 </header>
 
 <main class="wrap wide">
+  <!-- The hot score in one line, always visible (owner, 2026-11-02): tap = full explanation below -->
+  <button class="legendbar" type="button" aria-label="Score SmartDeals : 1 flamme dès 80, 2 flammes dès 85, 3 flammes dès 90. Voir l'explication">
+    <span class="lb-title">Score <span>SmartDeals</span></span>
+    <span class="lb-item"><span class="score mini"><span class="logo"><span class="fl">🔥</span></span><span class="num">80+</span></span><span class="lb-word">Hot</span></span>
+    <span class="lb-item"><span class="score mini"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">85+</span></span><span class="lb-word">Très hot</span></span>
+    <span class="lb-item"><span class="score mini"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">90+</span></span><span class="lb-word">Exceptionnel</span></span>
+  </button>
   <!-- One line (opens on tap): what we check + the score, so deals start high on a phone -->
   <details class="about">
     <summary><svg class="ok" aria-hidden="true"><use href="#ok"/></svg>
@@ -383,6 +403,12 @@ document.querySelectorAll(".chips").forEach(nav => nav.addEventListener("click",
   window.scrollTo({ top: 0, behavior: "smooth" });
 }));
 document.getElementById("q").addEventListener("input", render);
+// the score legend opens the full explanation (checks + score) just below it
+document.querySelector(".legendbar").addEventListener("click", () => {
+  const about = document.querySelector(".about");
+  about.open = true;
+  about.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 // Count each "go to Amazon" click as an anonymous GoatCounter event ("deal-ASIN"),
 // so the morning report knows which deals the page sends to Amazon.
 document.getElementById("list").addEventListener("click", e => {

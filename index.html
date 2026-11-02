@@ -206,6 +206,22 @@
   .legend > div { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
                   background: var(--soft); border-radius: 12px; padding: 14px 6px 10px; font-size: .78rem; line-height: 1.3; }
 
+  /* Amazon programs (bounty links): a card in the list after the 4th deal, full width so the
+     2-column rows stay whole, and the same links in the footer */
+  .promo { grid-column: 1 / -1; display: grid; gap: 8px; padding: 12px; background: var(--card);
+           border: 1px solid var(--line); border-radius: var(--radius); }
+  .promo-title { margin: 0; font-size: .8rem; color: var(--muted); }
+  .promo-title b { color: var(--text); font-size: .9rem; }
+  @media (min-width: 900px) { .promo { grid-template-columns: 1fr 1fr; } .promo-title { grid-column: 1 / -1; } }
+  .promo-btn { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px;
+               border: 1.5px solid var(--teal); color: var(--text); text-decoration: none; background: var(--bg); }
+  .promo-btn span { flex: 1; min-width: 0; }
+  .promo-btn b { display: block; color: var(--teal); font-size: .95rem; }
+  .promo-btn small { display: block; color: var(--muted); font-size: .76rem; line-height: 1.3; margin-top: 2px; }
+  .promo-btn svg { flex: none; color: var(--teal); }
+  @media (hover: hover) { .promo-btn:hover { background: var(--teal-soft); } }
+  .bounties { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 0 14px; }
+  .bounties a { border: 1px solid var(--line); background: var(--card); padding: 8px 14px; border-radius: 999px; }
   .empty { text-align: center; color: var(--muted); padding: 48px 0; }
   .skeleton { height: 300px; border-radius: var(--radius); background: linear-gradient(90deg, #e9edf2 0%, #f6f8fa 50%, #e9edf2 100%);
               background-size: 200% 100%; animation: shimmer 1.2s infinite; }
@@ -310,6 +326,10 @@
 </main>
 
 <footer class="wrap">
+  <div class="bounties">
+    <a href="https://link.amazon/B04pIocUf" target="_blank" rel="sponsored noopener" data-bounty="prime">Essai gratuit Amazon Prime</a>
+    <a href="https://link.amazon/A0cySuVv9" target="_blank" rel="sponsored noopener" data-bounty="registry">Liste de naissance Amazon</a>
+  </div>
   <div class="social">
     <a href="https://www.facebook.com/smartdealsclubcom">Facebook</a>
     <a href="https://www.instagram.com/smartdeals_club/">Instagram</a>
@@ -412,9 +432,20 @@ function render() {
     .filter(d => !q || (d.name + " " + d.title).toLowerCase().includes(q))
     // "Meilleur score" sorts by score, otherwise newest first
     .sort((a, b) => rank(a) - rank(b) || (filter === "top" ? (b.score || 0) - (a.score || 0) : 0));
-  document.getElementById("list").innerHTML = shown.length ? shown.map(card).join("")
+  const cards = shown.map(card);
+  if (cards.length) cards.splice(Math.min(4, cards.length), 0, PROMO);   // after the 4th deal: whole rows on desktop
+  document.getElementById("list").innerHTML = cards.length ? cards.join("")
     : '<p class="empty">Aucun deal ici pour l\'instant.</p>';
 }
+// Amazon programs that pay a flat bounty (links made in Associates Central, tag sonline02-20)
+const arrow = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+const PROMO = `<div class="promo">
+  <p class="promo-title"><b>Bons plans Amazon</b> · liens affiliés</p>
+  <a class="promo-btn" href="https://link.amazon/B04pIocUf" target="_blank" rel="sponsored noopener" data-bounty="prime">
+    <span><b>Essai gratuit Amazon Prime</b><small>Livraison gratuite rapide et deals réservés aux membres. Se renouvelle si tu n'annules pas.</small></span>${arrow}</a>
+  <a class="promo-btn" href="https://link.amazon/A0cySuVv9" target="_blank" rel="sponsored noopener" data-bounty="registry">
+    <span><b>Liste de naissance Amazon</b><small>Le secret le mieux gardé d'Amazon : 15% de rabais de complétion, même si bébé est déjà né (jusqu'à 90 jours).</small></span>${arrow}</a>
+</div>`;
 document.querySelectorAll(".chips").forEach(nav => nav.addEventListener("click", e => {
   const b = e.target.closest(".chip");
   if (!b) return;
@@ -437,6 +468,12 @@ document.getElementById("list").addEventListener("click", e => {
   if (!a || !window.goatcounter || !window.goatcounter.count) return;
   const d = deals.find(x => x.link === a.getAttribute("href"));
   if (d) window.goatcounter.count({ path: "deal-" + d.asin, title: d.name, event: true });
+});
+// Prime trial / baby registry clicks (list card and footer): "bounty-prime", "bounty-registry"
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[data-bounty]");
+  if (a && window.goatcounter && window.goatcounter.count)
+    window.goatcounter.count({ path: "bounty-" + a.dataset.bounty, title: a.textContent.trim().slice(0, 60), event: true });
 });
 fetch("deals.json?" + Date.now()).then(r => r.json()).then(j => {
   // a lightning deal past its end time is over, even before the next update

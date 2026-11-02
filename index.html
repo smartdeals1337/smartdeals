@@ -42,7 +42,19 @@
   .brand img { width: 38px; height: 38px; border-radius: 10px; }
   .brand b { font-size: 1.05rem; font-weight: 900; letter-spacing: .3px; }
   .brand b span { color: var(--teal); }
-  .brand small { display: block; color: var(--muted); font-size: .75rem; font-weight: 500; }
+  .brand small { display: block; color: var(--muted); font-size: .75rem; font-weight: 500;
+                 white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .brand .name { flex: 1; min-width: 0; }
+  .brand b { white-space: nowrap; }
+  /* Follow buttons, right of the logo: the networks' own colours, so they're recognised at a glance */
+  .follow { flex: none; display: flex; gap: 6px; }
+  .follow a { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+              transition: transform .12s; }
+  .follow a:active { transform: scale(.92); }
+  .follow svg { width: 20px; height: 20px; }
+  .follow .fb { background: #1877f2; }
+  .follow .ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+  .follow .th { background: #000; }
   .search { position: relative; display: block; margin-top: 10px; }
   .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); }
   .search input { width: 100%; padding: 11px 12px 11px 38px; border-radius: 12px; border: 1px solid var(--line);
@@ -56,13 +68,6 @@
   .chip[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
   .chip[hidden] { display: none; }
 
-  /* What we check: the promise, always visible */
-  .rules { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-           padding: 12px 14px; }
-  .rules b { display: block; font-size: .9rem; margin-bottom: 6px; }
-  .rules ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px 14px; font-size: .84rem; color: var(--muted); }
-  @media (min-width: 600px) { .rules ul { grid-template-columns: 1fr 1fr; } }
-  .rules li { display: flex; gap: 7px; align-items: flex-start; }
   .ok { flex: none; width: 16px; height: 16px; margin-top: 1px; color: var(--teal); }
 
   /* Deal cards: the whole card is one link */
@@ -144,10 +149,16 @@
   .deal.faded .go { background: #cbd5e1; color: #334155; }
   .deal.is-dead { opacity: .6; }
 
-  /* Score explainer */
-  .about { margin-top: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-           padding: 10px 14px; font-size: .85rem; color: var(--muted); }
-  .about summary { cursor: pointer; color: var(--text); font-weight: 700; list-style: none; display: flex; align-items: center; gap: 8px; }
+  /* What we check + the score, folded into one line (the promise stays visible) */
+  .about { margin-top: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+           padding: 9px 12px; font-size: .85rem; color: var(--muted); }
+  .about summary { cursor: pointer; color: var(--muted); font-size: .8rem; line-height: 1.3; list-style: none;
+                   display: flex; align-items: center; gap: 8px; }
+  .about summary b { color: var(--teal); }
+  .about .intro { margin: 12px 0 4px; }
+  .about .checks { list-style: none; padding: 0; display: grid; gap: 4px 14px; }
+  @media (min-width: 600px) { .about .checks { grid-template-columns: 1fr 1fr; } }
+  .about .checks li { display: flex; gap: 7px; align-items: flex-start; }
   .about summary::-webkit-details-marker { display: none; }
   .about summary::after { content: "›"; margin-left: auto; transition: transform .15s; font-size: 1.2rem; }
   .about[open] summary::after { transform: rotate(90deg); }
@@ -178,7 +189,16 @@
   <div class="wrap wide">
     <div class="brand">
       <img src="icon.png" alt="">
-      <div><b>SMART<span>DEALS</span> CLUB</b><small id="sub">Les deals Amazon.ca, avec la preuve</small></div>
+      <div class="name"><b>SMART<span>DEALS</span> CLUB</b><small id="sub">Les deals Amazon.ca, avec la preuve</small></div>
+      <!-- Follow us on the other networks: in the logo row, so it costs no height -->
+      <nav class="follow" aria-label="Suis-nous">
+        <a class="fb" href="https://www.facebook.com/smartdealsclubcom" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.4 21v-7.3h2.5l.4-2.9h-2.9V9c0-.8.2-1.4 1.4-1.4h1.5V5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8v2.9h2.4V21z"/></svg></a>
+        <a class="ig" href="https://www.instagram.com/smartdeals_club/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width="2"><rect x="4.5" y="4.5" width="15" height="15" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.6" cy="7.4" r=".6" fill="#fff" stroke="none"/></svg></a>
+        <a class="th" href="https://www.threads.com/@smartdeals1337" target="_blank" rel="noopener" aria-label="Threads">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="17.2" text-anchor="middle" font-size="16" font-weight="700" font-family="system-ui, sans-serif" fill="#fff">@</text></svg></a>
+      </nav>
     </div>
     <label class="search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -192,8 +212,7 @@
       <button class="chip" data-f="new" aria-pressed="false">Nouveaux</button>
       <button class="chip" data-f="rec" aria-pressed="false">Bas prix historiques</button>
       <button class="chip" data-f="big" aria-pressed="false">-50% et plus</button>
-    </nav>
-    <nav class="chips" aria-label="Idées cadeaux">
+      <!-- gift ideas continue in the same scrolling row: one row instead of two -->
       <span class="lab">Idées cadeaux</span>
       <button class="chip" data-f="u25" aria-pressed="false">Moins de 25$</button>
       <button class="chip" data-f="u50" aria-pressed="false">Moins de 50$</button>
@@ -209,19 +228,19 @@
 </header>
 
 <main class="wrap wide">
-  <section class="rules" aria-label="Ce qu'on vérifie">
-    <b>Avant de publier un deal, on vérifie :</b>
-    <ul>
+  <!-- One line (opens on tap): what we check + the score, so deals start high on a phone -->
+  <details class="about">
+    <summary><svg class="ok" aria-hidden="true"><use href="#ok"/></svg>
+      <span><b>Chaque deal est vérifié</b> : vrai prix habituel, historique, avis, stock en direct</span></summary>
+    <p class="intro"><b>Avant de publier un deal, on vérifie :</b></p>
+    <ul class="checks">
       <li><svg class="ok"><use href="#ok"/></svg>le vrai prix habituel, pas un faux prix barré</li>
       <li><svg class="ok"><use href="#ok"/></svg>l'historique de prix du produit (le graphique sur chaque deal)</li>
       <li><svg class="ok"><use href="#ok"/></svg>la note et le nombre d'avis des acheteurs</li>
       <li><svg class="ok"><use href="#ok"/></svg>que c'est en stock chez Amazon, au prix annoncé, juste avant de publier</li>
       <li><svg class="ok"><use href="#ok"/></svg>le prix et le stock encore, environ toutes les heures pendant la journée</li>
     </ul>
-  </section>
-  <details class="about">
-    <summary><span class="score" aria-hidden="true"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">92<small>/100</small></span></span>
-      C'est quoi le Score SmartDeals?</summary>
+    <p class="intro"><b>Le Score SmartDeals</b></p>
     <div class="spot">
       <span class="score"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">87<small>/100</small></span></span>
       <div><b>Repère ce badge sur chaque deal.</b><br>

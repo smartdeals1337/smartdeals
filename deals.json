@@ -1,6 +1,33 @@
 {
- "updated": "2026-11-02T12:02:23-05:00",
+ "updated": "2026-11-02T12:05:14-05:00",
  "deals": [
+  {
+   "asin": "B0DZHR44J9",
+   "name": "Casque Bose QuietComfort",
+   "title": "Bose QuietComfort Headphones - Wireless Bluetooth Headphones, Active Over Ear Noise Cancelling and Mic, USB-C Charging, Deep Bass, Up to 24 Hours of Playtime, Twilight Blue",
+   "image": "https://m.media-amazon.com/images/I/319BtflWTuL.jpg",
+   "price": 249.0,
+   "typical": 479.0,
+   "drop": 48,
+   "record": "tie",
+   "rating": 4.4,
+   "reviews": 20579,
+   "score": 87,
+   "ends": null,
+   "gift": [
+    "elle",
+    "lui"
+   ],
+   "low_since": null,
+   "chart": "charts/B0DZHR44J9-24900-v3.png",
+   "chart_label": "Prix des 12 derniers mois",
+   "checked": "2026-11-02T12:05:11.546389-05:00",
+   "state": "ok",
+   "now_price": null,
+   "posted": "2026-11-02T12:05:11.546389-05:00",
+   "link": "https://amazon.ca/dp/B0DZHR44J9?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0BS1QCFHX",
    "name": "Casque Sony WH-CH720N",

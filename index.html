@@ -151,14 +151,15 @@
 
   /* One-line score legend: the three badge levels, always visible */
   .legendbar { width: 100%; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 6px;
-               background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 4px 12px 6px;
+               background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+               padding: 16px 12px 8px;   /* the top padding is the flames' room: badges, words and title share one centre line */
                font: inherit; color: var(--text); cursor: pointer; text-align: left; }
   .lb-title { font-weight: 800; font-size: .8rem; line-height: 1.1; }
   .lb-title span { color: var(--teal); }
   .lb-item { display: flex; align-items: center; gap: 6px; }
-  .lb-word { display: none; font-size: .78rem; font-weight: 700; color: var(--muted); }
+  .lb-word { display: none; font-size: .78rem; font-weight: 700; color: var(--muted); line-height: 1; }
   @media (min-width: 600px) { .lb-word { display: inline; } .legendbar { justify-content: flex-start; gap: 22px; } }
-  .score.mini { margin-top: 12px; }
+  .score.mini { margin-top: 0; }
   .score.mini .logo { width: 26px; height: 26px; border-radius: 7px; }
   .score.mini .fl { font-size: 11px; bottom: 19px; letter-spacing: -3px; }
   .score.mini .num { font-size: .74rem; padding: 4px 6px 3px 10px; margin-left: -6px; border-radius: 0 7px 7px 0; }

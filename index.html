@@ -4,73 +4,113 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SmartDeals.online – Les deals</title>
-<meta name="description" content="Les liens de tous les deals Amazon.ca publiés par SmartDeals.online sur Instagram, Facebook et Threads.">
-<meta name="theme-color" content="#0b1120">
+<meta name="description" content="Les deals Amazon.ca de SmartDeals.online, avec l'historique de prix de chaque produit et le prix revérifié pendant la journée.">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="logo.jpg">
 <link rel="apple-touch-icon" href="logo.jpg">
 <!-- Anonymous visit counter (GoatCounter: no cookies, no personal data) -->
 <script data-goatcounter="https://smartdeals.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <style>
+  /* Light look (2026-11-02): white cards and the SO teal, so we don't read as one
+     more dark "deals" site. The proof (price line + live check) is on every card. */
   :root {
-    --bg: #0b1120; --card: #151d2e; --card2: #1c2639; --line: #26324a;
-    --text: #f1f5f9; --muted: #8b98ad; --yellow: #facc15; --red: #ef4444; --green: #22c55e;
+    --bg: #f3f5f8; --card: #ffffff; --soft: #f1f5f9; --line: #e2e8f0;
+    --text: #0f172a; --muted: #64748b; --teal: #037281; --teal-dark: #025a66; --teal-soft: #e3f1f3;
+    --yellow: #facc15; --red: #e11d48; --green: #15803d;
     --radius: 16px;
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html { scroll-padding-top: 130px; }
+  html { scroll-padding-top: 170px; }
   body { margin: 0; background: var(--bg); color: var(--text);
-         font: 15px/1.35 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         font: 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
          padding-bottom: env(safe-area-inset-bottom); }
 
   /* Top bar: brand + search + filters, stays put while scrolling */
-  .top { position: sticky; top: 0; z-index: 5; background: rgba(11, 17, 32, .92);
+  .top { position: sticky; top: 0; z-index: 5; background: rgba(255, 255, 255, .94);
          backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-         border-bottom: 1px solid var(--line); padding: calc(10px + env(safe-area-inset-top)) 0 10px; }
+         border-bottom: 1px solid var(--line); padding: calc(10px + env(safe-area-inset-top)) 0 8px; }
   .wrap { max-width: 640px; margin: 0 auto; padding: 0 16px; }
   .brand { display: flex; align-items: center; gap: 10px; }
-  .brand img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--yellow); }
+  .brand img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--teal); }
   .brand b { font-size: 1.05rem; font-weight: 900; letter-spacing: .3px; }
-  .brand b span { color: var(--yellow); }
+  .brand b span { color: var(--teal); }
   .brand small { display: block; color: var(--muted); font-size: .75rem; font-weight: 500; }
-  .search { position: relative; margin-top: 10px; }
+  .search { position: relative; display: block; margin-top: 10px; }
   .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); }
   .search input { width: 100%; padding: 11px 12px 11px 38px; border-radius: 12px; border: 1px solid var(--line);
-                  background: var(--card); color: var(--text); font-size: 16px; outline: none; }
-  .search input:focus { border-color: var(--yellow); }
-  .chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 10px -16px 0; padding: 0 16px; }
+                  background: var(--soft); color: var(--text); font-size: 16px; outline: none; }
+  .search input:focus { border-color: var(--teal); background: #fff; }
+  .chips { display: flex; align-items: center; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 8px -16px 0; padding: 0 16px; }
   .chips::-webkit-scrollbar { display: none; }
-  .chip { flex: none; border: 1px solid var(--line); background: var(--card); color: var(--text);
-          padding: 7px 13px; border-radius: 999px; font-size: .85rem; font-weight: 600; cursor: pointer; }
-  .chip[aria-pressed="true"] { background: var(--yellow); border-color: var(--yellow); color: #111; }
+  .chips .lab { flex: none; font-size: .72rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
+  .chip { flex: none; border: 1px solid var(--line); background: #fff; color: var(--text);
+          padding: 6px 12px; border-radius: 999px; font: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; }
+  .chip[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .chip[hidden] { display: none; }
+
+  /* What we check: the promise, always visible */
+  .rules { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+           padding: 12px 14px; }
+  .rules b { display: block; font-size: .9rem; margin-bottom: 6px; }
+  .rules ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px 14px; font-size: .84rem; color: var(--muted); }
+  @media (min-width: 600px) { .rules ul { grid-template-columns: 1fr 1fr; } }
+  .rules li { display: flex; gap: 7px; align-items: flex-start; }
+  .ok { flex: none; width: 16px; height: 16px; margin-top: 1px; color: var(--teal); }
 
   /* Deal cards: the whole card is one link */
   .list { display: grid; gap: 12px; padding-top: 14px; padding-bottom: 24px; }
   @media (min-width: 900px) { .list { grid-template-columns: 1fr 1fr; } .wrap.wide { max-width: 1040px; } }
-  /* Deal card (sketch A, 2026-11-01): top = photo + info, middle = price + score,
-     bottom = full-width "buy" button. The whole card is one link. */
   .deal { display: flex; flex-direction: column; gap: 10px; padding: 12px; background: var(--card);
           border: 1px solid var(--line); border-radius: var(--radius); color: inherit; text-decoration: none;
-          transition: transform .12s, background .12s; content-visibility: auto; contain-intrinsic-size: 230px; }
-  a.deal:active { transform: scale(.985); background: var(--card2); }
-  @media (hover: hover) { a.deal:hover { background: var(--card2); } a.deal:hover .go { background: #fde047; } }
+          box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+          transition: transform .12s, box-shadow .12s; content-visibility: auto; contain-intrinsic-size: 330px; }
+  a.deal:active { transform: scale(.985); }
+  @media (hover: hover) { a.deal:hover { box-shadow: 0 6px 18px rgba(15, 23, 42, .09); } a.deal:hover .go { background: var(--teal-dark); } }
   .head { display: flex; gap: 12px; }
-  .pic { flex: none; width: 92px; height: 92px; border-radius: 12px; background: #fff;
-         display: grid; place-items: center; overflow: hidden; position: relative; }
-  .pic img { max-width: 90%; max-height: 90%; object-fit: contain; }
+  .pic { flex: none; width: 92px; height: 92px; border-radius: 12px; background: #fff; border: 1px solid var(--line);
+         display: grid; place-items: center; overflow: hidden; }
+  .pic img { max-width: 88%; max-height: 88%; object-fit: contain; }
+  .info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; }
+  .tag { font-size: .66rem; font-weight: 800; letter-spacing: .3px; padding: 3px 7px; border-radius: 6px; text-transform: uppercase; }
+  .tag.rec { background: #fef3c7; color: #92400e; }
+  .tag.new { background: #dcfce7; color: var(--green); }
+  .tag.flash { background: #ffe4e6; color: #be123c; }
+  .tag.dead, .tag.off-tag { background: #475569; color: #fff; }
+  .name { font-weight: 700; font-size: 1rem; line-height: 1.25; margin: 0;
+          display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .stars { color: var(--muted); font-size: .78rem; margin-top: 4px; }
+  .rate { position: relative; display: inline-block; color: #cbd5e1; letter-spacing: 1px; line-height: 1; }
+  .rate span { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; color: #f59e0b; }
+
+  /* Price line over the last 12 months: the proof the price is really low */
+  .hist { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 6px 8px 5px; }
+  .hist img { display: block; width: 100%; height: auto; aspect-ratio: 640 / 150; }
+  .hist figcaption { display: flex; justify-content: space-between; gap: 8px; font-size: .72rem; color: var(--muted); margin-top: 2px; }
+  .hist .now { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .hist .now::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+
   .buy { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .buy .prices { min-width: 0; display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 8px; }
+  .price { font-size: 1.6rem; font-weight: 900; color: var(--text); line-height: 1.1; }
+  .off { align-self: center; background: var(--red); color: #fff; font-weight: 900;
+         font-size: .9rem; line-height: 1; padding: 5px 8px; border-radius: 8px; }
+  .was { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+  .checked { display: flex; align-items: center; gap: 6px; font-size: .78rem; color: var(--teal); font-weight: 600; margin-top: -2px; }
+  .checked.bad { color: #b45309; }
+  .checked .ok { width: 15px; height: 15px; margin: 0; }
+
   /* Hotness badge: SO logo with 1-3 flames on top, score in a yellow tab */
   .score { flex: none; position: relative; display: flex; align-items: center; margin-top: 10px;   /* room for the flames */
-           filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+           filter: drop-shadow(0 2px 4px rgba(15, 23, 42, .18)); }
   .score .logo { position: relative; z-index: 1; width: 34px; height: 34px; border-radius: 9px;
-                 border: 1.5px solid #fff; background: #037281 url(so.png) center / cover; }
+                 border: 1.5px solid #fff; background: var(--teal) url(so.png) center / cover; }
   .score .fl { position: absolute; left: 50%; bottom: 25px; transform: translateX(-50%); font-size: 14px;
                letter-spacing: -4px; white-space: nowrap; line-height: 1; padding-right: 4px; }
   .score .num { background: var(--yellow); color: #111; font-weight: 900; font-size: .95rem; line-height: 1;
                 padding: 5px 8px 4px 12px; margin-left: -7px; border-radius: 0 9px 9px 0; }
   .score small { font-size: .58rem; font-weight: 800; }
-  /* Two copies of the badge: next to the price on phones, and on wider cards a bigger
-     one centred in the free space at the right of the photo + info (away from the button) */
+  /* Two copies of the badge: next to the price on phones, bigger beside the photo on wider cards */
   .score.big { display: none; }
   @media (min-width: 600px) {
     .buy .score { display: none; }
@@ -80,90 +120,92 @@
     .score.big .num { font-size: 1.4rem; padding: 8px 12px 7px 18px; margin-left: -10px; border-radius: 0 12px 12px 0; }
     .score.big small { font-size: .8rem; }
   }
-  .mini.hot { display: inline-flex; gap: 0; }
-  .about { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+
+  /* The buy button: full width, thumb-sized (52px), the loudest thing on the card */
+  .go { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px;
+        font-weight: 900; font-size: 1.05rem; letter-spacing: .2px; color: #fff; background: var(--teal);
+        border-radius: 12px; transition: background .12s; }
+  .go svg { flex: none; }
+  .deal.faded { background: var(--soft); }
+  .deal.faded .pic img, .deal.faded .hist img { filter: grayscale(1); opacity: .7; }
+  .deal.faded .price { color: var(--muted); text-decoration: line-through; }
+  .deal.faded .go { background: #cbd5e1; color: #334155; }
+  .deal.is-dead { opacity: .6; }
+
+  /* Score explainer */
+  .about { margin-top: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
            padding: 10px 14px; font-size: .85rem; color: var(--muted); }
   .about summary { cursor: pointer; color: var(--text); font-weight: 700; list-style: none; display: flex; align-items: center; gap: 8px; }
   .about summary::-webkit-details-marker { display: none; }
   .about summary::after { content: "›"; margin-left: auto; transition: transform .15s; font-size: 1.2rem; }
   .about[open] summary::after { transform: rotate(90deg); }
   .about ul { margin: 6px 0; padding-left: 18px; }
-  .about summary .score { margin-top: 10px; }
-  /* the real badge, shown so people know what to look for on the cards */
+  .about b { color: var(--text); }
   .spot { display: flex; align-items: center; gap: 14px; margin: 14px 0 6px; padding: 12px;
-          background: var(--card2); border-radius: 12px; color: var(--text); line-height: 1.45; }
-  .spot .score { margin-top: 10px; }
+          background: var(--soft); border-radius: 12px; color: var(--text); line-height: 1.45; }
   .legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 10px 0 4px; }
   .legend > div { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
-                  background: var(--card2); border-radius: 12px; padding: 14px 6px 10px; font-size: .78rem; line-height: 1.3; }
-  .legend b { color: var(--text); }
-  .about b { color: var(--text); }
-  .mini { background: var(--yellow); color: #111; font-weight: 900; font-size: .75rem; padding: 3px 6px; border-radius: 6px; }
-  /* the drop % sits in the price line (not on the photo, where it hid the product) */
-  .off { align-self: center; background: var(--red); color: #fff; font-weight: 900;
-         font-size: .9rem; line-height: 1; padding: 5px 8px; border-radius: 8px; }
-  .info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; }
-  .tag { font-size: .66rem; font-weight: 800; letter-spacing: .3px; padding: 3px 7px; border-radius: 6px;
-         text-transform: uppercase; }
-  .tag.rec { background: rgba(250, 204, 21, .14); color: var(--yellow); }
-  .tag.new { background: rgba(34, 197, 94, .15); color: var(--green); }
-  .tag.flash { background: rgba(239, 68, 68, .16); color: #fca5a5; }
-  .tag.dead { background: var(--red); color: #fff; }
-  .name { font-weight: 700; font-size: 1rem; line-height: 1.25; margin: 0;
-          display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .stars { color: var(--muted); font-size: .78rem; margin-top: 4px; }
-  .rate { position: relative; display: inline-block; color: #3b475e; letter-spacing: 1px; line-height: 1; }
-  .rate span { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; color: var(--yellow); }
-  .price { font-size: 1.6rem; font-weight: 900; color: var(--yellow); line-height: 1.1; }
-  .was { color: var(--muted); font-size: .8rem; white-space: nowrap; }
-  /* The buy button: full width, thumb-sized (52px), the loudest thing on the card */
-  .go { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px;
-        font-weight: 900; font-size: 1.05rem; letter-spacing: .2px; color: #111; background: var(--yellow);
-        border-radius: 12px; transition: background .12s; }
-  .go svg { flex: none; }
-  .when { color: var(--muted); }
-  .deal.is-dead { opacity: .55; }
-  .deal.is-dead .pic img { filter: grayscale(1); }
-  .deal.is-dead .price { color: var(--muted); text-decoration: line-through; }
-  .deal.is-dead .go { background: var(--card2); color: var(--muted); }
+                  background: var(--soft); border-radius: 12px; padding: 14px 6px 10px; font-size: .78rem; line-height: 1.3; }
 
   .empty { text-align: center; color: var(--muted); padding: 48px 0; }
-  .skeleton { height: 220px; border-radius: var(--radius); background: linear-gradient(90deg, var(--card) 0%, var(--card2) 50%, var(--card) 100%);
+  .skeleton { height: 300px; border-radius: var(--radius); background: linear-gradient(90deg, #e9edf2 0%, #f6f8fa 50%, #e9edf2 100%);
               background-size: 200% 100%; animation: shimmer 1.2s infinite; }
   @keyframes shimmer { to { background-position: -200% 0; } }
   footer { color: var(--muted); font-size: .78rem; text-align: center; padding: 8px 0 32px; }
   footer a { color: var(--text); text-decoration: none; font-weight: 600; }
   .social { display: flex; justify-content: center; gap: 10px; margin: 6px 0 16px; }
-  .social a { border: 1px solid var(--line); background: var(--card); padding: 8px 14px; border-radius: 999px; }
+  .social a { border: 1px solid var(--line); background: #fff; padding: 8px 14px; border-radius: 999px; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="m7 12.5 3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
 <header class="top">
   <div class="wrap wide">
     <div class="brand">
       <img src="logo.jpg" alt="">
-      <div><b>SMART<span>DEALS</span>.ONLINE</b><small id="sub">Les deals Amazon.ca de nos posts</small></div>
+      <div><b>SMART<span>DEALS</span>.ONLINE</b><small id="sub">Les deals Amazon.ca, avec la preuve</small></div>
     </div>
     <label class="search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="search" placeholder="Chercher un produit…" aria-label="Chercher un produit" autocomplete="off">
     </label>
-    <nav class="chips" id="chips" aria-label="Filtres">
+    <nav class="chips" aria-label="Filtres">
       <button class="chip" data-f="all" aria-pressed="true">Tous</button>
-      <button class="chip" data-f="top" aria-pressed="false">🔥 Top score</button>
+      <button class="chip" data-f="top" aria-pressed="false">Meilleur score</button>
       <button class="chip" data-f="first" aria-pressed="false">Premier bas prix</button>
-      <button class="chip" data-f="flash" aria-pressed="false">⚡ Ventes éclair</button>
+      <button class="chip" data-f="flash" aria-pressed="false">Ventes éclair</button>
       <button class="chip" data-f="new" aria-pressed="false">Nouveaux</button>
       <button class="chip" data-f="rec" aria-pressed="false">Bas prix historiques</button>
       <button class="chip" data-f="big" aria-pressed="false">-50% et plus</button>
-      <button class="chip" data-f="cheap" aria-pressed="false">Moins de 50$</button>
+    </nav>
+    <nav class="chips" aria-label="Idées cadeaux">
+      <span class="lab">Idées cadeaux</span>
+      <button class="chip" data-f="u25" aria-pressed="false">Moins de 25$</button>
+      <button class="chip" data-f="u50" aria-pressed="false">Moins de 50$</button>
+      <button class="chip" data-f="u100" aria-pressed="false">Moins de 100$</button>
+      <button class="chip" data-f="g-lui" aria-pressed="false">Pour lui</button>
+      <button class="chip" data-f="g-elle" aria-pressed="false">Pour elle</button>
+      <button class="chip" data-f="g-enfants" aria-pressed="false">Enfants</button>
+      <button class="chip" data-f="g-ados" aria-pressed="false">Ados</button>
+      <button class="chip" data-f="g-maison" aria-pressed="false">Maison</button>
+      <button class="chip" data-f="g-gamers" aria-pressed="false">Gamers</button>
     </nav>
   </div>
 </header>
 
 <main class="wrap wide">
+  <section class="rules" aria-label="Ce qu'on vérifie">
+    <b>Avant de publier un deal, on vérifie :</b>
+    <ul>
+      <li><svg class="ok"><use href="#ok"/></svg>le vrai prix habituel, pas un faux prix barré</li>
+      <li><svg class="ok"><use href="#ok"/></svg>l'historique de prix du produit (le graphique sur chaque deal)</li>
+      <li><svg class="ok"><use href="#ok"/></svg>la note et le nombre d'avis des acheteurs</li>
+      <li><svg class="ok"><use href="#ok"/></svg>le prix en direct sur Amazon.ca, puis encore pendant la journée</li>
+    </ul>
+  </section>
   <details class="about">
     <summary><span class="score" aria-hidden="true"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">92<small>/100</small></span></span>
       C'est quoi le Score SmartDeals?</summary>
@@ -171,7 +213,7 @@
       <span class="score"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">87<small>/100</small></span></span>
       <div><b>Repère ce badge sur chaque deal.</b><br>
         Le <b>chiffre</b> = le score du deal sur 100.<br>
-        Les <b>flammes</b> 🔥 = à quel point c'est hot.</div>
+        Les <b>flammes</b> = à quel point c'est hot.</div>
     </div>
     <p>Notre algorithme note chaque deal sur 100, du point de vue de l'acheteur :</p>
     <ul>
@@ -187,7 +229,7 @@
       <div><span class="score"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">87<small>/100</small></span></span><span><b>TRÈS HOT</b><br>85 à 89</span></div>
       <div><span class="score"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">92<small>/100</small></span></span><span><b>EXCEPTIONNEL</b><br>90 et plus</span></div>
     </div>
-    <p>Le 100 parfait n'existe pas 😉</p>
+    <p>Le 100 parfait n'existe pas.</p>
   </details>
   <div class="list" id="list" aria-live="polite">
     <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
@@ -200,7 +242,7 @@
     <a href="https://www.instagram.com/smartdeals1337/">Instagram</a>
     <a href="https://www.threads.com/@smartdeals1337">Threads</a>
   </div>
-  <p>Prix au moment de la publication. Les prix Amazon changent vite : le prix final est celui affiché sur Amazon.</p>
+  <p>Prix vérifiés à l'heure indiquée sur chaque deal. Les prix Amazon changent vite : le prix final est celui affiché sur Amazon.</p>
   <p>Liens affiliés : en tant que Partenaire Amazon, SmartDeals.online touche une commission sur les achats admissibles, sans frais pour toi.<br>As an Amazon Associate I earn from qualifying purchases.</p>
 </footer>
 
@@ -217,19 +259,22 @@ function ago(iso) {
   const d = Math.round(h / 24);
   return d === 1 ? "hier" : d + " j";
 }
-// Gray stars with yellow ones on top, clipped to the rating (4,6 -> 92%): only the
-// plain ★ glyph, which every phone font has (⯪ and ☆ don't render everywhere).
+// Gray stars with gold ones on top, clipped to the rating (4,6 -> 92%): only the
+// plain ★ glyph, which every phone font has.
 const stars = r => `<span class="rate" aria-label="${r} sur 5"><span style="width:${Math.min(r / 5, 1) * 100}%">★★★★★</span>★★★★★</span>`;
 // Amazon serves any size of its product photos: 300px instead of the 2000px original
 const thumb = url => url.replace(/(\/images\/I\/[^./]+)(\.[^/]*)?\.(jpg|png)$/, "$1._AC_SL300_.$3");
 const flames = s => s >= 90 ? 3 : s >= 85 ? 2 : s >= 80 ? 1 : 0;   // same levels as the images
+const check = '<svg class="ok" aria-hidden="true"><use href="#ok"/></svg>';
 // Lightning deals: "à 21h30" today, "demain 2h45" after midnight (viewer's clock)
 function endsText(iso) {
   const e = new Date(iso), now = new Date();
   const hm = e.getHours() + "h" + String(e.getMinutes()).padStart(2, "0");
   return e.toDateString() === now.toDateString() ? "à " + hm : "demain " + hm;
 }
-const isNew = d => !d.dead && Date.now() - new Date(d.posted) < NEW_HOURS * 3600e3;
+const live = d => !d.dead && d.state === "ok";
+const isNew = d => live(d) && Date.now() - new Date(d.posted) < NEW_HOURS * 3600e3;
+const gift = who => d => (d.gift || []).includes(who);
 const FILTERS = {
   all: () => true,
   top: d => !!d.score,
@@ -238,57 +283,70 @@ const FILTERS = {
   new: isNew,
   rec: d => !!d.record,
   big: d => (d.drop || 0) >= 50,
-  cheap: d => d.price < 50,
+  u25: d => d.price < 25, u50: d => d.price < 50, u100: d => d.price < 100,
+  "g-lui": gift("lui"), "g-elle": gift("elle"), "g-enfants": gift("enfants"),
+  "g-ados": gift("ados"), "g-maison": gift("maison"), "g-gamers": gift("gamers"),
 };
 
 let deals = [], filter = "all";
 function card(d) {
-  const tags = (d.dead ? `<span class="tag dead">${d.ends ? "Vente éclair terminée" : "Deal mort"}</span>` : "")
-    + (d.ends && !d.dead ? `<span class="tag flash">⚡ Finit ${endsText(d.ends)}</span>` : "")
+  const faded = d.dead || d.state !== "ok";
+  const tags = (d.dead ? `<span class="tag dead">${d.ends ? "Vente éclair terminée" : "Deal mort"}</span>`
+      : d.state === "up" ? '<span class="tag off-tag">Prix remonté</span>'
+      : d.state === "out" ? '<span class="tag off-tag">Épuisé chez Amazon</span>' : "")
+    + (d.ends && !faded ? `<span class="tag flash">Vente éclair · finit ${endsText(d.ends)}</span>` : "")
     + (isNew(d) ? '<span class="tag new">Nouveau</span>' : "")
-    + (d.record && !d.dead ? `<span class="tag rec">${RECORD[d.record]}</span>` : "");
-  const badge = big => d.score && !d.dead ? `<span class="score${big ? " big" : ""}" title="Score SmartDeals ${d.score}/100">
+    + (d.record && !faded ? `<span class="tag rec">${RECORD[d.record]}</span>` : "");
+  const badge = big => d.score && !faded ? `<span class="score${big ? " big" : ""}" title="Score SmartDeals ${d.score}/100">
         <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
         <span class="num">${d.score}<small>/100</small></span></span>` : "";
+  const status = d.dead ? ""
+    : d.state === "up" ? `<div class="checked bad">Prix remonté${d.now_price ? " à " + money(d.now_price) : ""} · vérifié il y a ${ago(d.checked)}</div>`
+    : d.state === "out" ? `<div class="checked bad">Amazon n'en a plus en stock · vérifié il y a ${ago(d.checked)}</div>`
+    : `<div class="checked">${check}Prix vérifié sur Amazon.ca il y a ${ago(d.checked)}</div>`;
   const inner = `
     <div class="head">
       <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async"></div>
       <div class="info">
         ${tags ? `<div class="tags">${tags}</div>` : ""}
         <p class="name" title="${esc(d.title)}">${esc(d.name)}</p>
-        <div class="stars">${d.rating ? `${stars(d.rating)}${String(d.rating).replace(".", ",")} · ${d.reviews.toLocaleString("fr-CA")} avis · ` : ""}<span class="when">il y a ${ago(d.posted)}</span></div>
+        <div class="stars">${d.rating ? `${stars(d.rating)} ${String(d.rating).replace(".", ",")} · ${d.reviews.toLocaleString("fr-CA")} avis · ` : ""}publié il y a ${ago(d.posted)}</div>
       </div>
       ${badge(true)}
     </div>
+    ${d.chart ? `<figure class="hist"><img src="${esc(d.chart)}" alt="Historique de prix" loading="lazy" decoding="async" width="640" height="150">
+      <figcaption><span>${esc(d.chart_label || "Historique de prix")}</span><span class="now">aujourd'hui</span></figcaption></figure>` : ""}
     <div class="buy">
       <div class="prices"><span class="price">${money(d.price)}</span>
-        ${d.drop && !d.dead ? `<span class="off">-${d.drop}%</span>` : ""}
+        ${d.drop && !faded ? `<span class="off">-${d.drop}%</span>` : ""}
         ${d.typical && d.typical > d.price ? `<span class="was">Habituel <s>${money(d.typical)}</s></span>` : ""}</div>
       ${badge(false)}
     </div>
-    <span class="go">${d.dead ? "Ce deal est terminé"
+    ${status}
+    <span class="go">${d.dead ? "Ce deal est terminé" : faded ? "Voir le prix actuel sur Amazon"
       : `Voir le deal sur Amazon <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`}</span>`;
   return d.dead
-    ? `<div class="deal is-dead" aria-disabled="true">${inner}</div>`
-    : `<a class="deal" href="${esc(d.link)}" target="_blank" rel="sponsored noopener">${inner}</a>`;
+    ? `<div class="deal faded is-dead" aria-disabled="true">${inner}</div>`
+    : `<a class="deal${faded ? " faded" : ""}" href="${esc(d.link)}" target="_blank" rel="sponsored noopener">${inner}</a>`;
 }
+const rank = d => d.dead ? 2 : d.state !== "ok" ? 1 : 0;   // dead and off deals sink to the bottom
 function render() {
   const q = document.getElementById("q").value.trim().toLowerCase();
   const shown = deals.filter(FILTERS[filter])
     .filter(d => !q || (d.name + " " + d.title).toLowerCase().includes(q))
-    // dead deals sink to the bottom; "Top score" sorts by score, otherwise newest first
-    .sort((a, b) => a.dead - b.dead || (filter === "top" ? (b.score || 0) - (a.score || 0) : 0));
+    // "Meilleur score" sorts by score, otherwise newest first
+    .sort((a, b) => rank(a) - rank(b) || (filter === "top" ? (b.score || 0) - (a.score || 0) : 0));
   document.getElementById("list").innerHTML = shown.length ? shown.map(card).join("")
     : '<p class="empty">Aucun deal ici pour l\'instant.</p>';
 }
-document.getElementById("chips").addEventListener("click", e => {
+document.querySelectorAll(".chips").forEach(nav => nav.addEventListener("click", e => {
   const b = e.target.closest(".chip");
   if (!b) return;
   filter = b.dataset.f;
   document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === b));
   render();
   window.scrollTo({ top: 0, behavior: "smooth" });
-});
+}));
 document.getElementById("q").addEventListener("input", render);
 // Count each "go to Amazon" click as an anonymous GoatCounter event ("deal-ASIN"),
 // so the morning report knows which deals the page sends to Amazon.
@@ -300,9 +358,12 @@ document.getElementById("list").addEventListener("click", e => {
 });
 fetch("deals.json?" + Date.now()).then(r => r.json()).then(j => {
   // a lightning deal past its end time is over, even before the next update
-  deals = j.deals.map(d => d.ends && Date.now() > new Date(d.ends) ? { ...d, dead: true } : d);
-  const live = deals.filter(d => !d.dead).length;
-  document.getElementById("sub").textContent = `${live} deal${live > 1 ? "s" : ""} actif${live > 1 ? "s" : ""} · mis à jour il y a ${ago(j.updated)}`;
+  deals = j.deals.map(d => ({ state: "ok", checked: d.posted, ...d }))
+    .map(d => d.ends && Date.now() > new Date(d.ends) ? { ...d, dead: true } : d);
+  // a filter with no live deal would only show an empty page: hide its chip
+  document.querySelectorAll(".chip").forEach(c => { c.hidden = c.dataset.f !== "all" && !deals.some(d => live(d) && FILTERS[c.dataset.f](d)); });
+  const n = deals.filter(live).length;
+  document.getElementById("sub").textContent = `${n} deal${n > 1 ? "s" : ""} actif${n > 1 ? "s" : ""} · mis à jour il y a ${ago(j.updated)}`;
   render();
 }).catch(() => {
   document.getElementById("list").innerHTML = '<p class="empty">Impossible de charger les deals. Réessaie dans un instant.</p>';

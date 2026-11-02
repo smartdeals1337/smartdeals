@@ -309,7 +309,8 @@ function card(d) {
       : d.state === "out" ? '<span class="tag off-tag">Épuisé chez Amazon</span>' : "")
     + (d.ends && !faded ? `<span class="tag flash">Vente éclair · finit ${endsText(d.ends)}</span>` : "")
     + (isNew(d) ? '<span class="tag new">Nouveau</span>' : "")
-    + (d.record && !faded ? `<span class="tag rec">${RECORD[d.record]}</span>` : "");
+    + (d.record && !faded ? `<span class="tag rec">${RECORD[d.record]}</span>` : "")
+    + (!d.record && d.low_since && !faded ? `<span class="tag rec">Le plus bas depuis ${esc(d.low_since.toLowerCase())}</span>` : "");
   const badge = big => d.score && !faded ? `<span class="score${big ? " big" : ""}" title="Score SmartDeals ${d.score}/100">
         <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
         <span class="num">${d.score}<small>/100</small></span></span>` : "";

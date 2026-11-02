@@ -215,7 +215,8 @@
       <li><svg class="ok"><use href="#ok"/></svg>le vrai prix habituel, pas un faux prix barré</li>
       <li><svg class="ok"><use href="#ok"/></svg>l'historique de prix du produit (le graphique sur chaque deal)</li>
       <li><svg class="ok"><use href="#ok"/></svg>la note et le nombre d'avis des acheteurs</li>
-      <li><svg class="ok"><use href="#ok"/></svg>le prix en direct sur Amazon.ca, puis encore pendant la journée</li>
+      <li><svg class="ok"><use href="#ok"/></svg>que c'est en stock chez Amazon, au prix annoncé, juste avant de publier</li>
+      <li><svg class="ok"><use href="#ok"/></svg>le prix et le stock encore, environ toutes les heures pendant la journée</li>
     </ul>
   </section>
   <details class="about">
@@ -315,7 +316,8 @@ function card(d) {
   const status = d.dead ? ""
     : d.state === "up" ? `<div class="checked bad">Prix remonté${d.now_price ? " à " + money(d.now_price) : ""} · vérifié il y a ${ago(d.checked)}</div>`
     : d.state === "out" ? `<div class="checked bad">Amazon n'en a plus en stock · vérifié il y a ${ago(d.checked)}</div>`
-    : `<div class="checked">${check}Prix vérifié sur Amazon.ca il y a ${ago(d.checked)}</div>`;
+    : d.ends ? `<div class="checked">${check}Vente éclair vérifiée sur Amazon.ca à la publication</div>`
+    : `<div class="checked">${check}Prix et stock vérifiés sur Amazon.ca il y a ${ago(d.checked)}</div>`;
   const inner = `
     <div class="head">
       <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async"></div>

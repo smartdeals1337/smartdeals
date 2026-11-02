@@ -1,6 +1,33 @@
 {
- "updated": "2026-11-02T11:40:00-05:00",
+ "updated": "2026-11-02T11:44:20-05:00",
  "deals": [
+  {
+   "asin": "B0BS1QCFHX",
+   "name": "Casque Sony WH-CH720N",
+   "title": "Sony WH-CH720N Noise Cancelling Wireless Headphones Bluetooth Over The Ear Headset with Microphone and Alexa Voice Control, Black",
+   "image": "https://m.media-amazon.com/images/I/51rpbVmi9XL.jpg",
+   "price": 118.0,
+   "typical": 248.0,
+   "drop": 52,
+   "record": "tie",
+   "rating": 4.3,
+   "reviews": 18088,
+   "score": 88,
+   "ends": null,
+   "gift": [
+    "elle",
+    "lui"
+   ],
+   "low_since": null,
+   "chart": "charts/B0BS1QCFHX-11800-v3.png",
+   "chart_label": "Prix des 12 derniers mois",
+   "checked": "2026-11-02T11:44:15.791296-05:00",
+   "state": "ok",
+   "now_price": null,
+   "posted": "2026-11-02T11:44:15.791296-05:00",
+   "link": "https://amazon.ca/dp/B0BS1QCFHX?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0GXW9C8QC",
    "name": "Casque Bose QuietComfort",
@@ -21,7 +48,7 @@
    "low_since": null,
    "chart": "charts/B0GXW9C8QC-31900-v3.png",
    "chart_label": "Nouveau produit · suivi depuis juillet 2026",
-   "checked": "2026-11-02T10:32:22-05:00",
+   "checked": "2026-11-02T11:44:17-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-02T07:25:53.746221-05:00",
@@ -47,7 +74,7 @@
    "low_since": null,
    "chart": "charts/B0CWSBCMDJ-2612-v3.png",
    "chart_label": "Nouveau produit · suivi depuis septembre 2026",
-   "checked": "2026-11-02T10:32:22-05:00",
+   "checked": "2026-11-02T11:44:17-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-01T18:49:11.864384-05:00",

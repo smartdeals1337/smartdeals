@@ -275,6 +275,9 @@
   .al-go:disabled { background: #cbd5e1; color: #475569; cursor: default; }
   .al-off { border: 0; background: none; color: var(--muted); font: inherit; font-size: .82rem; text-decoration: underline; cursor: pointer; }
   .al-off[hidden], .al-help[hidden] { display: none; }
+  .al-tip { margin: 0; padding: 9px 12px; border-radius: 12px; background: var(--soft); font-size: .78rem; line-height: 1.4; color: var(--muted); }
+  .al-tip b { color: var(--text); }
+  .al-tip[hidden] { display: none; }
   .al-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 18px; }
   /* a deal opened from an alert: briefly outlined */
   .deal.spot-on { outline: 3px solid var(--teal); outline-offset: 2px; animation: spot 2.4s ease-out 1; }
@@ -450,6 +453,9 @@
     <button type="button" class="al-go" id="al-go">Activer les alertes</button>
     <div class="al-links"><button type="button" class="al-off" id="al-test" hidden>Envoyer une alerte test</button>
       <button type="button" class="al-off" id="al-off" hidden>Désactiver les alertes</button></div>
+    <!-- owner's Galaxy, 2026-11-03: Android's own "Sites" category for Chrome was off and silently
+         blocked every site, although Chrome and the site were allowed -->
+    <p class="al-tip" id="al-tip" hidden><b>Rien reçu sur Android?</b> Va dans Réglages du téléphone &gt; Notifications &gt; Chrome &gt; catégories : <b>«&nbsp;Sites&nbsp;»</b> et <b>«&nbsp;smartdealsclub.com&nbsp;»</b> doivent être activées.</p>
   </form>
 </dialog>
 
@@ -682,6 +688,7 @@ function paintBar() {
   $("al-go").textContent = on ? "Enregistrer" : "Activer les alertes";
   $("al-off").hidden = !on;
   $("al-test").hidden = !on;
+  $("al-tip").hidden = !(on && isAndroid);
 }
 function say(text, bad) { const m = $("al-msg"); m.textContent = text; m.classList.toggle("bad", !!bad); }
 

@@ -14,7 +14,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- "Add to home screen" (needed for alerts on iPhone): name, icons, opens full screen -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="SmartDeals">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <!-- Anonymous visit counter (GoatCounter: no cookies, no personal data) -->
 <script data-goatcounter="https://smartdeals.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <style>
@@ -222,6 +226,59 @@
   .t5-name { grid-column: 1 / -1; font-size: .74rem; font-weight: 600; line-height: 1.2;
              white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+  /* Phone alerts (owner, 2026-11-03): one line like the others, tap = settings sheet */
+  .alertbar { width: 100%; margin-top: 10px; display: flex; align-items: center; gap: 9px; padding: 7px 8px 7px 10px;
+              background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+              font: inherit; font-size: .8rem; line-height: 1.3; color: var(--muted); text-align: left; cursor: pointer; }
+  .alertbar .bell { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); display: grid; place-items: center; }
+  .alertbar .bell svg { width: 15px; height: 15px; }
+  .alertbar .ab-text { flex: 1; min-width: 0; }
+  .alertbar b { color: var(--teal); }
+  .alertbar .cta { flex: none; background: var(--teal); color: #fff; font-weight: 800; font-size: .78rem;
+                   padding: 6px 11px; border-radius: 999px; }
+  .alertbar.on .cta { background: var(--teal-soft); color: var(--teal-dark); }
+  @media (hover: hover) { .alertbar:hover .cta { background: var(--teal-dark); color: #fff; } }
+  /* settings: a bottom sheet on phones, a centred box on wider screens */
+  .sheet { border: 0; padding: 0; width: 100%; max-width: min(520px, 100%); max-height: 92vh; margin: auto auto 0;
+           border-radius: 18px 18px 0 0; background: var(--card); color: var(--text); overflow: auto;
+           box-shadow: 0 -8px 30px rgba(15, 23, 42, .2); }
+  @media (min-width: 600px) { .sheet { margin: auto; border-radius: 18px; } }
+  .sheet::backdrop { background: rgba(15, 23, 42, .45); }
+  .sheet-in { display: grid; gap: 10px; margin: 0; padding: 16px 16px calc(18px + env(safe-area-inset-bottom)); }
+  .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .sheet-head b { font-size: 1.1rem; font-weight: 900; }
+  .sheet .x { border: 0; background: var(--soft); width: 34px; height: 34px; border-radius: 50%; font-size: 1.3rem;
+              line-height: 1; color: var(--muted); cursor: pointer; }
+  .sheet-sub { margin: -4px 0 0; font-size: .85rem; color: var(--muted); }
+  .sheet fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 7px; }
+  .sheet fieldset[disabled] { opacity: .45; }
+  .sheet legend { padding: 0; margin-bottom: 7px; font-weight: 800; font-size: .85rem; }
+  .opt { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1.5px solid var(--line);
+         border-radius: 12px; background: #fff; cursor: pointer; }
+  .opt:has(input:checked) { border-color: var(--teal); background: var(--teal-soft); }
+  .opt input { flex: none; margin: 2px 0 0; width: 18px; height: 18px; accent-color: var(--teal); }
+  .opt b { display: block; font-size: .92rem; }
+  .opt small, .kw small { display: block; color: var(--muted); font-size: .76rem; line-height: 1.3; margin-top: 1px; }
+  .opt.chk { margin-top: 4px; }
+  .kw { display: block; margin-top: 4px; font-size: .92rem; }
+  .kw input { width: 100%; margin-top: 6px; padding: 11px 12px; border-radius: 12px; border: 1.5px solid var(--line);
+              background: #fff; color: var(--text); font: inherit; font-size: 16px; outline: none; }
+  .kw input:focus { border-color: var(--teal); }
+  .al-help { padding: 10px 12px; border-radius: 12px; background: #fef3c7; color: #78350f; font-size: .85rem; line-height: 1.45; }
+  .al-help ol { margin: 6px 0 0; padding-left: 20px; }
+  .al-help .open-in { display: inline-block; margin-top: 8px; padding: 8px 14px; border-radius: 999px; background: var(--teal);
+                      color: #fff; font-weight: 800; text-decoration: none; }
+  .al-msg { margin: 0; min-height: 1em; font-size: .85rem; font-weight: 600; color: var(--teal); }
+  .al-msg.bad { color: #b45309; }
+  .al-go { min-height: 50px; border: 0; border-radius: 12px; background: var(--teal); color: #fff; font: inherit;
+           font-weight: 900; font-size: 1.02rem; cursor: pointer; }
+  .al-go:disabled { background: #cbd5e1; color: #475569; cursor: default; }
+  .al-off { border: 0; background: none; color: var(--muted); font: inherit; font-size: .82rem; text-decoration: underline; cursor: pointer; }
+  .al-off[hidden], .al-help[hidden] { display: none; }
+  /* a deal opened from an alert: briefly outlined */
+  .deal.spot-on { outline: 3px solid var(--teal); outline-offset: 2px; animation: spot 2.4s ease-out 1; }
+  @keyframes spot { 0%, 30% { box-shadow: 0 0 0 8px rgba(3, 114, 129, .25); } 100% { box-shadow: 0 1px 2px rgba(15, 23, 42, .04); } }
+
   /* What we check + the score, folded into one line (the promise stays visible) */
   .about { margin-top: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
            padding: 9px 12px; font-size: .85rem; color: var(--muted); }
@@ -272,6 +329,7 @@
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bell" viewBox="0 0 24 24"><path fill="#fff" d="M12 22a2.4 2.4 0 0 0 2.4-2.4H9.6A2.4 2.4 0 0 0 12 22Zm7-5.6-1.6-1.8V10a5.4 5.4 0 0 0-4.2-5.3V4a1.2 1.2 0 0 0-2.4 0v.7A5.4 5.4 0 0 0 6.6 10v4.6L5 16.4v1.2h14z"/></symbol>
   <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="m7 12.5 3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 <header class="top">
@@ -324,6 +382,12 @@
     <span class="lb-item"><span class="score mini"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">85+</span></span><span class="lb-word">Très hot</span></span>
     <span class="lb-item"><span class="score mini"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">90+</span></span><span class="lb-word">Exceptionnel</span></span>
   </button>
+  <!-- Phone alerts: one line, the settings open in a sheet (hidden where alerts can't work at all) -->
+  <button class="alertbar" type="button" id="alertbar" aria-haspopup="dialog">
+    <span class="bell"><svg aria-hidden="true"><use href="#bell"/></svg></span>
+    <span class="ab-text" id="ab-text"><b>Alertes deals</b> sur ton téléphone</span>
+    <span class="cta" id="ab-cta">Activer</span>
+  </button>
   <!-- The last recap's Top 5, filled from deals.json "recap" (hidden when there's none) -->
   <section class="top5" id="top5" hidden aria-label="Top 5 des deals">
     <div class="top5-head"><b id="top5-title">🏆 Top 5</b><span><svg class="ok" aria-hidden="true"><use href="#ok"/></svg><span id="top5-sub"></span></span></div>
@@ -366,6 +430,26 @@
     <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
   </div>
 </main>
+
+<dialog class="sheet" id="alerts" aria-labelledby="al-title">
+  <form method="dialog" class="sheet-in" id="al-form">
+    <div class="sheet-head"><b id="al-title">🔔 Alertes SmartDeals</b><button class="x" value="close" aria-label="Fermer">×</button></div>
+    <p class="sheet-sub">Les meilleurs deals directement sur ton téléphone. Gratuit, sans compte, sans courriel. Tu peux les arrêter en tout temps.</p>
+    <div class="al-help" id="al-help" hidden></div>
+    <fieldset id="al-fields">
+      <legend>Quels deals?</legend>
+      <label class="opt"><input type="radio" name="mode" value="hot" checked><span><b>Les deals très hot</b><small>Score SmartDeals 85 et plus (🔥🔥 et 🔥🔥🔥), quelques-uns par jour</small></span></label>
+      <label class="opt"><input type="radio" name="mode" value="all"><span><b>Tous les deals</b><small>Chaque deal publié, jusqu'à une dizaine par jour</small></span></label>
+      <label class="opt"><input type="radio" name="mode" value="none"><span><b>Aucun</b><small>Seulement mes mots-clés et le Top 5</small></span></label>
+      <label class="opt chk"><input type="checkbox" name="top5" checked><span><b>🏆 Le Top 5 du soir</b><small>Les 5 meilleurs deals encore en vigueur, vers 21 h</small></span></label>
+      <label class="kw"><b>Mes mots-clés</b><small>Une alerte dès qu'un deal en parle, peu importe le score (jusqu'à 10, séparés par des virgules)</small>
+        <input type="text" name="keywords" id="al-kw" placeholder="ex. : Dyson, LEGO, Apple, friteuse" maxlength="300" autocomplete="off" enterkeyhint="done"></label>
+    </fieldset>
+    <p class="al-msg" id="al-msg" role="status"></p>
+    <button type="button" class="al-go" id="al-go">Activer les alertes</button>
+    <button type="button" class="al-off" id="al-off" hidden>Désactiver les alertes</button>
+  </form>
+</dialog>
 
 <footer class="wrap">
   <div class="bounties">
@@ -464,8 +548,8 @@ function card(d) {
     <span class="go">${d.dead ? "Ce deal est terminé" : faded ? "Voir le prix actuel sur Amazon"
       : `Voir le deal sur Amazon <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`}</span>`;
   return d.dead
-    ? `<div class="deal faded is-dead" aria-disabled="true">${inner}</div>`
-    : `<a class="deal${faded ? " faded" : ""}" href="${esc(d.link)}" target="_blank" rel="sponsored noopener">${inner}</a>`;
+    ? `<div class="deal faded is-dead" aria-disabled="true" data-asin="${esc(d.asin)}">${inner}</div>`
+    : `<a class="deal${faded ? " faded" : ""}" href="${esc(d.link)}" target="_blank" rel="sponsored noopener" data-asin="${esc(d.asin)}">${inner}</a>`;
 }
 const rank = d => d.dead ? 2 : d.state !== "ok" ? 1 : 0;   // dead and off deals sink to the bottom
 function render() {
@@ -548,6 +632,155 @@ document.getElementById("top5-row").addEventListener("click", e => {
   if (a && window.goatcounter && window.goatcounter.count)
     window.goatcounter.count({ path: "deal-" + a.dataset.asin, title: a.dataset.name, event: true });
 });
+// GoatCounter loads after the page: retry an event for a few seconds
+function gcEvent(path, title, tries = 20) {
+  if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title: title || path, event: true });
+  else if (tries) setTimeout(() => gcEvent(path, title, tries - 1), 300);
+}
+
+// ---- Phone alerts (web push). The server (push.smartdealsclub.com, push_server.py) keeps the
+// subscription + choices; alerts open the deal on this page, never Amazon directly.
+const PUSH_API = "https://push.smartdealsclub.com/push/";
+const VAPID_KEY = "BBDYDDN6otGGOHf5xtccl7n9ZRHGxCet-UQFP43ximXBLJ7ICzGIWuj2bdkhbtlmCocwqcdK5IrDkqWn02vIh-I";
+const ua = navigator.userAgent;
+const isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+const isAndroid = /Android/.test(ua);
+const inApp = /FBAN|FBAV|FB_IAB|Instagram|Threads|Barcelona|Messenger|; wv\)/.test(ua);   // Facebook/Instagram/Threads browsers
+const standalone = navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+const pushOK = "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+const store = { get: k => { try { return JSON.parse(localStorage.getItem(k)); } catch (_) { return null; } },
+                set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} },
+                del: k => { try { localStorage.removeItem(k); } catch (_) {} } };
+const swReady = pushOK ? navigator.serviceWorker.register("/sw.js").then(() => navigator.serviceWorker.ready) : null;
+let pushSub = null;
+const $ = id => document.getElementById(id);
+const form = $("al-form");
+
+function prefsFromForm() {
+  return { mode: form.mode.value, top5: form.top5.checked,
+           keywords: form.keywords.value.split(/[,;\n]/).map(s => s.trim()).filter(s => s.length > 1).slice(0, 10) };
+}
+function prefsToForm(p) {
+  form.mode.value = p.mode || "hot";
+  form.top5.checked = p.top5 !== false;
+  form.keywords.value = (p.keywords || []).join(", ");
+}
+function summary(p) {
+  const parts = [p.mode === "all" ? "tous les deals" : p.mode === "hot" ? "deals très hot" : null,
+                 p.top5 ? "Top 5" : null,
+                 p.keywords && p.keywords.length ? `${p.keywords.length} mot${p.keywords.length > 1 ? "s" : ""}-clé${p.keywords.length > 1 ? "s" : ""}` : null];
+  return parts.filter(Boolean).join(" + ");
+}
+function paintBar() {
+  const p = store.get("alerts");
+  const on = !!(pushSub && p);
+  $("alertbar").classList.toggle("on", on);
+  $("ab-text").innerHTML = on ? `<b>Alertes activées</b> · ${esc(summary(p))}` : "<b>Alertes deals</b> sur ton téléphone";
+  $("ab-cta").textContent = on ? "Modifier" : "Activer";
+  $("al-go").textContent = on ? "Enregistrer" : "Activer les alertes";
+  $("al-off").hidden = !on;
+}
+function say(text, bad) { const m = $("al-msg"); m.textContent = text; m.classList.toggle("bad", !!bad); }
+
+// what this phone/browser needs before alerts can work (null = ready)
+function blocker() {
+  const here = location.origin + "/?alerts=1";
+  if (isIOS && inApp) return `Les alertes ne marchent pas dans le navigateur d'Instagram ou de Facebook. Touche <b>⋯</b> (en haut à droite), puis <b>Ouvrir dans le navigateur</b> (Safari), et reviens ici.`;
+  if (isAndroid && inApp) return `Les alertes ne marchent pas dans le navigateur d'Instagram ou de Facebook.<br>
+      <a class="open-in" href="intent://${location.host}/?alerts=1#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(here)};end">Ouvrir dans Chrome</a>`;
+  if (isIOS && !standalone) {
+    const v = ua.match(/OS (\d+)_(\d+)/);
+    if (v && (+v[1] < 16 || (+v[1] === 16 && +v[2] < 4))) return "Les alertes demandent iOS 16.4 ou plus récent : mets ton iPhone à jour, puis reviens ici.";
+    return `Sur iPhone, Apple demande d'ajouter la page à ton écran d'accueil d'abord :<ol>
+      <li>Touche <b>Partager</b> <span aria-hidden="true">⬆️</span> en bas de Safari</li>
+      <li>Choisis <b>Sur l'écran d'accueil</b>, puis <b>Ajouter</b></li>
+      <li>Ouvre <b>SmartDeals</b> depuis l'icône, puis touche 🔔 Activer</li></ol>`;
+  }
+  if (!pushOK) return "Ton navigateur ne permet pas les alertes. Essaie avec Chrome, Safari ou Firefox.";
+  if (Notification.permission === "denied") return "Les notifications sont bloquées pour smartdealsclub.com. Autorise-les dans les réglages du navigateur (le cadenas à côté de l'adresse, ou Réglages > Notifications sur iPhone), puis réessaie.";
+  return null;
+}
+function openAlerts() {
+  const why = blocker();
+  $("al-help").innerHTML = why || "";
+  $("al-help").hidden = !why;
+  $("al-fields").disabled = !!why;
+  $("al-go").disabled = !!why;
+  prefsToForm(store.get("alerts") || {});
+  say("");
+  paintBar();
+  $("alerts").showModal();
+}
+async function api(path, body) {
+  const r = await fetch(PUSH_API + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || r.status);
+  return r.json();
+}
+const keyBytes = b64 => Uint8Array.from(atob((b64 + "=".repeat((4 - b64.length % 4) % 4)).replace(/-/g, "+").replace(/_/g, "/")), c => c.charCodeAt(0));
+$("al-go").addEventListener("click", async () => {
+  const p = prefsFromForm();
+  if (p.mode === "none" && !p.top5 && !p.keywords.length) return say("Choisis au moins un type d'alerte, ou un mot-clé.", true);
+  const go = $("al-go");
+  go.disabled = true;
+  say("Un instant…");
+  try {
+    const reg = await swReady;
+    // called straight from the tap: the browser then asks "Autoriser les notifications?"
+    const sub = pushSub || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: keyBytes(VAPID_KEY) });
+    const isNew = !pushSub;
+    try {
+      await api("subscribe", { subscription: sub.toJSON(), ...p });
+    } catch (e) {
+      if (isNew) await sub.unsubscribe().catch(() => {});
+      throw e;
+    }
+    pushSub = sub;
+    store.set("alerts", p);
+    paintBar();
+    say(isNew ? "✅ C'est activé! Une première alerte s'en vient pour confirmer." : "✅ Enregistré.");
+    if (isNew) gcEvent("alerts-on", "Alertes activées");
+    setTimeout(() => $("alerts").close(), 1800);
+  } catch (e) {
+    if (Notification.permission === "default") say("Il faut toucher « Autoriser » quand le téléphone le demande.", true);
+    else if (Notification.permission === "denied") say("Tu as refusé les notifications. Autorise-les dans les réglages du navigateur, puis réessaie.", true);
+    else say("Oups, ça n'a pas marché. Réessaie dans un instant.", true);
+  } finally {
+    go.disabled = false;
+  }
+});
+$("al-off").addEventListener("click", async () => {
+  if (pushSub) {
+    api("unsubscribe", { endpoint: pushSub.endpoint }).catch(() => {});
+    await pushSub.unsubscribe().catch(() => {});
+  }
+  pushSub = null;
+  store.del("alerts");
+  paintBar();
+  say("Alertes désactivées.");
+  gcEvent("alerts-off", "Alertes désactivées");
+});
+$("alertbar").addEventListener("click", openAlerts);
+$("alerts").addEventListener("click", e => { if (e.target === $("alerts")) $("alerts").close(); });   // tap outside = close
+if (swReady) swReady.then(reg => reg.pushManager.getSubscription()).then(s => {
+  pushSub = s;
+  if (s && !store.get("alerts")) store.set("alerts", { mode: "hot", top5: true, keywords: [] });   // site data cleared: assume defaults
+  paintBar();
+}).catch(() => {});
+
+// Links from alerts and posts: ?d=ASIN (that deal, outlined), ?top5 (the Top 5 strip), ?alerts=1 (the alert settings)
+function openFromLink() {
+  const q = new URLSearchParams(location.search);
+  if (q.get("from") === "alert") gcEvent("alert-open-" + (q.get("d") || (q.has("top5") ? "top5" : "home")), "Alerte ouverte");
+  if (q.has("d")) {
+    const el = document.querySelector(`.deal[data-asin="${CSS.escape(q.get("d"))}"]`);
+    if (el) { el.scrollIntoView({ block: "center" }); el.classList.add("spot-on"); setTimeout(() => el.classList.remove("spot-on"), 4000); }
+  } else if (q.has("top5") && !$("top5").hidden) {
+    $("top5").scrollIntoView({ block: "start" });
+  }
+  if (q.has("alerts")) openAlerts();
+  if ([...q.keys()].some(k => ["d", "top5", "alerts", "from", "app"].includes(k))) history.replaceState(null, "", location.pathname);
+}
+
 fetch("deals.json?" + Date.now()).then(r => r.json()).then(j => {
   // a lightning deal past its end time is over, even before the next update
   deals = j.deals.map(d => ({ state: "ok", checked: d.posted, ...d }))
@@ -558,6 +791,7 @@ fetch("deals.json?" + Date.now()).then(r => r.json()).then(j => {
   const n = deals.filter(live).length;
   document.getElementById("sub").textContent = `${n} deal${n > 1 ? "s" : ""} actif${n > 1 ? "s" : ""} · mis à jour il y a ${ago(j.updated)}`;
   render();
+  openFromLink();
 }).catch(() => {
   document.getElementById("list").innerHTML = '<p class="empty">Impossible de charger les deals. Réessaie dans un instant.</p>';
 });

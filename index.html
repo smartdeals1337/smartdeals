@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SmartDeals Club – Les deals</title>
-<meta name="description" content="Les deals Amazon.ca de SmartDeals Club, avec l'historique de prix de chaque produit et le prix revérifié pendant la journée.">
+<title>Le Club SmartDeals – Les deals</title>
+<meta name="description" content="Les deals Amazon.ca du Club SmartDeals, avec l'historique de prix de chaque produit et le prix revérifié pendant la journée.">
 <!-- Link previews (Facebook, Messenger, iMessage...): the SC logo with the address -->
-<meta property="og:title" content="SmartDeals Club – Les bas prix historiques Amazon Canada">
+<meta property="og:title" content="Le Club SmartDeals – Les bas prix historiques Amazon Canada">
 <meta property="og:description" content="Les deals Amazon.ca, avec l'historique de prix de chaque produit et le prix revérifié pendant la journée.">
 <meta property="og:image" content="https://smartdealsclub.com/share.jpg">
 <meta property="og:url" content="https://smartdealsclub.com/">
@@ -351,7 +351,7 @@
   <div class="wrap wide">
     <div class="brand">
       <img src="icon.png" alt="">
-      <div class="name"><b>SMART<span>DEALS</span> CLUB</b><small id="sub" data-i18n="sub0">Les deals Amazon.ca, avec la preuve</small></div>
+      <div class="name"><b data-i18n="brand">LE CLUB SMART<span>DEALS</span></b><small id="sub" data-i18n="sub0">Les deals Amazon.ca, avec la preuve</small></div>
       <!-- Follow us on the other networks: in the logo row, so it costs no height -->
       <nav class="follow" aria-label="Suis-nous" data-i18n-aria="follow">
         <a class="fb" href="https://www.facebook.com/smartdealsclubcom" target="_blank" rel="noopener" aria-label="Facebook">
@@ -437,7 +437,7 @@
     <!-- The formula stays secret (owner, 2026-11-02: "it's our secret sauce"): say what the
          score means, never what goes into it or how much each part weighs. -->
     <p>Le Score SmartDeals, c'est <b>notre recette secrète</b>. Un algorithme maison, calculé
-      par SmartDeals Club pour chaque deal, qui donne <b>le vrai niveau de « hot »</b> d'un deal,
+      par le Club SmartDeals pour chaque deal, qui donne <b>le vrai niveau de « hot »</b> d'un deal,
       au-delà du simple pourcentage de rabais affiché.</p>
     <p>Un -50% n'est pas toujours un bon deal, et un -20% peut être exceptionnel : le score fait
       la différence pour toi. Plus il est haut, plus le deal vaut la peine.</p>
@@ -489,7 +489,7 @@
     <a href="https://www.threads.com/@smartdeals_club">Threads</a>
   </div>
   <p data-i18n="f1">Prix vérifiés à l'heure indiquée sur chaque deal. Les prix Amazon changent vite : le prix final est celui affiché sur Amazon.</p>
-  <p data-i18n="f2">Liens affiliés : en tant que Partenaire Amazon, SmartDeals Club touche une commission sur les achats admissibles, sans frais pour toi.<br>As an Amazon Associate I earn from qualifying purchases.</p>
+  <p data-i18n="f2">Liens affiliés : en tant que Partenaire Amazon, le Club SmartDeals touche une commission sur les achats admissibles, sans frais pour toi.<br>As an Amazon Associate I earn from qualifying purchases.</p>
 </footer>
 
 <script>
@@ -499,7 +499,9 @@
 // charts come in both languages from the bot (deals.json name_en, low_since_en, chart_en...).
 const I18N = {
   fr: {
-    title: "SmartDeals Club – Les deals", sub0: "Les deals Amazon.ca, avec la preuve", follow: "Suis-nous",
+    // French name of the site (owner, 2026-11-03): "Le Club SmartDeals"
+    brand: "LE CLUB SMART<span>DEALS</span>",
+    title: "Le Club SmartDeals – Les deals", sub0: "Les deals Amazon.ca, avec la preuve", follow: "Suis-nous",
     search: "Chercher un produit…", filters: "Filtres",
     c_all: "Tous", c_top: "Meilleur score", c_first: "Premier bas prix", c_flash: "Ventes éclair", c_new: "Nouveaux",
     c_rec: "Bas prix historiques", c_big: "-50% et plus", c_gifts: "Idées cadeaux", c_u25: "Moins de 25$",
@@ -522,7 +524,7 @@ const I18N = {
       <span class="score"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">87<small>/100</small></span></span>
       <div><b>Repère ce badge sur chaque deal.</b><br>Le <b>chiffre</b> = le score du deal sur 100.<br>Les <b>flammes</b> = à quel point c'est hot.</div>
     </div>
-    <p>Le Score SmartDeals, c'est <b>notre recette secrète</b>. Un algorithme maison, calculé par SmartDeals Club pour chaque deal, qui donne <b>le vrai niveau de « hot »</b> d'un deal, au-delà du simple pourcentage de rabais affiché.</p>
+    <p>Le Score SmartDeals, c'est <b>notre recette secrète</b>. Un algorithme maison, calculé par le Club SmartDeals pour chaque deal, qui donne <b>le vrai niveau de « hot »</b> d'un deal, au-delà du simple pourcentage de rabais affiché.</p>
     <p>Un -50% n'est pas toujours un bon deal, et un -20% peut être exceptionnel : le score fait la différence pour toi. Plus il est haut, plus le deal vaut la peine.</p>
     <div class="legend">
       <div><span class="score"><span class="logo"><span class="fl">🔥</span></span><span class="num">82<small>/100</small></span></span><span><b>HOT</b><br>80 à 84</span></div>
@@ -542,7 +544,7 @@ const I18N = {
     alTip: "<b>Rien reçu sur Android?</b> Va dans Réglages du téléphone &gt; Notifications &gt; Chrome &gt; catégories : <b>«&nbsp;Sites&nbsp;»</b> et <b>«&nbsp;smartdealsclub.com&nbsp;»</b> doivent être activées.",
     bPrime: "Essai gratuit Amazon Prime", bReg: "Liste de naissance Amazon",
     f1: "Prix vérifiés à l'heure indiquée sur chaque deal. Les prix Amazon changent vite : le prix final est celui affiché sur Amazon.",
-    f2: "Liens affiliés : en tant que Partenaire Amazon, SmartDeals Club touche une commission sur les achats admissibles, sans frais pour toi.<br>As an Amazon Associate I earn from qualifying purchases.",
+    f2: "Liens affiliés : en tant que Partenaire Amazon, le Club SmartDeals touche une commission sur les achats admissibles, sans frais pour toi.<br>As an Amazon Associate I earn from qualifying purchases.",
     // in the script
     first: "Premier bas prix historique", tie: "Bas prix historique",
     flashOver: "Vente éclair terminée", dead: "Deal mort", up: "Prix remonté", out: "Épuisé chez Amazon",
@@ -584,6 +586,7 @@ const I18N = {
     pull: "↓ Tire pour actualiser", release: "↻ Relâche pour actualiser", refreshing: "Actualisation…",
   },
   en: {
+    brand: "SMART<span>DEALS</span> CLUB",
     title: "SmartDeals Club – Deals", sub0: "Amazon.ca deals, with proof", follow: "Follow us",
     search: "Search a product…", filters: "Filters",
     c_all: "All", c_top: "Top score", c_first: "New all-time lows", c_flash: "Lightning deals", c_new: "New",

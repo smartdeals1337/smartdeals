@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T10:01:25-05:00",
+ "updated": "2026-11-03T10:04:32-05:00",
  "deals": [
   {
    "asin": "B0CXL4FQBK",
@@ -232,7 +232,7 @@
    "low_since": null,
    "chart": "charts/B0GXWFVKT5-29900-v3.png",
    "chart_label": "Nouveau produit · suivi depuis août 2026",
-   "checked": "2026-11-03T09:02:52-05:00",
+   "checked": "2026-11-03T10:04:32-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-02T09:35:59.628018-05:00",
@@ -643,7 +643,7 @@
    "low_since": null,
    "chart": "charts/B0GND7WQ82-9998-v3.png",
    "chart_label": "Nouveau produit · suivi depuis mai 2026",
-   "checked": "2026-11-03T09:02:52-05:00",
+   "checked": "2026-11-03T10:04:32-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-10-31T20:18:59.447178-04:00",
@@ -755,13 +755,13 @@
   }
  ],
  "recap": {
-  "kind": "pm",
-  "at": "2026-11-02T21:02:00-05:00",
+  "kind": "am",
+  "at": "2026-11-03T10:02:57-05:00",
   "items": [
    {
     "asin": "B0DZHR44J9",
-    "name": "Bose QuietComfort Bleu",
-    "image": "https://m.media-amazon.com/images/I/319BtflWTuL.jpg",
+    "name": "Casque Bose QuietComfort",
+    "image": "https://m.media-amazon.com/images/I/51tItfLj8xL.jpg",
     "price": 249.0,
     "score": 87,
     "record": "tie",
@@ -770,8 +770,8 @@
    },
    {
     "asin": "B0GXWFVKT5",
-    "name": "Bose QuietComfort 2e gén.",
-    "image": "https://m.media-amazon.com/images/I/316lKCYXxSL.jpg",
+    "name": "Casque Bose QC 2e gén",
+    "image": "https://m.media-amazon.com/images/I/61etMuW32uL.jpg",
     "price": 299.0,
     "score": 86,
     "record": "first",
@@ -780,7 +780,7 @@
    },
    {
     "asin": "B0FQFGCQRF",
-    "name": "Montre Apple Series 11",
+    "name": "Montre Apple Watch S11",
     "image": "https://m.media-amazon.com/images/I/718j7LLEq-L.jpg",
     "price": 799.99,
     "score": 83,
@@ -789,24 +789,24 @@
     "link": "https://amazon.ca/dp/B0FQFGCQRF?tag=sonline02-20"
    },
    {
-    "asin": "B0CG6NR413",
-    "name": "Garmin vívoactive 5 Noire",
-    "image": "https://m.media-amazon.com/images/I/61A4yOWzGBL.jpg",
-    "price": 239.99,
-    "score": 81,
-    "record": "first",
-    "cheaper": false,
-    "link": "https://amazon.ca/dp/B0CG6NR413?tag=sonline02-20"
-   },
-   {
     "asin": "B0BY1BB9TG",
-    "name": "Perceuse DEWALT 20V",
-    "image": "https://m.media-amazon.com/images/I/41WjoxZTzaL.jpg",
+    "name": "Perceuse DEWALT DCD793",
+    "image": "https://m.media-amazon.com/images/I/61iiAYvRMjL.jpg",
     "price": 118.0,
     "score": 81,
     "record": null,
     "cheaper": false,
     "link": "https://amazon.ca/dp/B0BY1BB9TG?tag=sonline02-20"
+   },
+   {
+    "asin": "B0CG6NR413",
+    "name": "Montre Garmin vívoactive",
+    "image": "https://m.media-amazon.com/images/I/61A4yOWzGBL.jpg",
+    "price": 239.99,
+    "score": 77,
+    "record": "first",
+    "cheaper": false,
+    "link": "https://amazon.ca/dp/B0CG6NR413?tag=sonline02-20"
    }
   ]
  }

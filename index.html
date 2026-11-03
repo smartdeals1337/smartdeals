@@ -580,9 +580,11 @@ const I18N = {
     bIosApp: "Les alertes ne marchent pas dans le navigateur d'Instagram ou de Facebook. Touche <b>⋯</b> (en haut à droite), puis <b>Ouvrir dans le navigateur</b> (Safari), et reviens ici.",
     bAndApp: "Les alertes ne marchent pas dans le navigateur d'Instagram ou de Facebook.", openChrome: "Ouvrir dans Chrome",
     bIosOld: "Les alertes demandent iOS 16.4 ou plus récent : mets ton iPhone à jour, puis reviens ici.",
-    bIos: `Sur iPhone, Apple demande d'ajouter la page à ton écran d'accueil d'abord :<ol>
-      <li>Touche <b>Partager</b> <span aria-hidden="true">⬆️</span> en bas de Safari</li>
-      <li>Choisis <b>Sur l'écran d'accueil</b>, puis <b>Ajouter</b></li>
+    shareAt: { safari: "en bas de Safari", chrome: "en haut à droite, dans la barre d'adresse de Chrome (ou menu <b>⋯</b> > Partager)",
+               firefox: "dans le menu <b>☰</b> de Firefox (en bas à droite)", edge: "dans le menu <b>⋯</b> d'Edge (en bas), puis Partager" },
+    bIos: at => `Sur iPhone, Apple demande d'ajouter la page à ton écran d'accueil d'abord :<ol>
+      <li>Touche <b>Partager</b> <span aria-hidden="true">⬆️</span> ${at}</li>
+      <li>Choisis <b>Sur l'écran d'accueil</b> (descends dans la liste au besoin), puis <b>Ajouter</b></li>
       <li>Ouvre <b>SmartDeals</b> depuis l'icône, puis touche 🔔 Activer</li></ol>`,
     bNoPush: "Ton navigateur ne permet pas les alertes. Essaie avec Chrome, Safari ou Firefox.",
     bDenied: "Les notifications sont bloquées pour smartdealsclub.com. Autorise-les dans les réglages du navigateur (le cadenas à côté de l'adresse, ou Réglages > Notifications sur iPhone), puis réessaie.",
@@ -666,9 +668,11 @@ const I18N = {
     bIosApp: "Alerts don't work in Instagram's or Facebook's browser. Tap <b>⋯</b> (top right), then <b>Open in browser</b> (Safari), and come back here.",
     bAndApp: "Alerts don't work in Instagram's or Facebook's browser.", openChrome: "Open in Chrome",
     bIosOld: "Alerts need iOS 16.4 or newer: update your iPhone, then come back here.",
-    bIos: `On iPhone, Apple requires adding the page to your Home Screen first:<ol>
-      <li>Tap <b>Share</b> <span aria-hidden="true">⬆️</span> at the bottom of Safari</li>
-      <li>Choose <b>Add to Home Screen</b>, then <b>Add</b></li>
+    shareAt: { safari: "at the bottom of Safari", chrome: "at the top right, in Chrome's address bar (or menu <b>⋯</b> > Share)",
+               firefox: "in Firefox's <b>☰</b> menu (bottom right)", edge: "in Edge's <b>⋯</b> menu (bottom), then Share" },
+    bIos: at => `On iPhone, Apple requires adding the page to your Home Screen first:<ol>
+      <li>Tap <b>Share</b> <span aria-hidden="true">⬆️</span> ${at}</li>
+      <li>Choose <b>Add to Home Screen</b> (scroll down the list if needed), then <b>Add</b></li>
       <li>Open <b>SmartDeals</b> from the icon, then tap 🔔 Turn on</li></ol>`,
     bNoPush: "Your browser doesn't support alerts. Try Chrome, Safari or Firefox.",
     bDenied: "Notifications are blocked for smartdealsclub.com. Allow them in your browser settings (the lock next to the address, or Settings > Notifications on iPhone), then try again.",
@@ -951,7 +955,10 @@ function blocker() {
   if (isIOS && !standalone) {
     const v = ua.match(/OS (\d+)_(\d+)/);
     if (v && (+v[1] < 16 || (+v[1] === 16 && +v[2] < 4))) return T.bIosOld;
-    return T.bIos;
+    // Chrome, Firefox and Edge on iPhone can add to the Home Screen too (iOS 16.4+), but their
+    // Share button isn't where Safari's is (owner, 2026-11-03: Chrome users were lost)
+    const app = /CriOS/.test(ua) ? "chrome" : /FxiOS/.test(ua) ? "firefox" : /EdgiOS/.test(ua) ? "edge" : "safari";
+    return T.bIos(T.shareAt[app]);
   }
   if (!pushOK) return T.bNoPush;
   if (Notification.permission === "denied") return T.bDenied;

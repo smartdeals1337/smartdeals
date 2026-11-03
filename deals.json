@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T08:47:53-05:00",
+ "updated": "2026-11-03T09:02:53-05:00",
  "deals": [
   {
    "asin": "B0CXL4FQBK",
@@ -232,7 +232,7 @@
    "low_since": null,
    "chart": "charts/B0GXWFVKT5-29900-v3.png",
    "chart_label": "Nouveau produit · suivi depuis août 2026",
-   "checked": "2026-11-03T07:47:29-05:00",
+   "checked": "2026-11-03T09:02:52-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-02T09:35:59.628018-05:00",
@@ -643,7 +643,7 @@
    "low_since": null,
    "chart": "charts/B0GND7WQ82-9998-v3.png",
    "chart_label": "Nouveau produit · suivi depuis mai 2026",
-   "checked": "2026-11-03T08:02:30-05:00",
+   "checked": "2026-11-03T09:02:52-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-10-31T20:18:59.447178-04:00",

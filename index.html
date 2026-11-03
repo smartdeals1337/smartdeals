@@ -275,6 +275,7 @@
   .al-go:disabled { background: #cbd5e1; color: #475569; cursor: default; }
   .al-off { border: 0; background: none; color: var(--muted); font: inherit; font-size: .82rem; text-decoration: underline; cursor: pointer; }
   .al-off[hidden], .al-help[hidden] { display: none; }
+  .al-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 18px; }
   /* a deal opened from an alert: briefly outlined */
   .deal.spot-on { outline: 3px solid var(--teal); outline-offset: 2px; animation: spot 2.4s ease-out 1; }
   @keyframes spot { 0%, 30% { box-shadow: 0 0 0 8px rgba(3, 114, 129, .25); } 100% { box-shadow: 0 1px 2px rgba(15, 23, 42, .04); } }
@@ -447,7 +448,8 @@
     </fieldset>
     <p class="al-msg" id="al-msg" role="status"></p>
     <button type="button" class="al-go" id="al-go">Activer les alertes</button>
-    <button type="button" class="al-off" id="al-off" hidden>Désactiver les alertes</button>
+    <div class="al-links"><button type="button" class="al-off" id="al-test" hidden>Envoyer une alerte test</button>
+      <button type="button" class="al-off" id="al-off" hidden>Désactiver les alertes</button></div>
   </form>
 </dialog>
 
@@ -679,6 +681,7 @@ function paintBar() {
   $("ab-cta").textContent = on ? "Modifier" : "Activer";
   $("al-go").textContent = on ? "Enregistrer" : "Activer les alertes";
   $("al-off").hidden = !on;
+  $("al-test").hidden = !on;
 }
 function say(text, bad) { const m = $("al-msg"); m.textContent = text; m.classList.toggle("bad", !!bad); }
 
@@ -758,6 +761,19 @@ $("al-off").addEventListener("click", async () => {
   paintBar();
   say("Alertes désactivées.");
   gcEvent("alerts-off", "Alertes désactivées");
+});
+// Two tests: one the phone shows by itself (are notifications shown at all?), one through our
+// server (do pushes reach this phone?). Which one shows tells where the problem is.
+$("al-test").addEventListener("click", async () => {
+  try {
+    const reg = await swReady;
+    await reg.showNotification("🔔 Alerte test (téléphone)", { body: "Celle-ci vient du téléphone lui-même.", icon: "/icon-192.png", badge: "/badge.png", tag: "test-local" });
+    const r = await api("test", { endpoint: pushSub.endpoint });
+    say(r.ok ? "Deux alertes test envoyées : « téléphone » et « serveur ». Tu devrais voir les deux."
+             : "Notre serveur n'a pas pu joindre ce téléphone. Désactive puis réactive les alertes.", !r.ok);
+  } catch (e) {
+    say("Le test n'a pas marché : vérifie que les notifications sont permises pour Chrome et pour ce site.", true);
+  }
 });
 $("alertbar").addEventListener("click", openAlerts);
 $("alerts").addEventListener("click", e => { if (e.target === $("alerts")) $("alerts").close(); });   // tap outside = close

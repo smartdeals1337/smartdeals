@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T06:47:38-05:00",
+ "updated": "2026-11-03T06:50:56-05:00",
  "deals": [
   {
    "asin": "B07W7DZLLK",
@@ -726,5 +726,61 @@
    "link": "https://amazon.ca/dp/B0BQPNMXQV?tag=sonline02-20",
    "dead": false
   }
- ]
+ ],
+ "recap": {
+  "kind": "pm",
+  "at": "2026-11-02T21:02:00-05:00",
+  "items": [
+   {
+    "asin": "B0DZHR44J9",
+    "name": "Bose QuietComfort Bleu",
+    "image": "https://m.media-amazon.com/images/I/319BtflWTuL.jpg",
+    "price": 249.0,
+    "score": 87,
+    "record": "tie",
+    "cheaper": false,
+    "link": "https://amazon.ca/dp/B0DZHR44J9?tag=sonline02-20"
+   },
+   {
+    "asin": "B0GXWFVKT5",
+    "name": "Bose QuietComfort 2e gén.",
+    "image": "https://m.media-amazon.com/images/I/316lKCYXxSL.jpg",
+    "price": 299.0,
+    "score": 86,
+    "record": "first",
+    "cheaper": false,
+    "link": "https://amazon.ca/dp/B0GXWFVKT5?tag=sonline02-20"
+   },
+   {
+    "asin": "B0FQFGCQRF",
+    "name": "Montre Apple Series 11",
+    "image": "https://m.media-amazon.com/images/I/718j7LLEq-L.jpg",
+    "price": 799.99,
+    "score": 83,
+    "record": "first",
+    "cheaper": false,
+    "link": "https://amazon.ca/dp/B0FQFGCQRF?tag=sonline02-20"
+   },
+   {
+    "asin": "B0CG6NR413",
+    "name": "Garmin vívoactive 5 Noire",
+    "image": "https://m.media-amazon.com/images/I/61A4yOWzGBL.jpg",
+    "price": 239.99,
+    "score": 81,
+    "record": "first",
+    "cheaper": false,
+    "link": "https://amazon.ca/dp/B0CG6NR413?tag=sonline02-20"
+   },
+   {
+    "asin": "B0BY1BB9TG",
+    "name": "Perceuse DEWALT 20V",
+    "image": "https://m.media-amazon.com/images/I/41WjoxZTzaL.jpg",
+    "price": 118.0,
+    "score": 81,
+    "record": null,
+    "cheaper": false,
+    "link": "https://amazon.ca/dp/B0BY1BB9TG?tag=sonline02-20"
+   }
+  ]
+ }
 }

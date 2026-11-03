@@ -185,6 +185,35 @@
   .score.mini .logo { width: 26px; height: 26px; border-radius: 7px; }
   .score.mini .fl { font-size: 11px; bottom: 19px; letter-spacing: -3px; }
   .score.mini .num { font-size: .74rem; padding: 4px 6px 3px 10px; margin-left: -6px; border-radius: 0 7px 7px 0; }
+  /* Top 5 of the last recap (owner, 2026-11-03): one swipeable row of mini cards, score first,
+     price under, each card one affiliate link; all 5 side by side on desktop. Same look as
+     the recap cover: light teal cards with a teal border. Hidden when there's no fresh recap. */
+  .top5 { margin-top: 10px; }
+  .top5[hidden] { display: none; }
+  .top5-head { display: flex; align-items: baseline; gap: 8px; font-size: .8rem; color: var(--muted); margin: 0 2px 6px; }
+  .top5-head b { color: var(--text); font-size: .9rem; white-space: nowrap; }
+  .top5-head span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .top5-row { display: grid; grid-auto-flow: column; grid-auto-columns: 168px; gap: 8px;
+              overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+              margin: 0 -16px; padding: 0 16px 2px; scroll-padding: 0 16px; }
+  .top5-row::-webkit-scrollbar { display: none; }
+  @media (min-width: 900px) { .top5-row { grid-auto-columns: 1fr; overflow: visible; margin: 0; padding: 0; } }
+  .t5 { scroll-snap-align: start; display: grid; grid-template-columns: 58px 1fr; grid-template-rows: auto auto;
+        column-gap: 8px; row-gap: 6px; align-items: center; padding: 8px; background: var(--teal-soft);
+        border: 1.5px solid var(--teal); border-radius: 14px; color: inherit; text-decoration: none; }
+  a.t5:active { transform: scale(.97); }
+  @media (hover: hover) { a.t5:hover { background: #d3e9ec; } }
+  .t5-pic { position: relative; width: 58px; height: 58px; border-radius: 10px; background: #fff;
+            border: 1px solid var(--line); display: grid; place-items: center; }
+  .t5-pic img { max-width: 86%; max-height: 86%; object-fit: contain; }
+  .t5-rank { position: absolute; top: -6px; left: -6px; width: 20px; height: 20px; border-radius: 50%;
+             background: var(--teal); color: #fff; font-size: .72rem; font-weight: 900; display: grid; place-items: center; }
+  .t5-side { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .t5 .score.mini { margin-top: 10px; }   /* the flames' room */
+  .t5-price { font-weight: 900; font-size: 1.05rem; line-height: 1; color: var(--teal-dark); }
+  .t5-name { grid-column: 1 / -1; font-size: .74rem; font-weight: 600; line-height: 1.2;
+             white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
   /* What we check + the score, folded into one line (the promise stays visible) */
   .about { margin-top: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
            padding: 9px 12px; font-size: .85rem; color: var(--muted); }
@@ -287,6 +316,11 @@
     <span class="lb-item"><span class="score mini"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">85+</span></span><span class="lb-word">Très hot</span></span>
     <span class="lb-item"><span class="score mini"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">90+</span></span><span class="lb-word">Exceptionnel</span></span>
   </button>
+  <!-- The last recap's Top 5, filled from deals.json "recap" (hidden when there's none) -->
+  <section class="top5" id="top5" hidden aria-label="Top 5 des deals">
+    <div class="top5-head"><b id="top5-title">🏆 Top 5</b><span id="top5-sub"></span></div>
+    <div class="top5-row" id="top5-row"></div>
+  </section>
   <!-- One line (opens on tap): what we check + the score, so deals start high on a phone -->
   <details class="about">
     <summary><svg class="ok" aria-hidden="true"><use href="#ok"/></svg>
@@ -475,12 +509,42 @@ document.addEventListener("click", e => {
   if (a && window.goatcounter && window.goatcounter.count)
     window.goatcounter.count({ path: "bounty-" + a.dataset.bounty, title: a.textContent.trim().slice(0, 60), event: true });
 });
+// Top 5 strip: the last recap, in its order (best Score SmartDeals first), minus any deal
+// that died since; the bot only sends a recap that is still fresh.
+function renderTop5(recap) {
+  const gone = new Set(deals.filter(d => !live(d)).map(d => d.asin));
+  const items = recap ? recap.items.filter(i => !gone.has(i.asin)) : [];
+  const box = document.getElementById("top5");
+  if (items.length < 2) { box.hidden = true; return; }
+  const at = new Date(recap.at), hm = at.getHours() + "h" + String(at.getMinutes()).padStart(2, "0");
+  const today = at.toDateString() === new Date().toDateString();
+  document.getElementById("top5-title").textContent =
+    `🏆 Top ${items.length} ${recap.kind === "am" ? "d'hier" : today ? "du jour" : "d'hier"}`;
+  document.getElementById("top5-sub").textContent = `· vérifiés sur Amazon à ${hm}`;
+  document.getElementById("top5-row").innerHTML = items.map((i, n) => `
+    <a class="t5" href="${esc(i.link)}" target="_blank" rel="sponsored noopener" data-asin="${esc(i.asin)}" data-name="${esc(i.name)}">
+      <span class="t5-pic"><img src="${esc(thumb(i.image))}" alt="" loading="lazy" decoding="async"><span class="t5-rank">${n + 1}</span></span>
+      <span class="t5-side">${i.score ? `<span class="score mini" title="Score SmartDeals ${i.score}/100">
+          <span class="logo">${flames(i.score) ? `<span class="fl">${"🔥".repeat(flames(i.score))}</span>` : ""}</span>
+          <span class="num">${i.score}<small>/100</small></span></span>` : ""}
+        <span class="t5-price">${money(i.price)}</span></span>
+      <span class="t5-name" title="${esc(i.name)}">${esc(i.name)}</span>
+    </a>`).join("");
+  box.hidden = false;
+}
+// Top 5 clicks count like the list's ("deal-ASIN")
+document.getElementById("top5-row").addEventListener("click", e => {
+  const a = e.target.closest("a.t5");
+  if (a && window.goatcounter && window.goatcounter.count)
+    window.goatcounter.count({ path: "deal-" + a.dataset.asin, title: a.dataset.name, event: true });
+});
 fetch("deals.json?" + Date.now()).then(r => r.json()).then(j => {
   // a lightning deal past its end time is over, even before the next update
   deals = j.deals.map(d => ({ state: "ok", checked: d.posted, ...d }))
     .map(d => d.ends && Date.now() > new Date(d.ends) ? { ...d, dead: true } : d);
   // a filter with no live deal would only show an empty page: hide its chip
   document.querySelectorAll(".chip").forEach(c => { c.hidden = c.dataset.f !== "all" && !deals.some(d => live(d) && FILTERS[c.dataset.f](d)); });
+  renderTop5(j.recap);
   const n = deals.filter(live).length;
   document.getElementById("sub").textContent = `${n} deal${n > 1 ? "s" : ""} actif${n > 1 ? "s" : ""} · mis à jour il y a ${ago(j.updated)}`;
   render();

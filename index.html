@@ -280,6 +280,10 @@
   .al-tip b { color: var(--text); }
   .al-tip[hidden] { display: none; }
   .al-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 18px; }
+  /* pull-down-to-refresh pill, installed app only */
+  .ptr { position: fixed; z-index: 20; left: 50%; top: calc(8px + env(safe-area-inset-top)); transform: translate(-50%, -50px);
+         opacity: 0; padding: 7px 14px; border-radius: 999px; background: var(--teal); color: #fff; font-size: .8rem;
+         font-weight: 800; box-shadow: 0 4px 14px rgba(15, 23, 42, .2); transition: opacity .15s; pointer-events: none; }
   /* a deal opened from an alert: briefly outlined */
   .deal.spot-on { outline: 3px solid var(--teal); outline-offset: 2px; animation: spot 2.4s ease-out 1; }
   @keyframes spot { 0%, 30% { box-shadow: 0 0 0 8px rgba(3, 114, 129, .25); } 100% { box-shadow: 0 1px 2px rgba(15, 23, 42, .04); } }
@@ -806,20 +810,62 @@ function openFromLink() {
   if ([...q.keys()].some(k => ["d", "top5", "alerts", "from", "app"].includes(k))) history.replaceState(null, "", location.pathname);
 }
 
-fetch("deals.json?" + Date.now()).then(r => r.json()).then(j => {
-  // a lightning deal past its end time is over, even before the next update
-  deals = j.deals.map(d => ({ state: "ok", checked: d.posted, ...d }))
-    .map(d => d.ends && Date.now() > new Date(d.ends) ? { ...d, dead: true } : d);
-  // a filter with no live deal would only show an empty page: hide its chip
-  document.querySelectorAll(".chip").forEach(c => { c.hidden = c.dataset.f !== "all" && !deals.some(d => live(d) && FILTERS[c.dataset.f](d)); });
-  renderTop5(j.recap);
-  const n = deals.filter(live).length;
-  document.getElementById("sub").textContent = `${n} deal${n > 1 ? "s" : ""} actif${n > 1 ? "s" : ""} · mis à jour il y a ${ago(j.updated)}`;
-  render();
-  openFromLink();
-}).catch(() => {
-  document.getElementById("list").innerHTML = '<p class="empty">Impossible de charger les deals. Réessaie dans un instant.</p>';
+let loadedAt = 0, firstLoad = true;
+function load() {
+  return fetch("deals.json?" + Date.now()).then(r => r.json()).then(j => {
+    loadedAt = Date.now();
+    // a lightning deal past its end time is over, even before the next update
+    deals = j.deals.map(d => ({ state: "ok", checked: d.posted, ...d }))
+      .map(d => d.ends && Date.now() > new Date(d.ends) ? { ...d, dead: true } : d);
+    // a filter with no live deal would only show an empty page: hide its chip
+    document.querySelectorAll(".chip").forEach(c => { c.hidden = c.dataset.f !== "all" && !deals.some(d => live(d) && FILTERS[c.dataset.f](d)); });
+    renderTop5(j.recap);
+    const n = deals.filter(live).length;
+    document.getElementById("sub").textContent = `${n} deal${n > 1 ? "s" : ""} actif${n > 1 ? "s" : ""} · mis à jour il y a ${ago(j.updated)}`;
+    render();
+    if (firstLoad) { firstLoad = false; openFromLink(); }
+  }).catch(() => {
+    if (firstLoad) document.getElementById("list").innerHTML = '<p class="empty">Impossible de charger les deals. Réessaie dans un instant.</p>';
+  });
+}
+load();
+
+// The installed app (home-screen icon) has no browser pull-to-refresh (owner, 2026-11-03), so:
+// 1) coming back to the app after a minute or more reloads the deals by itself;
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && Date.now() - loadedAt > 60e3) load();
 });
+// 2) our own pull-down-to-refresh, only in the installed app (browsers have theirs)
+if (standalone) {
+  const ptr = document.createElement("div");
+  ptr.className = "ptr";
+  document.body.appendChild(ptr);
+  let startY = null, pull = 0, busy = false;
+  addEventListener("touchstart", e => {
+    startY = !busy && scrollY <= 0 && !$("alerts").open ? e.touches[0].clientY : null;
+  }, { passive: true });
+  addEventListener("touchmove", e => {
+    if (startY === null) return;
+    pull = Math.max(0, Math.min(e.touches[0].clientY - startY, 120));
+    ptr.textContent = pull > 70 ? "↻ Relâche pour actualiser" : "↓ Tire pour actualiser";
+    ptr.style.transform = `translate(-50%, ${pull - 50}px)`;
+    ptr.style.opacity = Math.min(pull / 70, 1);
+  }, { passive: true });
+  addEventListener("touchend", () => {
+    if (startY === null) return;
+    startY = null;
+    if (pull > 70) {
+      busy = true;
+      ptr.textContent = "Actualisation…";
+      ptr.style.transform = "translate(-50%, 20px)";
+      load().finally(() => { busy = false; ptr.style.opacity = 0; ptr.style.transform = "translate(-50%, -50px)"; });
+    } else {
+      ptr.style.opacity = 0;
+      ptr.style.transform = "translate(-50%, -50px)";
+    }
+    pull = 0;
+  });
+}
 </script>
 </body>
 </html>

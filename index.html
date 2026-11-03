@@ -44,11 +44,15 @@
   .brand b span { color: var(--teal); }
   .brand small { display: block; color: var(--muted); font-size: .75rem; font-weight: 500;
                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .brand .name { flex: 1; min-width: 0; }
+  /* not the deal cards' 2-line .name clamp: that cut the "25 deals actifs" line on phones */
+  .brand .name { flex: 1; min-width: 0; display: block; -webkit-line-clamp: none; overflow: visible; }
   /* the name shrinks with the screen (and ignores the phone's bigger-text setting by
      staying in vw on small screens), so it never runs under the follow icons */
   .brand b { white-space: nowrap; font-size: min(1.05rem, 3.85vw); }
   @media (max-width: 400px) {
+    /* "25 deals actifs · mis à jour il y a 3 min" never cut by the follow icons (owner,
+       2026-11-03): it wraps to a second line instead */
+    .brand small { white-space: normal; overflow: visible; font-size: .72rem; line-height: 1.25; }
     .brand { gap: 8px; }
     .brand img { width: 34px; height: 34px; }
     .follow { gap: 5px; }
@@ -190,9 +194,13 @@
      the recap cover: light teal cards with a teal border. Hidden when there's no fresh recap. */
   .top5 { margin-top: 10px; }
   .top5[hidden] { display: none; }
-  .top5-head { display: flex; align-items: baseline; gap: 8px; font-size: .8rem; color: var(--muted); margin: 0 2px 6px; }
+  /* title, then when it was checked (with the date): side by side when there's room, the
+     checked line under the title on phones; never cut */
+  .top5-head { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 10px; row-gap: 1px;
+               font-size: .76rem; color: var(--muted); margin: 0 2px 6px; }
   .top5-head b { color: var(--text); font-size: .9rem; white-space: nowrap; }
-  .top5-head span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .top5-head span { display: inline-flex; align-items: center; gap: 4px; color: var(--teal); font-weight: 600; }
+  .top5-head .ok { width: 13px; height: 13px; margin: 0; align-self: center; }
   .top5-row { display: grid; grid-auto-flow: column; grid-auto-columns: 168px; gap: 8px;
               overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
               margin: 0 -16px; padding: 0 16px 2px; scroll-padding: 0 16px; }
@@ -318,7 +326,7 @@
   </button>
   <!-- The last recap's Top 5, filled from deals.json "recap" (hidden when there's none) -->
   <section class="top5" id="top5" hidden aria-label="Top 5 des deals">
-    <div class="top5-head"><b id="top5-title">🏆 Top 5</b><span id="top5-sub"></span></div>
+    <div class="top5-head"><b id="top5-title">🏆 Top 5</b><span><svg class="ok" aria-hidden="true"><use href="#ok"/></svg><span id="top5-sub"></span></span></div>
     <div class="top5-row" id="top5-row"></div>
   </section>
   <!-- One line (opens on tap): what we check + the score, so deals start high on a phone -->
@@ -520,7 +528,9 @@ function renderTop5(recap) {
   const today = at.toDateString() === new Date().toDateString();
   document.getElementById("top5-title").textContent =
     `🏆 Top ${items.length} ${recap.kind === "am" ? "d'hier" : today ? "du jour" : "d'hier"}`;
-  document.getElementById("top5-sub").textContent = `· vérifiés sur Amazon à ${hm}`;
+  // the date too (owner, 2026-11-03: a time alone is confusing the next morning)
+  const day = at.toLocaleDateString("fr-CA", { day: "numeric", month: "long" });
+  document.getElementById("top5-sub").textContent = `Prix et stock vérifiés sur Amazon le ${day} à ${hm}`;
   document.getElementById("top5-row").innerHTML = items.map((i, n) => `
     <a class="t5" href="${esc(i.link)}" target="_blank" rel="sponsored noopener" data-asin="${esc(i.asin)}" data-name="${esc(i.name)}">
       <span class="t5-pic"><img src="${esc(thumb(i.image))}" alt="" loading="lazy" decoding="async"><span class="t5-rank">${n + 1}</span></span>

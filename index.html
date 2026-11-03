@@ -76,8 +76,8 @@
   .search { position: relative; display: block; flex: 1; min-width: 0; }
   /* FR | EN switch beside the search field */
   .lang { flex: none; display: flex; padding: 3px; border-radius: 12px; border: 1px solid var(--line); background: var(--soft); }
-  .lang button { border: 0; background: none; font: inherit; font-size: .78rem; font-weight: 800; color: var(--muted);
-                 padding: 8px 9px; border-radius: 9px; cursor: pointer; line-height: 1; }
+  .lang button { border: 0; background: none; font: inherit; font-size: .85rem; font-weight: 800; color: var(--muted);
+                 min-width: 38px; padding: 11px 9px; border-radius: 9px; cursor: pointer; line-height: 1; }
   .lang button[aria-pressed="true"] { background: var(--teal); color: #fff; }
   .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); }
   .search input { width: 100%; padding: 11px 12px 11px 38px; border-radius: 12px; border: 1px solid var(--line);
@@ -87,7 +87,7 @@
   .chips::-webkit-scrollbar { display: none; }
   .chips .lab { flex: none; font-size: .72rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
   .chip { flex: none; border: 1px solid var(--line); background: var(--card); color: var(--text);
-          padding: 6px 12px; border-radius: 999px; font: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; }
+          padding: 9px 14px; border-radius: 999px; font: inherit; font-size: .88rem; font-weight: 600; cursor: pointer; }
   .chip[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
   .chip[hidden] { display: none; }
 
@@ -254,8 +254,11 @@
   .sheet-in { display: grid; gap: 10px; margin: 0; padding: 16px 16px calc(18px + env(safe-area-inset-bottom)); }
   .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .sheet-head b { font-size: 1.1rem; font-weight: 900; }
-  .sheet .x { border: 0; background: var(--soft); width: 34px; height: 34px; border-radius: 50%; font-size: 1.3rem;
-              line-height: 1; color: var(--muted); cursor: pointer; }
+  /* close buttons: thumb-sized (owner, 2026-11-03: the small X was too hard to hit) */
+  .sheet .x { flex: none; border: 0; background: var(--soft); width: 44px; height: 44px; border-radius: 50%;
+              display: grid; place-items: center; color: var(--text); cursor: pointer; }
+  .sheet .x svg { width: 22px; height: 22px; }
+  @media (hover: hover) { .sheet .x:hover { background: var(--line); } }
   .sheet-sub { margin: -4px 0 0; font-size: .85rem; color: var(--muted); }
   .sheet fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 7px; }
   .sheet fieldset[disabled] { opacity: .45; }
@@ -280,7 +283,8 @@
   .al-go { min-height: 50px; border: 0; border-radius: 12px; background: var(--teal); color: #fff; font: inherit;
            font-weight: 900; font-size: 1.02rem; cursor: pointer; }
   .al-go:disabled { background: #cbd5e1; color: #475569; cursor: default; }
-  .al-off { border: 0; background: none; color: var(--muted); font: inherit; font-size: .82rem; text-decoration: underline; cursor: pointer; }
+  .al-off { min-height: 44px; padding: 0 12px; border: 0; background: none; color: var(--muted); font: inherit; font-size: .88rem;
+            text-decoration: underline; cursor: pointer; }
   .al-off[hidden], .al-help[hidden] { display: none; }
   .al-tip { margin: 0; padding: 9px 12px; border-radius: 12px; background: var(--soft); font-size: .78rem; line-height: 1.4; color: var(--muted); }
   .al-tip b { color: var(--text); }
@@ -305,8 +309,13 @@
   @media (min-width: 600px) { .about .checks { grid-template-columns: 1fr 1fr; } }
   .about .checks li { display: flex; gap: 7px; align-items: flex-start; }
   .about summary::-webkit-details-marker { display: none; }
-  .about summary::after { content: "›"; margin-left: auto; transition: transform .15s; font-size: 1.2rem; }
+  .about summary::after { content: "›"; flex: none; margin-left: auto; width: 32px; height: 32px; border-radius: 50%;
+                          background: var(--soft); color: var(--text); display: grid; place-items: center;
+                          font-size: 1.5rem; font-weight: 700; line-height: 1; transition: transform .15s; }
   .about[open] summary::after { transform: rotate(90deg); }
+  .about summary { min-height: 34px; }
+  .about-close { width: 100%; min-height: 46px; margin-top: 10px; border: 1.5px solid var(--line); border-radius: 12px;
+                 background: var(--soft); color: var(--text); font: inherit; font-weight: 800; font-size: .95rem; cursor: pointer; }
   .about ul { margin: 6px 0; padding-left: 18px; }
   .about b { color: var(--text); }
   .spot { display: flex; align-items: center; gap: 14px; margin: 14px 0 6px; padding: 12px;
@@ -448,6 +457,7 @@
     </div>
     <p>Le 100 parfait n'existe pas.</p>
     </div>
+    <button type="button" class="about-close" data-i18n="aboutClose">Fermer ▲</button>
   </details>
   <div class="list" id="list" aria-live="polite">
     <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
@@ -456,7 +466,7 @@
 
 <dialog class="sheet" id="alerts" aria-labelledby="al-title">
   <form method="dialog" class="sheet-in" id="al-form">
-    <div class="sheet-head"><b id="al-title" data-i18n="alTitle">🔔 Alertes SmartDeals</b><button class="x" value="close" aria-label="Fermer" data-i18n-aria="close">×</button></div>
+    <div class="sheet-head"><b id="al-title" data-i18n="alTitle">🔔 Alertes SmartDeals</b><button class="x" value="close" aria-label="Fermer" data-i18n-aria="close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
     <p class="sheet-sub" data-i18n="alSub">Les meilleurs deals directement sur ton téléphone. Gratuit, sans compte, sans courriel. Tu peux les arrêter en tout temps.</p>
     <div class="al-help" id="al-help" hidden></div>
     <fieldset id="al-fields">
@@ -533,7 +543,7 @@ const I18N = {
       <div><span class="score"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">92<small>/100</small></span></span><span><b>EXCEPTIONNEL</b><br>90 et plus</span></div>
     </div>
     <p>Le 100 parfait n'existe pas.</p>`,
-    alTitle: "🔔 Alertes SmartDeals", close: "Fermer",
+    alTitle: "🔔 Alertes SmartDeals", close: "Fermer", aboutClose: "Fermer ▲",
     alSub: "Les meilleurs deals directement sur ton téléphone. Gratuit, sans compte, sans courriel. Tu peux les arrêter en tout temps.",
     alLegend: "Quels deals?",
     mHot: "<b>Les deals très hot</b><small>Score SmartDeals 85 et plus (🔥🔥 et 🔥🔥🔥), quelques-uns par jour</small>",
@@ -620,7 +630,7 @@ const I18N = {
       <div><span class="score"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">92<small>/100</small></span></span><span><b>EXCEPTIONAL</b><br>90 and up</span></div>
     </div>
     <p>A perfect 100 doesn't exist.</p>`,
-    alTitle: "🔔 SmartDeals alerts", close: "Close",
+    alTitle: "🔔 SmartDeals alerts", close: "Close", aboutClose: "Close ▲",
     alSub: "The best deals right on your phone. Free, no account, no email. Turn them off anytime.",
     alLegend: "Which deals?",
     mHot: "<b>Very hot deals</b><small>SmartDeals Score 85 and up (🔥🔥 and 🔥🔥🔥), a few a day</small>",
@@ -829,6 +839,12 @@ document.querySelector(".legendbar").addEventListener("click", () => {
   const about = document.querySelector(".about");
   about.open = true;
   about.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+// the big close button at the end of the explanation: fold it and come back to its line
+document.querySelector(".about-close").addEventListener("click", () => {
+  const about = document.querySelector(".about");
+  about.open = false;
+  about.scrollIntoView({ behavior: "smooth", block: "nearest" });
 });
 // Count each "go to Amazon" click as an anonymous GoatCounter event ("deal-ASIN"),
 // so the morning report knows which deals the page sends to Amazon.

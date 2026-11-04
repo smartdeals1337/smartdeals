@@ -471,8 +471,9 @@
     <div class="al-help" id="al-help" hidden></div>
     <fieldset id="al-fields">
       <legend data-i18n="alLegend">Quels deals?</legend>
-      <label class="opt"><input type="radio" name="mode" value="hot" checked><span data-i18n="mHot"><b>Les deals très hot</b><small>Score SmartDeals 85 et plus (🔥🔥 et 🔥🔥🔥), quelques-uns par jour</small></span></label>
-      <label class="opt"><input type="radio" name="mode" value="all"><span data-i18n="mAll"><b>Tous les deals</b><small>Chaque deal publié, jusqu'à une dizaine par jour</small></span></label>
+      <!-- every deal is the default (owner, 2026-11-03) -->
+      <label class="opt"><input type="radio" name="mode" value="all" checked><span data-i18n="mAll"><b>Tous les deals</b><small>Chaque deal publié, jusqu'à une dizaine par jour</small></span></label>
+      <label class="opt"><input type="radio" name="mode" value="hot"><span data-i18n="mHot"><b>Les deals hot seulement</b><small>Score SmartDeals 80 et plus (🔥, 🔥🔥 et 🔥🔥🔥)</small></span></label>
       <label class="opt"><input type="radio" name="mode" value="none"><span data-i18n="mNone"><b>Aucun</b><small>Seulement mes mots-clés et le Top 5</small></span></label>
       <label class="opt chk"><input type="checkbox" name="top5" checked><span data-i18n="mTop5"><b>🏆 Le Top 5 du soir</b><small>Les 5 meilleurs deals encore en vigueur, vers 21 h</small></span></label>
       <label class="kw"><span data-i18n="kw"><b>Mes mots-clés</b><small>Une alerte dès qu'un deal en parle, peu importe le score (jusqu'à 10, séparés par des virgules)</small></span>
@@ -546,7 +547,7 @@ const I18N = {
     alTitle: "🔔 Alertes SmartDeals", close: "Fermer", aboutClose: "Fermer ▲",
     alSub: "Les meilleurs deals directement sur ton téléphone. Gratuit, sans compte, sans courriel. Tu peux les arrêter en tout temps.",
     alLegend: "Quels deals?",
-    mHot: "<b>Les deals très hot</b><small>Score SmartDeals 85 et plus (🔥🔥 et 🔥🔥🔥), quelques-uns par jour</small>",
+    mHot: "<b>Les deals hot seulement</b><small>Score SmartDeals 80 et plus (🔥, 🔥🔥 et 🔥🔥🔥)</small>",
     mAll: "<b>Tous les deals</b><small>Chaque deal publié, jusqu'à une dizaine par jour</small>",
     mNone: "<b>Aucun</b><small>Seulement mes mots-clés et le Top 5</small>",
     mTop5: "<b>🏆 Le Top 5 du soir</b><small>Les 5 meilleurs deals encore en vigueur, vers 21 h</small>",
@@ -576,7 +577,7 @@ const I18N = {
     active: (n, a) => `${n} deal${n > 1 ? "s" : ""} actif${n > 1 ? "s" : ""} · mis à jour ${a}`,
     abOff: "<b>Alertes deals</b> sur ton téléphone", abOn: s => `<b>Alertes activées</b> · ${s}`,
     ctaOn: "Modifier", ctaOff: "Activer", goOn: "Enregistrer", goOff: "Activer les alertes",
-    sAll: "tous les deals", sHot: "deals très hot", sKw: n => `${n} mot${n > 1 ? "s" : ""}-clé${n > 1 ? "s" : ""}`,
+    sAll: "tous les deals", sHot: "deals hot", sKw: n => `${n} mot${n > 1 ? "s" : ""}-clé${n > 1 ? "s" : ""}`,
     bIosApp: "Les alertes ne marchent pas dans le navigateur d'Instagram ou de Facebook. Touche <b>⋯</b> (en haut à droite), puis <b>Ouvrir dans le navigateur</b> (Safari), et reviens ici.",
     bAndApp: "Les alertes ne marchent pas dans le navigateur d'Instagram ou de Facebook.", openChrome: "Ouvrir dans Chrome",
     bIosOld: "Les alertes demandent iOS 16.4 ou plus récent : mets ton iPhone à jour, puis reviens ici.",
@@ -635,7 +636,7 @@ const I18N = {
     alTitle: "🔔 SmartDeals alerts", close: "Close", aboutClose: "Close ▲",
     alSub: "The best deals right on your phone. Free, no account, no email. Turn them off anytime.",
     alLegend: "Which deals?",
-    mHot: "<b>Very hot deals</b><small>SmartDeals Score 85 and up (🔥🔥 and 🔥🔥🔥), a few a day</small>",
+    mHot: "<b>Hot deals only</b><small>SmartDeals Score 80 and up (🔥, 🔥🔥 and 🔥🔥🔥)</small>",
     mAll: "<b>Every deal</b><small>Every deal we post, up to about ten a day</small>",
     mNone: "<b>None</b><small>Only my keywords and the Top 5</small>",
     mTop5: "<b>🏆 The evening Top 5</b><small>The 5 best deals still on, around 9 PM</small>",
@@ -664,7 +665,7 @@ const I18N = {
     active: (n, a) => `${n} active deal${n > 1 ? "s" : ""} · updated ${a}`,
     abOff: "<b>Deal alerts</b> on your phone", abOn: s => `<b>Alerts on</b> · ${s}`,
     ctaOn: "Edit", ctaOff: "Turn on", goOn: "Save", goOff: "Turn on alerts",
-    sAll: "every deal", sHot: "very hot deals", sKw: n => `${n} keyword${n > 1 ? "s" : ""}`,
+    sAll: "every deal", sHot: "hot deals", sKw: n => `${n} keyword${n > 1 ? "s" : ""}`,
     bIosApp: "Alerts don't work in Instagram's or Facebook's browser. Tap <b>⋯</b> (top right), then <b>Open in browser</b> (Safari), and come back here.",
     bAndApp: "Alerts don't work in Instagram's or Facebook's browser.", openChrome: "Open in Chrome",
     bIosOld: "Alerts need iOS 16.4 or newer: update your iPhone, then come back here.",
@@ -923,7 +924,7 @@ function prefsFromForm() {
            keywords: form.keywords.value.split(/[,;\n]/).map(s => s.trim()).filter(s => s.length > 1).slice(0, 10) };
 }
 function prefsToForm(p) {
-  form.mode.value = p.mode || "hot";
+  form.mode.value = p.mode || "all";
   form.top5.checked = p.top5 !== false;
   form.keywords.value = (p.keywords || []).join(", ");
 }

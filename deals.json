@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T10:32:45-05:00",
+ "updated": "2026-11-04T10:40:34-05:00",
  "deals": [
   {
    "asin": "B0FWV189BT",
@@ -30,7 +30,7 @@
    "now_price": null,
    "posted": "2026-11-04T10:00:48.405128-05:00",
    "link": "https://amazon.ca/dp/B0FWV189BT?tag=sonline02-20",
-   "dead": false
+   "dead": true
   },
   {
    "asin": "B0FB59FN5M",
@@ -360,7 +360,7 @@
    "low_since_en": null,
    "chart_en": "charts/B0FQFGCQRF-79999-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-04T09:32:27-05:00",
+   "checked": "2026-11-04T10:40:32-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-02T18:23:04.514333-05:00",
@@ -701,7 +701,7 @@
    "low_since_en": null,
    "chart_en": "charts/B0FM61SDMR-15120-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-04T09:32:27-05:00",
+   "checked": "2026-11-04T10:40:32-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-01T15:05:32.479069-05:00",
@@ -1101,7 +1101,7 @@
    "low_since_en": null,
    "chart_en": "charts/B0H4WXSXHS-49999-v3-en.png",
    "chart_label_en": "New product · tracked since August 2026",
-   "checked": "2026-11-04T09:21:17-05:00",
+   "checked": "2026-11-04T10:40:32-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-10-31T18:37:07.660284-04:00",

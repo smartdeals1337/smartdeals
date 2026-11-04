@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T20:47:52-05:00",
+ "updated": "2026-11-03T21:04:10-05:00",
  "deals": [
   {
    "asin": "B00KR1O0JY",
@@ -23,7 +23,7 @@
    "low_since_en": "June 2026",
    "chart_en": "charts/B00KR1O0JY-19800-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-03T20:03:32.834090-05:00",
+   "checked": "2026-11-03T21:04:10-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-03T20:03:32.834090-05:00",
@@ -1078,63 +1078,63 @@
   }
  ],
  "recap": {
-  "kind": "am",
-  "at": "2026-11-03T10:02:57-05:00",
+  "kind": "pm",
+  "at": "2026-11-03T21:02:33-05:00",
   "items": [
    {
-    "asin": "B0DZHR44J9",
-    "name": "Casque Bose QuietComfort",
-    "image": "https://m.media-amazon.com/images/I/51tItfLj8xL.jpg",
-    "price": 249.0,
-    "score": 87,
+    "asin": "B0CXL4FQBK",
+    "name": "Enceinte Sony ULT Field 1",
+    "image": "https://m.media-amazon.com/images/I/51AJn-SljIL.jpg",
+    "price": 98.0,
+    "score": 86,
     "record": "tie",
     "cheaper": false,
-    "link": "https://amazon.ca/dp/B0DZHR44J9?tag=sonline02-20",
-    "name_en": "Bose QC Bluetooth Headset"
+    "link": "https://amazon.ca/dp/B0CXL4FQBK?tag=sonline02-20",
+    "name_en": "Sony ULT Field 1 Speaker"
    },
    {
-    "asin": "B0GXWFVKT5",
-    "name": "Casque Bose QC 2e gén",
-    "image": "https://m.media-amazon.com/images/I/61etMuW32uL.jpg",
-    "price": 299.0,
-    "score": 86,
-    "record": "first",
+    "asin": "B0DQYLSHKF",
+    "name": "Meuleuse DEWALT 20V",
+    "image": "https://m.media-amazon.com/images/I/616ydJM28IL.jpg",
+    "price": 128.0,
+    "score": 84,
+    "record": "tie",
     "cheaper": false,
-    "link": "https://amazon.ca/dp/B0GXWFVKT5?tag=sonline02-20",
-    "name_en": "Bose QC Wireless 2nd Gen"
+    "link": "https://amazon.ca/dp/B0DQYLSHKF?tag=sonline02-20",
+    "name_en": "DEWALT 20V Grinder DCG408B"
    },
    {
-    "asin": "B0FQFGCQRF",
-    "name": "Montre Apple Watch S11",
-    "image": "https://m.media-amazon.com/images/I/718j7LLEq-L.jpg",
-    "price": 799.99,
-    "score": 83,
-    "record": "first",
-    "cheaper": false,
-    "link": "https://amazon.ca/dp/B0FQFGCQRF?tag=sonline02-20",
-    "name_en": "Apple Watch Series 11"
-   },
-   {
-    "asin": "B0BY1BB9TG",
-    "name": "Perceuse DEWALT DCD793",
-    "image": "https://m.media-amazon.com/images/I/61iiAYvRMjL.jpg",
-    "price": 118.0,
+    "asin": "B0DT7BFNNW",
+    "name": "Enceinte Bose SoundLink",
+    "image": "https://m.media-amazon.com/images/I/61WXhKhSKzL.jpg",
+    "price": 199.0,
     "score": 81,
+    "record": "tie",
+    "cheaper": false,
+    "link": "https://amazon.ca/dp/B0DT7BFNNW?tag=sonline02-20",
+    "name_en": "Bose SoundLink Home Speaker"
+   },
+   {
+    "asin": "B00KR1O0JY",
+    "name": "Scie sabre DEWALT 20V",
+    "image": "https://m.media-amazon.com/images/I/71j7uTWl9fL.jpg",
+    "price": 198.0,
+    "score": 79,
     "record": null,
     "cheaper": false,
-    "link": "https://amazon.ca/dp/B0BY1BB9TG?tag=sonline02-20",
-    "name_en": "DEWALT 20V Brushless Drill"
+    "link": "https://amazon.ca/dp/B00KR1O0JY?tag=sonline02-20",
+    "name_en": "DEWALT 20V Recip Saw Kit"
    },
    {
-    "asin": "B0CG6NR413",
-    "name": "Montre Garmin vívoactive",
-    "image": "https://m.media-amazon.com/images/I/61A4yOWzGBL.jpg",
-    "price": 239.99,
-    "score": 77,
-    "record": "first",
+    "asin": "B09XWPF29F",
+    "name": "Train LEGO City Express",
+    "image": "https://m.media-amazon.com/images/I/91iCdwgEK0L.jpg",
+    "price": 239.0,
+    "score": 76,
+    "record": null,
     "cheaper": false,
-    "link": "https://amazon.ca/dp/B0CG6NR413?tag=sonline02-20",
-    "name_en": "Garmin vívoactive 5 Watch"
+    "link": "https://amazon.ca/dp/B09XWPF29F?tag=sonline02-20",
+    "name_en": "LEGO City Express Train"
    }
   ]
  }

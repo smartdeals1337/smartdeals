@@ -1001,6 +1001,7 @@ $("al-go").addEventListener("click", async () => {
     }
     pushSub = sub;
     store.set("alerts", p);
+    store.set("alertsLang", LANG);
     paintBar();
     say(isNew ? T.mOnNew : T.mSaved);
     if (isNew) gcEvent("alerts-on", "Alertes activées");
@@ -1043,6 +1044,11 @@ if (swReady) swReady.then(reg => reg.pushManager.getSubscription()).then(s => {
   pushSub = s;
   if (s && !store.get("alerts")) store.set("alerts", { mode: "hot", top5: true, keywords: [] });   // site data cleared: assume defaults
   paintBar();
+  // Alerts in the language the page is set to NOW, not the one it had at sign-up (owner,
+  // 2026-11-05: a subscriber on the French page got English alerts). Sent only when it
+  // changes, since the server limits calls per IP.
+  if (s && store.get("alertsLang") !== LANG)
+    api("lang", { endpoint: s.endpoint, lang: LANG }).then(() => store.set("alertsLang", LANG)).catch(() => {});
 }).catch(() => {});
 
 // Links from alerts and posts: ?d=ASIN (that deal, outlined), ?top5 (the Top 5 strip), ?alerts=1 (the alert settings)

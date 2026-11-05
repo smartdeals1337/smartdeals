@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T10:18:01-05:00",
+ "updated": "2026-11-05T10:32:29-05:00",
  "deals": [
   {
    "asin": "B0CD9JV7PB",
@@ -640,7 +640,7 @@
    "low_since_en": null,
    "chart_en": "charts/B0FQFGCQRF-79999-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-05T09:17:32-05:00",
+   "checked": "2026-11-05T10:32:28-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-02T18:23:04.514333-05:00",
@@ -1003,7 +1003,7 @@
    "low_since_en": null,
    "chart_en": "charts/B0FM61SDMR-15120-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-05T09:17:32-05:00",
+   "checked": "2026-11-05T10:32:28-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-01T15:05:32.479069-05:00",

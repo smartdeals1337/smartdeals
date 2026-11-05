@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T09:50:48-05:00",
+ "updated": "2026-11-05T10:04:12-05:00",
  "deals": [
   {
    "asin": "B0CD9JV7PB",
@@ -174,7 +174,7 @@
    "low_since_en": null,
    "chart_en": "charts/B0CWPVQZBW-24800-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-05T08:47:34-05:00",
+   "checked": "2026-11-05T10:04:09-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-04T18:03:34.619206-05:00",
@@ -203,7 +203,7 @@
    "low_since_en": "October 2024",
    "chart_en": "charts/B0DDV38139-89995-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-05T08:47:34-05:00",
+   "checked": "2026-11-05T10:04:09-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-04T14:18:42.951577-05:00",
@@ -296,7 +296,7 @@
    "low_since_en": "August 2026",
    "chart_en": "charts/B0FB59FN5M-29999-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-05T08:33:02-05:00",
+   "checked": "2026-11-05T10:04:09-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-04T09:21:12.401838-05:00",
@@ -356,7 +356,7 @@
    "low_since_en": "June 2026",
    "chart_en": "charts/B00KR1O0JY-19800-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-05T08:47:34-05:00",
+   "checked": "2026-11-05T10:04:09-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-03T20:03:32.834090-05:00",
@@ -505,7 +505,7 @@
    "low_since_en": "November 2025",
    "chart_en": "charts/B0BWSQFP38-14800-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-05T08:47:34-05:00",
+   "checked": "2026-11-05T10:04:09-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-03T10:34:15.572589-05:00",
@@ -537,7 +537,7 @@
    "low_since_en": null,
    "chart_en": "charts/B0CXL4FQBK-9800-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-05T08:47:34-05:00",
+   "checked": "2026-11-05T10:04:09-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-03T08:21:49.489014-05:00",
@@ -1001,7 +1001,7 @@
    "low_since_en": null,
    "chart_en": "charts/B0GVT7MWY4-16999-v3-en.png",
    "chart_label_en": "New product · tracked since August 2026",
-   "checked": "2026-11-05T08:33:02-05:00",
+   "checked": "2026-11-05T10:04:09-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-01T12:19:05.499530-05:00",
@@ -1093,7 +1093,7 @@
    "low_since_en": null,
    "chart_en": "charts/B0D8M64LF3-4499-v3-en.png",
    "chart_label_en": "Price over the last 12 months",
-   "checked": "2026-11-05T08:47:34-05:00",
+   "checked": "2026-11-05T10:04:09-05:00",
    "state": "up",
    "now_price": 44.99,
    "posted": "2026-11-01T07:49:24.438124-05:00",
@@ -1411,8 +1411,8 @@
   }
  ],
  "recap": {
-  "kind": "pm",
-  "at": "2026-11-04T21:02:33-05:00",
+  "kind": "am",
+  "at": "2026-11-05T10:02:34-05:00",
   "items": [
    {
     "asin": "B0FJSDQRR8",
@@ -1427,7 +1427,7 @@
    },
    {
     "asin": "B0CWPVQZBW",
-    "name": "Barre son Samsung S61D",
+    "name": "Barre de son Samsung S61D",
     "image": "https://m.media-amazon.com/images/I/710UCU9aXmL.jpg",
     "price": 248.0,
     "score": 80,
@@ -1438,7 +1438,7 @@
    },
    {
     "asin": "B0842XXXG8",
-    "name": "Harnais Voyager Baby Blue",
+    "name": "Harnais Voyager XXXS",
     "image": "https://m.media-amazon.com/images/I/91FcwMeLOGL.jpg",
     "price": 24.81,
     "score": 79,

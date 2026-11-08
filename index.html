@@ -176,6 +176,16 @@
         font-weight: 900; font-size: 1.05rem; letter-spacing: .2px; color: #fff; background: var(--teal);
         border-radius: 12px; transition: background .12s; }
   .go svg { flex: none; }
+  /* buy button + share button on one line; the pair ends the card */
+  .act { margin-top: auto; display: flex; gap: 8px; align-items: stretch; }
+  .act .go { margin-top: 0; flex: 1; min-width: 0; font-size: .95rem; padding: 0 8px; text-align: center; }
+  .share { flex: none; width: 68px; min-height: 52px; padding: 4px 2px; border-radius: 12px; border: 1.5px solid var(--teal);
+           background: var(--card); color: var(--teal); display: flex; flex-direction: column; align-items: center;
+           justify-content: center; gap: 1px; cursor: pointer; font: inherit; }
+  .share span { font-size: .66rem; font-weight: 800; line-height: 1; letter-spacing: .1px; }
+  .share:active { transform: scale(.94); }
+  .share.copied { background: var(--teal-soft); font-weight: 800; font-size: .72rem; line-height: 1.1; text-align: center; }
+  @media (hover: hover) { .share:hover { background: var(--teal-soft); } }
   .deal.faded { background: var(--soft); }
   .deal.faded .pic img, .deal.faded .hist img { filter: grayscale(1); opacity: .7; }
   .deal.faded .price { color: var(--muted); text-decoration: line-through; }
@@ -570,6 +580,7 @@ const I18N = {
     noHistory: "Nouveau produit sur Amazon.ca : son historique de prix commence avec ce deal.",
     amazonOff: "Le rabais affiché par Amazon (vs son prix de liste)", onAmazon: " sur Amazon", usual: "Habituel",
     over: "Ce deal est terminé", seePrice: "Voir le prix actuel sur Amazon", go: "Voir le deal sur Amazon",
+    share: "Partager ce deal", shareLabel: "Partager", copied: "Lien copié", shareText: (n, p, s) => `${n}: ${p} sur Amazon.ca${s ? ` · Score SmartDeals ${s}/100` : ""}`,
     empty: "Aucun deal ici pour l'instant.", loadFail: "Impossible de charger les deals. Réessaie dans un instant.",
     promoTitle: "<b>Bons plans Amazon</b> · liens affiliés",
     promoPrime: "<b>Essai gratuit Amazon Prime</b><small>Livraison gratuite rapide et deals réservés aux membres. Se renouvelle si tu n'annules pas.</small>",
@@ -658,6 +669,7 @@ const I18N = {
     noHistory: "New product on Amazon.ca: its price history starts with this deal.",
     amazonOff: "The discount Amazon shows (vs its list price)", onAmazon: " on Amazon", usual: "Usually",
     over: "This deal is over", seePrice: "See the current price on Amazon", go: "See the deal on Amazon",
+    share: "Share this deal", shareLabel: "Share", copied: "Link copied", shareText: (n, p, s) => `${n}: ${p} on Amazon.ca${s ? ` · SmartDeals Score ${s}/100` : ""}`,
     empty: "No deals here for now.", loadFail: "Couldn't load the deals. Try again in a moment.",
     promoTitle: "<b>Amazon perks</b> · affiliate links",
     promoPrime: "<b>Amazon Prime free trial</b><small>Fast free shipping and members-only deals. Renews unless you cancel.</small>",
@@ -806,8 +818,8 @@ function card(d) {
       ${badge(false)}
     </div>
     ${status}
-    <span class="go">${d.dead ? T.over : faded ? T.seePrice
-      : `${T.go} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`}</span>`;
+    <div class="act"><span class="go">${d.dead ? T.over : faded ? T.seePrice
+      : `${T.go} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`}</span>${d.dead || faded ? "" : `<button type="button" class="share" data-share="${esc(d.asin)}" title="${T.share}" aria-label="${T.share}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M5 13v5.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V13"/></svg><span>${T.shareLabel}</span></button>`}</div>`;
   return d.dead
     ? `<div class="deal faded is-dead" aria-disabled="true" data-asin="${esc(d.asin)}">${inner}</div>`
     : `<a class="deal${faded ? " faded" : ""}" href="${esc(d.link)}" target="_blank" rel="sponsored noopener" data-asin="${esc(d.asin)}">${inner}</a>`;
@@ -854,6 +866,31 @@ document.querySelector(".about-close").addEventListener("click", () => {
   about.open = false;
   about.scrollIntoView({ behavior: "smooth", block: "nearest" });
 });
+// Share button: shares OUR page's link for that deal (https://smartdealsclub.com/?d=ASIN), not the
+// Amazon link. Whoever opens it lands on the deal, and its "Voir le deal" button carries our affiliate
+// tag, so the commission is kept; the page also shows the Associate disclosure and the Score. Native share
+// sheet on phones, copy to the clipboard elsewhere. Capture phase: the click must not follow the card's link
+// nor count as a "go to Amazon" click.
+document.getElementById("list").addEventListener("click", async e => {
+  const b = e.target.closest(".share");
+  if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const d = deals.find(x => x.asin === b.dataset.share);
+  if (!d) return;
+  const url = `https://smartdealsclub.com/?d=${encodeURIComponent(d.asin)}&from=share&lang=${LANG}`;
+  const text = T.shareText(nameOf(d), money(d.price), d.score);
+  if (window.goatcounter && window.goatcounter.count)
+    window.goatcounter.count({ path: "share-" + d.asin, title: d.name, event: true });
+  try {
+    if (navigator.share) { await navigator.share({ title: "SmartDeals", text, url }); return; }
+  } catch (err) { if (err && err.name === "AbortError") return; }   // closed the sheet: nothing to do
+  try {
+    await navigator.clipboard.writeText(`${text}\n${url}`);
+    const html = b.innerHTML;
+    b.classList.add("copied"); b.textContent = T.copied;
+    setTimeout(() => { b.classList.remove("copied"); b.innerHTML = html; }, 1800);
+  } catch (err) { window.prompt(T.share, `${text}\n${url}`); }
+}, true);
 // Count each "go to Amazon" click as an anonymous GoatCounter event ("deal-ASIN"),
 // so the morning report knows which deals the page sends to Amazon.
 document.getElementById("list").addEventListener("click", e => {
@@ -1057,6 +1094,7 @@ if (swReady) swReady.then(reg => reg.pushManager.getSubscription()).then(s => {
 // Links from alerts and posts: ?d=ASIN (that deal, outlined), ?top5 (the Top 5 strip), ?alerts=1 (the alert settings)
 function openFromLink() {
   const q = new URLSearchParams(location.search);
+  if (q.get("from") === "share") gcEvent("share-open-" + (q.get("d") || "home"), "Lien partagé ouvert");
   if (q.get("from") === "alert") gcEvent("alert-open-" + (q.get("d") || (q.has("top5") ? "top5" : "home")), "Alerte ouverte");
   if (q.has("d")) {
     const el = document.querySelector(`.deal[data-asin="${CSS.escape(q.get("d"))}"]`);

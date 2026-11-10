@@ -81,7 +81,7 @@
   },
   {
    "id": "cook",
-   "name": "The Cook",
+   "name": "Cook",
    "hcp": 28,
    "hand": "Right",
    "group": "9:10",
@@ -93,7 +93,7 @@
   },
   {
    "id": "sleeper",
-   "name": "The Sleeper",
+   "name": "Sleeper",
    "hcp": 14,
    "hand": "Right",
    "group": "9:10",
@@ -115,7 +115,7 @@
   },
   {
    "id": "birdwatcher",
-   "name": "The BirdWatcher",
+   "name": "BirdWatcher",
    "hcp": 12,
    "hand": "Right",
    "group": "9:10",
@@ -205,6 +205,18 @@
    "winner": null,
    "note": "Champion to be crowned",
    "current": true
+  }
+ ],
+ "groups": [
+  {
+   "time": "9:00",
+   "label": "9:00 AM",
+   "title": "Honorary Starters"
+  },
+  {
+   "time": "9:10",
+   "label": "9:10 AM",
+   "title": "Second Threesome"
   }
  ]
 }

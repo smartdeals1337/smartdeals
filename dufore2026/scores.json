@@ -85,7 +85,11 @@
    "hcp": 28,
    "hand": "Right",
    "group": "9:10",
-   "photo": "players/cook.jpg"
+   "photo": "players/cook.jpg",
+   "calder": {
+    "year": 2022,
+    "place": "Arizona"
+   }
   },
   {
    "id": "sleeper",
@@ -167,8 +171,7 @@
    "country": "USA",
    "winner": "vice",
    "calder": {
-    "name": "JR",
-    "initials": "JR"
+    "id": "cook"
    }
   },
   {

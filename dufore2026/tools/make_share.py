@@ -54,7 +54,7 @@ for p in d["players"]:
     res.append({"p": p, "nets": nets, "done": done, "total": sum(n for n in nets if n is not None)})
 played = [r for r in res if r["done"]]
 last = max([i for r in played for i, n in enumerate(r["nets"]) if n is not None], default=-1)
-played.sort(key=lambda r: (-r["done"], r["total"] - PAR * r["done"], r["nets"][last] if last >= 0 and r["nets"][last] is not None else 0))
+played.sort(key=lambda r: (-r["done"], r["total"] - PAR * r["done"]))
 
 # ---- canvas ----
 W, H = 1200, 630

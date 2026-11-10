@@ -1,0 +1,29 @@
+{
+ "name": "Dufore Open 2026",
+ "short_name": "Dufore Open",
+ "description": "Live standings for the Dufore Open 2026, PGA Riviera Maya.",
+ "start_url": "/dufore2026/",
+ "scope": "/dufore2026/",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#03311b",
+ "theme_color": "#03311b",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

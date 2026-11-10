@@ -437,6 +437,11 @@ html.noscroll,html.noscroll body{overflow:hidden}
 .sh-t .ps b{display:block}
 .sh-t .ps .mv{display:block;margin-top:2px}
 .sh-t tbody tr:last-child td{border-bottom:0}
+
+.credit{display:flex;align-items:center;gap:16px;max-width:460px;margin:30px auto 0;padding:16px 18px;text-align:left;border:1px solid rgba(207,168,69,.4);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+.credit .ph{width:64px;height:64px;flex:none}
+.credit .cr-t{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.02rem;line-height:1.4;letter-spacing:0;text-transform:none;color:var(--cream)}
+.credit .cr-t span{display:block;font-family:Cinzel,serif;font-style:normal;font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-text);margin-bottom:5px}
 </style>
 </head>
 <body>
@@ -504,7 +509,7 @@ html.noscroll,html.noscroll body{overflow:hidden}
     </div>
     <div class="card pars" id="pars"></div>
   </section>
-  <footer class="foot"><div class="flag" aria-hidden="true"><i></i><i></i><i></i></div><p>Dufore Open 2026 · PGA Riviera Maya, Mexico</p><p class="sub">Standings update after every round</p><button class="inst" id="inst" type="button" hidden>Add to Home Screen</button></footer>
+  <footer class="foot"><div class="flag" aria-hidden="true"><i></i><i></i><i></i></div><p>Dufore Open 2026 · PGA Riviera Maya, Mexico</p><p class="sub">Standings update after every round</p><div class="credit"><div class="ph"><img src="players/vice.jpg" alt="Vice" width="240" height="240"></div><p class="cr-t"><span>Built by</span>the Vice-Chair, Chief Worldwide Technology Officer, General Counsel, Chief Marketing Officer and Personal Assistant to the Chairman and Vice-Chair</p></div><button class="inst" id="inst" type="button" hidden>Add to Home Screen</button></footer>
 </main>
 <script>
 // First tee: Wed 11 Nov 2026, 9:00 AM Riviera Maya (UTC-5, no daylight saving)

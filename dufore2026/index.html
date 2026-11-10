@@ -437,6 +437,14 @@ html.noscroll,html.noscroll body{overflow:hidden}
 .sh-t .ps b{display:block}
 .sh-t .ps .mv{display:block;margin-top:2px}
 .sh-t tbody tr:last-child td{border-bottom:0}
+
+.pr .av.nav{background:rgba(247,242,228,.18)}
+.pr .av.nav span{background:rgba(2,31,18,.85)}
+.pr .av.nav .ci{height:26px;margin:0}
+.hy .sav.nvi{background:rgba(247,242,228,.25);padding:1.5px}
+.hy .sav.nvi .ci{height:17px;margin:0;vertical-align:0}
+.hy .wn.cal.nr>span:last-child{font-style:italic;font-family:"Cormorant Garamond",serif;font-size:1.05rem;letter-spacing:0;text-transform:none;color:var(--cream)}
+.hy .wn.cal.nr small{font-style:italic}
 </style>
 </head>
 <body>
@@ -666,9 +674,11 @@ tick();
     var byId={};D.players.forEach(function(p){byId[p.id]=p});
     function av(w,cls){return w&&w.photo?'<span class="'+cls+'"><img src="'+esc(w.photo)+'" alt="" width="60" height="60"></span>':'<span class="'+cls+' ini">'+esc(w?w.initials:"")+'</span>'}
     function who(c){return c.id?byId[c.id]:{name:c.name,initials:c.initials}}
-    var H=D.history||[],cal=H.filter(function(h){return h.calder}).slice().reverse();
+    var H=D.history||[],cal=H.filter(function(h){return h.calder||h.calderNote}).slice().reverse();
     var pc=document.getElementById("champs");
-    if(pc&&cal.length)pc.innerHTML='<div class="chd"><img src="calder.png" alt="Calder Trophy" width="147" height="300"><div>Calder Trophy<small>Rookie of the Year</small></div></div>'+cal.map(function(h){var w=who(h.calder);
+    if(pc&&cal.length)pc.innerHTML='<div class="chd"><img src="calder.png" alt="Calder Trophy" width="147" height="300"><div>Calder Trophy<small>Rookie of the Year</small></div></div>'+cal.map(function(h){
+      if(!h.calder)return '<div class="pr"><div class="av nav"><span>'+ST+'</span></div><div class="nm">'+esc(h.calderNote)+'<small>'+flag(h.place)+esc(h.place)+'</small></div><div class="tag" style="font-size:.9rem">'+h.year+'</div></div>';
+      var w=who(h.calder);
       return '<div class="pr"><div class="av">'+(w.photo?'<img src="'+esc(w.photo)+'" alt="" width="88" height="88">':'<span>'+esc(w.initials)+'</span>')+'</div><div class="nm">'+esc(w.name)+ST+'<small>'+flag(h.place)+esc(h.place)+'</small></div><div class="tag" style="font-size:.9rem">'+h.year+'</div></div>'}).join("");
     var hi=document.getElementById("hist");
     if(hi)hi.innerHTML=H.slice().reverse().map(function(h){
@@ -677,6 +687,7 @@ tick();
       else wn='<span class="wn none">'+esc(h.note||"")+'</span>';
       var cl="";
       if(h.calder){var c=who(h.calder);cl='<span class="wn cal">'+av(c,"sav")+'<span>'+esc(c.name)+ST+'<small>Calder Trophy</small></span></span>'}
+      if(!h.calder&&h.calderNote)cl='<span class="wn cal nr"><span class="sav ini nvi">'+ST+'</span><span>'+esc(h.calderNote)+'<small>Calder Trophy</small></span></span>';
       if(h.ace&&byId[h.ace]){var a=byId[h.ace];cl+='<span class="wn cal">'+av(a,"sav")+'<span>'+esc(a.name)+'<span class="tw">'+ACE+'</span><small>Hole in One</small></span></span>'}
       return '<div class="hy'+(h.current?' cur':'')+'"><div class="yr">'+h.year+'</div><div><div class="loc">'+(FL[h.country]||"")+esc(h.place)+'<small>'+esc(h.country)+'</small></div>'+wn+cl+'</div></div>'}).join("");
     if(D.bench&&D.bench.length){

@@ -524,7 +524,7 @@ html.noscroll,html.noscroll body{overflow:hidden}
         <li>Your tournament total is the <b>sum of your 4 net scores</b>. Lowest total wins the <b>Dufore Cup</b>.</li>
         <li><b>Bonus points:</b> <b>Longest Drive</b> and <b>Closest to the Pin</b> (on a par 3) are played on <b>selected holes, to be announced</b>. Win one and earn <b>1 point each</b>. Every point lowers your net score by 1.</li>
         <li><b>Hole in one:</b> any hole in one during the tournament <b>automatically wins the Dufore Cup</b>, whatever the standings. (Slugger won Las Vegas 2021 this way.)</li>
-      <li><b>Tied?</b> An <b>executive decision</b> within the <b>executive committee</b> determines the winner.</li>
+      <li><b>Tied?</b> An <b>executive decision</b> within the <b>executive committee</b> determines the winner, taking into account the <b>behaviour of the week</b>, among other things.</li>
       </ol>
     </div>
     <div class="card pars" id="pars"></div>
@@ -666,7 +666,7 @@ tick();
       var tieTop=!aceWin&&played.filter(function(r,i){return posOf[i]===1}).length>1;
       var wl=aceWin?[{p:aceWin.p,sub:"Hole in one \u00b7 Round "+(aceWin.ri+1)+", hole "+(aceWin.hi+1)}]:played.filter(function(r,i){return posOf[i]===1}).map(function(r){return {p:r.p,sub:r.total+" net \u00b7 "+fmt(r.total-PAR*4)}});
       st.innerHTML='<span class="live"></span>'+(aceWin?"Hole in one \u00b7 Dufore Cup decided":tieTop?"Tournament complete \u00b7 tied for first":"Tournament complete");
-      cb.innerHTML='<div class="champ"><canvas id="cf"></canvas><div class="cb-k">'+TR+(tieTop?'Tied for the Dufore Cup':'Dufore Cup Champion 2026')+TR+'</div><div class="cb-w">'+wl.map(function(x){return '<div class="cb-p"><div class="cb-ph"><img src="'+esc(x.p.photo)+'" alt="" width="240" height="240"></div><div class="cb-n">'+esc(x.p.name)+'</div><div class="cb-s">'+esc(x.sub)+'</div></div>'}).join("")+'</div>'+(tieTop?'<div class="cb-tie">Executive committee decision to determine the winner</div>':'')+'</div>';
+      cb.innerHTML='<div class="champ"><canvas id="cf"></canvas><div class="cb-k">'+TR+(tieTop?'Tied for the Dufore Cup':'Dufore Cup Champion 2026')+TR+'</div><div class="cb-w">'+wl.map(function(x){return '<div class="cb-p"><div class="cb-ph"><img src="'+esc(x.p.photo)+'" alt="" width="240" height="240"></div><div class="cb-n">'+esc(x.p.name)+'</div><div class="cb-s">'+esc(x.sub)+'</div></div>'}).join("")+'</div>'+(tieTop?'<div class="cb-tie">Executive committee decision, taking into account the behaviour of the week</div>':'')+'</div>';
       var sk="dufore26-confetti",seen=false;try{seen=sessionStorage.getItem(sk)}catch(e){}
       if(!seen){try{sessionStorage.setItem(sk,"1")}catch(e){}confetti(document.getElementById("cf"))}
     }

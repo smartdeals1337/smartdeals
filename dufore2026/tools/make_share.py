@@ -95,7 +95,30 @@ def centered_spaced(y, text, f, fill, sp=6):
 centered_spaced(70, "THE DUFORE OPEN  ·  2026", font("cinzel", 26), GOLDL, 7)
 dr.line((X + 160, 118, W - 60 - 160, 118), fill=GOLD, width=2)
 
-if not played:
+# automatic champion: any hole in one wins the Dufore Cup
+ace = None
+for p in d["players"]:
+    for ri, k in enumerate(("1", "2", "3", "4")):
+        for hi, x in enumerate(d["rounds"].get(k, {}).get(p["id"], []) or []):
+            if x == 1 and (ace is None or (ri, hi) < (ace[1], ace[2])):
+                ace = (p, ri, hi)
+
+if ace:
+    centered_spaced(150, "DUFORE CUP CHAMPION", font("cinzel", 28), GOLD, 8)
+    try:
+        ph = Image.open(os.path.join(ROOT, ace[0]["photo"])).convert("RGB").resize((190, 190), Image.LANCZOS)
+        m = Image.new("L", (190, 190), 0); ImageDraw.Draw(m).ellipse((0, 0, 189, 189), fill=255)
+        ring = Image.new("RGBA", (206, 206), GOLD + (255,))
+        rm = Image.new("L", (206, 206), 0); ImageDraw.Draw(rm).ellipse((0, 0, 205, 205), fill=255)
+        cx = X + (W - 60 - X) // 2
+        im.paste(ring, (cx - 103, 200), rm)
+        im.paste(ph, (cx - 95, 208), m)
+        dr = ImageDraw.Draw(im)
+    except Exception:
+        pass
+    center_text(425, ace[0]["name"].upper(), font("cinzelb", 54), GOLDL)
+    center_text(495, "Hole in one \u00b7 Round %d, hole %d" % (ace[1] + 1, ace[2] + 1), font("corm", 38), CREAM)
+elif not played:
     centered_spaced(165, "ROUND ONE", font("cinzel", 30), GOLD, 8)
     center_text(215, "Wed 11 Nov", font("cinzelb", 76), GOLDL)
     center_text(315, "9:00 AM", font("cinzelb", 76), GOLDL)

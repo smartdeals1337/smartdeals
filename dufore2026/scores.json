@@ -34,12 +34,6 @@
    "photo": "players/chairman.jpg",
    "tags": [
     "Original OG"
-   ],
-   "cups": [
-    {
-     "year": 2023,
-     "place": "Mexico"
-    }
    ]
   },
   {
@@ -71,6 +65,12 @@
     "Original OG"
    ],
    "aces": [
+    {
+     "year": 2021,
+     "place": "Las Vegas"
+    }
+   ],
+   "cups": [
     {
      "year": 2021,
      "place": "Las Vegas"
@@ -129,7 +129,13 @@
    "calder": {
     "year": 2023,
     "place": "Mexico"
-   }
+   },
+   "cups": [
+    {
+     "year": 2023,
+     "place": "Mexico"
+    }
+   ]
   }
  ],
  "bench": [
@@ -167,9 +173,9 @@
    "year": 2021,
    "place": "Las Vegas",
    "country": "USA",
-   "winner": null,
-   "note": "No winner · played in Vegas format",
-   "ace": "slugger"
+   "winner": "slugger",
+   "ace": "slugger",
+   "sub": "Played in Vegas format · won with a hole in one"
   },
   {
    "year": 2022,
@@ -184,7 +190,7 @@
    "year": 2023,
    "place": "Mexico",
    "country": "Mexico",
-   "winner": "chairman",
+   "winner": "birdwatcher",
    "calder": {
     "id": "birdwatcher"
    }

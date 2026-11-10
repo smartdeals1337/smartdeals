@@ -442,6 +442,19 @@ html.noscroll,html.noscroll body{overflow:hidden}
 .credit .ph{width:64px;height:64px;flex:none}
 .credit .cr-t{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.02rem;line-height:1.4;letter-spacing:0;text-transform:none;color:var(--cream)}
 .credit .cr-t span{display:block;font-family:Cinzel,serif;font-style:normal;font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-text);margin-bottom:5px}
+
+.sched{width:100%;margin-top:34px;opacity:0;animation:fade 1.2s 1.9s forwards}
+.sched h2{font-family:Cinzel,serif;font-weight:500;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-text);text-align:center;margin-bottom:12px}
+.sg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.sd{position:relative;text-align:center;padding:14px 4px 12px;border:1px solid rgba(207,168,69,.4);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
+.sd .sr{display:block;font-family:Cinzel,serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text)}
+.sd b{display:block;font-family:Cinzel,serif;font-weight:700;font-size:1.7rem;line-height:1.1;color:var(--gold-light);margin:6px 0 4px}
+.sd .sm{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:.95rem;color:var(--cream);white-space:nowrap}
+.sd.today{border-color:var(--gold);background:linear-gradient(180deg,rgba(207,168,69,.28),rgba(207,168,69,.06));box-shadow:0 0 22px rgba(207,168,69,.25)}
+.sd.today::after{content:"Today";position:absolute;top:-8px;left:50%;transform:translateX(-50%);padding:2px 9px;border-radius:99px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--green-deep);font-family:Cinzel,serif;font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.sd.done{opacity:.7}
+@media(min-width:640px){.sd b{font-size:2rem}.sd .sr{font-size:.56rem}.sd{padding:18px 6px 14px}}
+@media(max-width:360px){.sd .sm{font-size:.85rem}.sd b{font-size:1.45rem}}
 </style>
 </head>
 <body>
@@ -465,6 +478,7 @@ html.noscroll,html.noscroll body{overflow:hidden}
     <div class="tee"><div class="th"><span>Honorary Starters</span><b>9:00 AM</b></div><div class="pls"><div class="pl"><div class="ph"><img src="players/chairman.jpg" alt="Chairman" width="240" height="240"></div><div class="pn">Chairman<span class="trs"><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div><div class="pm">HCP 22 · LH</div></div><div class="pl"><div class="ph"><img src="players/vice.jpg" alt="Vice" width="240" height="240"></div><div class="pn">Vice<span class="trs"><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div><div class="pm">HCP 21 · LH</div></div><div class="pl"><div class="ph"><img src="players/slugger.jpg" alt="Slugger" width="240" height="240"></div><div class="pn">Slugger</div><div class="pm">HCP 23 · RH</div></div><div class="pl"><div class="ph"><img src="players/stallion.jpg" alt="Italian Stallion" width="240" height="240"></div><div class="pn">Italian Stallion</div><div class="pm">HCP 2 · RH</div></div></div></div>
     <div class="tee"><div class="th"><span>Second Threesome</span><b>9:10 AM</b></div><div class="pls"><div class="pl"><div class="ph"><img src="players/cook.jpg" alt="Cook" width="240" height="240"></div><div class="pn">Cook</div><div class="pm">HCP 28 · RH</div></div><div class="pl"><div class="ph"><img src="players/sleeper.jpg" alt="Sleeper" width="240" height="240"></div><div class="pn">Sleeper<span class="trs"><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div><div class="pm">HCP 14 · RH</div></div><div class="pl"><div class="ph"><img src="players/birdwatcher.jpg" alt="BirdWatcher" width="240" height="240"></div><div class="pn">BirdWatcher</div><div class="pm">HCP 12 · RH</div></div></div></div>
   </div>
+  <div class="sched" id="sched"></div>
   <div class="snw" id="snw">
   <nav class="snav" id="snav" aria-label="Sections">
     <a href="#standings" data-s="standings"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 8h16v10a8 8 0 0 1-16 0z"/><path d="M16 11h-6c0 6 2 9 7 10M32 11h6c0 6-2 9-7 10"/><path d="M24 26v8M17 40h14M19 34h10"/></svg><span>Standings</span></a>
@@ -498,7 +512,7 @@ html.noscroll,html.noscroll body{overflow:hidden}
     <h2>Scoring</h2>
     <div class="card rules">
       <ol>
-        <li><b>4 rounds</b>, 18 holes each, same course: PGA Riviera Maya, par 72.</li>
+        <li><b>4 rounds</b> on <b>Nov 11, 12, 13 and 14</b>, 18 holes each, same course: PGA Riviera Maya, par 72.</li>
         <li><b>Double bogey is the maximum.</b> Pick up at par + 2. The hole counts as par + 2, never more.</li>
         <li>Add up your 18 holes. That is your <b>gross score</b>.</li>
         <li>After the round, <b>subtract your full handicap</b>. That is your <b>net score</b> for the round.</li>
@@ -652,6 +666,13 @@ tick();
     if(gs){gs.hidden=!ms.length;if(mn)mn.hidden=!ms.length;
       gl.innerHTML=ms.map(function(m,i){return '<button type="button" class="gi" data-i="'+i+'"><img src="'+esc(m.src)+'" alt="'+esc(m.caption||"")+'" loading="lazy"><span>'+esc(m.caption||"")+(m.round?'<em>Round '+m.round+'</em>':'')+'</span></button>'}).join("");
       window.__m=ms}
+    // schedule
+    var sc=document.getElementById("sched");
+    if(sc&&D.schedule){
+      var now=new Date(Date.now()-5*3600*1000).toISOString().slice(0,10);
+      sc.innerHTML='<h2>Schedule \u00b7 Nov 11\u201314</h2><div class="sg">'+D.schedule.map(function(x,i){
+        var st=D.rounds&&D.rounds[String(x.round)]&&Object.keys(D.rounds[String(x.round)]).length;
+        return '<div class="sd'+(x.date===now?' today':'')+(st?' done':'')+'"><span class="sr">Round '+x.round+'</span><b>'+x.day+'</b><span class="sm">Nov \u00b7 '+x.label+'</span></div>'}).join("")+'</div>'}
     // tee cards
     var tees=document.getElementById("tees");
     if(tees&&D.groups){

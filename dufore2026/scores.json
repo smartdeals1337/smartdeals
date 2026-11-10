@@ -224,5 +224,31 @@
    "label": "9:10 AM",
    "title": "Second Threesome"
   }
+ ],
+ "schedule": [
+  {
+   "round": 1,
+   "date": "2026-11-11",
+   "label": "Wed",
+   "day": "11"
+  },
+  {
+   "round": 2,
+   "date": "2026-11-12",
+   "label": "Thu",
+   "day": "12"
+  },
+  {
+   "round": 3,
+   "date": "2026-11-13",
+   "label": "Fri",
+   "day": "13"
+  },
+  {
+   "round": 4,
+   "date": "2026-11-14",
+   "label": "Sat",
+   "day": "14"
+  }
  ]
 }

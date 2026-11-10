@@ -295,12 +295,11 @@ main{max-width:var(--w)}
 @keyframes navin{from{opacity:0;transform:translate(-50%,-10px)}to{opacity:1;transform:translateX(-50%)}}
 
 /* ---------- mobile robustness ---------- */
-html,body{overflow-x:hidden;max-width:100%}
+html,body{max-width:100%}
 @supports (overflow:clip){html,body{overflow-x:clip}}
-html,body{touch-action:pan-y pinch-zoom}
 body{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
 main,.sec,.card,.tees,.tee,.row,.pr,.hy,.pls,.pl,.snw{min-width:0;max-width:100%}
-.snav{touch-action:pan-x;background:rgba(2,31,18,.9)}
+.snav{background:rgba(2,31,18,.9)}
 .snav.fx{left:0;right:0;margin:0 auto;transform:none;width:max-content;max-width:calc(100% - 24px);top:max(10px,env(safe-area-inset-top));animation:navin .35s cubic-bezier(.2,.7,.2,1)}
 @keyframes navin{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
 .nm{overflow-wrap:normal;word-break:normal;hyphens:none}
@@ -798,7 +797,6 @@ tick();
     var on=t<Math.max(12,parseInt(getComputedStyle(snv).getPropertyValue("--sat"))||12);
     if(on!==snv.classList.contains("fx")){snw.style.height=snw.offsetHeight+"px";snv.classList.toggle("fx",on)}}
   function onScroll(){if(!tick2){tick2=true;requestAnimationFrame(pin)}}
-  window.addEventListener("scroll",function(){if(window.scrollX)window.scrollTo(0,window.scrollY)},{passive:true});
   window.addEventListener("scroll",onScroll,{passive:true});window.addEventListener("resize",onScroll);pin();
 
   var root=document.documentElement;root.classList.add("js");

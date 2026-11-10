@@ -34,12 +34,6 @@
    "photo": "players/chairman.jpg",
    "tags": [
     "Original OG"
-   ],
-   "cups": [
-    {
-     "year": 2023,
-     "place": "Mexico"
-    }
    ]
   },
   {
@@ -129,7 +123,13 @@
    "calder": {
     "year": 2023,
     "place": "Mexico"
-   }
+   },
+   "cups": [
+    {
+     "year": 2023,
+     "place": "Mexico"
+    }
+   ]
   }
  ],
  "bench": [
@@ -184,7 +184,7 @@
    "year": 2023,
    "place": "Mexico",
    "country": "Mexico",
-   "winner": "chairman",
+   "winner": "birdwatcher",
    "calder": {
     "id": "birdwatcher"
    }

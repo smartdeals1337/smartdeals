@@ -22,26 +22,26 @@
   --gold:#cfa845; --gold-light:#e8cf86; --cream:#f7f2e4; --red:#ce1126;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+html{min-height:100%}
 body{
   background:
     radial-gradient(ellipse at 50% 38%, var(--green-mid) 0%, var(--green) 45%, var(--green-deep) 100%);
   color:var(--cream);
   font-family:"Cormorant Garamond",Georgia,serif;
   min-height:100vh; min-height:100dvh;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:max(24px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom));
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+  padding:max(40px,env(safe-area-inset-top)) 16px max(40px,env(safe-area-inset-bottom));
   overflow-x:hidden; text-align:center; position:relative;
 }
 body::before{ /* subtle gold frame */
-  content:""; position:fixed; inset:12px; border:1px solid rgba(207,168,69,.45);
+  content:""; position:absolute; inset:12px; border:1px solid rgba(207,168,69,.45);
   pointer-events:none; border-radius:4px;
 }
 body::after{ /* soft vignette + grain of light */
   content:""; position:fixed; inset:0; pointer-events:none;
   background:radial-gradient(circle at 50% 30%, rgba(232,207,134,.10), transparent 55%);
 }
-main{position:relative;z-index:1;width:100%;max-width:640px;display:flex;flex-direction:column;align-items:center}
+main{position:relative;z-index:1;margin:auto 0;width:100%;max-width:640px;display:flex;flex-direction:column;align-items:center}
 .eyebrow{
   font-family:Cinzel,serif; letter-spacing:.38em; font-size:.72rem; color:var(--gold);
   text-transform:uppercase; margin-bottom:22px; opacity:0; animation:fade 1.2s .1s forwards;
@@ -79,6 +79,21 @@ h1{
 .flag{display:inline-flex;margin-top:22px;height:3px;width:84px;opacity:0;animation:fade 1.2s 1.7s forwards}
 .flag i{flex:1}.flag i:nth-child(1){background:#00833e}.flag i:nth-child(2){background:var(--cream)}.flag i:nth-child(3){background:var(--red)}
 .live main>*:not(.logo-wrap){}
+
+.tees{margin-top:34px;width:100%;max-width:440px;opacity:0;animation:fade 1.2s 1.7s forwards}
+.tees h2,.soon h2{font-family:Cinzel,serif;font-weight:500;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.tee{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;margin-bottom:10px;text-align:left;
+  border:1px solid rgba(207,168,69,.45);border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
+.tee b{font-family:Cinzel,serif;font-weight:700;font-size:1.25rem;color:var(--gold-light);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tee span{font-family:Cinzel,serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream)}
+.tee small i{font-style:italic;white-space:nowrap}
+.tee small{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1rem;letter-spacing:0;text-transform:none;color:var(--gold);margin-top:2px}
+.soon{margin-top:34px;width:100%;opacity:0;animation:fade 1.2s 1.9s forwards}
+.icons{display:flex;justify-content:center;gap:clamp(10px,3vw,22px)}
+.ic{flex:1;max-width:150px;padding:18px 8px 14px;border:1px solid rgba(207,168,69,.35);border-radius:12px;background:rgba(255,255,255,.03)}
+.ic svg{width:42px;height:42px;stroke:var(--gold-light);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ic div{font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cream);margin-top:10px}
+.ic em{display:block;font-style:italic;font-size:.85rem;color:var(--gold);margin-top:3px;opacity:.85}
 .teed{display:none;font-family:Cinzel,serif;font-size:clamp(1.4rem,6vw,2.2rem);letter-spacing:.2em;color:var(--gold-light);text-transform:uppercase}
 .done .count{display:none}.done .teed{display:block}
 @keyframes fade{to{opacity:1}}
@@ -101,6 +116,19 @@ h1{
   </div>
   <div class="teed">Tee time. Good luck.</div>
   <div class="where">PGA Riviera Maya<span>Mexico · 9:00 AM</span></div>
+  <div class="tees">
+    <h2>Tee Times · Round One</h2>
+    <div class="tee"><span>Honorary Starters<small><i>Chairman</i> · <i>Vice</i> · <i>Slugger</i></small></span><b>9:00 AM</b></div>
+    <div class="tee"><span>Second Threesome<small><i>The Cook</i> · <i>The Sleeper</i> · <i>The BirdWatcher</i></small></span><b>9:10 AM</b></div>
+  </div>
+  <div class="soon">
+    <h2>Coming to this page</h2>
+    <div class="icons">
+      <div class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="16" r="7"/><path d="M10 40c0-8 6-13 14-13s14 5 14 13"/><circle cx="9" cy="21" r="4"/><circle cx="39" cy="21" r="4"/></svg><div>Players</div><em>The field</em></div>
+      <div class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 8h16v10a8 8 0 0 1-16 0z"/><path d="M16 11h-6c0 6 2 9 7 10M32 11h6c0 6-2 9-7 10"/><path d="M24 26v8M17 40h14M19 34h10"/></svg><div>Standings</div><em>Who leads</em></div>
+      <div class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 16h16M16 23h16M16 30h9"/><path d="M31 37v-8l6 3z"/></svg><div>Scoring</div><em>The rules</em></div>
+    </div>
+  </div>
   <div class="flag" aria-hidden="true"><i></i><i></i><i></i></div>
 </main>
 <script>

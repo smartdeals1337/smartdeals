@@ -190,6 +190,14 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
 .hy .wn.cal{margin-top:6px;color:var(--cream)}
 .hy .wn.cal .tr{color:var(--cream);width:11px;height:11px}
 .hy .wn.cal small{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;text-transform:none;letter-spacing:0;font-size:.85rem;color:var(--gold);margin-top:1px}
+.ci{height:16px;width:auto;vertical-align:-3px;margin-left:5px}
+.bd .ci{height:14px;margin:0 5px 0 0;vertical-align:-3px}
+.hy .wn.cal .ci{height:15px;vertical-align:-3px}
+.pr .nm .ci{height:15px}
+.chd{display:flex;align-items:center;gap:18px;padding:16px 18px;background:radial-gradient(ellipse at 20% 50%,rgba(207,168,69,.2),transparent 70%),rgba(0,0,0,.18)}
+.chd img{height:110px;width:auto;filter:drop-shadow(0 6px 12px rgba(0,0,0,.5))}
+.chd div{font-family:Cinzel,serif;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light)}
+.chd small{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.1rem;letter-spacing:0;text-transform:none;color:var(--cream);margin-top:4px}
 .teed{display:none;font-family:Cinzel,serif;font-size:clamp(1.4rem,6vw,2.2rem);letter-spacing:.2em;color:var(--gold-light);text-transform:uppercase}
 .done .count{display:none}.done .teed{display:block}
 @keyframes fade{to{opacity:1}}
@@ -283,7 +291,7 @@ tick();
   var FL={"Mexico":'<svg class="fl" viewBox="0 0 30 20"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce1126"/><circle cx="15" cy="10" r="2.2" fill="#8b6b2f"/></svg>',"USA":'<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="2.86"/><rect y="5.71" width="30" height="2.86"/><rect y="11.43" width="30" height="2.86"/><rect y="17.14" width="30" height="2.86"/></g><rect width="13" height="10.8" fill="#3c3b6e"/><g fill="#fff"><circle cx="2.5" cy="2.2" r=".7"/><circle cx="6.5" cy="2.2" r=".7"/><circle cx="10.5" cy="2.2" r=".7"/><circle cx="4.5" cy="5.4" r=".7"/><circle cx="8.5" cy="5.4" r=".7"/><circle cx="2.5" cy="8.6" r=".7"/><circle cx="6.5" cy="8.6" r=".7"/><circle cx="10.5" cy="8.6" r=".7"/></g></svg>',"Puerto Rico":'<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="20" fill="#ed0000"/><rect y="4" width="30" height="4" fill="#fff"/><rect y="12" width="30" height="4" fill="#fff"/><path d="M0 0l15 10L0 20z" fill="#0050f0"/><polygon points="5.50,6.30 6.35,8.83 9.02,8.86 6.88,10.45 7.67,12.99 5.50,11.45 3.33,12.99 4.12,10.45 1.98,8.86 4.65,8.83" fill="#fff"/></svg>',"Dominican Republic":'<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><rect width="13.5" height="8.5" fill="#002d62"/><rect x="16.5" width="13.5" height="8.5" fill="#ce1126"/><rect y="11.5" width="13.5" height="8.5" fill="#ce1126"/><rect x="16.5" y="11.5" width="13.5" height="8.5" fill="#002d62"/></svg>'};
   var PL={"Mexico":"Mexico","Las Vegas":"USA","Arizona":"USA","Puerto Rico":"Puerto Rico","Dominican Republic":"Dominican Republic","Punta Cana":"Dominican Republic","PGA Riviera Maya":"Mexico"};
   function flag(place){return FL[PL[place]||place]||""}
-  var ST='<svg class="tr" viewBox="0 0 48 48" aria-label="Rookie of the Year"><path d="M24 4l5.5 12.5L43 18l-10 9.5L35.5 41 24 34l-11.5 7L15 27.5 5 18l13.5-1.5z" fill="currentColor"/></svg>';
+  var ST='<img class="ci" src="calder-cup.png" alt="Calder Trophy" width="112" height="150">';
   var TR='<svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
   function trophies(p){return p.cups?p.cups.map(function(){return TR}).join(""):""}
   function badges(p){
@@ -362,7 +370,7 @@ tick();
     function who(c){return c.id?byId[c.id]:{name:c.name,initials:c.initials}}
     var H=D.history||[],cal=H.filter(function(h){return h.calder}).slice().reverse();
     var pc=document.getElementById("champs");
-    if(pc&&cal.length)pc.innerHTML='<div class="bench-h" style="border-top:0">Calder Trophy \u00b7 Rookie of the Year</div>'+cal.map(function(h){var w=who(h.calder);
+    if(pc&&cal.length)pc.innerHTML='<div class="chd"><img src="calder.png" alt="Calder Trophy" width="147" height="300"><div>Calder Trophy<small>Rookie of the Year</small></div></div>'+cal.map(function(h){var w=who(h.calder);
       return '<div class="pr"><div class="av">'+(w.photo?'<img src="'+esc(w.photo)+'" alt="" width="88" height="88">':'<span>'+esc(w.initials)+'</span>')+'</div><div class="nm">'+esc(w.name)+ST+'<small>'+flag(h.place)+esc(h.place)+'</small></div><div class="tag" style="font-size:.9rem">'+h.year+'</div></div>'}).join("");
     var hi=document.getElementById("hist");
     if(hi)hi.innerHTML=H.slice().reverse().map(function(h){

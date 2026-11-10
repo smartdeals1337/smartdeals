@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dufore Open 2026 · PGA Riviera Maya</title>
+<meta name="description" content="The Dufore Open 2026. PGA Riviera Maya, Mexico. Round one tees off tomorrow at 9:00 AM.">
+<meta name="theme-color" content="#03311b">
+<meta property="og:title" content="Dufore Open 2026">
+<meta property="og:description" content="Something's brewing at PGA Riviera Maya. Tee off tomorrow, 9:00 AM.">
+<meta property="og:image" content="https://smartdealsclub.com/dufore2026/share.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#03311b; --green-deep:#021f12; --green-mid:#0b4a2a;
+  --gold:#cfa845; --gold-light:#e8cf86; --cream:#f7f2e4; --red:#ce1126;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:
+    radial-gradient(ellipse at 50% 38%, var(--green-mid) 0%, var(--green) 45%, var(--green-deep) 100%);
+  color:var(--cream);
+  font-family:"Cormorant Garamond",Georgia,serif;
+  min-height:100vh; min-height:100dvh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:max(24px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom));
+  overflow-x:hidden; text-align:center; position:relative;
+}
+body::before{ /* subtle gold frame */
+  content:""; position:fixed; inset:12px; border:1px solid rgba(207,168,69,.45);
+  pointer-events:none; border-radius:4px;
+}
+body::after{ /* soft vignette + grain of light */
+  content:""; position:fixed; inset:0; pointer-events:none;
+  background:radial-gradient(circle at 50% 30%, rgba(232,207,134,.10), transparent 55%);
+}
+main{position:relative;z-index:1;width:100%;max-width:640px;display:flex;flex-direction:column;align-items:center}
+.eyebrow{
+  font-family:Cinzel,serif; letter-spacing:.38em; font-size:.72rem; color:var(--gold);
+  text-transform:uppercase; margin-bottom:22px; opacity:0; animation:fade 1.2s .1s forwards;
+}
+.logo-wrap{position:relative;width:min(70vw,340px);aspect-ratio:1;margin-bottom:28px;opacity:0;animation:rise 1.4s .25s cubic-bezier(.2,.7,.2,1) forwards}
+.logo-wrap::before{
+  content:"";position:absolute;inset:-14%;border-radius:50%;
+  background:radial-gradient(circle, rgba(207,168,69,.35), transparent 65%);
+  animation:glow 4s ease-in-out infinite;
+}
+.logo-wrap img{position:relative;width:100%;height:100%;display:block;filter:drop-shadow(0 18px 38px rgba(0,0,0,.55))}
+h1{
+  font-family:Cinzel,serif;font-weight:500;font-size:clamp(1rem,3.6vw,1.25rem);
+  letter-spacing:.22em;color:var(--gold-light);text-transform:uppercase;
+  opacity:0;animation:fade 1.2s .7s forwards;
+}
+.tease{
+  font-style:italic;font-size:clamp(1.25rem,5vw,1.7rem);margin:14px 0 30px;color:var(--cream);
+  opacity:0;animation:fade 1.2s .95s forwards;
+}
+.count{display:flex;gap:clamp(8px,2.5vw,16px);justify-content:center;opacity:0;animation:fade 1.2s 1.2s forwards}
+.cell{
+  min-width:clamp(64px,19vw,100px);padding:14px 6px 10px;
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid rgba(207,168,69,.5);border-radius:10px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 10px 24px rgba(0,0,0,.3);
+}
+.num{font-family:Cinzel,serif;font-weight:700;font-size:clamp(2rem,9vw,3.2rem);line-height:1;color:var(--gold-light);font-variant-numeric:tabular-nums}
+.lbl{font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+.where{
+  margin-top:30px;font-family:Cinzel,serif;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--cream);opacity:0;animation:fade 1.2s 1.5s forwards;
+}
+.where span{display:block;color:var(--gold);margin-top:6px;font-size:.7rem;letter-spacing:.34em}
+.flag{display:inline-flex;margin-top:22px;height:3px;width:84px;opacity:0;animation:fade 1.2s 1.7s forwards}
+.flag i{flex:1}.flag i:nth-child(1){background:#00833e}.flag i:nth-child(2){background:var(--cream)}.flag i:nth-child(3){background:var(--red)}
+.live main>*:not(.logo-wrap){}
+.teed{display:none;font-family:Cinzel,serif;font-size:clamp(1.4rem,6vw,2.2rem);letter-spacing:.2em;color:var(--gold-light);text-transform:uppercase}
+.done .count{display:none}.done .teed{display:block}
+@keyframes fade{to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes glow{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important}}
+</style>
+</head>
+<body>
+<main id="m">
+  <div class="eyebrow">Round One</div>
+  <div class="logo-wrap"><img src="logo.png" alt="Dufore Open 2026 · PGA Riviera Maya · Mexico" width="900" height="900"></div>
+  <h1>The Dufore Open</h1>
+  <p class="tease" id="tease">The field is set. The first tee awaits.</p>
+  <div class="count" id="count" role="timer" aria-live="off">
+    <div class="cell"><div class="num" id="d">00</div><div class="lbl">Days</div></div>
+    <div class="cell"><div class="num" id="h">00</div><div class="lbl">Hours</div></div>
+    <div class="cell"><div class="num" id="mi">00</div><div class="lbl">Min</div></div>
+    <div class="cell"><div class="num" id="s">00</div><div class="lbl">Sec</div></div>
+  </div>
+  <div class="teed">Tee time. Good luck.</div>
+  <div class="where">PGA Riviera Maya<span>Mexico · 9:00 AM</span></div>
+  <div class="flag" aria-hidden="true"><i></i><i></i><i></i></div>
+</main>
+<script>
+// First tee: Wed 11 Nov 2026, 9:00 AM Riviera Maya (UTC-5, no daylight saving)
+var T=new Date("2026-11-11T09:00:00-05:00").getTime();
+var el=function(i){return document.getElementById(i)};
+function p(n){return String(n).padStart(2,"0")}
+function tick(){
+  var r=T-Date.now();
+  if(r<=0){document.body.classList.add("done");el("tease").textContent="The Dufore Open is underway.";return}
+  var s=Math.floor(r/1000);
+  el("d").textContent=p(Math.floor(s/86400));
+  el("h").textContent=p(Math.floor(s%86400/3600));
+  el("mi").textContent=p(Math.floor(s%3600/60));
+  el("s").textContent=p(s%60);
+  setTimeout(tick,250);
+}
+tick();
+</script>
+</body>
+</html>

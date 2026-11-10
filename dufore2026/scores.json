@@ -140,5 +140,50 @@
   "2": {},
   "3": {},
   "4": {}
- }
+ },
+ "history": [
+  {
+   "year": 2021,
+   "place": "Las Vegas",
+   "country": "USA",
+   "winner": null,
+   "note": "The OGs · Vegas scoring, no winner"
+  },
+  {
+   "year": 2022,
+   "place": "Arizona",
+   "country": "USA",
+   "winner": null,
+   "note": "Winner to be confirmed",
+   "tbc": true
+  },
+  {
+   "year": 2023,
+   "place": "Mexico",
+   "country": "Mexico",
+   "winner": null,
+   "note": "Winner to be confirmed",
+   "tbc": true
+  },
+  {
+   "year": 2024,
+   "place": "Puerto Rico",
+   "country": "Puerto Rico",
+   "winner": "sleeper"
+  },
+  {
+   "year": 2025,
+   "place": "Punta Cana",
+   "country": "Dominican Republic",
+   "winner": "sleeper"
+  },
+  {
+   "year": 2026,
+   "place": "PGA Riviera Maya",
+   "country": "Mexico",
+   "winner": null,
+   "note": "Champion to be crowned",
+   "current": true
+  }
+ ]
 }

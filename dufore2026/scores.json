@@ -143,10 +143,10 @@
   },
   {
    "id": "health",
-   "name": "Health Advisor",
+   "name": "Wellness Coach",
    "hcp": 22,
    "hand": "Right",
-   "initials": "HA",
+   "initials": "WC",
    "photo": "players/health.jpg"
   }
  ],

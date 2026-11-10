@@ -135,11 +135,10 @@
  "bench": [
   {
    "id": "frank",
-   "name": "Frank",
-   "title": "Vice Chair",
+   "name": "Vice-Chair",
    "hcp": 14,
    "hand": "Right",
-   "initials": "F",
+   "initials": "VC",
    "photo": "players/frank.jpg"
   },
   {

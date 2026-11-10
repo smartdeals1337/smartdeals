@@ -40,7 +40,7 @@ body{
   min-height:100vh; min-height:100dvh;
   display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
   padding:max(40px,env(safe-area-inset-top)) 16px max(40px,env(safe-area-inset-bottom));
-  overflow-x:hidden; text-align:center; position:relative;
+  text-align:center; position:relative;
 }
 body::after{ /* soft vignette + grain of light */
   content:""; position:fixed; inset:0; pointer-events:none;
@@ -296,7 +296,6 @@ main{max-width:var(--w)}
 
 /* ---------- mobile robustness ---------- */
 html,body{max-width:100%}
-@supports (overflow:clip){html,body{overflow-x:clip}}
 body{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
 main,.sec,.card,.tees,.tee,.row,.pr,.hy,.pls,.pl,.snw{min-width:0;max-width:100%}
 .snav{background:rgba(2,31,18,.9)}

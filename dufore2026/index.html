@@ -314,6 +314,13 @@ main,.sec,.card,.tees,.tee,.row,.pr,.hy,.pls,.pl,.snw{min-width:0;max-width:100%
   .row.head>:nth-child(2){display:none}
   .row{grid-template-columns:22px minmax(0,1fr) repeat(4,27px) 44px;gap:2px;padding:10px 8px}
 }
+
+.ai{width:13px;height:13px;color:var(--gold-light);vertical-align:-2px;margin-left:4px;flex:none}
+.bd .ai{width:11px;height:11px;margin:0 5px 0 0;vertical-align:-2px;color:var(--cream)}
+.nm .tw .ai{margin-left:4px}
+.hy .wn.cal .ai{color:var(--cream)}
+.ph .bg.ace{right:auto;left:-5px;padding:0;width:22px;justify-content:center}
+.ph .bg.ace .ai{width:12px;height:12px;margin:0;color:var(--green-deep)}
 </style>
 </head>
 <body>
@@ -404,11 +411,15 @@ tick();
   function flag(place){return FL[PL[place]||place]||""}
   var ST='<img class="ci" src="calder-cup.png" alt="Calder Trophy" width="112" height="150">';
   var TR='<svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+  var ACE='<svg class="ai" viewBox="0 0 48 48" aria-label="Hole in one"><path d="M18 5v34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 5l17 7-17 7z" fill="currentColor"/><ellipse cx="20" cy="40" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="33" cy="33" r="3.6" fill="currentColor"/></svg>';
+  function aceMark(p){return p.aces?'<span class="tw">'+p.aces.map(function(){return ACE}).join("")+'</span>':""}
+  function marks(p){return aceMark(p)+trophies(p)}
   function trophies(p){return p.cups?'<span class="tw">'+p.cups.map(function(){return TR}).join("")+'</span>':""}
   function badges(p){
     var h="";
     (p.tags||[]).forEach(function(t){h+='<span class="bd">'+esc(t)+'</span>'});
     (p.cups||[]).forEach(function(w){h+='<span class="bd win">'+TR+'Dufore Cup \u00b7 '+w.year+'<span class="fw" title="'+esc(w.place)+'">'+flag(w.place)+'</span>'+'</span>'});
+    (p.aces||[]).forEach(function(a){h+='<span class="bd cal">'+ACE+'Hole in One \u00b7 '+a.year+'<span class="fw" title="'+esc(a.place)+'">'+flag(a.place)+'</span></span>'});
     if(p.calder)h+='<span class="bd cal">'+ST+'Calder \u00b7 '+p.calder.year+'<span class="fw" title="'+esc(p.calder.place)+'">'+flag(p.calder.place)+'</span>'+'</span>';
     return h?'<span class="bds">'+h+'</span>':""}
   function render(D){
@@ -459,7 +470,7 @@ tick();
     var board=document.getElementById("board");board.innerHTML="";
     board.appendChild(el("div","row head",'<span>Pos</span><span></span><span>Player</span><span>R1</span><span>R2</span><span>R3</span><span>R4</span><span>Total</span>'));
     function addRow(r,pos,lead){
-      var h='<span class="pos">'+pos+'</span><span class="sav"><img src="'+esc(r.p.photo)+'" alt="" width="60" height="60"></span><span class="nm">'+esc(r.p.name)+trophies(r.p)+'<small>HCP '+r.p.hcp+'</small></span>';
+      var h='<span class="pos">'+pos+'</span><span class="sav"><img src="'+esc(r.p.photo)+'" alt="" width="60" height="60"></span><span class="nm">'+esc(r.p.name)+marks(r.p)+'<small>HCP '+r.p.hcp+'</small></span>';
       rounds.forEach(function(k,i){
         if(r.net[i]!=null)h+='<span class="rc"><b>'+r.net[i]+'</b><i>'+r.gross[i]+(r.bonus[i]?' <u>\u2605'+r.bonus[i]+'</u>':'')+'</i></span>';
         else if(r.thru[i]>0)h+='<span class="rc"><b>'+r.gross[i]+'</b><i>thru '+r.thru[i]+'</i></span>';
@@ -480,13 +491,14 @@ tick();
         var ps=D.players.filter(function(p){return p.group===g.time});
         th+='<div class="tee"><div class="th"><span>'+esc(g.title)+'</span><b>'+esc(g.label)+'</b></div><div class="pls" style="--n:'+ps.length+'">'+ps.map(function(p){
           var n=(p.cups||[]).length;
-          var bg=n?'<span class="bg">'+TR+(n>1?'<i>'+n+'</i>':'')+'</span>':'';
+          var ac=(p.aces||[]).length?'<span class="bg ace" title="Hole in One">'+ACE+'</span>':'';
+          var bg=ac+(n?'<span class="bg">'+TR+(n>1?'<i>'+n+'</i>':'')+'</span>':'');
           return '<div class="pl"><div class="ph"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="240" height="240">'+bg+'</div><div class="pn">'+esc(p.name)+'</div><div class="pm">HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"LH":"RH")+'</div></div>'}).join("")+'</div></div>'});
       tees.innerHTML=th}
     // roster
     var ro=document.getElementById("roster");ro.innerHTML="";
     D.players.forEach(function(p){
-      ro.appendChild(el("div","pr",'<div class="av"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88"></div><div class="nm">'+esc(p.name)+trophies(p)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</small>'+badges(p)+'</div><div class="tag">'+p.group+' AM<small>Round 1</small></div>'))});
+      ro.appendChild(el("div","pr",'<div class="av"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88"></div><div class="nm">'+esc(p.name)+marks(p)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</small>'+badges(p)+'</div><div class="tag">'+p.group+' AM<small>Round 1</small></div>'))});
     var byId={};D.players.forEach(function(p){byId[p.id]=p});
     function av(w,cls){return w&&w.photo?'<span class="'+cls+'"><img src="'+esc(w.photo)+'" alt="" width="60" height="60"></span>':'<span class="'+cls+' ini">'+esc(w?w.initials:"")+'</span>'}
     function who(c){return c.id?byId[c.id]:{name:c.name,initials:c.initials}}
@@ -501,6 +513,7 @@ tick();
       else wn='<span class="wn none">'+esc(h.note||"")+'</span>';
       var cl="";
       if(h.calder){var c=who(h.calder);cl='<span class="wn cal">'+av(c,"sav")+'<span>'+esc(c.name)+ST+'<small>Calder Trophy</small></span></span>'}
+      if(h.ace&&byId[h.ace]){var a=byId[h.ace];cl+='<span class="wn cal">'+av(a,"sav")+'<span>'+esc(a.name)+'<span class="tw">'+ACE+'</span><small>Hole in One</small></span></span>'}
       return '<div class="hy'+(h.current?' cur':'')+'"><div class="yr">'+h.year+'</div><div><div class="loc">'+(FL[h.country]||"")+esc(h.place)+'<small>'+esc(h.country)+'</small></div>'+wn+cl+'</div></div>'}).join("");
     if(D.bench&&D.bench.length){
       ro.appendChild(el("div","bench-h","On the bench"));

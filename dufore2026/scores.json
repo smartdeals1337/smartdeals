@@ -82,7 +82,7 @@
    "hand": "Right",
    "group": "9:10",
    "photo": "players/sleeper.jpg",
-   "wins": [
+   "cups": [
     {
      "year": 2025,
      "place": "Dominican Republic"
@@ -91,7 +91,11 @@
      "year": 2024,
      "place": "Puerto Rico"
     }
-   ]
+   ],
+   "calder": {
+    "year": 2024,
+    "place": "Puerto Rico"
+   }
   },
   {
    "id": "birdwatcher",
@@ -100,12 +104,10 @@
    "hand": "Right",
    "group": "9:10",
    "photo": "players/birdwatcher.jpg",
-   "wins": [
-    {
-     "year": 2023,
-     "place": "Mexico"
-    }
-   ]
+   "calder": {
+    "year": 2023,
+    "place": "Mexico"
+   }
   }
  ],
  "bench": [

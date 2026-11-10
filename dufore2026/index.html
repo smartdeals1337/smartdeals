@@ -162,12 +162,29 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
 .bds{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
 .bd{display:inline-flex;align-items:center;font-family:Cinzel,serif;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep);background:linear-gradient(135deg,var(--gold-light),var(--gold));padding:3px 8px;border-radius:99px;white-space:nowrap}
 .pr .nm{min-width:0}
+.bd.win,.bd.cal{display:block}
+.bd.win .tr,.bd.cal .tr{display:inline-block}
 .bd.win{white-space:normal;border-radius:10px;line-height:1.35;background:rgba(207,168,69,.14);color:var(--gold-light);box-shadow:inset 0 0 0 1px rgba(207,168,69,.6)}
 .bd.cal{background:rgba(247,242,228,.08);color:var(--cream);box-shadow:inset 0 0 0 1px rgba(247,242,228,.45);white-space:normal;border-radius:10px;line-height:1.35}
 .bd.cal .tr{width:10px;height:10px;margin:0 5px 0 0;color:var(--cream)}
 .bd.win .tr{width:10px;height:10px;margin:0 5px 0 0}
 .pn .trs{display:block;line-height:1;margin-top:3px}
 .pn .tr{width:11px;height:11px;margin:0 2px;vertical-align:0}
+.fl{width:18px;height:12px;border-radius:2px;vertical-align:-2px;margin-right:6px;box-shadow:0 0 0 .5px rgba(255,255,255,.35);flex:none}
+.bd .fl{width:14px;height:9px;margin:0 4px 0 0;vertical-align:-1px}
+.nm small .fl{width:15px;height:10px;margin-right:5px;vertical-align:-1px}
+.where .fl{width:20px;height:13px;margin-right:9px;vertical-align:-2px}
+.hy{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:14px 16px;border-top:1px solid rgba(207,168,69,.18);align-items:start}
+.hy:first-child{border-top:0}
+.hy.cur{background:linear-gradient(90deg,rgba(207,168,69,.2),rgba(207,168,69,.03));box-shadow:inset 3px 0 0 var(--gold)}
+.hy .yr{font-family:Cinzel,serif;font-weight:700;font-size:1rem;color:var(--gold-light);padding-top:2px}
+.hy .loc{font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cream);display:flex;align-items:center;flex-wrap:wrap}
+.hy .loc small{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:.9rem;letter-spacing:0;text-transform:none;color:var(--gold);margin-left:8px}
+.hy .wn{display:flex;align-items:center;gap:9px;margin-top:8px;font-family:Cinzel,serif;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-light)}
+.hy .wn .tr{width:13px;height:13px;margin-left:5px}
+.hy .wn .sav{width:30px;height:30px}
+.hy .wn.none{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1rem;letter-spacing:0;text-transform:none;color:var(--gold)}
+.hy.tbc .wn.none{opacity:.7}
 .teed{display:none;font-family:Cinzel,serif;font-size:clamp(1.4rem,6vw,2.2rem);letter-spacing:.2em;color:var(--gold-light);text-transform:uppercase}
 .done .count{display:none}.done .teed{display:block}
 @keyframes fade{to{opacity:1}}
@@ -190,7 +207,7 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
   </div>
   <div class="teed">Tee time. Good luck.</div>
   <div class="venue"><div class="badge"><img src="pga-riviera-maya.png" alt="PGA Riviera Maya"></div></div>
-  <div class="where">Mexico · 9:00 AM</div>
+  <div class="where"><svg class="fl" viewBox="0 0 30 20"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce1126"/><circle cx="15" cy="10" r="2.2" fill="#8b6b2f"/></svg>Mexico · 9:00 AM</div>
   <div class="tees">
     <h2>Tee Times · Round One</h2>
     <div class="tee"><div class="th"><span>Honorary Starters</span><b>9:00 AM</b></div><div class="pls"><div class="pl"><div class="ph"><img src="players/chairman.jpg" alt="Chairman" width="240" height="240"></div><div class="pn">Chairman</div><div class="pm">HCP 22 · LH</div></div><div class="pl"><div class="ph"><img src="players/vice.jpg" alt="Vice" width="240" height="240"></div><div class="pn">Vice</div><div class="pm">HCP 21 · LH</div></div><div class="pl"><div class="ph"><img src="players/slugger.jpg" alt="Slugger" width="240" height="240"></div><div class="pn">Slugger</div><div class="pm">HCP 23 · RH</div></div><div class="pl"><div class="ph"><img src="players/stallion.jpg" alt="Italian Stallion" width="240" height="240"></div><div class="pn">Italian Stallion</div><div class="pm">HCP 2 · RH</div></div></div></div>
@@ -214,6 +231,10 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
     <h2>The Field</h2>
     <div class="card" id="roster"></div>
     <div class="card" id="champs" style="margin-top:14px"></div>
+  </section>
+  <section class="sec" id="history">
+    <h2>History</h2>
+    <div class="card" id="hist"></div>
   </section>
   <section class="sec" id="scoring">
     <h2>Scoring</h2>
@@ -254,14 +275,17 @@ tick();
   function fmt(n){return n===0?"E":(n>0?"+"+n:MINUS+Math.abs(n))}
   function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
   function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  var FL={"Mexico":'<svg class="fl" viewBox="0 0 30 20"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce1126"/><circle cx="15" cy="10" r="2.2" fill="#8b6b2f"/></svg>',"USA":'<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="2.86"/><rect y="5.71" width="30" height="2.86"/><rect y="11.43" width="30" height="2.86"/><rect y="17.14" width="30" height="2.86"/></g><rect width="13" height="10.8" fill="#3c3b6e"/><g fill="#fff"><circle cx="2.5" cy="2.2" r=".7"/><circle cx="6.5" cy="2.2" r=".7"/><circle cx="10.5" cy="2.2" r=".7"/><circle cx="4.5" cy="5.4" r=".7"/><circle cx="8.5" cy="5.4" r=".7"/><circle cx="2.5" cy="8.6" r=".7"/><circle cx="6.5" cy="8.6" r=".7"/><circle cx="10.5" cy="8.6" r=".7"/></g></svg>',"Puerto Rico":'<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="20" fill="#ed0000"/><rect y="4" width="30" height="4" fill="#fff"/><rect y="12" width="30" height="4" fill="#fff"/><path d="M0 0l15 10L0 20z" fill="#0050f0"/><polygon points="5.50,6.30 6.35,8.83 9.02,8.86 6.88,10.45 7.67,12.99 5.50,11.45 3.33,12.99 4.12,10.45 1.98,8.86 4.65,8.83" fill="#fff"/></svg>',"Dominican Republic":'<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><rect width="13.5" height="8.5" fill="#002d62"/><rect x="16.5" width="13.5" height="8.5" fill="#ce1126"/><rect y="11.5" width="13.5" height="8.5" fill="#ce1126"/><rect x="16.5" y="11.5" width="13.5" height="8.5" fill="#002d62"/></svg>'};
+  var PL={"Mexico":"Mexico","Las Vegas":"USA","Arizona":"USA","Puerto Rico":"Puerto Rico","Dominican Republic":"Dominican Republic","Punta Cana":"Dominican Republic","PGA Riviera Maya":"Mexico"};
+  function flag(place){return FL[PL[place]||place]||""}
   var ST='<svg class="tr" viewBox="0 0 48 48" aria-label="Rookie of the Year"><path d="M24 4l5.5 12.5L43 18l-10 9.5L35.5 41 24 34l-11.5 7L15 27.5 5 18l13.5-1.5z" fill="currentColor"/></svg>';
   var TR='<svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
   function trophies(p){return p.cups?p.cups.map(function(){return TR}).join(""):""}
   function badges(p){
     var h="";
     (p.tags||[]).forEach(function(t){h+='<span class="bd">'+esc(t)+'</span>'});
-    (p.cups||[]).forEach(function(w){h+='<span class="bd win">'+TR+'Dufore Cup '+w.year+' \u00b7 '+esc(w.place)+'</span>'});
-    if(p.calder)h+='<span class="bd cal">'+ST+'Calder Trophy '+p.calder.year+' \u00b7 Rookie of the Year'+'</span>';
+    (p.cups||[]).forEach(function(w){h+='<span class="bd win">'+TR+'Dufore Cup '+w.year+' \u00b7 '+flag(w.place)+esc(w.place)+'</span>'});
+    if(p.calder)h+='<span class="bd cal">'+ST+'Calder Trophy '+p.calder.year+' \u00b7 '+flag(p.calder.place)+esc(p.calder.place)+'</span>';
     return h?'<span class="bds">'+h+'</span>':""}
   function render(D){
     var par=D.course.par,cap=D.course.cap,PAR=par.reduce(function(a,b){return a+b},0);
@@ -328,16 +352,17 @@ tick();
     var ro=document.getElementById("roster");ro.innerHTML="";
     D.players.forEach(function(p){
       ro.appendChild(el("div","pr",'<div class="av"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88"></div><div class="nm">'+esc(p.name)+trophies(p)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</small>'+badges(p)+'</div><div class="tag">'+p.group+' AM<small>Round 1</small></div>'))});
-    var cups=[],cal=[];
-    D.players.forEach(function(p){
-      (p.cups||[]).forEach(function(w){cups.push({y:w.year,pl:w.place,n:p.name,ph:p.photo})});
-      if(p.calder)cal.push({y:p.calder.year,pl:p.calder.place,n:p.name,ph:p.photo})});
-    function crow(c,ic){return '<div class="pr"><div class="av"><img src="'+esc(c.ph)+'" alt="" width="88" height="88"></div><div class="nm">'+esc(c.n)+ic+'<small>'+esc(c.pl)+'</small></div><div class="tag" style="font-size:.9rem">'+c.y+'</div></div>'}
-    var pc=document.getElementById("champs"),ph="";
-    cups.sort(function(a,b){return b.y-a.y});cal.sort(function(a,b){return b.y-a.y});
-    if(cups.length)ph+='<div class="bench-h" style="border-top:0">Dufore Cup champions</div>'+cups.map(function(c){return crow(c,TR)}).join("");
-    if(cal.length)ph+='<div class="bench-h">Calder Trophy \u00b7 Rookie of the Year</div>'+cal.map(function(c){return crow(c,ST)}).join("");
-    if(pc&&ph)pc.innerHTML=ph;
+    var cal=[];
+    D.players.forEach(function(p){if(p.calder)cal.push({y:p.calder.year,pl:p.calder.place,n:p.name,ph:p.photo})});
+    var pc=document.getElementById("champs");
+    cal.sort(function(a,b){return b.y-a.y});
+    if(pc&&cal.length)pc.innerHTML='<div class="bench-h" style="border-top:0">Calder Trophy \u00b7 Rookie of the Year</div>'+cal.map(function(c){return '<div class="pr"><div class="av"><img src="'+esc(c.ph)+'" alt="" width="88" height="88"></div><div class="nm">'+esc(c.n)+ST+'<small>'+flag(c.pl)+esc(c.pl)+'</small></div><div class="tag" style="font-size:.9rem">'+c.y+'</div></div>'}).join("");
+    var hi=document.getElementById("hist"),byId={};D.players.forEach(function(p){byId[p.id]=p});
+    if(hi&&D.history)hi.innerHTML=D.history.slice().reverse().map(function(h){
+      var w=h.winner&&byId[h.winner],wn;
+      if(w)wn='<span class="wn"><span class="sav"><img src="'+esc(w.photo)+'" alt="" width="60" height="60"></span><span>'+esc(w.name)+TR+'</span></span>';
+      else wn='<span class="wn none">'+esc(h.note||"")+'</span>';
+      return '<div class="hy'+(h.current?' cur':'')+(h.tbc?' tbc':'')+'"><div class="yr">'+h.year+'</div><div><div class="loc">'+(FL[h.country]||"")+esc(h.place)+'<small>'+esc(h.country)+'</small></div>'+wn+'</div></div>'}).join("");
     if(D.bench&&D.bench.length){
       ro.appendChild(el("div","bench-h","On the bench"));
       D.bench.forEach(function(p){

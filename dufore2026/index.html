@@ -127,6 +127,7 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
 .nm small{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:.82rem;letter-spacing:0;text-transform:none;color:var(--gold)}
 .rc{text-align:center;font-family:Cinzel,serif;color:var(--cream);line-height:1.1}
 .rc b{display:block;font-size:.9rem;font-weight:500}
+.rc u{text-decoration:none;color:var(--gold-light)}
 .rc i{display:block;font-family:"Cormorant Garamond",serif;font-size:.78rem;color:var(--gold);margin-top:2px}
 .rc.na{color:rgba(247,242,228,.3)}
 .tot{text-align:center;font-family:Cinzel,serif;line-height:1.1}
@@ -207,7 +208,7 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
     <h2>Standings</h2>
     <p class="note" id="status">Round 1 tees off Wednesday, 9:00 AM. Scores post after every round.</p>
     <div class="card" id="board"></div>
-    <p class="fine">Net score = capped gross − handicap. Lowest total after 4 rounds wins.</p>
+    <p class="fine">Net score = capped gross − handicap − bonus points. Lowest total after 4 rounds wins.</p>
   </section>
   <section class="sec" id="players">
     <h2>The Field</h2>
@@ -223,6 +224,7 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
         <li>Add up your 18 holes. That is your <b>gross score</b>.</li>
         <li>After the round, <b>subtract your full handicap</b>. That is your <b>net score</b> for the round.</li>
         <li>Your tournament total is the <b>sum of your 4 net scores</b>. Lowest total wins the <b>Dufore Cup</b>.</li>
+        <li><b>Bonus points:</b> win <b>Longest Drive</b> or <b>Closest to the Pin</b> on a par 3 and earn <b>1 point each</b>. Every point lowers your net score by 1.</li>
         <li>Tied? The better net score in the latest round ranks higher.</li>
       </ol>
     </div>
@@ -276,13 +278,13 @@ tick();
     // compute results
     var rounds=["1","2","3","4"];
     var res=D.players.map(function(p){
-      var r={p:p,net:[],gross:[],thru:[],total:0,done:0};
+      var r={p:p,net:[],gross:[],bonus:[],thru:[],total:0,done:0};
       rounds.forEach(function(k){
         var h=(D.rounds[k]||{})[p.id];
         if(!h||!h.length){r.net.push(null);r.gross.push(null);r.thru.push(0);return}
         var g=0;h.forEach(function(x,i){g+=Math.min(x,par[i]+cap)});
         r.thru.push(h.length);
-        if(h.length>=18){r.gross.push(g);r.net.push(g-p.hcp);r.total+=g-p.hcp;r.done++}
+        if(h.length>=18){var bo=((D.bonus||{})[k]||{})[p.id]||0;r.gross.push(g);r.bonus[rounds.indexOf(k)]=bo;r.net.push(g-p.hcp-bo);r.total+=g-p.hcp-bo;r.done++}
         else{r.gross.push(g);r.net.push(null)}
       });
       return r});
@@ -311,7 +313,7 @@ tick();
     function addRow(r,pos,lead){
       var h='<span class="pos">'+pos+'</span><span class="sav"><img src="'+esc(r.p.photo)+'" alt="" width="60" height="60"></span><span class="nm">'+esc(r.p.name)+trophies(r.p)+'<small>HCP '+r.p.hcp+'</small></span>';
       rounds.forEach(function(k,i){
-        if(r.net[i]!=null)h+='<span class="rc"><b>'+r.net[i]+'</b><i>'+r.gross[i]+'</i></span>';
+        if(r.net[i]!=null)h+='<span class="rc"><b>'+r.net[i]+'</b><i>'+r.gross[i]+(r.bonus[i]?' <u>\u2605'+r.bonus[i]+'</u>':'')+'</i></span>';
         else if(r.thru[i]>0)h+='<span class="rc"><b>'+r.gross[i]+'</b><i>thru '+r.thru[i]+'</i></span>';
         else h+='<span class="rc na"><b>\u2013</b></span>'});
       h+=r.done?'<span class="tot"><b>'+r.total+'</b><i>'+fmt(r.total-PAR*r.done)+'</i></span>':'<span class="tot"><b class="na" style="color:rgba(247,242,228,.3)">\u2013</b></span>';

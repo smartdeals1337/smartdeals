@@ -75,6 +75,12 @@
      "year": 2021,
      "place": "Las Vegas"
     }
+   ],
+   "cups": [
+    {
+     "year": 2021,
+     "place": "Las Vegas"
+    }
    ]
   },
   {
@@ -167,9 +173,9 @@
    "year": 2021,
    "place": "Las Vegas",
    "country": "USA",
-   "winner": null,
-   "note": "No winner · played in Vegas format",
-   "ace": "slugger"
+   "winner": "slugger",
+   "ace": "slugger",
+   "sub": "Played in Vegas format · won with a hole in one"
   },
   {
    "year": 2022,

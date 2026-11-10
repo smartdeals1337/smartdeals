@@ -328,8 +328,6 @@ main,.sec,.card,.tees,.tee,.row,.pr,.hy,.pls,.pl,.snw{min-width:0;max-width:100%
 .bd .ai{width:11px;height:11px;margin:0 5px 0 0;vertical-align:-2px;color:var(--cream)}
 .nm .tw .ai{margin-left:4px}
 .hy .wn.cal .ai{color:var(--cream)}
-.ph .bg.ace{right:auto;left:-5px;padding:0;width:22px;justify-content:center}
-.ph .bg.ace .ai{width:12px;height:12px;margin:0;color:var(--green-deep)}
 
 /* ---------- premium layer ---------- */
 [hidden]{display:none!important}
@@ -455,6 +453,11 @@ html.noscroll,html.noscroll body{overflow:hidden}
 .sd.done{opacity:.7}
 @media(min-width:640px){.sd b{font-size:2rem}.sd .sr{font-size:.56rem}.sd{padding:18px 6px 14px}}
 @media(max-width:360px){.sd .sm{font-size:.85rem}.sd b{font-size:1.45rem}}
+
+.ph .bgs{position:absolute;right:-6px;bottom:-3px;display:flex;gap:3px;z-index:1}
+.ph .bgs .bg{position:static;right:auto;left:auto;bottom:auto;margin:0}
+.ph .bgs .bg .ai{width:12px;height:12px;margin:0;color:var(--green-deep)}
+.hy .wn.none.sub{margin-top:6px;font-size:.95rem}
 </style>
 </head>
 <body>
@@ -518,7 +521,8 @@ html.noscroll,html.noscroll body{overflow:hidden}
         <li>After the round, <b>subtract your full handicap</b>. That is your <b>net score</b> for the round.</li>
         <li>Your tournament total is the <b>sum of your 4 net scores</b>. Lowest total wins the <b>Dufore Cup</b>.</li>
         <li><b>Bonus points:</b> <b>Longest Drive</b> and <b>Closest to the Pin</b> (on a par 3) are played on <b>selected holes, to be announced</b>. Win one and earn <b>1 point each</b>. Every point lowers your net score by 1.</li>
-        <li>Tied? The better net score in the latest round ranks higher.</li>
+        <li><b>Hole in one:</b> any hole in one during the tournament <b>automatically wins the Dufore Cup</b>, whatever the standings. (Slugger won Las Vegas 2021 this way.)</li>
+      <li>Tied? The better net score in the latest round ranks higher.</li>
       </ol>
     </div>
     <div class="card pars" id="pars"></div>
@@ -587,6 +591,13 @@ tick();
     document.getElementById("pars").innerHTML=t;
     // compute results
     var rounds=["1","2","3","4"];
+    var aceWin=null;
+    D.players.forEach(function(p){rounds.forEach(function(k,ri){((D.rounds[k]||{})[p.id]||[]).forEach(function(x,hi){
+      if(x===1){
+        if(!(p.aces||[]).some(function(a){return a.year===2026}))p.aces=(p.aces||[]).concat([{year:2026,place:"PGA Riviera Maya"}]);
+        if(!aceWin||ri<aceWin.ri||(ri===aceWin.ri&&hi<aceWin.hi))aceWin={p:p,ri:ri,hi:hi}}})})});
+    if(aceWin&&!(aceWin.p.cups||[]).some(function(c){return c.year===2026}))aceWin.p.cups=(aceWin.p.cups||[]).concat([{year:2026,place:"PGA Riviera Maya"}]);
+    if(aceWin)(D.history||[]).forEach(function(h){if(h.year===2026){h.winner=aceWin.p.id;h.sub="Hole in one \u00b7 Round "+(aceWin.ri+1)+", hole "+(aceWin.hi+1)}});
     var res=D.players.map(function(p){
       var r={p:p,net:[],gross:[],bonus:[],thru:[],total:0,done:0};
       rounds.forEach(function(k){
@@ -653,10 +664,10 @@ tick();
     st.innerHTML=(played.length?'<span class="live"></span>':'')+esc(st.textContent);
     // champion
     var cb=document.getElementById("champ");cb.innerHTML="";
-    if(full===4&&played.length){
-      var win=played.filter(function(r,i){return posOf[i]===1});
-      st.innerHTML='<span class="live"></span>Tournament complete';
-      cb.innerHTML='<div class="champ"><canvas id="cf"></canvas><div class="cb-k">'+TR+'Dufore Cup Champion 2026'+TR+'</div><div class="cb-w">'+win.map(function(r){return '<div class="cb-p"><div class="cb-ph"><img src="'+esc(r.p.photo)+'" alt="" width="240" height="240"></div><div class="cb-n">'+esc(r.p.name)+'</div><div class="cb-s">'+r.total+' net \u00b7 '+fmt(r.total-PAR*4)+'</div></div>'}).join("")+'</div></div>';
+    if(aceWin||(full===4&&played.length)){
+      var wl=aceWin?[{p:aceWin.p,sub:"Hole in one \u00b7 Round "+(aceWin.ri+1)+", hole "+(aceWin.hi+1)}]:played.filter(function(r,i){return posOf[i]===1}).map(function(r){return {p:r.p,sub:r.total+" net \u00b7 "+fmt(r.total-PAR*4)}});
+      st.innerHTML='<span class="live"></span>'+(aceWin?"Hole in one \u00b7 Dufore Cup decided":"Tournament complete");
+      cb.innerHTML='<div class="champ"><canvas id="cf"></canvas><div class="cb-k">'+TR+'Dufore Cup Champion 2026'+TR+'</div><div class="cb-w">'+wl.map(function(x){return '<div class="cb-p"><div class="cb-ph"><img src="'+esc(x.p.photo)+'" alt="" width="240" height="240"></div><div class="cb-n">'+esc(x.p.name)+'</div><div class="cb-s">'+esc(x.sub)+'</div></div>'}).join("")+'</div></div>';
       var sk="dufore26-confetti",seen=false;try{seen=sessionStorage.getItem(sk)}catch(e){}
       if(!seen){try{sessionStorage.setItem(sk,"1")}catch(e){}confetti(document.getElementById("cf"))}
     }
@@ -681,8 +692,8 @@ tick();
         var ps=D.players.filter(function(p){return p.group===g.time});
         th+='<div class="tee"><div class="th"><span>'+esc(g.title)+'</span><b>'+esc(g.label)+'</b></div><div class="pls" style="--n:'+ps.length+'">'+ps.map(function(p){
           var n=(p.cups||[]).length;
-          var ac=(p.aces||[]).length?'<span class="bg ace" title="Hole in One">'+ACE+'</span>':'';
-          var bg=ac+(n?'<span class="bg">'+TR+(n>1?'<i>'+n+'</i>':'')+'</span>':'');
+          var ac=(p.aces||[]).length?'<span class="bg" title="Hole in One">'+ACE+'</span>':'';
+          var bg=(ac||n)?'<span class="bgs">'+ac+(n?'<span class="bg">'+TR+(n>1?'<i>'+n+'</i>':'')+'</span>':'')+'</span>':'';
           return '<div class="pl"><div class="ph"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="240" height="240">'+bg+'</div><div class="pn">'+esc(p.name)+'</div><div class="pm">HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"LH":"RH")+'</div></div>'}).join("")+'</div></div>'});
       tees.innerHTML=th}
     // roster
@@ -702,6 +713,7 @@ tick();
       if(w)wn='<span class="wn">'+av(w,"sav")+'<span>'+esc(w.name)+TR+'</span></span>';
       else wn='<span class="wn none">'+esc(h.note||"")+'</span>';
       var cl="";
+      if(h.sub)wn+='<span class="wn none sub">'+esc(h.sub)+'</span>';
       if(h.calder){var c=who(h.calder);cl='<span class="wn cal">'+av(c,"sav")+'<span>'+esc(c.name)+ST+'<small>Calder Trophy</small></span></span>'}
       if(h.ace&&byId[h.ace]){var a=byId[h.ace];cl+='<span class="wn cal">'+av(a,"sav")+'<span>'+esc(a.name)+'<span class="tw">'+ACE+'</span><small>Hole in One</small></span></span>'}
       return '<div class="hy'+(h.current?' cur':'')+'"><div class="yr">'+h.year+'</div><div><div class="loc">'+(FL[h.country]||"")+esc(h.place)+'<small>'+esc(h.country)+'</small></div>'+wn+cl+'</div></div>'}).join("");

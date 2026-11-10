@@ -89,14 +89,16 @@
    "title": "Vice Chair",
    "hcp": 14,
    "hand": "Right",
-   "initials": "F"
+   "initials": "F",
+   "photo": "players/frank.jpg"
   },
   {
    "id": "health",
    "name": "Health Advisor",
    "hcp": 22,
    "hand": "Right",
-   "initials": "HA"
+   "initials": "HA",
+   "photo": "players/health.jpg"
   }
  ],
  "rounds": {

@@ -1,0 +1,108 @@
+{
+ "course": {
+  "name": "PGA Riviera Maya",
+  "par": [
+   4,
+   3,
+   4,
+   5,
+   3,
+   4,
+   4,
+   5,
+   4,
+   4,
+   4,
+   4,
+   4,
+   5,
+   3,
+   5,
+   3,
+   4
+  ],
+  "cap": 2
+ },
+ "updated": null,
+ "players": [
+  {
+   "id": "chairman",
+   "name": "Chairman",
+   "hcp": 22,
+   "hand": "Left",
+   "group": "9:00",
+   "photo": "players/chairman.jpg"
+  },
+  {
+   "id": "vice",
+   "name": "Vice",
+   "hcp": 21,
+   "hand": "Left",
+   "group": "9:00",
+   "photo": "players/vice.jpg"
+  },
+  {
+   "id": "slugger",
+   "name": "Slugger",
+   "hcp": 23,
+   "hand": "Right",
+   "group": "9:00",
+   "photo": "players/slugger.jpg"
+  },
+  {
+   "id": "stallion",
+   "name": "Italian Stallion",
+   "hcp": 2,
+   "hand": "Right",
+   "group": "9:00",
+   "photo": "players/stallion.jpg"
+  },
+  {
+   "id": "cook",
+   "name": "The Cook",
+   "hcp": 28,
+   "hand": "Right",
+   "group": "9:10",
+   "photo": "players/cook.jpg"
+  },
+  {
+   "id": "sleeper",
+   "name": "The Sleeper",
+   "hcp": 14,
+   "hand": "Right",
+   "group": "9:10",
+   "photo": "players/sleeper.jpg"
+  },
+  {
+   "id": "birdwatcher",
+   "name": "The BirdWatcher",
+   "hcp": 12,
+   "hand": "Right",
+   "group": "9:10",
+   "photo": "players/birdwatcher.jpg"
+  }
+ ],
+ "bench": [
+  {
+   "id": "frank",
+   "name": "Frank",
+   "title": "Vice Chair",
+   "hcp": 14,
+   "hand": "Right",
+   "initials": "F"
+  },
+  {
+   "id": "health",
+   "name": "Health Advisor",
+   "hcp": 22,
+   "hand": "Right",
+   "initials": "HA"
+  }
+ ],
+ "rounds": {
+  "1": {},
+  "2": {},
+  "3": {},
+  "4": {}
+ }
+}

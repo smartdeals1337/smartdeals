@@ -107,6 +107,54 @@ h1{
 .ic svg{width:42px;height:42px;stroke:var(--gold-light);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .ic div{font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cream);margin-top:10px}
 .ic em{display:block;font-style:italic;font-size:.85rem;color:var(--gold);margin-top:3px;opacity:.85}
+html{scroll-behavior:smooth}
+a.ic{text-decoration:none;color:inherit;display:block;transition:border-color .2s,background .2s}
+a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
+.soon{margin-top:34px}
+.sec{width:100%;margin-top:52px;text-align:left;scroll-margin-top:20px}
+.sec h2{font-family:Cinzel,serif;font-weight:500;font-size:.85rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-light);text-align:center;margin-bottom:6px}
+.sec h2::after{content:"";display:block;width:48px;height:1px;background:var(--gold);margin:10px auto 14px}
+.note{text-align:center;font-style:italic;font-size:1.05rem;color:var(--cream);margin-bottom:14px}
+.fine{text-align:center;font-style:italic;font-size:.9rem;color:var(--gold);margin-top:10px;opacity:.85}
+.card{border:1px solid rgba(207,168,69,.45);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));overflow:hidden}
+.row{display:grid;grid-template-columns:30px minmax(0,1fr) repeat(4,34px) 54px;align-items:center;gap:3px;padding:11px 10px;border-top:1px solid rgba(207,168,69,.18)}
+.row:first-child{border-top:0}
+.row.head{padding:10px 12px;font-family:Cinzel,serif;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:rgba(0,0,0,.18)}
+.row.head>*{text-align:center}.row.head>:nth-child(2){text-align:left}
+.row.lead{background:linear-gradient(90deg,rgba(207,168,69,.22),rgba(207,168,69,.04));box-shadow:inset 3px 0 0 var(--gold)}
+.pos{font-family:Cinzel,serif;font-weight:700;font-size:.95rem;color:var(--gold-light);text-align:center}
+.nm{min-width:0;font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;color:var(--cream);line-height:1.25;overflow-wrap:anywhere}
+.nm small{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:.82rem;letter-spacing:0;text-transform:none;color:var(--gold)}
+.rc{text-align:center;font-family:Cinzel,serif;color:var(--cream);line-height:1.1}
+.rc b{display:block;font-size:.9rem;font-weight:500}
+.rc i{display:block;font-family:"Cormorant Garamond",serif;font-size:.78rem;color:var(--gold);margin-top:2px}
+.rc.na{color:rgba(247,242,228,.3)}
+.tot{text-align:center;font-family:Cinzel,serif;line-height:1.1}
+.tot b{display:block;font-size:1.05rem;color:var(--gold-light)}
+.tot i{display:block;font-family:"Cormorant Garamond",serif;font-size:.82rem;color:var(--cream);margin-top:2px}
+.pr{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid rgba(207,168,69,.18)}
+.pr:first-child{border-top:0}
+.pr .av{width:44px;height:44px;flex:none;border-radius:50%;padding:2px;background:linear-gradient(135deg,var(--gold-light),var(--gold) 55%,#8f7226)}
+.pr .av img,.pr .av span{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;object-fit:cover;background:var(--green-deep);font-family:Cinzel,serif;font-size:.75rem;color:var(--gold-light)}
+.pr .nm{flex:1}
+.pr .tag{font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);white-space:nowrap;text-align:right}
+.pr .tag small{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:.82rem;color:var(--gold)}
+.bench-h{padding:8px 14px;font-family:Cinzel,serif;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);background:rgba(0,0,0,.18);border-top:1px solid rgba(207,168,69,.18)}
+.rules{padding:6px 18px}
+.rules ol{padding-left:22px}
+.rules li{font-size:1.1rem;line-height:1.45;padding:9px 0;border-top:1px solid rgba(207,168,69,.15);color:var(--cream)}
+.rules li:first-child{border-top:0}
+.rules li::marker{font-family:Cinzel,serif;color:var(--gold);font-size:.9rem}
+.rules b{color:var(--gold-light);font-weight:600}
+.pars{margin-top:14px;padding:6px 0}
+.pars table{width:100%;border-collapse:collapse;table-layout:fixed;font-family:Cinzel,serif;text-align:center}
+.pars th,.pars td{padding:7px 0;font-size:.68rem;color:var(--cream);font-weight:500}
+.pars th{color:var(--gold);font-size:.52rem;letter-spacing:.06em;text-transform:uppercase;width:auto}
+.pars th:first-child,.pars td:first-child{text-align:left;padding-left:12px;width:58px;color:var(--gold);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase}
+.pars tr+tr td,.pars tr+tr th{border-top:1px solid rgba(207,168,69,.15)}
+.pars tbody.gap tr:first-child td{padding-top:14px}
+.pars td.t{color:var(--gold-light);font-weight:700}
+.pars .max{color:var(--gold-light)}
 .teed{display:none;font-family:Cinzel,serif;font-size:clamp(1.4rem,6vw,2.2rem);letter-spacing:.2em;color:var(--gold-light);text-transform:uppercase}
 .done .count{display:none}.done .teed{display:block}
 @keyframes fade{to{opacity:1}}
@@ -136,13 +184,37 @@ h1{
     <div class="tee"><div class="th"><span>Second Threesome</span><b>9:10 AM</b></div><div class="pls"><div class="pl"><div class="ph"><img src="players/cook.jpg" alt="The Cook" width="240" height="240"></div><div class="pn">The Cook</div><div class="pm">HCP 28 · RH</div></div><div class="pl"><div class="ph"><img src="players/sleeper.jpg" alt="The Sleeper" width="240" height="240"></div><div class="pn">The Sleeper</div><div class="pm">HCP 14 · RH</div></div><div class="pl"><div class="ph"><img src="players/birdwatcher.jpg" alt="The BirdWatcher" width="240" height="240"></div><div class="pn">The BirdWatcher</div><div class="pm">HCP 12 · RH</div></div></div></div>
   </div>
   <div class="soon">
-    <h2>Coming to this page</h2>
+    <h2>On this page</h2>
     <div class="icons">
-      <div class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="16" r="7"/><path d="M10 40c0-8 6-13 14-13s14 5 14 13"/><circle cx="9" cy="21" r="4"/><circle cx="39" cy="21" r="4"/></svg><div>Players</div><em>The field</em></div>
-      <div class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 8h16v10a8 8 0 0 1-16 0z"/><path d="M16 11h-6c0 6 2 9 7 10M32 11h6c0 6-2 9-7 10"/><path d="M24 26v8M17 40h14M19 34h10"/></svg><div>Standings</div><em>Who leads</em></div>
-      <div class="ic"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 16h16M16 23h16M16 30h9"/><path d="M31 37v-8l6 3z"/></svg><div>Scoring</div><em>The rules</em></div>
+      <a class="ic" href="#players"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="16" r="7"/><path d="M10 40c0-8 6-13 14-13s14 5 14 13"/><circle cx="9" cy="21" r="4"/><circle cx="39" cy="21" r="4"/></svg><div>Players</div><em>The field</em></a>
+      <a class="ic" href="#standings"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 8h16v10a8 8 0 0 1-16 0z"/><path d="M16 11h-6c0 6 2 9 7 10M32 11h6c0 6-2 9-7 10"/><path d="M24 26v8M17 40h14M19 34h10"/></svg><div>Standings</div><em>Who leads</em></a>
+      <a class="ic" href="#scoring"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 16h16M16 23h16M16 30h9"/><path d="M31 37v-8l6 3z"/></svg><div>Scoring</div><em>The rules</em></a>
     </div>
   </div>
+  <section class="sec" id="standings">
+    <h2>Standings</h2>
+    <p class="note" id="status">Round 1 tees off Wednesday, 9:00 AM. Scores post after every round.</p>
+    <div class="card" id="board"></div>
+    <p class="fine">Net score = capped gross − handicap. Lowest total after 4 rounds wins.</p>
+  </section>
+  <section class="sec" id="players">
+    <h2>The Field</h2>
+    <div class="card" id="roster"></div>
+  </section>
+  <section class="sec" id="scoring">
+    <h2>Scoring</h2>
+    <div class="card rules">
+      <ol>
+        <li><b>4 rounds</b>, 18 holes each, same course: PGA Riviera Maya, par 72.</li>
+        <li><b>Double bogey is the maximum.</b> Pick up at par + 2. The hole counts as par + 2, never more.</li>
+        <li>Add up your 18 holes. That is your <b>gross score</b>.</li>
+        <li>After the round, <b>subtract your full handicap</b>. That is your <b>net score</b> for the round.</li>
+        <li>Your tournament total is the <b>sum of your 4 net scores</b>. Lowest wins.</li>
+        <li>Tied? The better net score in the latest round ranks higher.</li>
+      </ol>
+    </div>
+    <div class="card pars" id="pars"></div>
+  </section>
   <div class="flag" aria-hidden="true"><i></i><i></i><i></i></div>
 </main>
 <script>
@@ -161,6 +233,88 @@ function tick(){
   setTimeout(tick,250);
 }
 tick();
+
+(function(){
+  var MINUS="\u2212";
+  function fmt(n){return n===0?"E":(n>0?"+"+n:MINUS+Math.abs(n))}
+  function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+  function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function render(D){
+    var par=D.course.par,cap=D.course.cap,PAR=par.reduce(function(a,b){return a+b},0);
+    // course table
+    var t='';
+    [[0,9,"Out"],[9,18,"In"]].forEach(function(h,k){
+      var p=par.slice(h[0],h[1]),sum=p.reduce(function(a,b){return a+b},0);
+      var hd='<th></th>',pr='<td>Par</td>',mx='<td>Max</td>';
+      p.forEach(function(v,i){hd+='<th>'+(h[0]+i+1)+'</th>';pr+='<td>'+v+'</td>';mx+='<td class="max">'+(v+cap)+'</td>'});
+      hd+='<th>'+h[2]+'</th>';pr+='<td class="t">'+sum+'</td>';mx+='<td class="t">'+(sum+cap*9)+'</td>';
+      t+='<table'+(k?' style="margin-top:6px"':'')+'><thead><tr>'+hd+'</tr></thead><tbody><tr>'+pr+'</tr><tr>'+mx+'</tr></tbody></table>';
+    });
+    document.getElementById("pars").innerHTML=t;
+    // compute results
+    var rounds=["1","2","3","4"];
+    var res=D.players.map(function(p){
+      var r={p:p,net:[],gross:[],thru:[],total:0,done:0};
+      rounds.forEach(function(k){
+        var h=(D.rounds[k]||{})[p.id];
+        if(!h||!h.length){r.net.push(null);r.gross.push(null);r.thru.push(0);return}
+        var g=0;h.forEach(function(x,i){g+=Math.min(x,par[i]+cap)});
+        r.thru.push(h.length);
+        if(h.length>=18){r.gross.push(g);r.net.push(g-p.hcp);r.total+=g-p.hcp;r.done++}
+        else{r.gross.push(g);r.net.push(null)}
+      });
+      return r});
+    var played=res.filter(function(r){return r.done>0});
+    var lastRound=-1;rounds.forEach(function(k,i){if(res.some(function(r){return r.net[i]!=null}))lastRound=i});
+    var rest=res.filter(function(r){return r.done===0});
+    played.sort(function(a,b){
+      var da=a.total-PAR*a.done, db=b.total-PAR*b.done;
+      if(a.done!==b.done)return b.done-a.done;
+      if(da!==db)return da-db;
+      var la=a.net[lastRound],lb=b.net[lastRound];
+      if(la!=null&&lb!=null&&la!==lb)return la-lb;
+      return 0});
+    var maxDone=played.length?played[0].done:0;
+    var posOf=[];played.forEach(function(r,i){
+      var j=i;while(j>0&&cmp(played[j-1],r)===0)j--;posOf.push(j+1)});
+    function cmp(a,b){
+      if(a.done!==b.done)return b.done-a.done;
+      var da=a.total-PAR*a.done,db=b.total-PAR*b.done;
+      if(da!==db)return da-db;
+      var la=a.net[lastRound],lb=b.net[lastRound];
+      if(la!=null&&lb!=null&&la!==lb)return la-lb;return 0}
+    var ties={};posOf.forEach(function(x){ties[x]=(ties[x]||0)+1});
+    var board=document.getElementById("board");board.innerHTML="";
+    board.appendChild(el("div","row head",'<span>Pos</span><span>Player</span><span>R1</span><span>R2</span><span>R3</span><span>R4</span><span>Total</span>'));
+    function addRow(r,pos,lead){
+      var h='<span class="pos">'+pos+'</span><span class="nm">'+esc(r.p.name)+'<small>HCP '+r.p.hcp+'</small></span>';
+      rounds.forEach(function(k,i){
+        if(r.net[i]!=null)h+='<span class="rc"><b>'+r.net[i]+'</b><i>'+r.gross[i]+'</i></span>';
+        else if(r.thru[i]>0)h+='<span class="rc"><b>'+r.gross[i]+'</b><i>thru '+r.thru[i]+'</i></span>';
+        else h+='<span class="rc na"><b>\u2013</b></span>'});
+      h+=r.done?'<span class="tot"><b>'+r.total+'</b><i>'+fmt(r.total-PAR*r.done)+'</i></span>':'<span class="tot"><b class="na" style="color:rgba(247,242,228,.3)">\u2013</b></span>';
+      board.appendChild(el("div","row"+(lead?" lead":""),h))}
+    played.forEach(function(r,i){addRow(r,(ties[posOf[i]]>1?"T":"")+posOf[i],posOf[i]===1)});
+    rest.forEach(function(r){addRow(r,"\u2013",false)});
+    var st=document.getElementById("status");
+    var full=rounds.filter(function(k,i){return res.every(function(r){return r.net[i]!=null})}).length;
+    if(!played.length&&!res.some(function(r){return r.thru.some(function(x){return x>0})}))st.textContent="Round 1 tees off Wednesday, 9:00 AM. Scores post after every round.";
+    else st.textContent=(full===0?"Round 1 in progress":"Round "+full+" of 4 complete")+(D.updated?" \u00b7 Updated "+D.updated:"");
+    // roster
+    var ro=document.getElementById("roster");ro.innerHTML="";
+    D.players.forEach(function(p){
+      ro.appendChild(el("div","pr",'<div class="av"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88"></div><div class="nm">'+esc(p.name)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</small></div><div class="tag">'+p.group+' AM<small>Round 1</small></div>'))});
+    if(D.bench&&D.bench.length){
+      ro.appendChild(el("div","bench-h","On the bench"));
+      D.bench.forEach(function(p){
+        ro.appendChild(el("div","pr",'<div class="av"><span>'+esc(p.initials)+'</span></div><div class="nm">'+esc(p.name)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+(p.title?' \u00b7 '+esc(p.title):'')+'</small></div><div class="tag">Bench</div>'))})}
+  }
+  function load(){
+    fetch("scores.json?"+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(render).catch(function(){
+      var b=document.getElementById("board");if(b&&!b.children.length)b.innerHTML='<div class="row" style="display:block;text-align:center">Standings will appear here shortly.</div>'});
+  }
+  load();setInterval(load,60000);
+})();
 </script>
 </body>
 </html>

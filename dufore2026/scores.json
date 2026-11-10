@@ -34,6 +34,12 @@
    "photo": "players/chairman.jpg",
    "tags": [
     "Original OG"
+   ],
+   "cups": [
+    {
+     "year": 2023,
+     "place": "Mexico"
+    }
    ]
   },
   {
@@ -46,6 +52,12 @@
    "tags": [
     "Founder & Promoter",
     "Original OG"
+   ],
+   "cups": [
+    {
+     "year": 2022,
+     "place": "Arizona"
+    }
    ]
   },
   {
@@ -147,29 +159,35 @@
    "place": "Las Vegas",
    "country": "USA",
    "winner": null,
-   "note": "The OGs · Vegas scoring, no winner"
+   "note": "No winner · played in Vegas format"
   },
   {
    "year": 2022,
    "place": "Arizona",
    "country": "USA",
-   "winner": null,
-   "note": "Winner to be confirmed",
-   "tbc": true
+   "winner": "vice",
+   "calder": {
+    "name": "JR",
+    "initials": "JR"
+   }
   },
   {
    "year": 2023,
    "place": "Mexico",
    "country": "Mexico",
-   "winner": null,
-   "note": "Winner to be confirmed",
-   "tbc": true
+   "winner": "chairman",
+   "calder": {
+    "id": "birdwatcher"
+   }
   },
   {
    "year": 2024,
    "place": "Puerto Rico",
    "country": "Puerto Rico",
-   "winner": "sleeper"
+   "winner": "sleeper",
+   "calder": {
+    "id": "sleeper"
+   }
   },
   {
    "year": 2025,

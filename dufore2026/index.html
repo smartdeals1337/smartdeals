@@ -117,10 +117,10 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
 .note{text-align:center;font-style:italic;font-size:1.05rem;color:var(--cream);margin-bottom:14px}
 .fine{text-align:center;font-style:italic;font-size:.9rem;color:var(--gold);margin-top:10px;opacity:.85}
 .card{border:1px solid rgba(207,168,69,.45);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));overflow:hidden}
-.row{display:grid;grid-template-columns:30px minmax(0,1fr) repeat(4,34px) 54px;align-items:center;gap:3px;padding:11px 10px;border-top:1px solid rgba(207,168,69,.18)}
+.row{display:grid;grid-template-columns:24px 30px minmax(0,1fr) repeat(4,32px) 50px;align-items:center;gap:3px;padding:10px 10px;border-top:1px solid rgba(207,168,69,.18)}
 .row:first-child{border-top:0}
 .row.head{padding:10px 12px;font-family:Cinzel,serif;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:rgba(0,0,0,.18)}
-.row.head>*{text-align:center}.row.head>:nth-child(2){text-align:left}
+.row.head>*{text-align:center}.row.head>:nth-child(3){text-align:left}
 .row.lead{background:linear-gradient(90deg,rgba(207,168,69,.22),rgba(207,168,69,.04));box-shadow:inset 3px 0 0 var(--gold)}
 .pos{font-family:Cinzel,serif;font-weight:700;font-size:.95rem;color:var(--gold-light);text-align:center}
 .nm{min-width:0;font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;color:var(--cream);line-height:1.25;overflow-wrap:anywhere}
@@ -155,6 +155,16 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
 .pars tbody.gap tr:first-child td{padding-top:14px}
 .pars td.t{color:var(--gold-light);font-weight:700}
 .pars .max{color:var(--gold-light)}
+.tr{width:13px;height:13px;color:var(--gold-light);vertical-align:-2px;margin-left:4px;flex:none}
+.sav{width:28px;height:28px;border-radius:50%;padding:1.5px;background:linear-gradient(135deg,var(--gold-light),var(--gold) 55%,#8f7226)}
+.sav img{width:100%;height:100%;border-radius:50%;display:block;object-fit:cover}
+.bds{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.bd{display:inline-flex;align-items:center;font-family:Cinzel,serif;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep);background:linear-gradient(135deg,var(--gold-light),var(--gold));padding:3px 8px;border-radius:99px;white-space:nowrap}
+.pr .nm{min-width:0}
+.bd.win{white-space:normal;border-radius:10px;line-height:1.35;background:rgba(207,168,69,.14);color:var(--gold-light);box-shadow:inset 0 0 0 1px rgba(207,168,69,.6)}
+.bd.win .tr{width:10px;height:10px;margin:0 5px 0 0}
+.pn .trs{display:block;line-height:1;margin-top:3px}
+.pn .tr{width:11px;height:11px;margin:0 2px;vertical-align:0}
 .teed{display:none;font-family:Cinzel,serif;font-size:clamp(1.4rem,6vw,2.2rem);letter-spacing:.2em;color:var(--gold-light);text-transform:uppercase}
 .done .count{display:none}.done .teed{display:block}
 @keyframes fade{to{opacity:1}}
@@ -181,7 +191,7 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
   <div class="tees">
     <h2>Tee Times · Round One</h2>
     <div class="tee"><div class="th"><span>Honorary Starters</span><b>9:00 AM</b></div><div class="pls"><div class="pl"><div class="ph"><img src="players/chairman.jpg" alt="Chairman" width="240" height="240"></div><div class="pn">Chairman</div><div class="pm">HCP 22 · LH</div></div><div class="pl"><div class="ph"><img src="players/vice.jpg" alt="Vice" width="240" height="240"></div><div class="pn">Vice</div><div class="pm">HCP 21 · LH</div></div><div class="pl"><div class="ph"><img src="players/slugger.jpg" alt="Slugger" width="240" height="240"></div><div class="pn">Slugger</div><div class="pm">HCP 23 · RH</div></div><div class="pl"><div class="ph"><img src="players/stallion.jpg" alt="Italian Stallion" width="240" height="240"></div><div class="pn">Italian Stallion</div><div class="pm">HCP 2 · RH</div></div></div></div>
-    <div class="tee"><div class="th"><span>Second Threesome</span><b>9:10 AM</b></div><div class="pls"><div class="pl"><div class="ph"><img src="players/cook.jpg" alt="The Cook" width="240" height="240"></div><div class="pn">The Cook</div><div class="pm">HCP 28 · RH</div></div><div class="pl"><div class="ph"><img src="players/sleeper.jpg" alt="The Sleeper" width="240" height="240"></div><div class="pn">The Sleeper</div><div class="pm">HCP 14 · RH</div></div><div class="pl"><div class="ph"><img src="players/birdwatcher.jpg" alt="The BirdWatcher" width="240" height="240"></div><div class="pn">The BirdWatcher</div><div class="pm">HCP 12 · RH</div></div></div></div>
+    <div class="tee"><div class="th"><span>Second Threesome</span><b>9:10 AM</b></div><div class="pls"><div class="pl"><div class="ph"><img src="players/cook.jpg" alt="The Cook" width="240" height="240"></div><div class="pn">The Cook</div><div class="pm">HCP 28 · RH</div></div><div class="pl"><div class="ph"><img src="players/sleeper.jpg" alt="The Sleeper" width="240" height="240"></div><div class="pn">The Sleeper<span class="trs"><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div><div class="pm">HCP 14 · RH</div></div><div class="pl"><div class="ph"><img src="players/birdwatcher.jpg" alt="The BirdWatcher" width="240" height="240"></div><div class="pn">The BirdWatcher<span class="trs"><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div><div class="pm">HCP 12 · RH</div></div></div></div>
   </div>
   <div class="soon">
     <h2>On this page</h2>
@@ -200,6 +210,7 @@ a.ic:hover{border-color:var(--gold);background:rgba(255,255,255,.06)}
   <section class="sec" id="players">
     <h2>The Field</h2>
     <div class="card" id="roster"></div>
+    <div class="card" id="champs" style="margin-top:14px"></div>
   </section>
   <section class="sec" id="scoring">
     <h2>Scoring</h2>
@@ -239,6 +250,13 @@ tick();
   function fmt(n){return n===0?"E":(n>0?"+"+n:MINUS+Math.abs(n))}
   function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
   function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  var TR='<svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+  function trophies(p){return p.wins?p.wins.map(function(){return TR}).join(""):""}
+  function badges(p){
+    var h="";
+    (p.tags||[]).forEach(function(t){h+='<span class="bd">'+esc(t)+'</span>'});
+    (p.wins||[]).forEach(function(w){h+='<span class="bd win">'+TR+'Calder Trophy \u00b7 '+esc(w.place)+' '+w.year+'</span>'});
+    return h?'<span class="bds">'+h+'</span>':""}
   function render(D){
     var par=D.course.par,cap=D.course.cap,PAR=par.reduce(function(a,b){return a+b},0);
     // course table
@@ -285,9 +303,9 @@ tick();
       if(la!=null&&lb!=null&&la!==lb)return la-lb;return 0}
     var ties={};posOf.forEach(function(x){ties[x]=(ties[x]||0)+1});
     var board=document.getElementById("board");board.innerHTML="";
-    board.appendChild(el("div","row head",'<span>Pos</span><span>Player</span><span>R1</span><span>R2</span><span>R3</span><span>R4</span><span>Total</span>'));
+    board.appendChild(el("div","row head",'<span>Pos</span><span></span><span>Player</span><span>R1</span><span>R2</span><span>R3</span><span>R4</span><span>Total</span>'));
     function addRow(r,pos,lead){
-      var h='<span class="pos">'+pos+'</span><span class="nm">'+esc(r.p.name)+'<small>HCP '+r.p.hcp+'</small></span>';
+      var h='<span class="pos">'+pos+'</span><span class="sav"><img src="'+esc(r.p.photo)+'" alt="" width="60" height="60"></span><span class="nm">'+esc(r.p.name)+trophies(r.p)+'<small>HCP '+r.p.hcp+'</small></span>';
       rounds.forEach(function(k,i){
         if(r.net[i]!=null)h+='<span class="rc"><b>'+r.net[i]+'</b><i>'+r.gross[i]+'</i></span>';
         else if(r.thru[i]>0)h+='<span class="rc"><b>'+r.gross[i]+'</b><i>thru '+r.thru[i]+'</i></span>';
@@ -303,7 +321,10 @@ tick();
     // roster
     var ro=document.getElementById("roster");ro.innerHTML="";
     D.players.forEach(function(p){
-      ro.appendChild(el("div","pr",'<div class="av"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88"></div><div class="nm">'+esc(p.name)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</small></div><div class="tag">'+p.group+' AM<small>Round 1</small></div>'))});
+      ro.appendChild(el("div","pr",'<div class="av"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88"></div><div class="nm">'+esc(p.name)+trophies(p)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</small>'+badges(p)+'</div><div class="tag">'+p.group+' AM<small>Round 1</small></div>'))});
+    var ch=[];D.players.forEach(function(p){(p.wins||[]).forEach(function(w){ch.push({y:w.year,pl:w.place,n:p.name,ph:p.photo})})});
+    var pc=document.getElementById("champs");
+    if(pc&&ch.length){ch.sort(function(a,b){return b.y-a.y});pc.innerHTML='<div class="bench-h" style="border-top:0">Past champions</div>'+ch.map(function(c){return '<div class="pr"><div class="av"><img src="'+esc(c.ph)+'" alt="" width="88" height="88"></div><div class="nm">'+esc(c.n)+TR+'<small>Calder Trophy \u00b7 '+esc(c.pl)+'</small></div><div class="tag" style="font-size:.9rem">'+c.y+'</div></div>'}).join("")}
     if(D.bench&&D.bench.length){
       ro.appendChild(el("div","bench-h","On the bench"));
       D.bench.forEach(function(p){

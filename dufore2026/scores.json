@@ -31,7 +31,10 @@
    "hcp": 22,
    "hand": "Left",
    "group": "9:00",
-   "photo": "players/chairman.jpg"
+   "photo": "players/chairman.jpg",
+   "tags": [
+    "Original OG"
+   ]
   },
   {
    "id": "vice",
@@ -39,7 +42,11 @@
    "hcp": 21,
    "hand": "Left",
    "group": "9:00",
-   "photo": "players/vice.jpg"
+   "photo": "players/vice.jpg",
+   "tags": [
+    "Founder & Promoter",
+    "Original OG"
+   ]
   },
   {
    "id": "slugger",
@@ -47,7 +54,10 @@
    "hcp": 23,
    "hand": "Right",
    "group": "9:00",
-   "photo": "players/slugger.jpg"
+   "photo": "players/slugger.jpg",
+   "tags": [
+    "Original OG"
+   ]
   },
   {
    "id": "stallion",
@@ -71,7 +81,21 @@
    "hcp": 14,
    "hand": "Right",
    "group": "9:10",
-   "photo": "players/sleeper.jpg"
+   "photo": "players/sleeper.jpg",
+   "cups": [
+    {
+     "year": 2025,
+     "place": "Dominican Republic"
+    },
+    {
+     "year": 2024,
+     "place": "Puerto Rico"
+    }
+   ],
+   "calder": {
+    "year": 2024,
+    "place": "Puerto Rico"
+   }
   },
   {
    "id": "birdwatcher",
@@ -79,7 +103,11 @@
    "hcp": 12,
    "hand": "Right",
    "group": "9:10",
-   "photo": "players/birdwatcher.jpg"
+   "photo": "players/birdwatcher.jpg",
+   "calder": {
+    "year": 2023,
+    "place": "Mexico"
+   }
   }
  ],
  "bench": [
@@ -102,6 +130,12 @@
   }
  ],
  "rounds": {
+  "1": {},
+  "2": {},
+  "3": {},
+  "4": {}
+ },
+ "bonus": {
   "1": {},
   "2": {},
   "3": {},

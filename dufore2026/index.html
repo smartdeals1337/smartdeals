@@ -307,7 +307,7 @@ tick();
     if(D.bench&&D.bench.length){
       ro.appendChild(el("div","bench-h","On the bench"));
       D.bench.forEach(function(p){
-        ro.appendChild(el("div","pr",'<div class="av"><span>'+esc(p.initials)+'</span></div><div class="nm">'+esc(p.name)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+(p.title?' \u00b7 '+esc(p.title):'')+'</small></div><div class="tag">Bench</div>'))})}
+        ro.appendChild(el("div","pr",'<div class="av">'+(p.photo?'<img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88">':'<span>'+esc(p.initials)+'</span>')+'</div><div class="nm">'+esc(p.name)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+(p.title?' \u00b7 '+esc(p.title):'')+'</small></div><div class="tag">Bench</div>'))})}
   }
   function load(){
     fetch("scores.json?"+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(render).catch(function(){

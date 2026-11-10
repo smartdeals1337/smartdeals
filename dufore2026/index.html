@@ -6,9 +6,18 @@
 <title>Dufore Open 2026 · PGA Riviera Maya</title>
 <meta name="description" content="The Dufore Open 2026. PGA Riviera Maya, Mexico. Round one tees off tomorrow at 9:00 AM.">
 <meta name="theme-color" content="#03311b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dufore Open">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:url" content="https://smartdealsclub.com/dufore2026/">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=163a774b">
 <meta property="og:title" content="Dufore Open 2026">
 <meta property="og:description" content="Something's brewing at PGA Riviera Maya. Tee off tomorrow, 9:00 AM.">
-<meta property="og:image" content="https://smartdealsclub.com/dufore2026/share.jpg">
+<meta property="og:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=163a774b">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -321,6 +330,113 @@ main,.sec,.card,.tees,.tee,.row,.pr,.hy,.pls,.pl,.snw{min-width:0;max-width:100%
 .hy .wn.cal .ai{color:var(--cream)}
 .ph .bg.ace{right:auto;left:-5px;padding:0;width:22px;justify-content:center}
 .ph .bg.ace .ai{width:12px;height:12px;margin:0;color:var(--green-deep)}
+
+/* ---------- premium layer ---------- */
+[hidden]{display:none!important}
+html.noscroll,html.noscroll body{overflow:hidden}
+:root{--gold-text:#e3c25f}
+/* readability of small gold text */
+.lbl,.clabel,.rounds,.row.head,.bench-h,.pars th,.pars td:first-child,.fine,.tees h2,.foot .sub,.snav a,.pr .tag small,.pm,.rc i,.tot i,.nm small{color:var(--gold-text)}
+.row.head{font-size:.6rem}.lbl{font-size:.66rem}.clabel{font-size:.66rem}
+/* logo light sweep */
+.logo-wrap::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.34) 50%,transparent 62%);background-size:260% 100%;background-position:130% 0;animation:sweep 7s 2.4s ease-in-out infinite}
+@keyframes sweep{0%{background-position:130% 0}22%,100%{background-position:-60% 0}}
+/* countdown flip */
+.num.flip{animation:flip .38s cubic-bezier(.2,.7,.2,1)}
+@keyframes flip{0%{transform:translateY(-35%);opacity:.2}100%{transform:none;opacity:1}}
+/* live status */
+.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#35d07f;margin-right:9px;vertical-align:1px;box-shadow:0 0 0 0 rgba(53,208,127,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(53,208,127,0)}100%{box-shadow:0 0 0 0 rgba(53,208,127,0)}}
+/* leader */
+.row .pos{flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.row .pos b{font-weight:700}
+.mv{font-style:normal;font-family:Cinzel,serif;font-size:.5rem;letter-spacing:.04em;line-height:1}
+.mv.up{color:#4fe08f}.mv.dn{color:#ff8a8a}
+.crown{width:14px;height:14px;color:var(--gold-light);vertical-align:-2px;margin-left:5px;filter:drop-shadow(0 0 6px rgba(232,207,134,.6))}
+.row{position:relative;cursor:pointer}
+.row.head{cursor:default}
+.row.lead{overflow:hidden}
+.row.lead::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.16) 50%,transparent 60%);background-size:250% 100%;background-position:140% 0;animation:sweep 6s 1s ease-in-out infinite}
+.row.chg{animation:chg 2.8s ease-out 2}
+@keyframes chg{0%,100%{background:transparent}30%{background:rgba(232,207,134,.28)}}
+.row:not(.head):active{background:rgba(255,255,255,.09)}
+/* champion banner */
+.champ{position:relative;overflow:hidden;margin-bottom:22px;padding:26px 18px 24px;text-align:center;border-radius:14px;border:1px solid var(--gold);background:radial-gradient(ellipse at 50% 0%,rgba(232,207,134,.35),rgba(207,168,69,.06) 65%),rgba(0,0,0,.18);box-shadow:0 18px 40px rgba(0,0,0,.35),0 0 40px rgba(207,168,69,.15)}
+.champ canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.cb-k{position:relative;font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light)}
+.cb-k .tr{width:14px;height:14px;margin:0 10px;vertical-align:-2px}
+.cb-w{position:relative;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:18px}
+.cb-ph{width:112px;height:112px;margin:0 auto;border-radius:50%;padding:4px;background:linear-gradient(135deg,var(--gold-light),var(--gold) 55%,#8f7226);box-shadow:0 10px 26px rgba(0,0,0,.5),0 0 30px rgba(232,207,134,.4)}
+.cb-ph img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.cb-n{font-family:Cinzel,serif;font-weight:700;font-size:1.35rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-top:14px}
+.cb-s{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.15rem;color:var(--cream);margin-top:2px}
+/* detail sheet */
+.sheet{position:fixed;inset:0;z-index:200;display:flex;align-items:flex-end;justify-content:center}
+.sh-bd{position:absolute;inset:0;background:rgba(1,16,9,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s}
+.sheet.on .sh-bd{opacity:1}
+.sh-p{position:relative;width:100%;max-width:560px;max-height:88vh;max-height:88dvh;overflow-y:auto;overscroll-behavior:contain;border-radius:22px 22px 0 0;border:1px solid rgba(207,168,69,.55);border-bottom:0;background:linear-gradient(180deg,#0d4a2a,#052d19);box-shadow:0 -20px 50px rgba(0,0,0,.5);transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);padding:22px 18px calc(28px + env(safe-area-inset-bottom))}
+.sheet.on .sh-p{transform:none}
+.sh-x{position:absolute;top:12px;right:14px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(207,168,69,.5);background:rgba(0,0,0,.25);color:var(--gold-light);font-size:1.4rem;line-height:1;cursor:pointer;z-index:2}
+.sh-h{display:flex;align-items:center;gap:16px;padding-right:44px}
+.sh-h .ph{width:76px;height:76px;flex:none}
+.sh-n{font-family:Cinzel,serif;font-weight:700;font-size:1.15rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cream)}
+.sh-m{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.05rem;color:var(--gold-text);margin-top:3px}
+.sh-p .bds{margin-top:14px}
+.sh-s{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+.sh-s div{text-align:center;padding:12px 4px;border-radius:12px;border:1px solid rgba(207,168,69,.35);background:rgba(255,255,255,.04)}
+.sh-s b{display:block;font-family:Cinzel,serif;font-size:1.35rem;color:var(--gold-light)}
+.sh-s span{display:block;font-family:Cinzel,serif;font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-text);margin-top:4px}
+.sh-t{width:100%;border-collapse:collapse;font-family:Cinzel,serif;text-align:center}
+.sh-t th{font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-text);padding:8px 0;font-weight:500;border-bottom:1px solid rgba(207,168,69,.3)}
+.sh-t td{padding:11px 0;font-size:.82rem;color:var(--cream);border-bottom:1px solid rgba(207,168,69,.14)}
+.sh-t td:first-child,.sh-t th:first-child{text-align:left;color:var(--gold-text);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase}
+.sh-t td b{color:var(--gold-light);font-size:.95rem}
+.sh-t .na,.sh-t tr.off td{color:rgba(247,242,228,.35)}
+.sh-t .ps{display:flex;flex-direction:column;align-items:center;gap:2px;border-bottom:0}
+.sh-t tr{height:50px}
+.sh-k{font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-text);margin:22px 0 8px}
+.sh-e{font-style:italic;color:var(--gold-text);margin-top:20px;text-align:center;font-size:1.05rem}
+.sh-p details{margin-top:8px;border:1px solid rgba(207,168,69,.28);border-radius:12px;background:rgba(0,0,0,.14);overflow:hidden}
+.sh-p summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:13px 14px;font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream)}
+.sh-p summary::-webkit-details-marker{display:none}
+.sh-p summary span{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1rem;letter-spacing:0;text-transform:none;color:var(--gold-text)}
+.scard{width:calc(100% - 16px);margin:0 8px 8px;border-collapse:collapse;table-layout:fixed;font-family:Cinzel,serif;text-align:center}
+.scard th,.scard td{padding:5px 0;font-size:.62rem;color:var(--cream);font-weight:500}
+.scard th{color:var(--gold-text);font-size:.5rem}
+.scard th:first-child,.scard td:first-child{width:40px;text-align:left;padding-left:4px;color:var(--gold-text);font-size:.5rem;letter-spacing:.06em;text-transform:uppercase}
+.scard td.t,.scard th:last-child{width:34px;color:var(--gold-light);font-weight:700}
+.scard tr+tr td{border-top:1px solid rgba(207,168,69,.12)}
+.sc{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;font-weight:700;color:var(--cream)}
+.sc.eg{border-radius:50%;box-shadow:0 0 0 2px #0a3d22,0 0 0 3.5px var(--gold-light);color:var(--gold-light)}
+.sc.bd2{border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--gold-light);color:var(--gold-light)}
+.sc.bo{box-shadow:inset 0 0 0 1.5px rgba(247,242,228,.6)}
+.sc.db{background:rgba(247,242,228,.16);box-shadow:inset 0 0 0 1.5px rgba(247,242,228,.6)}
+.sc.pu{text-decoration:underline dotted;text-underline-offset:3px}
+@media(min-width:640px){.sheet{align-items:center}.sh-p{border-radius:22px;border-bottom:1px solid rgba(207,168,69,.55);transform:translateY(24px) scale(.97);opacity:0;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .25s}.sheet.on .sh-p{transform:none;opacity:1}.sh-p{padding:28px 28px 30px}.sh-t td{font-size:.9rem}}
+/* moments */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gi{position:relative;aspect-ratio:1;padding:0;border:1px solid rgba(207,168,69,.4);border-radius:12px;overflow:hidden;background:#052d19;cursor:pointer}
+.gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.gi:hover img{transform:scale(1.05)}
+.gi span{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 9px;text-align:left;font-family:"Cormorant Garamond",serif;font-size:.95rem;color:var(--cream);background:linear-gradient(transparent,rgba(1,16,9,.85))}
+.gi em{display:block;font-family:Cinzel,serif;font-style:normal;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);margin-top:2px}
+@media(min-width:640px){.gal{grid-template-columns:repeat(3,1fr)}}
+.lb{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(1,16,9,.94);opacity:0;transition:opacity .2s;padding:20px}
+.lb.on{opacity:1}
+.lb img{max-width:100%;max-height:78vh;border-radius:12px;border:1px solid rgba(207,168,69,.5)}
+.lb p{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.15rem;color:var(--cream);margin-top:14px;text-align:center}
+/* install */
+.inst{margin-top:18px;padding:11px 22px;border-radius:99px;border:1px solid rgba(207,168,69,.55);background:rgba(255,255,255,.05);color:var(--gold-light);font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+.inst:hover{background:rgba(255,255,255,.1)}
+.insttip{margin-top:12px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1rem;color:var(--cream)}
+@media(max-width:400px){.row .pos{gap:1px}.mv{font-size:.46rem}.crown{width:12px;height:12px;margin-left:3px}}
+
+.sh-p{text-align:left}
+.sh-h>div:last-child{text-align:left}
+.sh-t .ps{display:table-cell;border-bottom:1px solid rgba(207,168,69,.14)}
+.sh-t .ps b{display:block}
+.sh-t .ps .mv{display:block;margin-top:2px}
+.sh-t tbody tr:last-child td{border-bottom:0}
 </style>
 </head>
 <body>
@@ -349,11 +465,13 @@ main,.sec,.card,.tees,.tee,.row,.pr,.hy,.pls,.pl,.snw{min-width:0;max-width:100%
     <a href="#standings" data-s="standings"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 8h16v10a8 8 0 0 1-16 0z"/><path d="M16 11h-6c0 6 2 9 7 10M32 11h6c0 6-2 9-7 10"/><path d="M24 26v8M17 40h14M19 34h10"/></svg><span>Standings</span></a>
     <a href="#players" data-s="players"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="16" r="7"/><path d="M10 40c0-8 6-13 14-13s14 5 14 13"/><circle cx="9" cy="21" r="4"/><circle cx="39" cy="21" r="4"/></svg><span>Field</span></a>
     <a href="#history" data-s="history"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l7 4"/></svg><span>History</span></a>
+    <a href="#moments" data-s="moments" hidden><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="26" rx="4"/><circle cx="24" cy="25" r="7"/><path d="M17 12l3-5h8l3 5"/></svg><span>Moments</span></a>
     <a href="#scoring" data-s="scoring"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 16h16M16 23h16M16 30h9"/></svg><span>Scoring</span></a>
   </nav>
   </div>
   <section class="sec" id="standings">
     <h2>Standings</h2>
+    <div id="champ"></div>
     <p class="note" id="status">Round 1 tees off Wednesday, 9:00 AM. Scores post after every round.</p>
     <div class="card" id="board"></div>
     <p class="fine">Net score = capped gross − handicap − bonus points. Lowest total after 4 rounds wins.</p>
@@ -366,6 +484,10 @@ main,.sec,.card,.tees,.tee,.row,.pr,.hy,.pls,.pl,.snw{min-width:0;max-width:100%
   <section class="sec" id="history">
     <h2>History</h2>
     <div class="card" id="hist"></div>
+  </section>
+  <section class="sec" id="moments" hidden>
+    <h2>Moments</h2>
+    <div class="gal" id="gal"></div>
   </section>
   <section class="sec" id="scoring">
     <h2>Scoring</h2>
@@ -382,21 +504,22 @@ main,.sec,.card,.tees,.tee,.row,.pr,.hy,.pls,.pl,.snw{min-width:0;max-width:100%
     </div>
     <div class="card pars" id="pars"></div>
   </section>
-  <footer class="foot"><div class="flag" aria-hidden="true"><i></i><i></i><i></i></div><p>Dufore Open 2026 · PGA Riviera Maya, Mexico</p><p class="sub">Standings update after every round</p></footer>
+  <footer class="foot"><div class="flag" aria-hidden="true"><i></i><i></i><i></i></div><p>Dufore Open 2026 · PGA Riviera Maya, Mexico</p><p class="sub">Standings update after every round</p><button class="inst" id="inst" type="button" hidden>Add to Home Screen</button></footer>
 </main>
 <script>
 // First tee: Wed 11 Nov 2026, 9:00 AM Riviera Maya (UTC-5, no daylight saving)
 var T=new Date("2026-11-11T09:00:00-05:00").getTime();
 var el=function(i){return document.getElementById(i)};
 function p(n){return String(n).padStart(2,"0")}
+function setNum(i,v){var e=el(i);if(e.textContent===v)return;var first=e.dataset.set;e.textContent=v;e.dataset.set="1";if(first&&!matchMedia("(prefers-reduced-motion:reduce)").matches){e.classList.remove("flip");void e.offsetWidth;e.classList.add("flip")}}
 function tick(){
   var r=T-Date.now();
   if(r<=0){document.body.classList.add("done");el("tease").textContent="The Dufore Open is underway.";return}
   var s=Math.floor(r/1000);
-  el("d").textContent=p(Math.floor(s/86400));
-  el("h").textContent=p(Math.floor(s%86400/3600));
-  el("mi").textContent=p(Math.floor(s%3600/60));
-  el("s").textContent=p(s%60);
+  setNum("d",p(Math.floor(s/86400)));
+  setNum("h",p(Math.floor(s%86400/3600)));
+  setNum("mi",p(Math.floor(s%3600/60)));
+  setNum("s",p(s%60));
   setTimeout(tick,250);
 }
 tick();
@@ -411,6 +534,15 @@ tick();
   function flag(place){return FL[PL[place]||place]||""}
   var ST='<img class="ci" src="calder-cup.png" alt="Calder Trophy" width="112" height="150">';
   var TR='<svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+  var CROWN='<svg class="crown" viewBox="0 0 48 48" aria-label="Leader"><path d="M6 36L3 14l11 9 10-15 10 15 11-9-3 22z" fill="currentColor"/><rect x="7" y="39" width="34" height="4" rx="2" fill="currentColor"/></svg>';
+  var lastSig=null;try{lastSig=JSON.parse(localStorage.getItem("dufore26-sig")||"null")}catch(e){}
+  function confetti(cv){
+    if(!cv||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+    var x=cv.getContext("2d"),W=cv.width=cv.offsetWidth*2,H=cv.height=cv.offsetHeight*2,C=["#e8cf86","#cfa845","#f7f2e4","#00833e","#ce1126"],P=[];
+    for(var i=0;i<110;i++)P.push({x:Math.random()*W,y:-Math.random()*H*.6,w:8+Math.random()*10,h:14+Math.random()*14,vy:3+Math.random()*4,vx:-2+Math.random()*4,r:Math.random()*6,vr:-.2+Math.random()*.4,c:C[i%C.length]});
+    var t0=performance.now();
+    (function f(t){var e=t-t0;x.clearRect(0,0,W,H);P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.globalAlpha=Math.max(0,1-e/4200);x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()});
+      if(e<4200)requestAnimationFrame(f);else x.clearRect(0,0,W,H)})(t0)}
   var ACE='<svg class="ai" viewBox="0 0 48 48" aria-label="Hole in one"><path d="M18 5v34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 5l17 7-17 7z" fill="currentColor"/><ellipse cx="20" cy="40" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="33" cy="33" r="3.6" fill="currentColor"/></svg>';
   function aceMark(p){return p.aces?'<span class="tw">'+p.aces.map(function(){return ACE}).join("")+'</span>':""}
   function marks(p){return aceMark(p)+trophies(p)}
@@ -467,22 +599,54 @@ tick();
       var la=a.net[lastRound],lb=b.net[lastRound];
       if(la!=null&&lb!=null&&la!==lb)return la-lb;return 0}
     var ties={};posOf.forEach(function(x){ties[x]=(ties[x]||0)+1});
+    var rk=[];
+    rounds.forEach(function(k,i){
+      var list=res.filter(function(r){for(var j=0;j<=i;j++)if(r.net[j]==null)return false;return true}).map(function(r){var q=0;for(var j=0;j<=i;j++)q+=r.net[j];return {id:r.p.id,s:q,l:r.net[i]}});
+      list.sort(function(a,b){return a.s-b.s||a.l-b.l});
+      var m={};list.forEach(function(x,n){var q=n;while(q>0&&list[q-1].s===x.s&&list[q-1].l===x.l)q--;m[x.id]=q+1});rk.push(m)});
+    function mvOf(id){if(lastRound<1)return 0;var a=rk[lastRound-1][id],b=rk[lastRound][id];return(a&&b)?a-b:0}
+    var sigs={},nch=0;res.forEach(function(r){sigs[r.p.id]=JSON.stringify([r.net,r.gross,r.thru])});
     var board=document.getElementById("board");board.innerHTML="";
     board.appendChild(el("div","row head",'<span>Pos</span><span></span><span>Player</span><span>R1</span><span>R2</span><span>R3</span><span>R4</span><span>Total</span>'));
     function addRow(r,pos,lead){
-      var h='<span class="pos">'+pos+'</span><span class="sav"><img src="'+esc(r.p.photo)+'" alt="" width="60" height="60"></span><span class="nm">'+esc(r.p.name)+marks(r.p)+'<small>HCP '+r.p.hcp+'</small></span>';
+      var mv=r.done?mvOf(r.p.id):0;
+      var mvh=mv?'<em class="mv '+(mv>0?'up':'dn')+'">'+(mv>0?'\u25B2':'\u25BC')+Math.abs(mv)+'</em>':'';
+      var h='<span class="pos"><b>'+pos+'</b>'+mvh+'</span><span class="sav"><img src="'+esc(r.p.photo)+'" alt="" width="60" height="60"></span><span class="nm">'+esc(r.p.name)+(lead&&r.done?CROWN:"")+marks(r.p)+'<small>HCP '+r.p.hcp+'</small></span>';
       rounds.forEach(function(k,i){
         if(r.net[i]!=null)h+='<span class="rc"><b>'+r.net[i]+'</b><i>'+r.gross[i]+(r.bonus[i]?' <u>\u2605'+r.bonus[i]+'</u>':'')+'</i></span>';
         else if(r.thru[i]>0)h+='<span class="rc"><b>'+r.gross[i]+'</b><i>thru '+r.thru[i]+'</i></span>';
         else h+='<span class="rc na"><b>\u2013</b></span>'});
       h+=r.done?'<span class="tot"><b>'+r.total+'</b><i>'+fmt(r.total-PAR*r.done)+'</i></span>':'<span class="tot"><b class="na" style="color:rgba(247,242,228,.3)">\u2013</b></span>';
-      board.appendChild(el("div","row"+(lead?" lead":""),h))}
+      var chg=lastSig&&lastSig[r.p.id]&&lastSig[r.p.id]!==sigs[r.p.id];if(chg)nch++;
+      var row=el("div","row"+(lead?" lead":"")+(chg?" chg":""),h);
+      row.dataset.id=r.p.id;row.tabIndex=0;row.setAttribute("role","button");row.setAttribute("aria-label",r.p.name+" details");
+      board.appendChild(row)}
     played.forEach(function(r,i){addRow(r,(ties[posOf[i]]>1?"T":"")+posOf[i],posOf[i]===1)});
     rest.forEach(function(r){addRow(r,"\u2013",false)});
     var st=document.getElementById("status");
     var full=rounds.filter(function(k,i){return res.every(function(r){return r.net[i]!=null})}).length;
     if(!played.length&&!res.some(function(r){return r.thru.some(function(x){return x>0})}))st.textContent="Round 1 tees off Wednesday, 9:00 AM. Scores post after every round.";
     else st.textContent=(full===0?"Round 1 in progress":"Round "+full+" of 4 complete")+(D.updated?" \u00b7 Updated "+D.updated:"");
+    var posMap={};played.forEach(function(r,i){posMap[r.p.id]=(ties[posOf[i]]>1?"T":"")+posOf[i]});
+    window.__d={res:res,rk:rk,D:D,PAR:PAR,pos:posMap,lastRound:lastRound};
+    lastSig=sigs;try{localStorage.setItem("dufore26-sig",JSON.stringify(sigs))}catch(e){}
+    if(nch&&played.length)st.textContent+=" \u00b7 "+nch+" score"+(nch>1?"s":"")+" updated since your last visit";
+    st.innerHTML=(played.length?'<span class="live"></span>':'')+esc(st.textContent);
+    // champion
+    var cb=document.getElementById("champ");cb.innerHTML="";
+    if(full===4&&played.length){
+      var win=played.filter(function(r,i){return posOf[i]===1});
+      st.innerHTML='<span class="live"></span>Tournament complete';
+      cb.innerHTML='<div class="champ"><canvas id="cf"></canvas><div class="cb-k">'+TR+'Dufore Cup Champion 2026'+TR+'</div><div class="cb-w">'+win.map(function(r){return '<div class="cb-p"><div class="cb-ph"><img src="'+esc(r.p.photo)+'" alt="" width="240" height="240"></div><div class="cb-n">'+esc(r.p.name)+'</div><div class="cb-s">'+r.total+' net \u00b7 '+fmt(r.total-PAR*4)+'</div></div>'}).join("")+'</div></div>';
+      var sk="dufore26-confetti",seen=false;try{seen=sessionStorage.getItem(sk)}catch(e){}
+      if(!seen){try{sessionStorage.setItem(sk,"1")}catch(e){}confetti(document.getElementById("cf"))}
+    }
+    // moments
+    var ms=D.moments||[],gs=document.getElementById("moments"),gl=document.getElementById("gal");
+    var mn=document.querySelector('#snav a[data-s="moments"]');
+    if(gs){gs.hidden=!ms.length;if(mn)mn.hidden=!ms.length;
+      gl.innerHTML=ms.map(function(m,i){return '<button type="button" class="gi" data-i="'+i+'"><img src="'+esc(m.src)+'" alt="'+esc(m.caption||"")+'" loading="lazy"><span>'+esc(m.caption||"")+(m.round?'<em>Round '+m.round+'</em>':'')+'</span></button>'}).join("");
+      window.__m=ms}
     // tee cards
     var tees=document.getElementById("tees");
     if(tees&&D.groups){
@@ -520,11 +684,76 @@ tick();
       D.bench.forEach(function(p){
         ro.appendChild(el("div","pr",'<div class="av">'+(p.photo?'<img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88">':'<span>'+esc(p.initials)+'</span>')+'</div><div class="nm">'+esc(p.name)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+(p.title?' \u00b7 '+esc(p.title):'')+'</small></div><div class="tag">Bench</div>'))})}
   }
+  var lastText=null;
   function load(){
-    fetch("scores.json?"+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(render).catch(function(){
+    fetch("scores.json?"+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){if(t===lastText)return;lastText=t;render(JSON.parse(t))}).catch(function(){
       var b=document.getElementById("board");if(b&&!b.children.length)b.innerHTML='<div class="row" style="display:block;text-align:center">Standings will appear here shortly.</div>'});
   }
   load();setInterval(load,60000);
+  // ---- player detail sheet ----
+  var sh=document.createElement("div");sh.className="sheet";sh.id="sheet";sh.hidden=true;
+  sh.innerHTML='<div class="sh-bd" data-x></div><div class="sh-p" role="dialog" aria-modal="true" aria-label="Player details"><button class="sh-x" type="button" data-x aria-label="Close">\u00d7</button><div class="sh-c" id="shc"></div></div>';
+  document.body.appendChild(sh);
+  var lastFocus=null;
+  function lock(on){document.documentElement.classList.toggle("noscroll",on)}
+  function closeSheet(){sh.classList.remove("on");lock(false);setTimeout(function(){sh.hidden=true},260);if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+  function cls(d){return d<=-2?"eg":d===-1?"bd2":d===0?"pa":d===1?"bo":"db"}
+  function openSheet(id){
+    var X=window.__d;if(!X)return;
+    var r=X.res.filter(function(q){return q.p.id===id})[0];if(!r)return;
+    var D=X.D,par=D.course.par,cap=D.course.cap,p=r.p;
+    var rows="",cards="";
+    ["1","2","3","4"].forEach(function(k,i){
+      var h=(D.rounds[k]||{})[p.id]||[];
+      var rankNow=X.rk[i][p.id],rankPrev=i?X.rk[i-1][p.id]:null,mv=(rankNow&&rankPrev)?rankPrev-rankNow:0;
+      var pos=rankNow?('<b>'+rankNow+'</b>'+(mv?'<em class="mv '+(mv>0?'up':'dn')+'">'+(mv>0?'\u25B2':'\u25BC')+Math.abs(mv)+'</em>':'')):'<span class="na">\u2013</span>';
+      if(r.net[i]!=null)rows+='<tr><td>Round '+k+'</td><td>'+r.gross[i]+'</td><td>'+(r.bonus[i]?'\u2605'+r.bonus[i]:'\u2013')+'</td><td><b>'+r.net[i]+'</b></td><td class="ps">'+pos+'</td></tr>';
+      else if(r.thru[i]>0)rows+='<tr><td>Round '+k+'</td><td>'+r.gross[i]+'</td><td>\u2013</td><td class="na">thru '+r.thru[i]+'</td><td class="ps"><span class="na">\u2013</span></td></tr>';
+      else rows+='<tr class="off"><td>Round '+k+'</td><td>\u2013</td><td>\u2013</td><td>\u2013</td><td class="ps">\u2013</td></tr>';
+      if(h.length){
+        var t="";
+        [[0,9,"Out"],[9,18,"In"]].forEach(function(sg){
+          var a='<tr><th>Hole</th>',b='<tr><td>Par</td>',c='<tr><td>Score</td>',sum=0,sp=0,n=0;
+          for(var j=sg[0];j<sg[1];j++){a+='<th>'+(j+1)+'</th>';b+='<td>'+par[j]+'</td>';sp+=par[j];
+            if(h[j]!=null){var v=Math.min(h[j],par[j]+cap);sum+=v;n++;c+='<td><span class="sc '+cls(v-par[j])+(h[j]>v?' pu':'')+'">'+v+'</span></td>'}else c+='<td></td>'}
+          a+='<th>'+sg[2]+'</th></tr>';b+='<td>'+sp+'</td></tr>';c+='<td class="t">'+(n?sum:'')+'</td></tr>';
+          t+='<table class="scard">'+a+b+c+'</table>'});
+        cards+='<details'+(i===X.lastRound?' open':'')+'><summary>Round '+k+' scorecard<span>Gross '+r.gross[i]+'</span></summary>'+t+'</details>'}
+    });
+    var dl=r.done?r.total-X.PAR*r.done:null;
+    var html='<div class="sh-h"><div class="ph"><img src="'+esc(p.photo)+'" alt="" width="240" height="240"></div><div><div class="sh-n">'+esc(p.name)+marks(p)+'</div><div class="sh-m">HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</div></div></div>'+badges(p)+
+      '<div class="sh-s"><div><b>'+(X.pos[p.id]||"\u2013")+'</b><span>Position</span></div><div><b>'+(r.done?r.total:"\u2013")+'</b><span>Net total</span></div><div><b>'+(dl==null?"\u2013":fmt(dl))+'</b><span>To par</span></div></div>'+
+      '<table class="sh-t"><thead><tr><th>Round</th><th>Gross</th><th>Bonus</th><th>Net</th><th>Pos</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+      (cards?'<div class="sh-k">Scorecards</div>'+cards:'<p class="sh-e">Scorecards appear here after round one.</p>');
+    document.getElementById("shc").innerHTML=html;
+    lastFocus=document.activeElement;sh.hidden=false;lock(true);
+    requestAnimationFrame(function(){sh.classList.add("on")});
+    sh.querySelector(".sh-x").focus();
+  }
+  document.getElementById("board").addEventListener("click",function(e){var r=e.target.closest(".row:not(.head)");if(r)openSheet(r.dataset.id)});
+  document.getElementById("board").addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){var r=e.target.closest(".row:not(.head)");if(r){e.preventDefault();openSheet(r.dataset.id)}}});
+  sh.addEventListener("click",function(e){if(e.target.hasAttribute("data-x"))closeSheet()});
+
+  // ---- moments lightbox ----
+  var lb=document.createElement("div");lb.className="lb";lb.hidden=true;lb.innerHTML='<button class="sh-x" type="button" aria-label="Close">\u00d7</button><img alt=""><p></p>';document.body.appendChild(lb);
+  function closeLb(){lb.classList.remove("on");lock(false);setTimeout(function(){lb.hidden=true},200)}
+  document.getElementById("gal").addEventListener("click",function(e){var b=e.target.closest(".gi");if(!b||!window.__m)return;var m=window.__m[+b.dataset.i];lb.querySelector("img").src=m.src;lb.querySelector("p").textContent=(m.caption||"")+(m.round?" \u00b7 Round "+m.round:"");lb.hidden=false;lock(true);requestAnimationFrame(function(){lb.classList.add("on")})});
+  lb.addEventListener("click",closeLb);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(!sh.hidden)closeSheet();if(!lb.hidden)closeLb()}});
+
+  // ---- install to home screen ----
+  var inst=document.getElementById("inst"),dp=null;
+  var standalone=matchMedia("(display-mode:standalone)").matches||navigator.standalone;
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  if(inst&&!standalone){
+    window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;inst.hidden=false});
+    if(ios)inst.hidden=false;
+    inst.addEventListener("click",function(){
+      if(dp){dp.prompt();dp=null;inst.hidden=true;return}
+      var t=document.getElementById("insttip");
+      if(!t){t=document.createElement("p");t.id="insttip";t.className="insttip";t.textContent=ios?"Tap the Share button in Safari, then \u201cAdd to Home Screen\u201d.":"Open your browser menu, then \u201cAdd to Home screen\u201d.";inst.after(t)}
+    })}
+
   // modern UX: reveal on scroll
   var snw=document.getElementById("snw"),snv=document.getElementById("snav"),tick2=false;
   function pin(){tick2=false;if(!snw||!snv)return;

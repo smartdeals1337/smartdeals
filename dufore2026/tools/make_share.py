@@ -45,7 +45,11 @@ for p in d["players"]:
     nets, done = [], 0
     for k in ("1", "2", "3", "4"):
         h = d["rounds"].get(k, {}).get(p["id"])
-        if h and len(h) >= 18:
+        tg = d.get("totals", {}).get(k, {}).get(p["id"])
+        if tg is not None and not h:
+            nets.append(tg - p["hcp"] - d.get("bonus", {}).get(k, {}).get(p["id"], 0))
+            done += 1
+        elif h and len(h) >= 18:
             g = sum(min(x, par[i] + cap) for i, x in enumerate(h))
             nets.append(g - p["hcp"] - d.get("bonus", {}).get(k, {}).get(p["id"], 0))
             done += 1
@@ -145,7 +149,11 @@ else:
             im.paste(ph, (X + 90, rowy + 11), m)
         except Exception:
             pass
-        dr.text((X + 186, rowy + 26), r["p"]["name"].upper(), font=font("cinzel", 32), fill=CREAM)
+        nm = r["p"]["name"].upper()
+        nsz = 32
+        while nsz > 20 and dr.textlength(nm, font=font("cinzel", nsz)) > (W - 60 - 28 - 110) - (X + 186):
+            nsz -= 2
+        dr.text((X + 186, rowy + 26 + (32 - nsz) // 2), nm, font=font("cinzel", nsz), fill=CREAM)
         tot = str(r["total"])
         vs = r["total"] - PAR * r["done"]
         vs = "E" if vs == 0 else ("+%d" % vs if vs > 0 else "−%d" % abs(vs))

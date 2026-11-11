@@ -23,7 +23,7 @@
   ],
   "cap": 2
  },
- "updated": null,
+ "updated": "Wed 11 Nov",
  "players": [
   {
    "id": "chairman",
@@ -260,5 +260,16 @@
  "complaints": {
   "endpoint": "",
   "extra": {}
+ },
+ "totals": {
+  "1": {
+   "vice": 92,
+   "chairman": 98,
+   "stallion": 76,
+   "slugger": 101
+  },
+  "2": {},
+  "3": {},
+  "4": {}
  }
 }

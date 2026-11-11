@@ -139,7 +139,10 @@ else:
         ImageDraw.Draw(ov).rounded_rectangle((X, rowy, W - 60, rowy + 94), radius=16, fill=(255, 255, 255, 22 if i else 46), outline=(207, 168, 69, 200 if i == 0 else 110), width=2)
         im.alpha_composite(ov)
         dr = ImageDraw.Draw(im)
-        dr.text((X + 24, rowy + 18), str(i + 1), font=font("cinzelb", 46), fill=GOLDL)
+        key = lambda q: (-q["done"], q["total"] - PAR * q["done"])
+        pos = next(j for j in range(len(played)) if key(played[j]) == key(r)) + 1
+        tied = sum(1 for q in played if key(q) == key(r)) > 1
+        dr.text((X + 24, rowy + 18), ("T" if tied else "") + str(pos), font=font("cinzelb", 40 if tied else 46), fill=GOLDL)
         try:
             ph = Image.open(os.path.join(ROOT, r["p"]["photo"])).convert("RGB").resize((72, 72), Image.LANCZOS)
             m = Image.new("L", (72, 72), 0); ImageDraw.Draw(m).ellipse((0, 0, 71, 71), fill=255)

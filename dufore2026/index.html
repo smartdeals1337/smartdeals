@@ -14,10 +14,10 @@
 <meta property="og:url" content="https://smartdealsclub.com/dufore2026/">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=163a774b">
+<meta name="twitter:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=05101085">
 <meta property="og:title" content="Dufore Open 2026">
 <meta property="og:description" content="Something's brewing at PGA Riviera Maya. Tee off tomorrow, 9:00 AM.">
-<meta property="og:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=163a774b">
+<meta property="og:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=05101085">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -730,6 +730,8 @@ tick();
       var r={p:p,net:[],gross:[],bonus:[],thru:[],total:0,done:0};
       rounds.forEach(function(k){
         var h=(D.rounds[k]||{})[p.id];
+        var tg=((D.totals||{})[k]||{})[p.id];
+        if((!h||!h.length)&&tg!=null){var bo2=((D.bonus||{})[k]||{})[p.id]||0;r.gross.push(tg);r.bonus[rounds.indexOf(k)]=bo2;r.net.push(tg-p.hcp-bo2);r.thru.push(18);r.total+=tg-p.hcp-bo2;r.done++;return}
         if(!h||!h.length){r.net.push(null);r.gross.push(null);r.thru.push(0);return}
         var g=0;h.forEach(function(x,i){g+=Math.min(x,par[i]+cap)});
         r.thru.push(h.length);
@@ -909,7 +911,7 @@ tick();
     var html='<div class="sh-h"><div class="ph"><img src="'+esc(p.photo)+'" alt="" width="240" height="240"></div><div><div class="sh-n">'+esc(p.name)+marks(p)+'</div><div class="sh-m">HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</div></div></div>'+badges(p)+
       '<div class="sh-s"><div><b>'+(X.pos[p.id]||"\u2013")+'</b><span>Position</span></div><div><b>'+(r.done?r.total:"\u2013")+'</b><span>Net total</span></div><div><b>'+(dl==null?"\u2013":fmt(dl))+'</b><span>To par</span></div></div>'+
       '<table class="sh-t"><thead><tr><th>Round</th><th>Gross</th><th>Bonus</th><th>Net</th><th>Pos</th></tr></thead><tbody>'+rows+'</tbody></table>'+
-      (cards?'<div class="sh-k">Scorecards</div>'+cards:'<p class="sh-e">Scorecards appear here after round one.</p>');
+      (cards?'<div class="sh-k">Scorecards</div>'+cards:'<p class="sh-e">'+(r.done?'Round totals only, no hole-by-hole scorecard recorded.':'Scorecards appear here after round one.')+'</p>');
     showSheet(html);
   }
   document.getElementById("board").addEventListener("click",function(e){var r=e.target.closest(".row:not(.head)");if(r)openSheet(r.dataset.id)});

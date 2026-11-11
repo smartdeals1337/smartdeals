@@ -276,5 +276,49 @@
   "2": {},
   "3": {},
   "4": {}
+ },
+ "teeTimes": {
+  "1": [
+   {
+    "label": "9:00 AM",
+    "title": "Honorary Starters",
+    "players": [
+     "chairman",
+     "vice",
+     "slugger",
+     "stallion"
+    ]
+   },
+   {
+    "label": "9:10 AM",
+    "title": "Second Threesome",
+    "players": [
+     "cook",
+     "sleeper",
+     "birdwatcher"
+    ]
+   }
+  ],
+  "2": [
+   {
+    "label": "9:00 AM",
+    "title": "First Group",
+    "players": [
+     "cook",
+     "slugger",
+     "chairman",
+     "sleeper"
+    ]
+   },
+   {
+    "label": "9:10 AM",
+    "title": "Second Threesome",
+    "players": [
+     "stallion",
+     "vice",
+     "birdwatcher"
+    ]
+   }
+  ]
  }
 }

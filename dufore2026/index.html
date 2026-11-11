@@ -485,6 +485,100 @@ html.noscroll,html.noscroll body{overflow:hidden}
 
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));z-index:400;width:max-content;max-width:calc(100% - 32px);transform:translate(-50%,24px);opacity:0;pointer-events:none;padding:14px 20px;border-radius:14px;border:1px solid rgba(207,168,69,.6);background:rgba(2,31,18,.96);box-shadow:0 14px 34px rgba(0,0,0,.5);color:var(--cream);font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.05rem;line-height:1.35;text-align:center;transition:opacity .3s,transform .3s}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- phone readability ---------- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.pl,.pr,.cb-p,.hy .wn,.credit .ph{cursor:pointer;-webkit-tap-highlight-color:rgba(232,207,134,.2)}
+.pl:active .ph,.cb-p:active .cb-ph,.credit .ph:active{transform:scale(.96)}
+.ph,.cb-ph{transition:transform .15s}
+@media(max-width:640px){
+  /* header and countdown */
+  .rounds{font-size:.8rem}.clabel{font-size:.76rem}.lbl{font-size:.74rem}
+  .where{font-size:.88rem}.tees h2,.sched h2{font-size:.82rem}
+  /* tee cards */
+  .th span{font-size:.92rem}.th b{font-size:1.35rem}
+  .pn{font-size:.8rem;letter-spacing:.05em;min-height:2.7em}.pm{font-size:1.08rem}
+  /* schedule */
+  .sd .sr{font-size:.7rem}.sd .sm{font-size:1.02rem}
+  /* menu */
+  .snav a{font-size:.72rem;letter-spacing:.08em;padding:11px 12px}
+  /* standings: two-line rows so every number can be large */
+  .row.head{display:none}
+  .row{grid-template-columns:34px 44px repeat(4,minmax(0,1fr)) auto;grid-template-rows:auto auto;column-gap:0;row-gap:10px;padding:15px 14px 13px}
+  .row .pos{grid-column:1;grid-row:1;align-self:center}
+  .row .pos b{font-size:1.15rem}
+  .mv{font-size:.72rem}
+  .row .sav{display:block;grid-column:2;grid-row:1;width:40px;height:40px}
+  .row .nm{grid-column:3 / 7;grid-row:1;padding-left:10px;font-size:.86rem;letter-spacing:.04em}
+  .row .nm small{font-size:1.05rem}
+  .row .tot{grid-column:7;grid-row:1 / span 2;align-self:center;padding-left:6px}
+  .tot b{font-size:1.6rem}.tot i{font-size:1.05rem}
+  .row .rc{grid-row:2;min-width:0}
+  .row .rc:nth-child(4){grid-column:3;padding-left:10px;text-align:left}
+  .row .rc:nth-child(5){grid-column:4}.row .rc:nth-child(6){grid-column:5}.row .rc:nth-child(7){grid-column:6}
+  .row .rc::before{display:block;font-family:Cinzel,serif;font-size:.7rem;letter-spacing:.12em;color:var(--gold-text);margin-bottom:3px}
+  .row .rc:nth-child(4)::before{content:"R1"}.row .rc:nth-child(5)::before{content:"R2"}.row .rc:nth-child(6)::before{content:"R3"}.row .rc:nth-child(7)::before{content:"R4"}
+  .rc b{font-size:1.1rem}.rc i{font-size:.9rem}.rc u{font-size:.8rem}
+  /* The Field */
+  .pr{padding:14px 16px}
+  .pr .av{width:52px;height:52px}
+  .pr .nm{font-size:.86rem}.pr .nm small{font-size:1.08rem}
+  .pr .tag{font-size:.76rem}.pr .tag small{font-size:1.02rem}
+  .bd{font-size:.7rem;padding:5px 11px;letter-spacing:.1em}
+  .bd .ai{width:13px;height:13px}.bd .fl,.bd .fw .fl{width:17px;height:11px}
+  .bench-h{font-size:.76rem;padding:10px 16px}
+  .chd div{font-size:1.05rem}.chd small{font-size:1.15rem}
+  /* history */
+  .hy .loc{font-size:.84rem}.hy .loc small{font-size:1.02rem}
+  .hy .wn{font-size:.94rem}.hy .wn.none{font-size:1.1rem}
+  .hy .wn.cal small{font-size:1.02rem}
+  .hy .yr{font-size:1.1rem}
+  /* course table */
+  .pars th{font-size:.72rem}.pars td{font-size:.9rem}
+  .pars th:first-child,.pars td:first-child{font-size:.72rem;width:50px}
+  /* footer and buttons */
+  .foot p{font-size:.78rem}.foot .sub{font-size:1.05rem}
+  .credit .cr-t{font-size:1.12rem}.credit .cr-t span{font-size:.72rem}
+  .cmp,.inst{font-size:.74rem}
+  .insttip{font-size:1.05rem}
+  .fine{font-size:1rem}
+  /* player sheet */
+  .sh-t th{font-size:.7rem}.sh-t td{font-size:.98rem}.sh-t td:first-child,.sh-t th:first-child{font-size:.74rem}
+  .sh-t .ps b{font-size:1.05rem}
+  .sh-s span{font-size:.7rem}.sh-s b{font-size:1.5rem}
+  .sh-k{font-size:.76rem}.sh-m{font-size:1.15rem}.sh-n{font-size:1.2rem}
+  .sh-p summary{font-size:.8rem}.sh-p summary span{font-size:1.08rem}
+  .scard th{font-size:.66rem}.scard td{font-size:.82rem}.scard th:first-child,.scard td:first-child{font-size:.66rem;width:42px}
+  .sc{min-width:24px;height:24px}
+  .sh-p .mv{font-size:.72rem}
+  /* forms and gallery */
+  #cmpForm label{font-size:.74rem}#cmpForm label i{font-size:1rem}
+  .chip span{font-size:.74rem;padding:10px 15px}
+  .cmp-p{font-size:1.12rem}.cmp-s{font-size:1.12rem}
+  .gi span{font-size:1.02rem}.gi em{font-size:.68rem}
+  .toast{font-size:1.12rem}
+  .bd{font-size:.76rem}
+  .sd .sr,.lbl{font-size:.78rem}.clabel{font-size:.8rem}
+  .pars th,.pars th:first-child,.pars td:first-child{font-size:.76rem}.pars td{font-size:.92rem}
+  .gi em{font-size:.76rem}
+  .row .rc,.row .rc:nth-child(4){text-align:left;padding-left:0}
+  .row .rc:nth-child(4){padding-left:10px}
+  .pls[style*="--n:4"] .pm{font-size:.9rem;letter-spacing:-.01em}
+  .pls[style*="--n:4"] .pn{font-size:.78rem;letter-spacing:.03em}
+  .sd .sr{font-size:.72rem;letter-spacing:.06em;white-space:nowrap}
+  .sd{padding-left:2px;padding-right:2px}
+}
+@media(max-width:380px){
+  .rc u{display:block;margin-top:1px}
+}
+@media(max-width:340px){
+  .snav a{font-size:.64rem;padding:10px 7px;letter-spacing:.04em}
+  .snav{gap:0}
+  .ph .bg i{font-size:.74rem}.ph .bg{height:24px;min-width:24px}
+  .snav a{font-size:.74rem}
+  .pr .tag{font-size:.8rem}.bench-h{font-size:.8rem}.pn{font-size:.82rem}
+  .foot p{font-size:.8rem}.cmp,.inst{font-size:.78rem}.rounds{font-size:.84rem}
+}
 </style>
 </head>
 <body>
@@ -763,9 +857,30 @@ tick();
   function lock(on){document.documentElement.classList.toggle("noscroll",on)}
   function closeSheet(){sh.classList.remove("on");lock(false);setTimeout(function(){sh.hidden=true},260);if(lastFocus&&lastFocus.focus)lastFocus.focus()}
   function cls(d){return d<=-2?"eg":d===-1?"bd2":d===0?"pa":d===1?"bo":"db"}
+  function showSheet(html){
+    document.getElementById("shc").innerHTML=html;
+    lastFocus=document.activeElement;sh.hidden=false;lock(true);
+    requestAnimationFrame(function(){sh.classList.add("on")});
+    sh.querySelector(".sh-x").focus();
+  }
+  function pidByPhoto(src){
+    var X=window.__d;if(!X||!src)return null;
+    var all=(X.D.players||[]).concat(X.D.bench||[]);
+    for(var i=0;i<all.length;i++)if(all[i].photo&&src.indexOf(all[i].photo)>-1)return all[i].id;
+    return null}
+  document.addEventListener("click",function(e){
+    var c=e.target.closest(".ph,.av,.sav,.cb-ph,.pl,.cb-p,.pr,.wn");
+    if(!c||c.closest("#sheet,#board,#cmpSheet,.gi,.lb,.toast"))return;
+    var im=c.querySelector("img");if(!im)return;
+    var id=pidByPhoto(im.getAttribute("src"));
+    if(id)openSheet(id)});
   function openSheet(id){
     var X=window.__d;if(!X)return;
-    var r=X.res.filter(function(q){return q.p.id===id})[0];if(!r)return;
+    var r=X.res.filter(function(q){return q.p.id===id})[0];
+    if(!r){
+      var bp=(X.D.bench||[]).filter(function(q){return q.id===id})[0];if(!bp)return;
+      showSheet('<div class="sh-h"><div class="ph"><img src="'+esc(bp.photo||"")+'" alt="" width="240" height="240"></div><div><div class="sh-n">'+esc(bp.name)+'</div><div class="sh-m">HCP '+bp.hcp+' \u00b7 '+(bp.hand==="Left"?"Left-handed":"Right-handed")+'</div></div></div><span class="bds"><span class="bd">On the bench</span></span><p class="sh-e">On the bench for now, not in the standings.</p>');
+      return}
     var D=X.D,par=D.course.par,cap=D.course.cap,p=r.p;
     var rows="",cards="";
     ["1","2","3","4"].forEach(function(k,i){
@@ -790,10 +905,7 @@ tick();
       '<div class="sh-s"><div><b>'+(X.pos[p.id]||"\u2013")+'</b><span>Position</span></div><div><b>'+(r.done?r.total:"\u2013")+'</b><span>Net total</span></div><div><b>'+(dl==null?"\u2013":fmt(dl))+'</b><span>To par</span></div></div>'+
       '<table class="sh-t"><thead><tr><th>Round</th><th>Gross</th><th>Bonus</th><th>Net</th><th>Pos</th></tr></thead><tbody>'+rows+'</tbody></table>'+
       (cards?'<div class="sh-k">Scorecards</div>'+cards:'<p class="sh-e">Scorecards appear here after round one.</p>');
-    document.getElementById("shc").innerHTML=html;
-    lastFocus=document.activeElement;sh.hidden=false;lock(true);
-    requestAnimationFrame(function(){sh.classList.add("on")});
-    sh.querySelector(".sh-x").focus();
+    showSheet(html);
   }
   document.getElementById("board").addEventListener("click",function(e){var r=e.target.closest(".row:not(.head)");if(r)openSheet(r.dataset.id)});
   document.getElementById("board").addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){var r=e.target.closest(".row:not(.head)");if(r){e.preventDefault();openSheet(r.dataset.id)}}});

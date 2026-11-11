@@ -603,7 +603,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <div class="venue"><div class="badge"><img src="pga-riviera-maya.png" alt="PGA Riviera Maya"></div></div>
   <div class="where"><svg class="fl" viewBox="0 0 30 20"><rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce1126"/><circle cx="15" cy="10" r="2.2" fill="#8b6b2f"/></svg>Mexico · 9:00 AM</div>
   <div class="tees" id="tees">
-    <h2>Tee Times · Round One</h2>
+    <h2>Tee Times</h2>
     <div class="tee"><div class="th"><span>Honorary Starters</span><b>9:00 AM</b></div><div class="pls"><div class="pl"><div class="ph"><img src="players/chairman.jpg" alt="Chairman" width="240" height="240"></div><div class="pn">Chairman<span class="trs"><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div><div class="pm">HCP 22 · LH</div></div><div class="pl"><div class="ph"><img src="players/vice.jpg" alt="Vice" width="240" height="240"></div><div class="pn">Vice<span class="trs"><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div><div class="pm">HCP 21 · LH</div></div><div class="pl"><div class="ph"><img src="players/slugger.jpg" alt="Slugger" width="240" height="240"></div><div class="pn">Slugger</div><div class="pm">HCP 23 · RH</div></div><div class="pl"><div class="ph"><img src="players/stallion.jpg" alt="Italian Stallion" width="240" height="240"></div><div class="pn">Italian Stallion</div><div class="pm">HCP 2 · RH</div></div></div></div>
     <div class="tee"><div class="th"><span>Second Threesome</span><b>9:10 AM</b></div><div class="pls"><div class="pl"><div class="ph"><img src="players/cook.jpg" alt="Cook" width="240" height="240"></div><div class="pn">Cook</div><div class="pm">HCP 28 · RH</div></div><div class="pl"><div class="ph"><img src="players/sleeper.jpg" alt="Sleeper" width="240" height="240"></div><div class="pn">Sleeper<span class="trs"><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><svg class="tr" viewBox="0 0 48 48" aria-label="Past champion"><path d="M15 7h18v11a9 9 0 0 1-18 0z" fill="currentColor"/><path d="M15 10H8c0 6 3 9 8 10M33 10h7c0 6-3 9-8 10M24 27v8M17 41h14M19 35h10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div><div class="pm">HCP 14 · RH</div></div><div class="pl"><div class="ph"><img src="players/birdwatcher.jpg" alt="BirdWatcher" width="240" height="240"></div><div class="pn">BirdWatcher</div><div class="pm">HCP 12 · RH</div></div></div></div>
   </div>
@@ -659,13 +659,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 </main>
 <script>
 // First tee: Wed 11 Nov 2026, 9:00 AM Riviera Maya (UTC-5, no daylight saving)
-var T=new Date("2026-11-11T09:00:00-05:00").getTime();
+var T=new Date("2026-11-12T09:00:00-05:00").getTime();window.__setT=function(t){T=t;if(!window.__ticking)tick()};
 var el=function(i){return document.getElementById(i)};
 function p(n){return String(n).padStart(2,"0")}
 function setNum(i,v){var e=el(i);if(e.textContent===v)return;var first=e.dataset.set;e.textContent=v;e.dataset.set="1";if(first&&!matchMedia("(prefers-reduced-motion:reduce)").matches){e.classList.remove("flip");void e.offsetWidth;e.classList.add("flip")}}
 function tick(){
-  var r=T-Date.now();
-  if(r<=0){document.body.classList.add("done");el("tease").textContent="The Dufore Open is underway.";return}
+  window.__ticking=true;var r=T-Date.now();
+  if(r<=0){document.body.classList.add("done");el("tease").textContent="Round underway. Good luck.";window.__ticking=false;return}
+  document.body.classList.remove("done");
   var s=Math.floor(r/1000);
   setNum("d",p(Math.floor(s/86400)));
   setNum("h",p(Math.floor(s%86400/3600)));
@@ -812,22 +813,32 @@ tick();
       sc.innerHTML='<h2>Schedule \u00b7 Nov 11\u201314</h2><div class="sg">'+D.schedule.map(function(x,i){
         var st=D.rounds&&D.rounds[String(x.round)]&&Object.keys(D.rounds[String(x.round)]).length;
         return '<div class="sd'+(x.date===now?' today':'')+(st?' done':'')+'"><span class="sr">Round '+x.round+'</span><b>'+x.day+'</b><span class="sm">Nov \u00b7 '+x.label+'</span></div>'}).join("")+'</div>'}
+    // current round, next tee-off
+    var cr=3;for(var ci=0;ci<4;ci++){if(res.some(function(r){return r.net[ci]==null})){cr=ci;break}}
+    var RN=["One","Two","Three","Four"],sd=(D.schedule||[])[cr]||{};
+    var TT=((D.teeTimes||{})[String(cr+1)])||null;
+    window.__cr=cr;window.__TT=TT;
+    var nx=null;(D.schedule||[]).forEach(function(x){var t=new Date(x.date+"T09:00:00-05:00").getTime();if(!nx&&t>Date.now())nx={t:t,x:x}});
+    var cl=document.getElementById("clabel"),te=document.getElementById("tease");
+    if(nx){var nr=(D.schedule||[]).indexOf(nx.x);if(cl)cl.textContent="Round "+RN[nr]+" tees off in";if(te)te.textContent="Round "+RN[nr]+" \u00b7 "+nx.x.label+" Nov "+nx.x.day+", 9:00 AM";if(window.__setT)window.__setT(nx.t)}
     // tee cards
     var tees=document.getElementById("tees");
-    if(tees&&D.groups){
-      var th='<h2>Tee Times \u00b7 Round One</h2>';
-      D.groups.forEach(function(g){
-        var ps=D.players.filter(function(p){return p.group===g.time});
+    if(tees&&(TT||D.groups)){
+      var th='<h2>Tee Times \u00b7 Round '+RN[cr]+(sd.label?' \u00b7 '+sd.label+' Nov '+sd.day:'')+'</h2>';
+      (TT||D.groups.map(function(g){return {label:g.label,title:g.title,players:D.players.filter(function(p){return p.group===g.time}).map(function(p){return p.id})}})).forEach(function(g){
+        var byId2={};D.players.forEach(function(p){byId2[p.id]=p});
+        var ps=g.players.map(function(id){return byId2[id]}).filter(Boolean);
         th+='<div class="tee"><div class="th"><span>'+esc(g.title)+'</span><b>'+esc(g.label)+'</b></div><div class="pls" style="--n:'+ps.length+'">'+ps.map(function(p){
           var n=(p.cups||[]).length;
           var ac=(p.aces||[]).length?'<span class="bg" title="Hole in One">'+ACE+'</span>':'';
           var bg=(ac||n)?'<span class="bgs">'+ac+(n?'<span class="bg">'+TR+(n>1?'<i>'+n+'</i>':'')+'</span>':'')+'</span>':'';
           return '<div class="pl"><div class="ph"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="240" height="240">'+bg+'</div><div class="pn">'+esc(p.name)+'</div><div class="pm">HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"LH":"RH")+'</div></div>'}).join("")+'</div></div>'});
       tees.innerHTML=th}
+    function teeOf(id){if(TT)for(var gi=0;gi<TT.length;gi++)if(TT[gi].players.indexOf(id)>-1)return TT[gi].label;var pp=D.players.filter(function(q){return q.id===id})[0];return pp?pp.group+" AM":""}
     // roster
     var ro=document.getElementById("roster");ro.innerHTML="";
     D.players.forEach(function(p){
-      ro.appendChild(el("div","pr",'<div class="av"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88"></div><div class="nm">'+esc(p.name)+marks(p)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</small>'+badges(p)+'</div><div class="tag">'+p.group+' AM<small>Round 1</small></div>'))});
+      ro.appendChild(el("div","pr",'<div class="av"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" width="88" height="88"></div><div class="nm">'+esc(p.name)+marks(p)+'<small>HCP '+p.hcp+' \u00b7 '+(p.hand==="Left"?"Left-handed":"Right-handed")+'</small>'+badges(p)+'</div><div class="tag">'+teeOf(p.id)+'<small>Round '+(cr+1)+'</small></div>'))});
     var byId={};D.players.forEach(function(p){byId[p.id]=p});
     function av(w,cls){return w&&w.photo?'<span class="'+cls+'"><img src="'+esc(w.photo)+'" alt="" width="60" height="60"></span>':'<span class="'+cls+' ini">'+esc(w?w.initials:"")+'</span>'}
     function who(c){return c.id?byId[c.id]:{name:c.name,initials:c.initials}}

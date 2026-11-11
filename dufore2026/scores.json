@@ -163,7 +163,9 @@
   "4": {}
  },
  "bonus": {
-  "1": {},
+  "1": {
+   "sleeper": 2
+  },
   "2": {},
   "3": {},
   "4": {}
@@ -266,7 +268,10 @@
    "vice": 92,
    "chairman": 98,
    "stallion": 76,
-   "slugger": 101
+   "slugger": 101,
+   "sleeper": 92,
+   "cook": 108,
+   "birdwatcher": 86
   },
   "2": {},
   "3": {},

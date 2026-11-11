@@ -829,6 +829,7 @@ tick();
     if(msg.length<5){out.textContent="Please write your complaint first.";out.classList.add("bad");f.message.focus();return}
     if(f._gotcha.value){doneCmp(f,"Thank you. Your complaint was sent.");return}
     var name=f.name.value.trim()||"Anonymous",contact=f.contact.value.trim()||"(none given)",cat=(f.querySelector("input[name=cat]:checked")||{}).value||"Other";
+    if(cc.logEndpoint){try{fetch(cc.logEndpoint,{method:"POST",mode:"cors",keepalive:true,headers:{"Content-Type":"text/plain"},body:JSON.stringify({category:cat,name:name,contact:contact,message:msg,_gotcha:f._gotcha.value})}).catch(function(){})}catch(x){}}
     if(cc.endpoint){
       var last=0;try{last=+localStorage.getItem("dufore26-cmp")||0}catch(x){}
       if(Date.now()-last<60000){out.textContent="Please wait a minute before sending another one.";out.classList.add("bad");return}

@@ -474,14 +474,6 @@ html.noscroll,html.noscroll body{overflow:hidden}
 .cmp-s{min-height:1.4em;margin-top:14px;text-align:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.05rem;color:var(--cream)}
 .cmp-s.ok{color:#7be7a6}.cmp-s.bad{color:#ff9d9d}
 
-.cats{border:0;margin:16px 0 0;padding:0;min-width:0}
-.cats legend{padding:0;font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-text)}
-.cats .chip{display:inline-block;margin:8px 6px 0 0;padding:0}
-#cmpForm .cats .chip input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
-.chip span{display:inline-block;padding:9px 15px;border-radius:99px;border:1px solid rgba(207,168,69,.45);background:rgba(0,0,0,.22);font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);cursor:pointer;transition:background .2s,color .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
-.chip input:checked+span{background:linear-gradient(135deg,var(--gold-light),var(--gold));border-color:var(--gold-light);color:var(--green-deep);font-weight:700}
-.chip input:focus-visible+span{outline:2px solid var(--gold-light);outline-offset:2px}
-#cmpForm .cats .chip{display:inline-block;margin:8px 6px 0 0;padding:0;font-size:inherit;letter-spacing:0;text-transform:none}
 
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));z-index:400;width:max-content;max-width:calc(100% - 32px);transform:translate(-50%,24px);opacity:0;pointer-events:none;padding:14px 20px;border-radius:14px;border:1px solid rgba(207,168,69,.6);background:rgba(2,31,18,.96);box-shadow:0 14px 34px rgba(0,0,0,.5);color:var(--cream);font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.05rem;line-height:1.35;text-align:center;transition:opacity .3s,transform .3s}
 .toast.on{opacity:1;transform:translate(-50%,0)}
@@ -539,7 +531,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   /* footer and buttons */
   .foot p{font-size:.78rem}.foot .sub{font-size:1.05rem}
   .credit .cr-t{font-size:1.12rem}.credit .cr-t span{font-size:.72rem}
-  .cmp,.inst{font-size:.74rem}
+  .inst{font-size:.74rem}
   .insttip{font-size:1.05rem}
   .fine{font-size:1rem}
   /* player sheet */
@@ -553,7 +545,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   .sh-p .mv{font-size:.72rem}
   /* forms and gallery */
   #cmpForm label{font-size:.74rem}#cmpForm label i{font-size:1rem}
-  .chip span{font-size:.74rem;padding:10px 15px}
   .cmp-p{font-size:1.12rem}.cmp-s{font-size:1.12rem}
   .gi span{font-size:1.02rem}.gi em{font-size:.68rem}
   .toast{font-size:1.12rem}
@@ -577,8 +568,21 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   .ph .bg i{font-size:.74rem}.ph .bg{height:24px;min-width:24px}
   .snav a{font-size:.74rem}
   .pr .tag{font-size:.8rem}.bench-h{font-size:.8rem}.pn{font-size:.82rem}
-  .foot p{font-size:.8rem}.cmp,.inst{font-size:.78rem}.rounds{font-size:.84rem}
+  .foot p{font-size:.8rem}.inst{font-size:.78rem}.rounds{font-size:.84rem}
 }
+
+.cmpw{margin-top:34px;text-align:center}
+.cmp-l{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.1rem;color:var(--cream);margin-bottom:12px}
+.cmp{display:flex;align-items:center;justify-content:center;gap:12px;width:min(100%,360px);margin:0 auto;padding:17px 24px;border-radius:99px;border:1.5px solid var(--gold);background:linear-gradient(135deg,rgba(232,207,134,.24),rgba(207,168,69,.1));box-shadow:0 8px 24px rgba(0,0,0,.35),0 0 0 4px rgba(207,168,69,.08);color:var(--gold-light);font-family:Cinzel,serif;font-weight:700;font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s}
+.cmp:hover{background:linear-gradient(135deg,rgba(232,207,134,.36),rgba(207,168,69,.2));box-shadow:0 10px 28px rgba(0,0,0,.4),0 0 0 5px rgba(207,168,69,.14)}
+.cmp:active{transform:scale(.98)}
+.cmp svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+#cmpForm .sel{position:relative;display:block;margin-top:7px}
+#cmpForm .sel::after{content:"";position:absolute;right:18px;top:50%;width:9px;height:9px;margin-top:-7px;border-right:2px solid var(--gold-light);border-bottom:2px solid var(--gold-light);transform:rotate(45deg);pointer-events:none}
+#cmpForm select{display:block;width:100%;margin:0;padding:14px 44px 14px 14px;border-radius:12px;border:1px solid rgba(207,168,69,.45);background:rgba(0,0,0,.28);color:var(--cream);font-family:"Cormorant Garamond",serif;font-size:16px;line-height:1.4;outline:none;-webkit-appearance:none;appearance:none}
+#cmpForm select:focus{border-color:var(--gold-light);box-shadow:0 0 0 3px rgba(232,207,134,.2)}
+#cmpForm select:invalid{color:var(--gold)}
+#cmpForm select option{background:#0a3d22;color:#f7f2e4}
 </style>
 </head>
 <body>
@@ -650,7 +654,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     </div>
     <div class="card pars" id="pars"></div>
   </section>
-  <footer class="foot"><div class="flag" aria-hidden="true"><i></i><i></i><i></i></div><p>Dufore Open 2026 · PGA Riviera Maya, Mexico</p><p class="sub">Standings update after every round</p><div class="credit"><div class="ph"><img src="players/vice.jpg" alt="Vice" width="240" height="240"></div><p class="cr-t"><span>Built by</span>the Vice-Chair, Chief Worldwide Technology Officer, General Counsel, Chief Marketing Officer and Personal Assistant to the Chairman and Vice-Chair</p></div><button class="inst" id="inst" type="button" hidden>Add to Home Screen</button><button class="cmp" id="cmpBtn" type="button" hidden>File a complaint</button></footer>
+  <footer class="foot"><div class="flag" aria-hidden="true"><i></i><i></i><i></i></div><p>Dufore Open 2026 · PGA Riviera Maya, Mexico</p><p class="sub">Standings update after every round</p><div class="credit"><div class="ph"><img src="players/vice.jpg" alt="Vice" width="240" height="240"></div><p class="cr-t"><span>Built by</span>the Vice-Chair, Chief Worldwide Technology Officer, General Counsel, Chief Marketing Officer and Personal Assistant to the Chairman and Vice-Chair</p></div><button class="inst" id="inst" type="button" hidden>Add to Home Screen</button><div class="cmpw"><p class="cmp-l">Something not right?</p><button class="cmp" id="cmpBtn" type="button" hidden><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 10h32a2 2 0 0 1 2 2v20a2 2 0 0 1-2 2H22l-9 8v-8H8a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z"/><path d="M24 17v8M24 29.5v.5"/></svg><span>File a complaint</span></button></div></footer>
 </main>
 <script>
 // First tee: Wed 11 Nov 2026, 9:00 AM Riviera Maya (UTC-5, no daylight saving)
@@ -921,14 +925,15 @@ tick();
 
   // ---- complaint form (sent through a relay; no email address on this page) ----
   var cm=document.createElement("div");cm.className="sheet";cm.id="cmpSheet";cm.hidden=true;
-  cm.innerHTML='<div class="sh-bd" data-x></div><div class="sh-p" role="dialog" aria-modal="true" aria-label="File a complaint"><button class="sh-x" type="button" data-x aria-label="Close">×</button><form id="cmpForm" novalidate><h3 class="cmp-h">File a complaint</h3><p class="cmp-p">Write your complaint and tap send. Your email app opens with it ready for the executive committee. Your name is optional.</p><fieldset class="cats"><legend>Category</legend><label class="chip"><input type="radio" name="cat" value="Golf rules"><span>Golf rules</span></label><label class="chip"><input type="radio" name="cat" value="Wellness"><span>Wellness</span></label><label class="chip"><input type="radio" name="cat" value="Cleanliness"><span>Cleanliness</span></label><label class="chip"><input type="radio" name="cat" value="Etiquette"><span>Etiquette</span></label><label class="chip"><input type="radio" name="cat" value="Security"><span>Security</span></label><label class="chip"><input type="radio" name="cat" value="Accommodation"><span>Accommodation</span></label><label class="chip"><input type="radio" name="cat" value="Drinks"><span>Drinks</span></label><label class="chip"><input type="radio" name="cat" value="Other" checked><span>Other</span></label></fieldset><label>Your name <i>(optional)</i><input name="name" maxlength="80" autocomplete="name"></label><label>Phone <i>(optional, only if you want a reply)</i><input name="contact" maxlength="120" autocomplete="off"></label><label>Your complaint<textarea name="message" rows="6" maxlength="1200" required></textarea></label><input class="hp" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="cmp-go" type="submit">Send by email</button><p class="cmp-s" id="cmpS" role="status"></p></form></div>';
+  cm.innerHTML='<div class="sh-bd" data-x></div><div class="sh-p" role="dialog" aria-modal="true" aria-label="File a complaint"><button class="sh-x" type="button" data-x aria-label="Close">×</button><form id="cmpForm" novalidate><h3 class="cmp-h">File a complaint</h3><p class="cmp-p">Write your complaint and tap send. Your email app opens with it ready for the executive committee. Your name is optional.</p><label class="catl">Category<span class="sel"><select name="cat" required><option value="" disabled selected>Choose a category</option><option value="Golf rules">Golf rules</option><option value="Wellness">Wellness</option><option value="Cleanliness">Cleanliness</option><option value="Etiquette">Etiquette</option><option value="Security">Security</option><option value="Accommodation">Accommodation</option><option value="Drinks">Drinks</option><option value="Other">Other</option></select></span></label><label>Your name <i>(optional)</i><input name="name" maxlength="80" autocomplete="name"></label><label>Phone <i>(optional, only if you want a reply)</i><input name="contact" maxlength="120" autocomplete="off"></label><label>Your complaint<textarea name="message" rows="6" maxlength="1200" required></textarea></label><input class="hp" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="cmp-go" type="submit">Send by email</button><p class="cmp-s" id="cmpS" role="status"></p></form></div>';
   document.body.appendChild(cm);
   var cmLast=null;
-  function openCmp(){cmLast=document.activeElement;document.getElementById("cmpS").textContent="";cm.hidden=false;lock(true);requestAnimationFrame(function(){cm.classList.add("on")});setTimeout(function(){var f=cm.querySelector("textarea");if(f)f.focus()},300)}
+  function openCmp(){cmLast=document.activeElement;document.getElementById("cmpS").textContent="";cm.hidden=false;lock(true);requestAnimationFrame(function(){cm.classList.add("on")});void 0}
   function closeCmp(){cm.classList.remove("on");lock(false);setTimeout(function(){cm.hidden=true},260);if(cmLast&&cmLast.focus)cmLast.focus()}
   function toast(t){var x=document.getElementById("toast");if(!x){x=document.createElement("div");x.id="toast";x.className="toast";x.setAttribute("role","status");document.body.appendChild(x)}x.textContent=t;x.classList.add("on");clearTimeout(x._t);x._t=setTimeout(function(){x.classList.remove("on")},7000)}
   function doneCmp(f,t){f.reset();closeCmp();toast(t)}
   document.getElementById("cmpBtn").addEventListener("click",openCmp);
+  cm.querySelector("select").addEventListener("change",function(){var o=document.getElementById("cmpS");o.textContent="";o.className="cmp-s"});
   cm.addEventListener("click",function(e){if(e.target.hasAttribute("data-x"))closeCmp()});
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!cm.hidden)closeCmp()});
   // The address is stored encoded so it is not sitting in the page text; it is only decoded when a player taps Send.
@@ -938,9 +943,10 @@ tick();
     e.preventDefault();
     var f=e.target,msg=f.message.value.trim(),out=document.getElementById("cmpS"),go=f.querySelector(".cmp-go"),cc=window.__cc||{};
     out.className="cmp-s";
+    if(!f.cat.value){out.textContent="Please choose a category.";out.classList.add("bad");f.cat.focus();return}
     if(msg.length<5){out.textContent="Please write your complaint first.";out.classList.add("bad");f.message.focus();return}
     if(f._gotcha.value){doneCmp(f,"Thank you. Your complaint was sent.");return}
-    var name=f.name.value.trim()||"Anonymous",contact=f.contact.value.trim()||"(none given)",cat=(f.querySelector("input[name=cat]:checked")||{}).value||"Other";
+    var name=f.name.value.trim()||"Anonymous",contact=f.contact.value.trim()||"(none given)",cat=f.cat.value||"Other";
     if(cc.endpoint){
       var last=0;try{last=+localStorage.getItem("dufore26-cmp")||0}catch(x){}
       if(Date.now()-last<60000){out.textContent="Please wait a minute before sending another one.";out.classList.add("bad");return}

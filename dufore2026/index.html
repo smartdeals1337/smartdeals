@@ -14,10 +14,10 @@
 <meta property="og:url" content="https://smartdealsclub.com/dufore2026/">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=73412d0c">
+<meta name="twitter:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=6907d3ca">
 <meta property="og:title" content="Dufore Open 2026">
 <meta property="og:description" content="Something's brewing at PGA Riviera Maya. Tee off tomorrow, 9:00 AM.">
-<meta property="og:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=73412d0c">
+<meta property="og:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=6907d3ca">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -745,14 +745,12 @@ tick();
     var rest=res.filter(function(r){return r.done===0});
     played.sort(function(a,b){
       var da=a.total-PAR*a.done, db=b.total-PAR*b.done;
-      if(a.done!==b.done)return b.done-a.done;
       if(da!==db)return da-db;
       return 0});
     var maxDone=played.length?played[0].done:0;
     var posOf=[];played.forEach(function(r,i){
       var j=i;while(j>0&&cmp(played[j-1],r)===0)j--;posOf.push(j+1)});
     function cmp(a,b){
-      if(a.done!==b.done)return b.done-a.done;
       var da=a.total-PAR*a.done,db=b.total-PAR*b.done;
       if(da!==db)return da-db;return 0}
     var ties={};posOf.forEach(function(x){ties[x]=(ties[x]||0)+1});
@@ -761,7 +759,7 @@ tick();
       var list=res.filter(function(r){for(var j=0;j<=i;j++)if(r.net[j]==null)return false;return true}).map(function(r){var q=0;for(var j=0;j<=i;j++)q+=r.net[j];return {id:r.p.id,s:q}});
       list.sort(function(a,b){return a.s-b.s});
       var m={};list.forEach(function(x,n){var q=n;while(q>0&&list[q-1].s===x.s)q--;m[x.id]=q+1});rk.push(m)});
-    function mvOf(id){if(lastRound<1)return 0;var a=rk[lastRound-1][id],b=rk[lastRound][id];return(a&&b)?a-b:0}
+    function mvOf(id){if(lastRound<1||res.some(function(r){return r.net[lastRound]==null}))return 0;var a=rk[lastRound-1][id],b=rk[lastRound][id];return(a&&b)?a-b:0}
     var sigs={},nch=0;res.forEach(function(r){sigs[r.p.id]=JSON.stringify([r.net,r.gross,r.thru])});
     var board=document.getElementById("board");board.innerHTML="";
     board.appendChild(el("div","row head",'<span>Pos</span><span></span><span>Player</span><span>R1</span><span>R2</span><span>R3</span><span>R4</span><span>Total</span>'));
@@ -783,7 +781,7 @@ tick();
     var st=document.getElementById("status");
     var full=rounds.filter(function(k,i){return res.every(function(r){return r.net[i]!=null})}).length;
     if(!played.length&&!res.some(function(r){return r.thru.some(function(x){return x>0})}))st.textContent="Round 1 tees off Wednesday, 9:00 AM. Scores post after every round.";
-    else st.textContent=(full===0?"Round 1 in progress":"Round "+full+" of 4 complete")+(D.updated?" \u00b7 Updated "+D.updated:"");
+    else st.textContent=(full<4&&res.some(function(r){return r.net[full]!=null||r.thru[full]>0})?"Round "+(full+1)+" in progress"+(full>0?" \u00b7 Round "+full+" complete":""):(full===0?"Round 1 in progress":"Round "+full+" of 4 complete"))+(D.updated?" \u00b7 Updated "+D.updated:"");
     var posMap={};played.forEach(function(r,i){posMap[r.p.id]=(ties[posOf[i]]>1?"T":"")+posOf[i]});
     window.__d={res:res,rk:rk,D:D,PAR:PAR,pos:posMap,lastRound:lastRound};
     lastSig=sigs;try{localStorage.setItem("dufore26-sig",JSON.stringify(sigs))}catch(e){}
@@ -903,7 +901,8 @@ tick();
     var rows="",cards="";
     ["1","2","3","4"].forEach(function(k,i){
       var h=(D.rounds[k]||{})[p.id]||[];
-      var rankNow=X.rk[i][p.id],rankPrev=i?X.rk[i-1][p.id]:null,mv=(rankNow&&rankPrev)?rankPrev-rankNow:0;
+      var rdone=X.res.every(function(q){return q.net[i]!=null});
+      var rankNow=rdone?X.rk[i][p.id]:null,rankPrev=(i&&rdone)?X.rk[i-1][p.id]:null,mv=(rankNow&&rankPrev)?rankPrev-rankNow:0;
       var pos=rankNow?('<b>'+rankNow+'</b>'+(mv?'<em class="mv '+(mv>0?'up':'dn')+'">'+(mv>0?'\u25B2':'\u25BC')+Math.abs(mv)+'</em>':'')):'<span class="na">\u2013</span>';
       if(r.net[i]!=null)rows+='<tr><td>Round '+k+'</td><td>'+r.gross[i]+'</td><td>'+(r.bonus[i]?'\u2605'+r.bonus[i]:'\u2013')+'</td><td><b>'+r.net[i]+'</b></td><td class="ps">'+pos+'</td></tr>';
       else if(r.thru[i]>0)rows+='<tr><td>Round '+k+'</td><td>'+r.gross[i]+'</td><td>\u2013</td><td class="na">thru '+r.thru[i]+'</td><td class="ps"><span class="na">\u2013</span></td></tr>';

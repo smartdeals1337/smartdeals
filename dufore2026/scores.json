@@ -23,7 +23,7 @@
   ],
   "cap": 2
  },
- "updated": "Wed 11 Nov",
+ "updated": "Thu 12 Nov",
  "players": [
   {
    "id": "chairman",
@@ -273,7 +273,11 @@
    "cook": 108,
    "birdwatcher": 86
   },
-  "2": {},
+  "2": {
+   "stallion": 81,
+   "birdwatcher": 91,
+   "vice": 101
+  },
   "3": {},
   "4": {}
  },

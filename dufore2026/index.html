@@ -585,6 +585,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #cmpForm select:invalid{color:var(--gold)}
 #cmpForm select option{background:#0a3d22;color:#f7f2e4}
 .tee.tba{display:block;text-align:center;padding:22px 18px}.tee.tba span{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.15rem;color:var(--cream)}
+.tee.tba b{display:block;font-family:Cinzel,serif;font-size:1.05rem;letter-spacing:.12em;color:var(--gold-light);margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -823,7 +824,7 @@ tick();
     // tee cards
     var tees=document.getElementById("tees");
     if(tees&&(TT||D.groups)){
-      if(!TT&&D.teeTimes){tees.innerHTML='<h2>Tee Times \u00b7 Round '+RN[cr]+(sd.label?' \u00b7 '+sd.label+' Nov '+sd.day:'')+'</h2><div class="tee tba"><span>Groups and tee times to be announced</span></div>';}else{
+      if(!TT&&D.teeTimes){tees.innerHTML='<h2>Tee Times \u00b7 Round '+RN[cr]+(sd.label?' \u00b7 '+sd.label+' Nov '+sd.day:'')+'</h2><div class="tee tba">'+(((D.tbaNote||{})[String(cr+1)])?'<b>'+esc(D.tbaNote[String(cr+1)])+'</b>':'')+'<span>Groups to be announced</span></div>';}else{
       var th='<h2>Tee Times \u00b7 Round '+RN[cr]+(sd.label?' \u00b7 '+sd.label+' Nov '+sd.day:'')+'</h2>';
       (TT||D.groups.map(function(g){return {label:g.label,title:g.title,players:D.players.filter(function(p){return p.group===g.time}).map(function(p){return p.id})}})).forEach(function(g){
         var byId2={};D.players.forEach(function(p){byId2[p.id]=p});

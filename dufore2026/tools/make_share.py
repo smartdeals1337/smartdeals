@@ -58,7 +58,7 @@ for p in d["players"]:
     res.append({"p": p, "nets": nets, "done": done, "total": sum(n for n in nets if n is not None)})
 played = [r for r in res if r["done"]]
 last = max([i for r in played for i, n in enumerate(r["nets"]) if n is not None], default=-1)
-played.sort(key=lambda r: (-r["done"], r["total"] - PAR * r["done"]))
+played.sort(key=lambda r: r["total"] - PAR * r["done"])
 
 # ---- canvas ----
 W, H = 1200, 630
@@ -130,8 +130,9 @@ elif not played:
     center_text(480, "Mexico · 4 rounds · 1 champion", font("corm", 40), GOLD)
 else:
     rn = max(r["done"] for r in played)
+    in_progress = any(r["done"] < rn for r in res)
     centered_spaced(142, "STANDINGS", font("cinzel", 28), GOLD, 9)
-    center_text(180, "After round %d of 4" % rn if rn < 4 else "Final standings", font("corm", 36), CREAM)
+    center_text(180, ("Round %d in progress" % rn) if in_progress else ("After round %d of 4" % rn if rn < 4 else "Final standings"), font("corm", 36), CREAM)
     y = 232
     for i, r in enumerate(played[:3]):
         rowy = y + i * 110
@@ -139,7 +140,7 @@ else:
         ImageDraw.Draw(ov).rounded_rectangle((X, rowy, W - 60, rowy + 94), radius=16, fill=(255, 255, 255, 22 if i else 46), outline=(207, 168, 69, 200 if i == 0 else 110), width=2)
         im.alpha_composite(ov)
         dr = ImageDraw.Draw(im)
-        key = lambda q: (-q["done"], q["total"] - PAR * q["done"])
+        key = lambda q: q["total"] - PAR * q["done"]
         pos = next(j for j in range(len(played)) if key(played[j]) == key(r)) + 1
         tied = sum(1 for q in played if key(q) == key(r)) > 1
         dr.text((X + 24, rowy + 18), ("T" if tied else "") + str(pos), font=font("cinzelb", 40 if tied else 46), fill=GOLDL)

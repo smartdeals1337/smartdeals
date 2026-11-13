@@ -169,7 +169,10 @@
   "2": {
    "stallion": 1
   },
-  "3": {},
+  "3": {
+   "sleeper": 1,
+   "stallion": 1
+  },
   "4": {}
  },
  "history": [
@@ -288,7 +291,10 @@
    "vice": 97,
    "stallion": 79,
    "sleeper": 92,
-   "cook": 106
+   "cook": 106,
+   "slugger": 103,
+   "chairman": 105,
+   "birdwatcher": 84
   },
   "4": {}
  },

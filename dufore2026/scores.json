@@ -350,6 +350,27 @@
      "sleeper"
     ]
    }
+  ],
+  "4": [
+   {
+    "label": "9:00 AM",
+    "title": "First Foursome",
+    "players": [
+     "vice",
+     "sleeper",
+     "birdwatcher",
+     "slugger"
+    ]
+   },
+   {
+    "label": "9:10 AM",
+    "title": "Second Threesome",
+    "players": [
+     "chairman",
+     "cook",
+     "stallion"
+    ]
+   }
   ]
  }
 }

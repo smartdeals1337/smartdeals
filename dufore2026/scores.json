@@ -23,7 +23,7 @@
   ],
   "cap": 2
  },
- "updated": "Thu 12 Nov",
+ "updated": "Fri 13 Nov",
  "players": [
   {
    "id": "chairman",
@@ -284,7 +284,12 @@
    "sleeper": 87,
    "slugger": 101
   },
-  "3": {},
+  "3": {
+   "vice": 97,
+   "stallion": 79,
+   "sleeper": 92,
+   "cook": 106
+  },
   "4": {}
  },
  "teeTimes": {

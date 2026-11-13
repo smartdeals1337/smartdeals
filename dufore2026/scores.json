@@ -329,9 +329,27 @@
      "vice"
     ]
    }
+  ],
+  "3": [
+   {
+    "label": "9:00 AM",
+    "title": "First Foursome",
+    "players": [
+     "chairman",
+     "birdwatcher",
+     "vice",
+     "cook"
+    ]
+   },
+   {
+    "label": "9:10 AM",
+    "title": "Second Threesome",
+    "players": [
+     "slugger",
+     "stallion",
+     "sleeper"
+    ]
+   }
   ]
- },
- "tbaNote": {
-  "3": "Tee times 9:00 AM and 9:10 AM"
  }
 }

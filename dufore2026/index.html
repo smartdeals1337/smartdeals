@@ -586,6 +586,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #cmpForm select option{background:#0a3d22;color:#f7f2e4}
 .tee.tba{display:block;text-align:center;padding:22px 18px}.tee.tba span{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.15rem;color:var(--cream)}
 .tee.tba b{display:block;font-family:Cinzel,serif;font-size:1.05rem;letter-spacing:.12em;color:var(--gold-light);margin-bottom:8px}
+
+@media(max-width:480px){
+  .pls[style*="--n:4"]{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:20px;column-gap:10px}
+  .pls[style*="--n:4"] .pn{font-size:.82rem;letter-spacing:.06em;min-height:0}
+  .pls[style*="--n:4"] .pm{font-size:1.08rem}
+}
 </style>
 </head>
 <body>

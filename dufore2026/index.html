@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Dufore Open 2026 · PGA Riviera Maya</title>
+<title>Dufore Open 2026 · 5th Edition · PGA Riviera Maya</title>
 <meta name="description" content="The Dufore Open 2026. PGA Riviera Maya, Mexico. Round one tees off tomorrow at 9:00 AM.">
 <meta name="theme-color" content="#03311b">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -661,6 +661,36 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .tees,.sched{width:100%;max-width:680px;margin-left:auto;margin-right:auto}
 .sec,.foot,.cmpw{max-width:680px;margin-left:auto;margin-right:auto}
 .sec{width:100%}
+
+/* hero header: big logo, 5th edition, venue */
+.hc-top{flex-direction:column;gap:12px}
+.hc-top img.hc-logo{width:clamp(104px,34vw,150px);height:auto;aspect-ratio:1;border-radius:50%;filter:none;box-shadow:0 0 0 3px rgba(232,207,134,.55),0 0 46px rgba(232,207,134,.45),0 14px 30px rgba(0,0,0,.55)}
+.hc-ed{display:flex;flex-direction:column;align-items:center;gap:5px}
+.hc-ed b{font-family:Cinzel,serif;font-weight:700;font-size:clamp(.9rem,4.4vw,1.15rem);letter-spacing:.28em;margin-right:-.28em;text-transform:uppercase;color:var(--gold-light)}
+.hc-ed span{font-family:Cinzel,serif;font-size:clamp(.76rem,3.6vw,.92rem);letter-spacing:.3em;margin-right:-.3em;text-transform:uppercase;color:var(--cream)}
+.hc-ed em{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(1rem,4.4vw,1.15rem);color:var(--gold-text)}
+/* thank-you to everyone */
+.hc-thank{margin-top:28px;padding-top:22px;border-top:1px solid rgba(207,168,69,.4)}
+.hc-thank .hc-thanks{margin:0;line-height:1.35;font-size:clamp(1.12rem,5vw,1.3rem)}
+.hc-all{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 8px;margin-top:20px}
+.hc-av{width:84px;text-align:center;cursor:pointer;min-width:0}
+.hc-av .cb-ph{width:54px;height:54px;margin:0 auto!important;border-radius:50%;padding:2.5px;background:linear-gradient(135deg,var(--gold-light),var(--gold) 55%,#8f7226);box-shadow:0 6px 14px rgba(0,0,0,.45)}
+.hc-av .cb-ph img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.hc-av span{display:block;margin-top:7px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.02rem;line-height:1.15;color:var(--cream);overflow-wrap:anywhere}
+
+/* no collisions on small phones */
+@media(max-width:480px){
+  .pr .nm{min-width:0;flex:1 1 0}
+  .pr .tag{flex:none}
+  .pr .bds{min-width:0;max-width:100%}
+  .pr .bd,.pr .bd.win,.pr .bd.cal{display:inline-block;white-space:normal;max-width:100%;line-height:1.35;border-radius:12px;overflow-wrap:anywhere}
+  .pr .bd .fw{display:inline-flex;vertical-align:middle}
+}
+@media(max-width:380px){
+  .pars th:first-child,.pars td:first-child{width:36px;padding-left:5px;letter-spacing:0}
+  .pars th,.pars td{font-size:.66rem;letter-spacing:0;padding-left:0;padding-right:0}
+  .pars td.t,.pars th:last-child{width:32px}
+}
 </style>
 </head>
 <body>
@@ -893,7 +923,7 @@ tick();
         return '<svg class="hc-laurel" viewBox="0 0 300 300" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4dd9a"/><stop offset=".5" stop-color="#cfa845"/><stop offset="1" stop-color="#8f7226"/></linearGradient></defs>'+L+'</svg>'}
       function pod(r,place,gap){return '<div class="hc-pod cb-p"><div class="cb-ph"><img src="'+esc(r.p.photo)+'" alt="" width="120" height="120"></div><div class="hc-pn">'+esc(r.p.name)+'</div><div class="hc-pt"><b>'+place+'</b> '+r.total+' · '+fmt(r.total-PAR*r.done)+'</div></div>'}
       var h2='<canvas id="cf" class="hc-cv"></canvas><div class="hc-rays" aria-hidden="true"></div><div class="hc-in">'+
-        '<div class="hc-top"><img src="logo.png" alt="" width="64" height="64"><span>The Dufore Open · 2026</span></div>'+
+        '<div class="hc-top"><img class="hc-logo" src="logo.png" alt="Dufore Open 2026, PGA Riviera Maya" width="150" height="150"><div class="hc-ed"><b>The Dufore Open</b><span>5th Edition \u00b7 2026</span><em>PGA Riviera Maya \u00b7 Mexico</em></div></div>'+
         '<div class="hc-eye"><i></i><span>'+(tieTop?'Tied for the Dufore Cup':'Champion')+'</span><i></i></div>';
       h2+='<div class="hc-win'+(wl.length>1?' multi':'')+'">'+wl.map(function(x){
         var cups=(x.p.cups||[]).length,yrs=(x.p.cups||[]).map(function(c){return c.year}).sort();
@@ -908,7 +938,8 @@ tick();
       if(!aceWin&&!tieTop&&played.length>2){
         var w0=played[0];
         h2+='<div class="hc-margin">Won by '+(played[1].total-w0.total)+' stroke'+((played[1].total-w0.total)===1?'':'s')+'</div><div class="hc-pods">'+pod(played[1],"2nd")+pod(played[2],"3rd")+'</div>'}
-      h2+='<p class="hc-thanks">That’s a wrap. Thank you all for a great Dufore Open.</p></div>';
+      var everyone=(D.players||[]).concat(D.bench||[]);
+      h2+='<div class="hc-thank"><p class="hc-thanks">Thank you to everyone who showed up to the Dufore Open at PGA Riviera Maya.</p><div class="hc-all">'+everyone.map(function(q){return '<div class="hc-av cb-p"><div class="cb-ph"><img src="'+esc(q.photo||"")+'" alt="" width="104" height="104"></div><span>'+esc(q.name)+'</span></div>'}).join("")+'</div></div></div>';
       hc.innerHTML=h2;hc.hidden=false;document.body.classList.add("hero-on");
       var sk="dufore26-confetti",seen=false;try{seen=sessionStorage.getItem(sk)}catch(e){}
       if(!seen){try{sessionStorage.setItem(sk,"1")}catch(e){}confetti(document.getElementById("cf"))}

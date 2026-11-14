@@ -107,7 +107,15 @@ for p in d["players"]:
             if x == 1 and (ace is None or (ri, hi) < (ace[1], ace[2])):
                 ace = (p, ri, hi)
 
-if ace:
+champ = None
+if not ace and played and all(r["done"] == 4 for r in res):
+    best = min(r["total"] for r in played)
+    top = [r for r in played if r["total"] == best]
+    if len(top) == 1:
+        champ = top[0]
+if ace or champ:
+    if champ and not ace:
+        ace = (champ["p"], 0, 0)
     centered_spaced(150, "DUFORE CUP CHAMPION", font("cinzel", 28), GOLD, 8)
     try:
         ph = Image.open(os.path.join(ROOT, ace[0]["photo"])).convert("RGB").resize((190, 190), Image.LANCZOS)
@@ -121,7 +129,11 @@ if ace:
     except Exception:
         pass
     center_text(425, ace[0]["name"].upper(), font("cinzelb", 54), GOLDL)
-    center_text(495, "Hole in one \u00b7 Round %d, hole %d" % (ace[1] + 1, ace[2] + 1), font("corm", 38), CREAM)
+    if champ:
+        vsc = champ["total"] - PAR * 4
+        center_text(495, "%d net \u00b7 %s" % (champ["total"], ("E" if vsc == 0 else ("+%d" % vsc if vsc > 0 else "\u2212%d" % abs(vsc)))), font("corm", 38), CREAM)
+    else:
+        center_text(495, "Hole in one \u00b7 Round %d, hole %d" % (ace[1] + 1, ace[2] + 1), font("corm", 38), CREAM)
 elif not played:
     centered_spaced(165, "ROUND ONE", font("cinzel", 30), GOLD, 8)
     center_text(215, "Wed 11 Nov", font("cinzelb", 76), GOLDL)

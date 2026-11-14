@@ -112,6 +112,10 @@
     {
      "year": 2024,
      "place": "Puerto Rico"
+    },
+    {
+     "year": 2026,
+     "place": "PGA Riviera Maya"
     }
    ],
    "calder": {
@@ -173,7 +177,9 @@
    "sleeper": 1,
    "stallion": 1
   },
-  "4": {}
+  "4": {
+   "slugger": 1
+  }
  },
  "history": [
   {
@@ -221,9 +227,9 @@
    "year": 2026,
    "place": "PGA Riviera Maya",
    "country": "Mexico",
-   "winner": null,
-   "note": "Champion to be crowned",
-   "current": true
+   "winner": "sleeper",
+   "current": true,
+   "sub": "Third Dufore Cup in a row"
   }
  ],
  "groups": [
@@ -296,7 +302,15 @@
    "chairman": 105,
    "birdwatcher": 84
   },
-  "4": {}
+  "4": {
+   "vice": 97,
+   "chairman": 100,
+   "slugger": 106,
+   "cook": 107,
+   "sleeper": 88,
+   "stallion": 81,
+   "birdwatcher": 89
+  }
  },
  "teeTimes": {
   "1": [

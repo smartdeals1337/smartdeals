@@ -14,10 +14,10 @@
 <meta property="og:url" content="https://smartdealsclub.com/dufore2026/">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=cdb1af8b">
+<meta name="twitter:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=194a0a46">
 <meta property="og:title" content="Dufore Open 2026">
 <meta property="og:description" content="Something's brewing at PGA Riviera Maya. Tee off tomorrow, 9:00 AM.">
-<meta property="og:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=cdb1af8b">
+<meta property="og:image" content="https://smartdealsclub.com/dufore2026/share.jpg?v=194a0a46">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -595,6 +595,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .tees h2.nx{margin-top:34px}
 .tee.tba b{white-space:normal;text-align:center;line-height:1.4}
 .tee.tba span{display:block;white-space:normal;text-align:center}
+.fin .count,.fin .clabel,.fin .teed{display:none!important}
 </style>
 </head>
 <body>
@@ -830,6 +831,7 @@ tick();
     var nx=null;(D.schedule||[]).forEach(function(x){var t=new Date(x.date+"T09:00:00-05:00").getTime();if(!nx&&t>Date.now())nx={t:t,x:x}});
     var cl=document.getElementById("clabel"),te=document.getElementById("tease");
     if(nx){var nr=(D.schedule||[]).indexOf(nx.x);if(cl)cl.textContent="Round "+RN[nr]+" tees off in";if(te)te.textContent="Round "+RN[nr]+" \u00b7 "+nx.x.label+" Nov "+nx.x.day+", 9:00 AM";if(window.__setT)window.__setT(nx.t)}
+    if(full===4){document.body.classList.add("fin");var wh=document.querySelector(".where");if(wh&&wh.lastChild&&wh.lastChild.nodeType===3)wh.lastChild.textContent="Mexico \u00b7 Nov 11\u201314, 2026";if(te)te.textContent="That's a wrap. Thank you all for a great Dufore Open.";if(cl)cl.textContent=""}
     // tee cards
     var tees=document.getElementById("tees");
     if(tees&&(TT||D.groups)){

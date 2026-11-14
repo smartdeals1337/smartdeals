@@ -691,6 +691,21 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   .pars th,.pars td{font-size:.66rem;letter-spacing:0;padding-left:0;padding-right:0}
   .pars td.t,.pars th:last-child{width:32px}
 }
+@media(max-width:360px){.sd .sm{font-size:.84rem;white-space:normal;line-height:1.2}.sd{padding-left:1px;padding-right:1px}}
+
+/* safeguards for very narrow screens or enlarged text */
+.th{flex-wrap:wrap;row-gap:4px}
+.th span{min-width:0;overflow-wrap:anywhere}
+.th b{flex:none}
+.pl{min-width:0}
+.pn{overflow-wrap:anywhere}
+@media(max-width:360px){
+  .pn{letter-spacing:.02em}
+  .sd .sr{letter-spacing:.02em;font-size:.66rem;white-space:normal}
+  .row .rc i{font-size:.82rem}
+  .row .rc u{font-size:.7rem}
+}
+@media(max-width:340px){.rc b{font-size:1rem}.row .rc{padding:0}}
 </style>
 </head>
 <body>

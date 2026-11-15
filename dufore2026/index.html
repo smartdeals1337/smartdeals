@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Dufore Open 2026 · 5th Edition · PGA Riviera Maya</title>
+<title>Dufore Open 2026 · 6th Edition · PGA Riviera Maya</title>
 <meta name="description" content="The Dufore Open 2026. PGA Riviera Maya, Mexico. Round one tees off tomorrow at 9:00 AM.">
 <meta name="theme-color" content="#03311b">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -662,7 +662,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .sec,.foot,.cmpw{max-width:680px;margin-left:auto;margin-right:auto}
 .sec{width:100%}
 
-/* hero header: big logo, 5th edition, venue */
+/* hero header: big logo, edition, venue */
 .hc-top{flex-direction:column;gap:12px}
 .hc-top img.hc-logo{width:clamp(104px,34vw,150px);height:auto;aspect-ratio:1;border-radius:50%;filter:none;box-shadow:0 0 0 3px rgba(232,207,134,.55),0 0 46px rgba(232,207,134,.45),0 14px 30px rgba(0,0,0,.55)}
 .hc-ed{display:flex;flex-direction:column;align-items:center;gap:5px}
@@ -938,7 +938,7 @@ tick();
         return '<svg class="hc-laurel" viewBox="0 0 300 300" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4dd9a"/><stop offset=".5" stop-color="#cfa845"/><stop offset="1" stop-color="#8f7226"/></linearGradient></defs>'+L+'</svg>'}
       function pod(r,place,gap){return '<div class="hc-pod cb-p"><div class="cb-ph"><img src="'+esc(r.p.photo)+'" alt="" width="120" height="120"></div><div class="hc-pn">'+esc(r.p.name)+'</div><div class="hc-pt"><b>'+place+'</b> '+r.total+' · '+fmt(r.total-PAR*r.done)+'</div></div>'}
       var h2='<canvas id="cf" class="hc-cv"></canvas><div class="hc-rays" aria-hidden="true"></div><div class="hc-in">'+
-        '<div class="hc-top"><img class="hc-logo" src="logo.png" alt="Dufore Open 2026, PGA Riviera Maya" width="150" height="150"><div class="hc-ed"><b>The Dufore Open</b><span>5th Edition \u00b7 2026</span><em>PGA Riviera Maya \u00b7 Mexico</em></div></div>'+
+        '<div class="hc-top"><img class="hc-logo" src="logo.png" alt="Dufore Open 2026, PGA Riviera Maya" width="150" height="150"><div class="hc-ed"><b>The Dufore Open</b><span>6th Edition \u00b7 2026</span><em>PGA Riviera Maya \u00b7 Mexico</em></div></div>'+
         '<div class="hc-eye"><i></i><span>'+(tieTop?'Tied for the Dufore Cup':'Champion')+'</span><i></i></div>';
       h2+='<div class="hc-win'+(wl.length>1?' multi':'')+'">'+wl.map(function(x){
         var cups=(x.p.cups||[]).length,yrs=(x.p.cups||[]).map(function(c){return c.year}).sort();

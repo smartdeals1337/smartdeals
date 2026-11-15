@@ -825,9 +825,13 @@ tick();
   function badges(p){
     var h="";
     (p.tags||[]).forEach(function(t){h+='<span class="bd">'+esc(t)+'</span>'});
-    (p.cups||[]).forEach(function(w){h+='<span class="bd win">'+TR+'Dufore Cup \u00b7 '+w.year+'<span class="fw" title="'+esc(w.place)+'">'+flag(w.place)+'</span>'+'</span>'});
-    (p.aces||[]).forEach(function(a){h+='<span class="bd cal">'+ACE+'Hole in One \u00b7 '+a.year+'<span class="fw" title="'+esc(a.place)+'">'+flag(a.place)+'</span></span>'});
-    if(p.calder)h+='<span class="bd cal">'+ST+'Calder \u00b7 '+p.calder.year+'<span class="fw" title="'+esc(p.calder.place)+'">'+flag(p.calder.place)+'</span>'+'</span>';
+    // achievements: most recent first, newest year to 2021. Same year: Dufore Cup, Hole in One, Calder.
+    var ach=[];
+    (p.cups||[]).forEach(function(w){ach.push({y:w.year,o:0,h:'<span class="bd win">'+TR+'Dufore Cup \u00b7 '+w.year+'<span class="fw" title="'+esc(w.place)+'">'+flag(w.place)+'</span></span>'})});
+    (p.aces||[]).forEach(function(a){ach.push({y:a.year,o:1,h:'<span class="bd cal">'+ACE+'Hole in One \u00b7 '+a.year+'<span class="fw" title="'+esc(a.place)+'">'+flag(a.place)+'</span></span>'})});
+    if(p.calder)ach.push({y:p.calder.year,o:2,h:'<span class="bd cal">'+ST+'Calder \u00b7 '+p.calder.year+'<span class="fw" title="'+esc(p.calder.place)+'">'+flag(p.calder.place)+'</span></span>'});
+    ach.sort(function(x,z){return z.y-x.y||x.o-z.o});
+    ach.forEach(function(x){h+=x.h});
     return h?'<span class="bds">'+h+'</span>':""}
   function render(D){
     var par=D.course.par,cap=D.course.cap,PAR=par.reduce(function(a,b){return a+b},0);

@@ -52,7 +52,10 @@
   .brand .name { flex: 1; min-width: 0; display: block; -webkit-line-clamp: none; overflow: visible; }
   /* the name shrinks with the screen (and ignores the phone's bigger-text setting by
      staying in vw on small screens), so it never runs under the follow icons */
-  .brand b { white-space: nowrap; font-size: min(1.05rem, 3.85vw); }
+  /* 2026-11-17 (owner: on a small iPhone the name ran under the follow icons): it never overflows,
+     it wraps to two lines ("LE CLUB" / "SMARTDEALS") when the space between logo and icons is short */
+  .brand b { white-space: normal; overflow-wrap: anywhere; line-height: 1.12; font-size: min(1.05rem, 4vw); }
+  .brand .name { overflow: hidden; }
   @media (max-width: 400px) {
     /* "25 deals actifs · mis à jour il y a 3 min" never cut by the follow icons (owner,
        2026-11-03): it wraps to a second line instead */

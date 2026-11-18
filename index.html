@@ -682,11 +682,10 @@ function card(d) {
       ${badge(false)}
     </div>
     ${status}
-    <div class="act"><span class="go">${d.dead ? T.over : faded ? T.seePrice
+    <div class="act"><span class="go">${d.dead || faded ? T.seePrice
       : `${T.go} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`}</span>${d.dead || faded ? "" : `<button type="button" class="share" data-share="${esc(d.asin)}" title="${T.share}" aria-label="${T.share}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M5 13v5.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V13"/></svg><span>${T.shareLabel}</span></button>`}</div>`;
-  return d.dead
-    ? `<div class="deal faded is-dead" aria-disabled="true" data-asin="${esc(d.asin)}">${inner}</div>`
-    : `<a class="deal${faded ? " faded" : ""}" href="${esc(d.link)}" target="_blank" rel="sponsored noopener" data-asin="${esc(d.asin)}">${inner}</a>`;
+  // a dead deal stays a link (owner, 2026-11-18): the product is still on Amazon and still earns the tag
+  return `<a class="deal${d.dead ? " faded is-dead" : faded ? " faded" : ""}" href="${esc(d.link)}" target="_blank" rel="sponsored noopener" data-asin="${esc(d.asin)}">${inner}</a>`;
 }
 const rank = d => d.dead ? 2 : d.state !== "ok" ? 1 : 0;   // dead and off deals sink to the bottom
 function render() {

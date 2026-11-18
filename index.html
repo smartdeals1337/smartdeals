@@ -831,7 +831,9 @@ function load() {
     loadedAt = Date.now();
     // a lightning deal past its end time is over, even before the next update
     deals = j.deals.map(d => ({ state: "ok", checked: d.posted, ...d }))
-      .map(d => d.ends && Date.now() > new Date(d.ends) ? { ...d, dead: true } : d);
+      .map(d => d.ends && Date.now() > new Date(d.ends) ? { ...d, dead: true } : d)
+      // price went back up = the deal is over: no new price shown (Amazon compliance, 2026-11-18)
+      .map(d => d.state === "up" ? { ...d, dead: true, state: "ok", price: null, amazon_drop: null, now_price: null } : d);
     // a filter with no live deal would only show an empty page: hide its chip
     document.querySelectorAll(".chip").forEach(c => { c.hidden = c.dataset.f !== "all" && !deals.some(d => live(d) && FILTERS[c.dataset.f](d)); });
     renderTop5(j.recap);

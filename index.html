@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Le Club SmartDeals – Les deals</title>
-<meta name="description" content="Les deals Amazon.ca du Club SmartDeals, avec l'historique de prix de chaque produit et le prix revérifié pendant la journée.">
+<meta name="description" content="Les deals Amazon.ca du Club SmartDeals, avec le prix revérifié sur Amazon.ca pendant la journée.">
 <!-- Link previews (Facebook, Messenger, iMessage...): the SC logo with the address -->
-<meta property="og:title" content="Le Club SmartDeals – Les bas prix historiques Amazon Canada">
-<meta property="og:description" content="Les deals Amazon.ca, avec l'historique de prix de chaque produit et le prix revérifié pendant la journée.">
+<meta property="og:title" content="Le Club SmartDeals – Les deals Amazon Canada vérifiés">
+<meta property="og:description" content="Les deals Amazon.ca, avec le prix revérifié sur Amazon.ca pendant la journée.">
 <meta property="og:image" content="https://smartdealsclub.com/share.jpg">
 <meta property="og:url" content="https://smartdealsclub.com/">
 <meta property="og:type" content="website">
@@ -15,7 +15,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="icon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<!-- "Add to home screen" (needed for alerts on iPhone): name, icons, opens full screen -->
+<!-- "Add to home screen": name, icons, opens full screen -->
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="SmartDeals">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -125,14 +125,8 @@
   .rate span { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; color: #f59e0b; }
 
   /* Price line over the last 12 months: the proof the price is really low */
-  /* margin-top: auto pushes chart, price and button to the bottom of the card: on
+  /* margin-top: auto pushes price and button to the bottom of the card: on
      desktop the two cards of a row are the same height, so their buttons line up */
-  .hist { margin: auto 0 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 6px 8px 5px; }
-  .hist img { display: block; width: 100%; height: auto; aspect-ratio: 720 / 270; }
-  .hist.none { padding: 12px; font-size: .8rem; color: var(--muted); text-align: center; background: var(--soft); }
-  .hist figcaption { display: flex; justify-content: space-between; gap: 8px; font-size: .72rem; color: var(--muted); margin-top: 2px; }
-  .hist .now { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
-  .hist .now::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
 
   .buy { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .buy .prices { min-width: 0; display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 8px; }
@@ -190,7 +184,7 @@
   .share.copied { background: var(--teal-soft); font-weight: 800; font-size: .72rem; line-height: 1.1; text-align: center; }
   @media (hover: hover) { .share:hover { background: var(--teal-soft); } }
   .deal.faded { background: var(--soft); }
-  .deal.faded .pic img, .deal.faded .hist img { filter: grayscale(1); opacity: .7; }
+  .deal.faded .pic img { filter: grayscale(1); opacity: .7; }
   .deal.faded .price { color: var(--muted); text-decoration: line-through; }
   .deal.faded .go { background: #cbd5e1; color: #334155; }
   .deal.is-dead { opacity: .6; }
@@ -248,18 +242,6 @@
   .t5-name { grid-column: 1 / -1; font-size: .74rem; font-weight: 600; line-height: 1.2;
              white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  /* Phone alerts (owner, 2026-11-03): one line like the others, tap = settings sheet */
-  .alertbar { width: 100%; margin-top: 10px; display: flex; align-items: center; gap: 9px; padding: 7px 8px 7px 10px;
-              background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-              font: inherit; font-size: .8rem; line-height: 1.3; color: var(--muted); text-align: left; cursor: pointer; }
-  .alertbar .bell { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); display: grid; place-items: center; }
-  .alertbar .bell svg { width: 15px; height: 15px; }
-  .alertbar .ab-text { flex: 1; min-width: 0; }
-  .alertbar b { color: var(--teal); }
-  .alertbar .cta { flex: none; background: var(--teal); color: #fff; font-weight: 800; font-size: .78rem;
-                   padding: 6px 11px; border-radius: 999px; }
-  .alertbar.on .cta { background: var(--teal-soft); color: var(--teal-dark); }
-  @media (hover: hover) { .alertbar:hover .cta { background: var(--teal-dark); color: #fff; } }
   /* settings: a bottom sheet on phones, a centred box on wider screens */
   .sheet { border: 0; padding: 0; width: 100%; max-width: min(520px, 100%); max-height: 92vh; margin: auto auto 0;
            border-radius: 18px 18px 0 0; background: var(--card); color: var(--text); overflow: auto;
@@ -399,11 +381,8 @@
     <nav class="chips" aria-label="Filtres" data-i18n-aria="filters">
       <button class="chip" data-f="all" aria-pressed="true" data-i18n="c_all">Tous</button>
       <button class="chip" data-f="top" aria-pressed="false" data-i18n="c_top">Meilleur score</button>
-      <button class="chip" data-f="first" aria-pressed="false" data-i18n="c_first">Premier bas prix</button>
       <button class="chip" data-f="flash" aria-pressed="false" data-i18n="c_flash">Ventes éclair</button>
       <button class="chip" data-f="new" aria-pressed="false" data-i18n="c_new">Nouveaux</button>
-      <button class="chip" data-f="rec" aria-pressed="false" data-i18n="c_rec">Bas prix historiques</button>
-      <button class="chip" data-f="big" aria-pressed="false" data-i18n="c_big">-50% et plus</button>
       <!-- gift ideas continue in the same scrolling row: one row instead of two -->
       <span class="lab" data-i18n="c_gifts">Idées cadeaux</span>
       <button class="chip" data-f="u25" aria-pressed="false" data-i18n="c_u25">Moins de 25$</button>
@@ -427,12 +406,6 @@
     <span class="lb-item"><span class="score mini"><span class="logo"><span class="fl">🔥🔥</span></span><span class="num">85+</span></span><span class="lb-word" data-i18n="lbVery">Très hot</span></span>
     <span class="lb-item"><span class="score mini"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">90+</span></span><span class="lb-word" data-i18n="lbExc">Exceptionnel</span></span>
   </button>
-  <!-- Phone alerts: one line, the settings open in a sheet (hidden where alerts can't work at all) -->
-  <button class="alertbar" type="button" id="alertbar" aria-haspopup="dialog">
-    <span class="bell"><svg aria-hidden="true"><use href="#bell"/></svg></span>
-    <span class="ab-text" id="ab-text"><b>Alertes deals</b> sur ton téléphone</span>
-    <span class="cta" id="ab-cta">Activer</span>
-  </button>
   <!-- The last recap's Top 5, filled from deals.json "recap" (hidden when there's none) -->
   <section class="top5" id="top5" hidden aria-label="Top 5 des deals" data-i18n-aria="top5Aria">
     <div class="top5-head"><b id="top5-title">🏆 Top 5</b><span><svg class="ok" aria-hidden="true"><use href="#ok"/></svg><span id="top5-sub"></span></span></div>
@@ -441,12 +414,10 @@
   <!-- One line (opens on tap): what we check + the score, so deals start high on a phone -->
   <details class="about">
     <summary><svg class="ok" aria-hidden="true"><use href="#ok"/></svg>
-      <span data-i18n="aboutSum"><b>Chaque deal est vérifié</b> : vrai prix habituel, historique, avis, stock en direct</span></summary>
+      <span data-i18n="aboutSum"><b>Chaque deal est vérifié</b> : avis, stock et prix en direct</span></summary>
     <div data-i18n="aboutBody">
     <p class="intro"><b>Avant de publier un deal, on vérifie :</b></p>
     <ul class="checks">
-      <li><svg class="ok"><use href="#ok"/></svg>le vrai prix habituel, pas un faux prix barré</li>
-      <li><svg class="ok"><use href="#ok"/></svg>l'historique de prix du produit (le graphique sur chaque deal)</li>
       <li><svg class="ok"><use href="#ok"/></svg>la note et le nombre d'avis des acheteurs</li>
       <li><svg class="ok"><use href="#ok"/></svg>que c'est en stock chez Amazon, au prix annoncé, juste avant de publier</li>
       <li><svg class="ok"><use href="#ok"/></svg>le prix et le stock encore, environ toutes les heures pendant la journée</li>
@@ -479,31 +450,6 @@
   </div>
 </main>
 
-<dialog class="sheet" id="alerts" aria-labelledby="al-title">
-  <form method="dialog" class="sheet-in" id="al-form">
-    <div class="sheet-head"><b id="al-title" data-i18n="alTitle">🔔 Alertes SmartDeals</b><button class="x" value="close" aria-label="Fermer" data-i18n-aria="close"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
-    <p class="sheet-sub" data-i18n="alSub">Les meilleurs deals directement sur ton téléphone. Gratuit, sans compte, sans courriel. Tu peux les arrêter en tout temps.</p>
-    <div class="al-help" id="al-help" hidden></div>
-    <fieldset id="al-fields">
-      <legend data-i18n="alLegend">Quels deals?</legend>
-      <!-- every deal is the default (owner, 2026-11-03) -->
-      <label class="opt"><input type="radio" name="mode" value="all" checked><span data-i18n="mAll"><b>Tous les deals</b><small>Chaque deal publié, jusqu'à une dizaine par jour</small></span></label>
-      <label class="opt"><input type="radio" name="mode" value="hot"><span data-i18n="mHot"><b>Les deals hot seulement</b><small>Score SmartDeals 80 et plus (🔥, 🔥🔥 et 🔥🔥🔥)</small></span></label>
-      <label class="opt"><input type="radio" name="mode" value="none"><span data-i18n="mNone"><b>Aucun</b><small>Seulement mes mots-clés et le Top 5</small></span></label>
-      <label class="opt chk"><input type="checkbox" name="top5" checked><span data-i18n="mTop5"><b>🏆 Le Top 5 du soir</b><small>Les 5 meilleurs deals encore en vigueur, vers 21 h</small></span></label>
-      <label class="kw"><span data-i18n="kw"><b>Mes mots-clés</b><small>Une alerte dès qu'un deal en parle, peu importe le score (jusqu'à 10, séparés par des virgules)</small></span>
-        <input type="text" name="keywords" id="al-kw" placeholder="ex. : Dyson, LEGO, Apple, friteuse" data-i18n-ph="kwPh" maxlength="300" autocomplete="off" enterkeyhint="done"></label>
-    </fieldset>
-    <p class="al-msg" id="al-msg" role="status"></p>
-    <button type="button" class="al-go" id="al-go">Activer les alertes</button>
-    <div class="al-links"><button type="button" class="al-off" id="al-test" hidden data-i18n="alTest">Envoyer une alerte test</button>
-      <button type="button" class="al-off" id="al-off" hidden data-i18n="alOff">Désactiver les alertes</button></div>
-    <!-- owner's Galaxy, 2026-11-03: Android's own "Sites" category for Chrome was off and silently
-         blocked every site, although Chrome and the site were allowed -->
-    <p class="al-tip" id="al-tip" hidden data-i18n="alTip"><b>Rien reçu sur Android?</b> Va dans Réglages du téléphone &gt; Notifications &gt; Chrome &gt; catégories : <b>«&nbsp;Sites&nbsp;»</b> et <b>«&nbsp;smartdealsclub.com&nbsp;»</b> doivent être activées.</p>
-  </form>
-</dialog>
-
 <footer class="wrap">
   <div class="bounties">
     <a href="https://link.amazon/B04pIocUf" target="_blank" rel="sponsored noopener" data-bounty="prime" data-i18n="bPrime">Essai gratuit Amazon Prime</a>
@@ -515,7 +461,7 @@
     <a href="https://www.threads.com/@smartdeals_club">Threads</a>
   </div>
   <p data-i18n="fContact">Nous joindre : <a href="mailto:contact@smartdealsclub.com">contact@smartdealsclub.com</a></p>
-  <p data-i18n="f1">Prix vérifiés à l'heure indiquée sur chaque deal. Les prix Amazon changent vite : le prix final est celui affiché sur Amazon.</p>
+  <p data-i18n="f1">Prix vérifiés à l'heure indiquée sur chaque deal, et affichés 24 h au maximum. Les prix Amazon changent vite : le prix final est celui affiché sur Amazon.</p>
   <p data-i18n="f2">Liens affiliés : en tant que Partenaire Amazon, le Club SmartDeals touche une commission sur les achats admissibles, sans frais pour toi.<br>As an Amazon Associate I earn from qualifying purchases.</p>
 </footer>
 
@@ -523,7 +469,7 @@
 // ---- French / English (owner, 2026-11-03: promote the page in English Canada too).
 // ?lang=en (ads) or the FR | EN switch sets it and it's remembered; a first visit follows the
 // phone's language. Every text of the page is in I18N; deal names, "lowest since" and the price
-// charts come in both languages from the bot (deals.json name_en, low_since_en, chart_en...).
+// deal names come in both languages from the bot (deals.json name_en...).
 const I18N = {
   fr: {
     // French name of the site (owner, 2026-11-03): "Le Club SmartDeals"
@@ -531,17 +477,15 @@ const I18N = {
     title: "Le Club SmartDeals – Les deals", sub0: "Les deals Amazon.ca, avec la preuve", follow: "Suis-nous",
     search: "Chercher un produit…", filters: "Filtres",
     c_all: "Tous", c_top: "Meilleur score", c_first: "Premier bas prix", c_flash: "Ventes éclair", c_new: "Nouveaux",
-    c_rec: "Bas prix historiques", c_big: "-50% et plus", c_gifts: "Idées cadeaux", c_u25: "Moins de 25$",
+    c_gifts: "Idées cadeaux", c_u25: "Moins de 25$",
     c_u50: "Moins de 50$", c_u100: "Moins de 100$", c_lui: "Pour lui", c_elle: "Pour elle", c_enfants: "Enfants",
     c_ados: "Ados", c_maison: "Maison", c_gamers: "Gamers",
     legendAria: "Score SmartDeals : 1 flamme dès 80, 2 flammes dès 85, 3 flammes dès 90. Voir l'explication",
     lbTitle: "Score <span>SmartDeals</span>", lbHot: "Hot", lbVery: "Très hot", lbExc: "Exceptionnel",
     top5Aria: "Top 5 des deals", scoreName: "Score SmartDeals",
-    aboutSum: "<b>Chaque deal est vérifié</b> : vrai prix habituel, historique, avis, stock en direct",
+    aboutSum: "<b>Chaque deal est vérifié</b> : avis, stock et prix en direct",
     aboutBody: `<p class="intro"><b>Avant de publier un deal, on vérifie :</b></p>
     <ul class="checks">
-      <li><svg class="ok"><use href="#ok"/></svg>le vrai prix habituel, pas un faux prix barré</li>
-      <li><svg class="ok"><use href="#ok"/></svg>l'historique de prix du produit (le graphique sur chaque deal)</li>
       <li><svg class="ok"><use href="#ok"/></svg>la note et le nombre d'avis des acheteurs</li>
       <li><svg class="ok"><use href="#ok"/></svg>que c'est en stock chez Amazon, au prix annoncé, juste avant de publier</li>
       <li><svg class="ok"><use href="#ok"/></svg>le prix et le stock encore, environ toutes les heures pendant la journée</li>
@@ -559,30 +503,19 @@ const I18N = {
       <div><span class="score"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">92<small>/100</small></span></span><span><b>EXCEPTIONNEL</b><br>90 et plus</span></div>
     </div>
     <p>Le 100 parfait n'existe pas.</p>`,
-    alTitle: "🔔 Alertes SmartDeals", close: "Fermer", aboutClose: "Fermer ▲",
-    alSub: "Les meilleurs deals directement sur ton téléphone. Gratuit, sans compte, sans courriel. Tu peux les arrêter en tout temps.",
-    alLegend: "Quels deals?",
-    mHot: "<b>Les deals hot seulement</b><small>Score SmartDeals 80 et plus (🔥, 🔥🔥 et 🔥🔥🔥)</small>",
-    mAll: "<b>Tous les deals</b><small>Chaque deal publié, jusqu'à une dizaine par jour</small>",
-    mNone: "<b>Aucun</b><small>Seulement mes mots-clés et le Top 5</small>",
-    mTop5: "<b>🏆 Le Top 5 du soir</b><small>Les 5 meilleurs deals encore en vigueur, vers 21 h</small>",
-    kw: "<b>Mes mots-clés</b><small>Une alerte dès qu'un deal en parle, peu importe le score (jusqu'à 10, séparés par des virgules)</small>",
-    kwPh: "ex. : Dyson, LEGO, Apple, friteuse", alTest: "Envoyer une alerte test", alOff: "Désactiver les alertes",
-    alTip: "<b>Rien reçu sur Android?</b> Va dans Réglages du téléphone &gt; Notifications &gt; Chrome &gt; catégories : <b>«&nbsp;Sites&nbsp;»</b> et <b>«&nbsp;smartdealsclub.com&nbsp;»</b> doivent être activées.",
+    close: "Fermer", aboutClose: "Fermer ▲",
     bPrime: "Essai gratuit Amazon Prime", bReg: "Bébé s'en vient? Le secret d'Amazon",
     fContact: 'Nous joindre : <a href="mailto:contact@smartdealsclub.com">contact@smartdealsclub.com</a>',
-    f1: "Prix vérifiés à l'heure indiquée sur chaque deal. Les prix Amazon changent vite : le prix final est celui affiché sur Amazon.",
+    f1: "Prix vérifiés à l'heure indiquée sur chaque deal, et affichés 24 h au maximum. Les prix Amazon changent vite : le prix final est celui affiché sur Amazon.",
     f2: "Liens affiliés : en tant que Partenaire Amazon, le Club SmartDeals touche une commission sur les achats admissibles, sans frais pour toi.<br>As an Amazon Associate I earn from qualifying purchases.",
     // in the script
-    first: "Premier bas prix historique", tie: "Bas prix historique",
     flashOver: "Vente éclair terminée", dead: "Deal mort", up: "Prix remonté", out: "Épuisé chez Amazon",
-    flashEnds: e => `Vente éclair · finit ${e}`, isNew: "Nouveau", lowSince: m => `Le plus bas depuis ${m}`,
+    flashEnds: e => `Vente éclair · finit ${e}`, isNew: "Nouveau",
     upAt: (p, a) => `Prix remonté${p ? " à " + p : ""} · vérifié ${a}`, outAt: a => `Amazon n'en a plus en stock · vérifié ${a}`,
     flashChecked: "Vente éclair vérifiée sur Amazon.ca à la publication", checked: a => `Prix et stock vérifiés sur Amazon.ca ${a}`,
-    reviews: "avis", posted: a => `publié ${a}`, history: "Historique de prix", today: "aujourd'hui",
-    noHistory: "Nouveau produit sur Amazon.ca : son historique de prix commence avec ce deal.",
-    amazonOff: "Le rabais affiché par Amazon (vs son prix de liste)", onAmazon: " sur Amazon", usual: "Habituel",
-    over: "Ce deal est terminé", seePrice: "Voir le prix actuel sur Amazon", go: "Voir le deal sur Amazon",
+    reviews: "avis", posted: a => `publié ${a}`,
+    amazonOff: "Le rabais affiché par Amazon (vs son prix de liste)", onAmazon: " sur Amazon",
+    priceAtAmazon: "Prix actuel sur Amazon", over: "Ce deal est terminé", seePrice: "Voir le prix actuel sur Amazon", go: "Voir le deal sur Amazon",
     share: "Partager ce deal", shareLabel: "Partager", copied: "Lien copié", shareText: (n, p, s) => `${n}: ${p} sur Amazon.ca${s ? ` · Score SmartDeals ${s}/100` : ""}`,
     empty: "Aucun deal ici pour l'instant.", loadFail: "Impossible de charger les deals. Réessaie dans un instant.",
     promoTitle: "<b>Bons plans Amazon</b> · liens affiliés",
@@ -591,29 +524,6 @@ const I18N = {
     top5: (n, kind) => `🏆 Top ${n} ${kind === "today" ? "du jour" : "d'hier"}`,
     top5Sub: (day, hm) => `Prix et stock vérifiés sur Amazon le ${day} à ${hm}`,
     active: (n, a) => `${n} deal${n > 1 ? "s" : ""} actif${n > 1 ? "s" : ""} · mis à jour ${a}`,
-    abOff: "<b>Alertes deals</b> sur ton téléphone", abOn: s => `<b>Alertes activées</b> · ${s}`,
-    ctaOn: "Modifier", ctaOff: "Activer", goOn: "Enregistrer", goOff: "Activer les alertes",
-    sAll: "tous les deals", sHot: "deals hot", sKw: n => `${n} mot${n > 1 ? "s" : ""}-clé${n > 1 ? "s" : ""}`,
-    bIosApp: "Les alertes ne marchent pas dans le navigateur d'Instagram ou de Facebook. Touche <b>⋯</b> (en haut à droite), puis <b>Ouvrir dans le navigateur</b> (Safari), et reviens ici.",
-    bAndApp: "Les alertes ne marchent pas dans le navigateur d'Instagram ou de Facebook.", openChrome: "Ouvrir dans Chrome",
-    bIosOld: "Les alertes demandent iOS 16.4 ou plus récent : mets ton iPhone à jour, puis reviens ici.",
-    shareAt: { safari: "en bas de Safari", chrome: "en haut à droite, dans la barre d'adresse de Chrome (ou menu <b>⋯</b> > Partager)",
-               firefox: "dans le menu <b>☰</b> de Firefox (en bas à droite)", edge: "dans le menu <b>⋯</b> d'Edge (en bas), puis Partager" },
-    bIos: at => `Sur iPhone, Apple demande d'ajouter la page à ton écran d'accueil d'abord :<ol>
-      <li>Touche <b>Partager</b> <span aria-hidden="true">⬆️</span> ${at}</li>
-      <li>Choisis <b>Sur l'écran d'accueil</b> (descends dans la liste au besoin), puis <b>Ajouter</b></li>
-      <li>Ouvre <b>SmartDeals</b> depuis l'icône, puis touche 🔔 Activer</li></ol>`,
-    bNoPush: "Ton navigateur ne permet pas les alertes. Essaie avec Chrome, Safari ou Firefox.",
-    bDenied: "Les notifications sont bloquées pour smartdealsclub.com. Autorise-les dans les réglages du navigateur (le cadenas à côté de l'adresse, ou Réglages > Notifications sur iPhone), puis réessaie.",
-    mPick: "Choisis au moins un type d'alerte, ou un mot-clé.", mWait: "Un instant…",
-    mOnNew: "✅ C'est activé! Une première alerte s'en vient pour confirmer.", mSaved: "✅ Enregistré.",
-    mAllow: "Il faut toucher « Autoriser » quand le téléphone le demande.",
-    mRefused: "Tu as refusé les notifications. Autorise-les dans les réglages du navigateur, puis réessaie.",
-    mFail: "Oups, ça n'a pas marché. Réessaie dans un instant.", mOff: "Alertes désactivées.",
-    tLocalT: "🔔 Alerte test (téléphone)", tLocalB: "Celle-ci vient du téléphone lui-même.",
-    tSent: "Deux alertes test envoyées : « téléphone » et « serveur ». Tu devrais voir les deux.",
-    tNoReach: "Notre serveur n'a pas pu joindre ce téléphone. Désactive puis réactive les alertes.",
-    tFail: "Le test n'a pas marché : vérifie que les notifications sont permises pour Chrome et pour ce site.",
     pull: "↓ Tire pour actualiser", release: "↻ Relâche pour actualiser", refreshing: "Actualisation…",
   },
   en: {
@@ -621,17 +531,15 @@ const I18N = {
     title: "SmartDeals Club – Deals", sub0: "Amazon.ca deals, with proof", follow: "Follow us",
     search: "Search a product…", filters: "Filters",
     c_all: "All", c_top: "Top score", c_first: "New all-time lows", c_flash: "Lightning deals", c_new: "New",
-    c_rec: "All-time lows", c_big: "50% off or more", c_gifts: "Gift ideas", c_u25: "Under $25",
+    c_gifts: "Gift ideas", c_u25: "Under $25",
     c_u50: "Under $50", c_u100: "Under $100", c_lui: "For him", c_elle: "For her", c_enfants: "Kids",
     c_ados: "Teens", c_maison: "Home", c_gamers: "Gamers",
     legendAria: "SmartDeals Score: 1 flame from 80, 2 flames from 85, 3 flames from 90. See the explanation",
     lbTitle: "<span>SmartDeals</span> Score", lbHot: "Hot", lbVery: "Very hot", lbExc: "Exceptional",
     top5Aria: "Top 5 deals", scoreName: "SmartDeals Score",
-    aboutSum: "<b>Every deal is checked</b>: real usual price, price history, reviews, live stock",
+    aboutSum: "<b>Every deal is checked</b>: reviews, live stock and price",
     aboutBody: `<p class="intro"><b>Before posting a deal, we check:</b></p>
     <ul class="checks">
-      <li><svg class="ok"><use href="#ok"/></svg>the real usual price, not a fake struck-through price</li>
-      <li><svg class="ok"><use href="#ok"/></svg>the product's price history (the chart on every deal)</li>
       <li><svg class="ok"><use href="#ok"/></svg>the buyers' rating and number of reviews</li>
       <li><svg class="ok"><use href="#ok"/></svg>that Amazon has it in stock, at the posted price, right before posting</li>
       <li><svg class="ok"><use href="#ok"/></svg>the price and stock again, about every hour during the day</li>
@@ -649,29 +557,18 @@ const I18N = {
       <div><span class="score"><span class="logo"><span class="fl">🔥🔥🔥</span></span><span class="num">92<small>/100</small></span></span><span><b>EXCEPTIONAL</b><br>90 and up</span></div>
     </div>
     <p>A perfect 100 doesn't exist.</p>`,
-    alTitle: "🔔 SmartDeals alerts", close: "Close", aboutClose: "Close ▲",
-    alSub: "The best deals right on your phone. Free, no account, no email. Turn them off anytime.",
-    alLegend: "Which deals?",
-    mHot: "<b>Hot deals only</b><small>SmartDeals Score 80 and up (🔥, 🔥🔥 and 🔥🔥🔥)</small>",
-    mAll: "<b>Every deal</b><small>Every deal we post, up to about ten a day</small>",
-    mNone: "<b>None</b><small>Only my keywords and the Top 5</small>",
-    mTop5: "<b>🏆 The evening Top 5</b><small>The 5 best deals still on, around 9 PM</small>",
-    kw: "<b>My keywords</b><small>An alert as soon as a deal mentions one, whatever its score (up to 10, separated by commas)</small>",
-    kwPh: "e.g. Dyson, LEGO, Apple, air fryer", alTest: "Send a test alert", alOff: "Turn off alerts",
-    alTip: "<b>Nothing on Android?</b> Go to your phone's Settings &gt; Notifications &gt; Chrome &gt; categories: <b>“Sites”</b> and <b>“smartdealsclub.com”</b> must be on.",
+    close: "Close", aboutClose: "Close ▲",
     bPrime: "Amazon Prime free trial", bReg: "Baby on the way? Amazon's secret",
     fContact: 'Contact us: <a href="mailto:contact@smartdealsclub.com">contact@smartdealsclub.com</a>',
-    f1: "Prices checked at the time shown on each deal. Amazon prices change fast: the final price is the one shown on Amazon.",
+    f1: "Prices checked at the time shown on each deal, and shown for 24 hours at most. Amazon prices change fast: the final price is the one shown on Amazon.",
     f2: "Affiliate links: as an Amazon Associate, SmartDeals Club earns from qualifying purchases, at no cost to you.",
-    first: "New all-time low", tie: "All-time low",
     flashOver: "Lightning deal over", dead: "Deal over", up: "Price went up", out: "Sold out at Amazon",
-    flashEnds: e => `Lightning deal · ends ${e}`, isNew: "New", lowSince: m => `Lowest since ${m}`,
+    flashEnds: e => `Lightning deal · ends ${e}`, isNew: "New",
     upAt: (p, a) => `Price went up${p ? " to " + p : ""} · checked ${a}`, outAt: a => `Amazon is out of stock · checked ${a}`,
     flashChecked: "Lightning deal checked on Amazon.ca when posted", checked: a => `Price and stock checked on Amazon.ca ${a}`,
-    reviews: "reviews", posted: a => `posted ${a}`, history: "Price history", today: "today",
-    noHistory: "New product on Amazon.ca: its price history starts with this deal.",
-    amazonOff: "The discount Amazon shows (vs its list price)", onAmazon: " on Amazon", usual: "Usually",
-    over: "This deal is over", seePrice: "See the current price on Amazon", go: "See the deal on Amazon",
+    reviews: "reviews", posted: a => `posted ${a}`,
+    amazonOff: "The discount Amazon shows (vs its list price)", onAmazon: " on Amazon",
+    priceAtAmazon: "Current price on Amazon", over: "This deal is over", seePrice: "See the current price on Amazon", go: "See the deal on Amazon",
     share: "Share this deal", shareLabel: "Share", copied: "Link copied", shareText: (n, p, s) => `${n}: ${p} on Amazon.ca${s ? ` · SmartDeals Score ${s}/100` : ""}`,
     empty: "No deals here for now.", loadFail: "Couldn't load the deals. Try again in a moment.",
     promoTitle: "<b>Amazon perks</b> · affiliate links",
@@ -680,29 +577,6 @@ const I18N = {
     top5: (n, kind) => kind === "today" ? `🏆 Today's top ${n}` : `🏆 Yesterday's top ${n}`,
     top5Sub: (day, hm) => `Price and stock checked on Amazon on ${day} at ${hm}`,
     active: (n, a) => `${n} active deal${n > 1 ? "s" : ""} · updated ${a}`,
-    abOff: "<b>Deal alerts</b> on your phone", abOn: s => `<b>Alerts on</b> · ${s}`,
-    ctaOn: "Edit", ctaOff: "Turn on", goOn: "Save", goOff: "Turn on alerts",
-    sAll: "every deal", sHot: "hot deals", sKw: n => `${n} keyword${n > 1 ? "s" : ""}`,
-    bIosApp: "Alerts don't work in Instagram's or Facebook's browser. Tap <b>⋯</b> (top right), then <b>Open in browser</b> (Safari), and come back here.",
-    bAndApp: "Alerts don't work in Instagram's or Facebook's browser.", openChrome: "Open in Chrome",
-    bIosOld: "Alerts need iOS 16.4 or newer: update your iPhone, then come back here.",
-    shareAt: { safari: "at the bottom of Safari", chrome: "at the top right, in Chrome's address bar (or menu <b>⋯</b> > Share)",
-               firefox: "in Firefox's <b>☰</b> menu (bottom right)", edge: "in Edge's <b>⋯</b> menu (bottom), then Share" },
-    bIos: at => `On iPhone, Apple requires adding the page to your Home Screen first:<ol>
-      <li>Tap <b>Share</b> <span aria-hidden="true">⬆️</span> ${at}</li>
-      <li>Choose <b>Add to Home Screen</b> (scroll down the list if needed), then <b>Add</b></li>
-      <li>Open <b>SmartDeals</b> from the icon, then tap 🔔 Turn on</li></ol>`,
-    bNoPush: "Your browser doesn't support alerts. Try Chrome, Safari or Firefox.",
-    bDenied: "Notifications are blocked for smartdealsclub.com. Allow them in your browser settings (the lock next to the address, or Settings > Notifications on iPhone), then try again.",
-    mPick: "Pick at least one type of alert, or a keyword.", mWait: "One moment…",
-    mOnNew: "✅ You're all set! A first alert is on its way to confirm.", mSaved: "✅ Saved.",
-    mAllow: "Tap “Allow” when your phone asks.",
-    mRefused: "You declined notifications. Allow them in your browser settings, then try again.",
-    mFail: "Oops, that didn't work. Try again in a moment.", mOff: "Alerts turned off.",
-    tLocalT: "🔔 Test alert (phone)", tLocalB: "This one comes from the phone itself.",
-    tSent: "Two test alerts sent: “phone” and “server”. You should see both.",
-    tNoReach: "Our server couldn't reach this phone. Turn alerts off and on again.",
-    tFail: "The test didn't work: check that notifications are allowed for Chrome and for this site.",
     pull: "↓ Pull to refresh", release: "↻ Release to refresh", refreshing: "Refreshing…",
   },
 };
@@ -731,7 +605,6 @@ document.querySelectorAll(".lang button").forEach(b => {
 });
 
 const NEW_HOURS = 6;
-const RECORD = { first: T.first, tie: T.tie };
 // a "139.99" string once broke the page: always through Number
 const money = p => EN ? "$" + Number(p).toFixed(2) : Number(p).toFixed(2).replace(".", ",") + "$";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -769,11 +642,8 @@ const FILTERS = {
   all: () => true,
   top: d => !!d.score,
   flash: d => !!d.ends,
-  first: d => d.record === "first",
   new: isNew,
-  rec: d => !!d.record,
-  big: d => (d.drop || 0) >= 50,
-  u25: d => d.price < 25, u50: d => d.price < 50, u100: d => d.price < 100,
+  u25: d => d.price != null && d.price < 25, u50: d => d.price != null && d.price < 50, u100: d => d.price != null && d.price < 100,
   "g-lui": gift("lui"), "g-elle": gift("elle"), "g-enfants": gift("enfants"),
   "g-ados": gift("ados"), "g-maison": gift("maison"), "g-gamers": gift("gamers"),
 };
@@ -781,24 +651,20 @@ const FILTERS = {
 let deals = [], filter = "all";
 function card(d) {
   const faded = d.dead || d.state !== "ok";
-  const since = EN ? d.low_since_en : d.low_since && d.low_since.toLowerCase();
   const tags = (d.dead ? `<span class="tag dead">${d.ends ? T.flashOver : T.dead}</span>`
       : d.state === "up" ? `<span class="tag off-tag">${T.up}</span>`
       : d.state === "out" ? `<span class="tag off-tag">${T.out}</span>` : "")
     + (d.ends && !faded ? `<span class="tag flash">${T.flashEnds(endsText(d.ends))}</span>` : "")
-    + (isNew(d) ? `<span class="tag new">${T.isNew}</span>` : "")
-    + (d.record && !faded ? `<span class="tag rec">${RECORD[d.record]}</span>` : "")
-    + (!d.record && since && !faded ? `<span class="tag rec">${T.lowSince(esc(since))}</span>` : "");
-  const badge = big => d.score && !faded ? `<span class="score${big ? " big" : ""}" title="${T.scoreName} ${d.score}/100">
+    + (isNew(d) ? `<span class="tag new">${T.isNew}</span>` : "");
+  const badge = big => d.score && d.price != null && !faded ? `<span class="score${big ? " big" : ""}" title="${T.scoreName} ${d.score}/100">
         <span class="logo">${flames(d.score) ? `<span class="fl">${"🔥".repeat(flames(d.score))}</span>` : ""}</span>
         <span class="num">${d.score}<small>/100</small></span></span>` : "";
   const status = d.dead ? ""
     : d.state === "up" ? `<div class="checked bad">${T.upAt(d.now_price ? money(d.now_price) : "", ago(d.checked))}</div>`
     : d.state === "out" ? `<div class="checked bad">${T.outAt(ago(d.checked))}</div>`
+    : d.price == null ? ""
     : d.ends ? `<div class="checked">${check}${T.flashChecked}</div>`
     : `<div class="checked">${check}${T.checked(ago(d.checked))}</div>`;
-  const chart = EN ? d.chart_en || d.chart : d.chart;
-  const chartLabel = (EN ? d.chart_label_en : d.chart_label) || T.history;
   const inner = `
     <div class="head">
       <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async"></div>
@@ -810,14 +676,9 @@ function card(d) {
         <div class="stars">${d.rating ? `${stars(d.rating)} ${num(d.rating)} · ${d.reviews.toLocaleString(EN ? "en-CA" : "fr-CA")} ${T.reviews} · ` : ""}${T.posted(ago(d.posted))}</div>
       </div>
     </div>
-    ${chart ? `<figure class="hist"><img src="${esc(chart)}" alt="${T.history}" loading="lazy" decoding="async" width="720" height="270">
-      <figcaption><span>${esc(chartLabel)}</span><span class="now">${T.today}</span></figcaption></figure>`
-      : `<p class="hist none">${T.noHistory}</p>`}
     <div class="buy">
-      <div class="prices"><span class="price">${money(d.price)}</span>
-        ${d.amazon_drop && !faded ? `<span class="off" title="${T.amazonOff}">-${d.amazon_drop}%<small>${T.onAmazon}</small></span>`
-          : d.drop && !faded ? `<span class="off">-${d.drop}%</span>` : ""}
-        ${d.typical && d.typical > d.price ? `<span class="was">${T.usual} <s>${money(d.typical)}</s></span>` : ""}</div>
+      <div class="prices">${d.price != null ? `<span class="price">${money(d.price)}</span>` : `<span class="was">${T.priceAtAmazon}</span>`}
+        ${d.amazon_drop && d.price != null && !faded ? `<span class="off" title="${T.amazonOff}">-${d.amazon_drop}%<small>${T.onAmazon}</small></span>` : ""}</div>
       ${badge(false)}
     </div>
     ${status}
@@ -881,7 +742,7 @@ document.getElementById("list").addEventListener("click", async e => {
   const d = deals.find(x => x.asin === b.dataset.share);
   if (!d) return;
   const url = `https://smartdealsclub.com/?d=${encodeURIComponent(d.asin)}&from=share&lang=${LANG}`;
-  const text = T.shareText(nameOf(d), money(d.price), d.score);
+  const text = d.price == null ? nameOf(d) : T.shareText(nameOf(d), money(d.price), d.score);
   if (window.goatcounter && window.goatcounter.count)
     window.goatcounter.count({ path: "share-" + d.asin, title: d.name, event: true });
   try {
@@ -944,157 +805,13 @@ function gcEvent(path, title, tries = 20) {
   else if (tries) setTimeout(() => gcEvent(path, title, tries - 1), 300);
 }
 
-// ---- Phone alerts (web push). The server (push.smartdealsclub.com, push_server.py) keeps the
-// subscription + choices; alerts open the deal on this page, never Amazon directly.
-const PUSH_API = "https://push.smartdealsclub.com/push/";
-const VAPID_KEY = "BBDYDDN6otGGOHf5xtccl7n9ZRHGxCet-UQFP43ximXBLJ7ICzGIWuj2bdkhbtlmCocwqcdK5IrDkqWn02vIh-I";
-const ua = navigator.userAgent;
-const isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
-const isAndroid = /Android/.test(ua);
-const inApp = /FBAN|FBAV|FB_IAB|Instagram|Threads|Barcelona|Messenger|; wv\)/.test(ua);   // Facebook/Instagram/Threads browsers
 const standalone = navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
-const pushOK = "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
-const store = { get: k => { try { return JSON.parse(localStorage.getItem(k)); } catch (_) { return null; } },
-                set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} },
-                del: k => { try { localStorage.removeItem(k); } catch (_) {} } };
-const swReady = pushOK ? navigator.serviceWorker.register("/sw.js").then(() => navigator.serviceWorker.ready) : null;
-let pushSub = null;
 const $ = id => document.getElementById(id);
-const form = $("al-form");
+// Phone alerts were removed (Amazon compliance, 2026-11-18): drop any old subscription and service worker
+if ("serviceWorker" in navigator) navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r =>
+  (r.pushManager ? r.pushManager.getSubscription().then(s => s && s.unsubscribe()) : Promise.resolve()).catch(() => {}).finally(() => r.unregister()))).catch(() => {});
 
-function prefsFromForm() {
-  return { mode: form.mode.value, top5: form.top5.checked,
-           keywords: form.keywords.value.split(/[,;\n]/).map(s => s.trim()).filter(s => s.length > 1).slice(0, 10) };
-}
-function prefsToForm(p) {
-  form.mode.value = p.mode || "all";
-  form.top5.checked = p.top5 !== false;
-  form.keywords.value = (p.keywords || []).join(", ");
-}
-function summary(p) {
-  const parts = [p.mode === "all" ? T.sAll : p.mode === "hot" ? T.sHot : null,
-                 p.top5 ? "Top 5" : null,
-                 p.keywords && p.keywords.length ? T.sKw(p.keywords.length) : null];
-  return parts.filter(Boolean).join(" + ");
-}
-function paintBar() {
-  const p = store.get("alerts");
-  const on = !!(pushSub && p);
-  $("alertbar").classList.toggle("on", on);
-  $("ab-text").innerHTML = on ? T.abOn(esc(summary(p))) : T.abOff;
-  $("ab-cta").textContent = on ? T.ctaOn : T.ctaOff;
-  $("al-go").textContent = on ? T.goOn : T.goOff;
-  $("al-off").hidden = !on;
-  $("al-test").hidden = !on;
-  $("al-tip").hidden = !(on && isAndroid);
-}
-function say(text, bad) { const m = $("al-msg"); m.textContent = text; m.classList.toggle("bad", !!bad); }
-
-// what this phone/browser needs before alerts can work (null = ready)
-function blocker() {
-  const here = location.origin + `/?alerts=1&lang=${LANG}`;
-  if (isIOS && inApp) return T.bIosApp;
-  if (isAndroid && inApp) return `${T.bAndApp}<br>
-      <a class="open-in" href="intent://${location.host}/?alerts=1&lang=${LANG}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(here)};end">${T.openChrome}</a>`;
-  if (isIOS && !standalone) {
-    const v = ua.match(/OS (\d+)_(\d+)/);
-    if (v && (+v[1] < 16 || (+v[1] === 16 && +v[2] < 4))) return T.bIosOld;
-    // Chrome, Firefox and Edge on iPhone can add to the Home Screen too (iOS 16.4+), but their
-    // Share button isn't where Safari's is (owner, 2026-11-03: Chrome users were lost)
-    const app = /CriOS/.test(ua) ? "chrome" : /FxiOS/.test(ua) ? "firefox" : /EdgiOS/.test(ua) ? "edge" : "safari";
-    return T.bIos(T.shareAt[app]);
-  }
-  if (!pushOK) return T.bNoPush;
-  if (Notification.permission === "denied") return T.bDenied;
-  return null;
-}
-function openAlerts() {
-  const why = blocker();
-  $("al-help").innerHTML = why || "";
-  $("al-help").hidden = !why;
-  $("al-fields").disabled = !!why;
-  $("al-go").disabled = !!why;
-  prefsToForm(store.get("alerts") || {});
-  say("");
-  paintBar();
-  $("alerts").showModal();
-}
-async function api(path, body) {
-  const r = await fetch(PUSH_API + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || r.status);
-  return r.json();
-}
-const keyBytes = b64 => Uint8Array.from(atob((b64 + "=".repeat((4 - b64.length % 4) % 4)).replace(/-/g, "+").replace(/_/g, "/")), c => c.charCodeAt(0));
-$("al-go").addEventListener("click", async () => {
-  const p = prefsFromForm();
-  if (p.mode === "none" && !p.top5 && !p.keywords.length) return say(T.mPick, true);
-  const go = $("al-go");
-  go.disabled = true;
-  say(T.mWait);
-  try {
-    const reg = await swReady;
-    // called straight from the tap: the browser then asks "Autoriser les notifications?"
-    const sub = pushSub || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: keyBytes(VAPID_KEY) });
-    const isNew = !pushSub;
-    try {
-      await api("subscribe", { subscription: sub.toJSON(), ...p, lang: LANG });   // alerts in the page's language
-    } catch (e) {
-      if (isNew) await sub.unsubscribe().catch(() => {});
-      throw e;
-    }
-    pushSub = sub;
-    store.set("alerts", p);
-    store.set("alertsLang", LANG);
-    paintBar();
-    say(isNew ? T.mOnNew : T.mSaved);
-    if (isNew) gcEvent("alerts-on", "Alertes activées");
-    setTimeout(() => $("alerts").close(), 1800);
-  } catch (e) {
-    if (Notification.permission === "default") say(T.mAllow, true);
-    else if (Notification.permission === "denied") say(T.mRefused, true);
-    else say(T.mFail, true);
-  } finally {
-    go.disabled = false;
-  }
-});
-$("al-off").addEventListener("click", async () => {
-  if (pushSub) {
-    api("unsubscribe", { endpoint: pushSub.endpoint }).catch(() => {});
-    await pushSub.unsubscribe().catch(() => {});
-  }
-  pushSub = null;
-  store.del("alerts");
-  paintBar();
-  say(T.mOff);
-  gcEvent("alerts-off", "Alertes désactivées");
-});
-// Two tests: one the phone shows by itself (are notifications shown at all?), one through our
-// server (do pushes reach this phone?). Which one shows tells where the problem is.
-$("al-test").addEventListener("click", async () => {
-  try {
-    const reg = await swReady;
-    await reg.showNotification(T.tLocalT, { body: T.tLocalB, icon: "/icon-192.png", badge: "/badge.png", tag: "test-local" });
-    const r = await api("test", { endpoint: pushSub.endpoint });
-    say(r.ok ? T.tSent : T.tNoReach, !r.ok);
-  } catch (e) {
-    say(T.tFail, true);
-  }
-});
-$("alertbar").addEventListener("click", openAlerts);
-paintBar();   // in the page's language before the push check below answers
-$("alerts").addEventListener("click", e => { if (e.target === $("alerts")) $("alerts").close(); });   // tap outside = close
-if (swReady) swReady.then(reg => reg.pushManager.getSubscription()).then(s => {
-  pushSub = s;
-  if (s && !store.get("alerts")) store.set("alerts", { mode: "hot", top5: true, keywords: [] });   // site data cleared: assume defaults
-  paintBar();
-  // Alerts in the language the page is set to NOW, not the one it had at sign-up (owner,
-  // 2026-11-05: a subscriber on the French page got English alerts). Sent only when it
-  // changes, since the server limits calls per IP.
-  if (s && store.get("alertsLang") !== LANG)
-    api("lang", { endpoint: s.endpoint, lang: LANG }).then(() => store.set("alertsLang", LANG)).catch(() => {});
-}).catch(() => {});
-
-// Links from alerts and posts: ?d=ASIN (that deal, outlined), ?top5 (the Top 5 strip), ?alerts=1 (the alert settings)
+// Links from posts: ?d=ASIN (that deal, outlined), ?top5 (the Top 5 strip)
 function openFromLink() {
   const q = new URLSearchParams(location.search);
   if (q.get("from") === "share") gcEvent("share-open-" + (q.get("d") || "home"), "Lien partagé ouvert");
@@ -1105,7 +822,6 @@ function openFromLink() {
   } else if (q.has("top5") && !$("top5").hidden) {
     $("top5").scrollIntoView({ block: "start" });
   }
-  if (q.has("alerts")) openAlerts();
   if ([...q.keys()].some(k => ["d", "top5", "alerts", "from", "app", "lang"].includes(k))) history.replaceState(null, "", location.pathname);
 }
 
@@ -1141,7 +857,7 @@ if (standalone) {
   document.body.appendChild(ptr);
   let startY = null, pull = 0, busy = false;
   addEventListener("touchstart", e => {
-    startY = !busy && scrollY <= 0 && !$("alerts").open ? e.touches[0].clientY : null;
+    startY = !busy && scrollY <= 0 ? e.touches[0].clientY : null;
   }, { passive: true });
   addEventListener("touchmove", e => {
     if (startY === null) return;

@@ -761,6 +761,7 @@ document.getElementById("list").addEventListener("click", e => {
   if (!a || !window.goatcounter || !window.goatcounter.count) return;
   const d = deals.find(x => x.link === a.getAttribute("href"));
   if (d) window.goatcounter.count({ path: "deal-" + d.asin, title: d.name, event: true });
+  if (d && AD) window.goatcounter.count({ path: "ad-go-" + AD, title: d.name, event: true });   // click from a Facebook ad visitor
 });
 // Prime trial / baby registry clicks (list card and footer): "bounty-prime", "bounty-registry"
 document.addEventListener("click", e => {
@@ -796,13 +797,28 @@ function renderTop5(recap) {
 document.getElementById("top5-row").addEventListener("click", e => {
   const a = e.target.closest("a.t5");
   if (a && window.goatcounter && window.goatcounter.count)
-    window.goatcounter.count({ path: "deal-" + a.dataset.asin, title: a.dataset.name, event: true });
+  { window.goatcounter.count({ path: "deal-" + a.dataset.asin, title: a.dataset.name, event: true });
+    if (AD) window.goatcounter.count({ path: "ad-go-" + AD, title: a.dataset.name, event: true }); }
 });
 // GoatCounter loads after the page: retry an event for a few seconds
 function gcEvent(path, title, tries = 20) {
   if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title: title || path, event: true });
   else if (tries) setTimeout(() => gcEvent(path, title, tries - 1), 300);
 }
+// Facebook ad tracking (owner, 2026-11-18): the ad links to /?utm_source=fbads&utm_campaign=NAME. That visit counts
+// once as the event "ad-visit-NAME", and each click to Amazon from that visit as "ad-go-NAME" (kept for the whole
+// tab session). Anonymous like the rest: GoatCounter events only, no cookies, no ad pixel.
+const AD = (() => {
+  try {
+    const q = new URLSearchParams(location.search);
+    const c = (q.get("utm_campaign") || "").replace(/[^\w-]/g, "").slice(0, 30);
+    if (q.get("utm_source") === "fbads" && c) {
+      sessionStorage.setItem("ad", c);
+      if (!sessionStorage.getItem("adSeen")) { sessionStorage.setItem("adSeen", "1"); gcEvent("ad-visit-" + c, "Visite pub Facebook"); }
+    }
+    return sessionStorage.getItem("ad");
+  } catch (_) { return null; }
+})();
 
 const standalone = navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
 const $ = id => document.getElementById(id);

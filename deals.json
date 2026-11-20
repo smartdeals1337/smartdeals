@@ -1,6 +1,30 @@
 {
- "updated": "2026-11-20T06:47:47-05:00",
+ "updated": "2026-11-20T06:50:33-05:00",
  "deals": [
+  {
+   "asin": "B0B38KRTV6",
+   "name": "Machine espresso De'Longhi",
+   "title": "De'Longhi Magnifica Evo Automatic Espresso Machine, Milk Frother, Silver",
+   "image": "https://m.media-amazon.com/images/I/71CgIkY3AnL.jpg",
+   "price": 599.98,
+   "amazon_drop": null,
+   "rating": 4.1,
+   "reviews": 1048,
+   "score": 82,
+   "ends": null,
+   "gift": [
+    "maison"
+   ],
+   "name_en": "De'Longhi Magnifica Evo",
+   "type": "Machine à espresso automatique",
+   "type_en": "Automatic espresso machine",
+   "checked": "2026-11-20T06:17:21-05:00",
+   "state": "ok",
+   "now_price": null,
+   "posted": "2026-11-20T06:50:29.373558-05:00",
+   "link": "https://amazon.ca/dp/B0B38KRTV6?tag=sonline02-20",
+   "dead": false
+  },
   {
    "asin": "B0DYWPJYF1",
    "name": "Barre de son Sony BRAVIA",
@@ -490,30 +514,6 @@
    "now_price": null,
    "posted": "2026-11-16T19:33:03.803595-05:00",
    "link": "https://amazon.ca/dp/B0C939MTM8?tag=sonline02-20",
-   "dead": false
-  },
-  {
-   "asin": "B0B38KRTV6",
-   "name": "Machine espresso De'Longhi",
-   "title": "De'Longhi Magnifica Evo Automatic Espresso Machine, Milk Frother, Silver",
-   "image": "https://m.media-amazon.com/images/I/71CgIkY3AnL.jpg",
-   "price": 599.98,
-   "amazon_drop": null,
-   "rating": 4.2,
-   "reviews": 1039,
-   "score": 83,
-   "ends": null,
-   "gift": [
-    "maison"
-   ],
-   "name_en": "De'Longhi Magnifica Evo",
-   "type": "Machine espresso automatique",
-   "type_en": "Automatic espresso machine",
-   "checked": "2026-11-20T06:17:21-05:00",
-   "state": "ok",
-   "now_price": null,
-   "posted": "2026-11-16T18:29:30.626245-05:00",
-   "link": "https://amazon.ca/dp/B0B38KRTV6?tag=sonline02-20",
    "dead": false
   },
   {

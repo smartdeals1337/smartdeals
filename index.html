@@ -191,6 +191,18 @@
   .deal.is-dead { opacity: .6; }
 
   /* One-line score legend: the three badge levels, always visible */
+  /* Black Friday mode (owner, 2026-11-20): banner at the top + its own filter chip */
+  .bfbanner { width: 100%; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+              background: #000; color: #facc15; border: 2px solid #facc15; border-radius: 14px; padding: 9px 12px;
+              font: inherit; text-align: left; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
+  .bfbanner[hidden] { display: none; }
+  .bfbanner b { display: block; font-size: .95rem; font-weight: 900; letter-spacing: .3px; text-transform: uppercase; }
+  .bfbanner small { display: block; color: #fff; font-size: .82rem; font-weight: 600; margin-top: 2px; line-height: 1.3; }
+  .bfbanner .go { flex: none; background: #facc15; color: #000; font-weight: 900; font-size: .85rem; padding: 8px 12px; border-radius: 999px; }
+  .chip.bf { background: #000; border-color: #facc15; color: #facc15; font-weight: 900; }
+  .chip.bf[aria-pressed="true"] { background: #facc15; border-color: #facc15; color: #000; }
+  .chip.hol { background: #15803d; border-color: #15803d; color: #fff; font-weight: 800; }
+  .chip.hol[aria-pressed="true"] { background: #0f5c2b; border-color: #0f5c2b; }
   .legendbar { width: 100%; margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 6px;
                background: var(--card); border: 1px solid var(--line); border-radius: 12px;
                padding: 16px 12px 8px;   /* the top padding is the flames' room: badges, words and title share one centre line */
@@ -386,6 +398,8 @@
     </div>
     <nav class="chips" aria-label="Filtres" data-i18n-aria="filters">
       <button class="chip" data-f="all" aria-pressed="true" data-i18n="c_all">Tous</button>
+      <button class="chip bf" data-f="bf" aria-pressed="false" data-i18n="c_bf">🖤 Black Friday</button>
+      <button class="chip hol" data-f="hol" aria-pressed="false" data-i18n="c_hol">🎄 Fêtes</button>
       <button class="chip" data-f="top" aria-pressed="false" data-i18n="c_top">Meilleur score</button>
       <button class="chip" data-f="flash" aria-pressed="false" data-i18n="c_flash">Ventes éclair</button>
       <button class="chip" data-f="new" aria-pressed="false" data-i18n="c_new">Nouveaux</button>
@@ -405,6 +419,11 @@
 </header>
 
 <main class="wrap wide">
+  <!-- Black Friday banner: shown until the end of Cyber Monday (see BF_END); a tap opens the Black Friday filter -->
+  <button class="bfbanner" id="bfbanner" type="button" hidden>
+    <span><b data-i18n="bfTitle">🖤 Mode Black Friday à fond</b><small data-i18n="bfSub">Nouveaux deals Amazon.ca toute la journée, notés sur 100.</small></span>
+    <span class="go" data-i18n="bfGo">Voir les deals ›</span>
+  </button>
   <!-- The hot score in one line, always visible (owner, 2026-11-02): tap = full explanation below -->
   <button class="legendbar" type="button" aria-label="Score SmartDeals : 1 flamme dès 80, 2 flammes dès 85, 3 flammes dès 90. Voir l'explication" data-i18n-aria="legendAria">
     <span class="lb-title" data-i18n="lbTitle">Score <span>SmartDeals</span></span>
@@ -487,6 +506,8 @@ const I18N = {
     search: "Chercher un produit…", filters: "Filtres",
     c_all: "Tous", c_top: "Meilleur score", c_first: "Premier bas prix", c_flash: "Ventes éclair", c_new: "Nouveaux",
     c_gifts: "Idées cadeaux", c_u25: "Moins de 25$",
+    c_bf: "🖤 Black Friday", c_hol: "🎄 Fêtes",
+    bfTitle: "🖤 Mode Black Friday à fond", bfSub: "Nouveaux deals Amazon.ca toute la journée, notés sur 100.", bfGo: "Voir les deals ›",
     c_u50: "Moins de 50$", c_u100: "Moins de 100$", c_lui: "Pour lui", c_elle: "Pour elle", c_enfants: "Enfants",
     c_ados: "Ados", c_maison: "Maison", c_gamers: "Gamers",
     legendAria: "Score SmartDeals : 1 flamme dès 80, 2 flammes dès 85, 3 flammes dès 90. Voir l'explication",
@@ -541,6 +562,8 @@ const I18N = {
     search: "Search a product…", filters: "Filters",
     c_all: "All", c_top: "Top score", c_first: "New all-time lows", c_flash: "Lightning deals", c_new: "New",
     c_gifts: "Gift ideas", c_u25: "Under $25",
+    c_bf: "🖤 Black Friday", c_hol: "🎄 Holidays",
+    bfTitle: "🖤 Full Black Friday mode", bfSub: "New Amazon.ca deals all day long, scored out of 100.", bfGo: "See the deals ›",
     c_u50: "Under $50", c_u100: "Under $100", c_lui: "For him", c_elle: "For her", c_enfants: "Kids",
     c_ados: "Teens", c_maison: "Home", c_gamers: "Gamers",
     legendAria: "SmartDeals Score: 1 flame from 80, 2 flames from 85, 3 flames from 90. See the explanation",
@@ -647,8 +670,12 @@ function hourMin(t) {
 const live = d => !d.dead && d.state === "ok";
 const isNew = d => live(d) && Date.now() - new Date(d.posted) < NEW_HOURS * 3600e3;
 const gift = who => d => (d.gift || []).includes(who);
+// Black Friday: every deal posted from Nov 20 (Quebec time) on; the banner runs through Cyber Monday
+const BF_START = new Date("2026-11-20T00:00:00-05:00"), BF_END = new Date("2026-12-01T00:00:00-05:00");
 const FILTERS = {
   all: () => true,
+  bf: d => new Date(d.posted) >= BF_START,
+  hol: d => (d.gift || []).length > 0,   // anything that makes a good holiday gift
   top: d => !!d.score,
   flash: d => !!d.ends,
   new: isNew,
@@ -726,6 +753,11 @@ document.querySelectorAll(".chips").forEach(nav => nav.addEventListener("click",
   window.scrollTo({ top: 0, behavior: "smooth" });
 }));
 document.getElementById("q").addEventListener("input", render);
+{
+  const bar = document.getElementById("bfbanner");
+  bar.hidden = !(Date.now() < BF_END);
+  bar.addEventListener("click", () => document.querySelector('.chip[data-f="bf"]').click());
+}
 // the score legend opens the full explanation (checks + score) just below it
 document.querySelector(".legendbar").addEventListener("click", () => {
   const about = document.querySelector(".about");

@@ -115,6 +115,8 @@
   .tag { font-size: .66rem; font-weight: 800; letter-spacing: .3px; padding: 3px 7px; border-radius: 6px; text-transform: uppercase; }
   .tag.rec { background: #fef3c7; color: #92400e; }
   .tag.new { background: #dcfce7; color: var(--green); }
+  /* Black Friday icon on the card: solid yellow + black outline, bigger than the other tags */
+  .tag.bf { background: #ffd400; color: #000; border: 2px solid #000; font-size: .74rem; font-weight: 900; padding: 2px 8px; }
   .tag.flash { background: #ffe4e6; color: #be123c; }
   .tag.dead, .tag.off-tag { background: #475569; color: #fff; }
   .name { font-weight: 700; font-size: 1rem; line-height: 1.25; margin: 0;
@@ -673,6 +675,9 @@ const isNew = d => live(d) && Date.now() - new Date(d.posted) < NEW_HOURS * 3600
 const gift = who => d => (d.gift || []).includes(who);
 // Black Friday: every deal posted from Nov 20 (Quebec time) on; the banner runs through Cyber Monday
 const BF_START = new Date("2026-11-20T00:00:00-05:00"), BF_END = new Date("2026-12-01T00:00:00-05:00");
+// the card icon: every deal posted from Nov 20 through the end of next week (Sunday Nov 29)
+const BF_TAG_END = new Date("2026-11-30T00:00:00-05:00");
+const isBF = d => { const t = new Date(d.posted); return t >= BF_START && t < BF_TAG_END; };
 const FILTERS = {
   all: () => true,
   bf: d => new Date(d.posted) >= BF_START,
@@ -688,7 +693,8 @@ const FILTERS = {
 let deals = [], filter = "all";
 function card(d) {
   const faded = d.dead || d.state !== "ok";
-  const tags = (d.dead ? `<span class="tag dead">${d.ends ? T.flashOver : T.dead}</span>`
+  const tags = (isBF(d) && !faded ? `<span class="tag bf">⚡ Black Friday</span>` : "")
+    + (d.dead ? `<span class="tag dead">${d.ends ? T.flashOver : T.dead}</span>`
       : d.state === "up" ? `<span class="tag off-tag">${T.up}</span>`
       : d.state === "out" ? `<span class="tag off-tag">${T.out}</span>` : "")
     + (d.ends && !faded ? `<span class="tag flash">${T.flashEnds(endsText(d.ends))}</span>` : "")

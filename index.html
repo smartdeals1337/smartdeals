@@ -116,8 +116,11 @@
           transition: transform .12s, box-shadow .12s; }
   a.deal:active { transform: scale(.985); }
   @media (hover: hover) { a.deal:hover { box-shadow: 0 6px 18px rgba(15, 23, 42, .09); } a.deal:hover .go { background: var(--teal-dark); } }
-  .head { display: flex; gap: 12px; }
-  .pic { flex: none; width: 120px; height: 120px; border-radius: 12px; background: #fff; border: 1px solid var(--line);
+  /* 2026-11-23 (owner: "empty spaces everywhere, utilize ALL the white space"): the photo is a big square column
+     (~46% of the card), the text uses the full width beside it, and the score badge moved down into the price row,
+     right-aligned, where the empty space beside the price was */
+  .head { display: grid; grid-template-columns: var(--pw) 1fr; gap: 12px; --pw: 46%; align-items: stretch; }
+  .pic { width: 100%; min-height: 0; aspect-ratio: 1; align-self: stretch; border-radius: 12px; background: #fff; border: 1px solid var(--line);
          display: grid; place-items: center; overflow: hidden; position: relative; }
   /* owner, 2026-11-23: "plenty of empty space around the product picture": no padding, and trimImg() crops
      the white border Amazon bakes into its photos (object-view-box), so the item fills the whole square */
@@ -167,19 +170,28 @@
   /* The hot score sits top right of every card (owner, 2026-11-02, phones too): regular
      size on phones, bigger and centred beside the photo on wider cards. The copy in the
      price row is no longer shown. */
-  .buy .score { display: none; }
-  /* pinned top right of the card head; the tags and the name keep exactly its width free on
-     their right (--badge-w), the lines below (stars...) use the full width */
-  .head { position: relative; --badge-w: 92px; }
-  .score.big { position: absolute; top: 12px; right: 0; margin: 0; }
-  .info .tags, .info .name, .info .kind, .info:not(:has(.tags)) .stars { padding-right: var(--badge-w); }
-  @media (min-width: 600px) {
-    .head { --badge-w: 128px; }
-    .score.big { top: 16px; right: 2px; }
-    .score.big .logo { width: 50px; height: 50px; border-radius: 13px; border-width: 2px; }
-    .score.big .fl { font-size: 20px; bottom: 38px; letter-spacing: -5px; }
-    .score.big .num { font-size: 1.4rem; padding: 8px 12px 7px 18px; margin-left: -10px; border-radius: 0 12px 12px 0; }
-    .score.big small { font-size: .8rem; }
+  .score.big { display: none; }   /* the old top-right copy: the badge now lives in the price row */
+  .info .buy { flex-direction: column; align-items: flex-start; gap: 0; margin-top: 6px; }
+  .buy .score { display: flex; margin: 16px 0 0; }
+  .buy .score .logo { width: 44px; height: 44px; border-radius: 12px; border-width: 2px; }
+  .buy .score .fl { font-size: 17px; bottom: 33px; letter-spacing: -5px; }
+  .buy .score .num { font-size: 1.3rem; padding: 7px 11px 6px 17px; margin-left: -9px; border-radius: 0 12px 12px 0; }
+  .buy .score small { font-size: .7rem; }
+  .info .name { -webkit-line-clamp: 3; }
+  .info .kind { -webkit-line-clamp: 2; }
+  .head { --pw: 46%; }
+  @media (min-width: 640px) { .list { grid-template-columns: 1fr 1fr; } }   /* tablets: two columns, same card as on a phone */
+  @media (min-width: 900px) and (max-width: 1099px) {
+    .head { --pw: 190px; }
+    .info .buy { flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; }   /* room: score beside the price */
+    .buy .score { margin: 14px 0 0 auto; }
+  }
+  @media (min-width: 1100px) {   /* wide screens: 3 columns on a wider page, so no side space is wasted */
+    .list { grid-template-columns: repeat(3, 1fr); }
+    .wrap.wide { max-width: 1240px; }
+    .head { --pw: 150px; }
+    .info .buy { flex-direction: column; align-items: flex-start; gap: 0; }
+    .buy .score { margin: 16px 0 0; }
   }
 
   /* The buy button: full width, thumb-sized (52px), the loudest thing on the card */
@@ -767,12 +779,12 @@ function card(d) {
         <p class="name" title="${esc(d.title)}">${esc(nameOf(d))}</p>
         ${(EN ? d.type_en : d.type) ? `<p class="kind">${esc(EN ? d.type_en : d.type)}</p>` : ""}
         <div class="stars">${d.rating ? `${stars(d.rating)} ${num(d.rating)} · ${d.reviews.toLocaleString(EN ? "en-CA" : "fr-CA")} ${T.reviews} · ` : ""}${T.posted(ago(d.posted))}</div>
+        <div class="buy">
+          <div class="prices">${d.price != null ? `<span class="price">${money(d.price)}</span>` : `<span class="was">${T.priceAtAmazon}</span>`}
+            ${d.amazon_drop && d.price != null && !faded ? `<span class="off" title="${T.amazonOff}">-${d.amazon_drop}%<small>${T.onAmazon}</small></span>` : ""}</div>
+          ${badge(false)}
+        </div>
       </div>
-    </div>
-    <div class="buy">
-      <div class="prices">${d.price != null ? `<span class="price">${money(d.price)}</span>` : `<span class="was">${T.priceAtAmazon}</span>`}
-        ${d.amazon_drop && d.price != null && !faded ? `<span class="off" title="${T.amazonOff}">-${d.amazon_drop}%<small>${T.onAmazon}</small></span>` : ""}</div>
-      ${badge(false)}
     </div>
     ${status}
     <div class="act"><span class="go">${d.dead || faded ? T.seePrice

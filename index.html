@@ -117,9 +117,11 @@
   a.deal:active { transform: scale(.985); }
   @media (hover: hover) { a.deal:hover { box-shadow: 0 6px 18px rgba(15, 23, 42, .09); } a.deal:hover .go { background: var(--teal-dark); } }
   .head { display: flex; gap: 12px; }
-  .pic { flex: none; width: 92px; height: 92px; border-radius: 12px; background: #fff; border: 1px solid var(--line);
+  .pic { flex: none; width: 120px; height: 120px; border-radius: 12px; background: #fff; border: 1px solid var(--line);
          display: grid; place-items: center; overflow: hidden; position: relative; }
-  .pic img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 6%; box-sizing: border-box; object-fit: contain; }
+  /* owner, 2026-11-23: "plenty of empty space around the product picture": no padding, and trimImg() crops
+     the white border Amazon bakes into its photos (object-view-box), so the item fills the whole square */
+  .pic img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; box-sizing: border-box; object-fit: contain; }
   .info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
   .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; }
   .tag { font-size: .66rem; font-weight: 800; letter-spacing: .3px; padding: 3px 7px; border-radius: 6px; text-transform: uppercase; }
@@ -260,7 +262,7 @@
   .t5-pic { position: relative; width: 58px; height: 58px; border-radius: 10px; background: #fff;
             border: 1px solid var(--line); display: grid; place-items: center; }
   /* absolute: a tall photo (Blue Yeti) made the grid row grow, since the % max-height had nothing definite to resolve against */
-  .t5-pic img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 4px; box-sizing: border-box; object-fit: contain; border-radius: 10px; }
+  .t5-pic img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 1px; box-sizing: border-box; object-fit: contain; border-radius: 10px; }
   .t5-rank { position: absolute; top: -6px; left: -6px; width: 20px; height: 20px; border-radius: 50%;
              background: var(--teal); color: #fff; font-size: .72rem; font-weight: 900; display: grid; place-items: center; }
   .t5-side { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
@@ -672,6 +674,38 @@ const num = r => EN ? String(r) : String(r).replace(".", ",");
 // plain ★ glyph, which every phone font has.
 const stars = r => `<span class="rate" aria-label="${r} / 5"><span style="width:${Math.min(r / 5, 1) * 100}%">★★★★★</span>★★★★★</span>`;
 // Amazon serves any size of its product photos: 300px instead of the 2000px original
+// Trim the white border around a product photo: find the item's bounding box on a canvas, then show only that
+// part (object-view-box). Needs CORS on the image; if the image refuses it we reload it plain (no trim).
+function trimImg(img) {
+  if (img.dataset.trim || !img.naturalWidth || !CSS.supports("object-view-box", "inset(1%)")) return;
+  img.dataset.trim = "1";
+  try {
+    const w = Math.min(img.naturalWidth, 300), h = Math.round(img.naturalHeight * w / img.naturalWidth);
+    const c = document.createElement("canvas"); c.width = w; c.height = h;
+    const x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(img, 0, 0, w, h);
+    const d = x.getImageData(0, 0, w, h).data;
+    let t = h, b = -1, l = w, r = -1;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
+      const k = (j * w + i) * 4;
+      if (d[k + 3] > 20 && (d[k] < 244 || d[k + 1] < 244 || d[k + 2] < 244)) {
+        if (j < t) t = j; if (j > b) b = j; if (i < l) l = i; if (i > r) r = i;
+      }
+    }
+    if (b < 0) return;
+    const pad = 0.015;   // a hair of air so the item doesn't touch the edge
+    const T = Math.max(0, t / h - pad), B = Math.max(0, 1 - (b + 1) / h - pad), L = Math.max(0, l / w - pad), R = Math.max(0, 1 - (r + 1) / w - pad);
+    if (T + B + L + R < 0.04) return;   // already tight
+    img.style.objectViewBox = `inset(${(T * 100).toFixed(1)}% ${(R * 100).toFixed(1)}% ${(B * 100).toFixed(1)}% ${(L * 100).toFixed(1)}%)`;
+  } catch (e) { /* tainted canvas: leave the photo as is */ }
+}
+document.addEventListener("load", e => {
+  const i = e.target;
+  if (i.tagName === "IMG" && i.matches(".pic img, .t5-pic img")) trimImg(i);
+}, true);
+document.addEventListener("error", e => {
+  const i = e.target;   // CORS refused: show the photo without the trim rather than a hole
+  if (i.tagName === "IMG" && i.hasAttribute("crossorigin") && !i.dataset.plain) { i.dataset.plain = "1"; i.removeAttribute("crossorigin"); i.src = i.src; }
+}, true);
 const thumb = url => url.replace(/(\/images\/I\/[^./]+)(\.[^/]*)?\.(jpg|png)$/, "$1._AC_SL300_.$3");
 const flames = s => s >= 90 ? 3 : s >= 85 ? 2 : s >= 80 ? 1 : 0;   // same levels as the images
 const check = '<svg class="ok" aria-hidden="true"><use href="#ok"/></svg>';
@@ -726,7 +760,7 @@ function card(d) {
     : `<div class="checked">${check}${T.checked(ago(d.checked))}</div>`;
   const inner = `
     <div class="head">
-      <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async"></div>
+      <div class="pic"><img src="${esc(thumb(d.image))}" alt="" loading="lazy" decoding="async" crossorigin="anonymous"></div>
       <div class="info">
         ${badge(true)}
         ${tags ? `<div class="tags">${tags}</div>` : ""}
@@ -848,7 +882,7 @@ function renderTop5(recap) {
   document.getElementById("top5-sub").textContent = T.top5Sub(day, hm);
   document.getElementById("top5-row").innerHTML = items.map((i, n) => `
     <a class="t5" href="${esc(i.link)}" target="_blank" rel="sponsored noopener" data-asin="${esc(i.asin)}" data-name="${esc(i.name)}">
-      <span class="t5-pic"><img src="${esc(thumb(i.image))}" alt="" loading="lazy" decoding="async"><span class="t5-rank">${n + 1}</span></span>
+      <span class="t5-pic"><img src="${esc(thumb(i.image))}" alt="" loading="lazy" decoding="async" crossorigin="anonymous"><span class="t5-rank">${n + 1}</span></span>
       <span class="t5-side">${i.score ? `<span class="score mini" title="${T.scoreName} ${i.score}/100">
           <span class="logo">${flames(i.score) ? `<span class="fl">${"🔥".repeat(flames(i.score))}</span>` : ""}</span>
           <span class="num">${i.score}<small>/100</small></span></span>` : ""}

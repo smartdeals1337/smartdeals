@@ -84,6 +84,16 @@
     .follow a { width: 34px; height: 34px; }
     .follow svg { width: 20px; height: 20px; }
   }
+  /* 2026-11-23 (owner: "fix the brand name wrapping"): logo | name | follow icons on ONE row, name never wrapping
+     (it scales with the screen), and the "N deals · updated" line on its own row under all three, full width */
+  .brand { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; column-gap: 10px; align-items: center; }
+  .brand .name { display: contents; }
+  .brand img { grid-column: 1; grid-row: 1; }
+  .brand b { grid-column: 2; grid-row: 1; white-space: nowrap; overflow-wrap: normal; font-size: min(1.05rem, 3.45vw); }
+  .brand .follow { grid-column: 3; grid-row: 1; }
+  .brand small { grid-column: 1 / -1; grid-row: 2; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: .74rem; line-height: 1.2; }
+  @media (max-width: 340px) { .brand b { white-space: normal; line-height: 1.1; font-size: 3.7vw; } }   /* tiny phones: two lines rather than a cut name */
+  .search input::placeholder { font-size: .92rem; }   /* the field keeps 16px (no iOS zoom); only the hint shrinks */
   html { overflow-x: clip; }   /* the page never slides sideways, whatever a browser's text size does */
   body { overflow-x: clip; max-width: 100vw; }
   .searchrow { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
@@ -457,7 +467,7 @@
     <div class="searchrow">
       <label class="search">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input id="q" type="search" placeholder="Chercher un produit…" aria-label="Chercher un produit" data-i18n-ph="search" data-i18n-aria="search" autocomplete="off">
+        <input id="q" type="search" placeholder="Chercher un deal…" aria-label="Chercher un produit" data-i18n-ph="search" data-i18n-aria="search" autocomplete="off">
       </label>
       <div class="lang" role="group" aria-label="Langue / Language">
         <button type="button" data-lang="fr" lang="fr" aria-label="Français">FR</button><button type="button" data-lang="en" lang="en" aria-label="English">EN</button>
@@ -571,7 +581,7 @@ const I18N = {
     // French name of the site (owner, 2026-11-03): "Le Club SmartDeals"
     brand: "LE CLUB SMART<span>DEALS</span>",
     title: "Le Club SmartDeals – Les deals", sub0: "Les deals Amazon.ca, avec la preuve", follow: "Suis-nous",
-    search: "Chercher un produit…", filters: "Filtres",
+    search: "Chercher un deal…", filters: "Filtres",
     c_all: "Tous", c_top: "Meilleur score", c_first: "Premier bas prix", c_flash: "Ventes éclair", c_new: "Nouveaux",
     c_gifts: "Idées cadeaux", c_u25: "Moins de 25$",
     c_bf: "⚡ Black Friday", c_hol: "🎄 Fêtes",
@@ -628,7 +638,7 @@ const I18N = {
   en: {
     brand: "SMART<span>DEALS</span> CLUB",
     title: "SmartDeals Club – Deals", sub0: "Amazon.ca deals, with proof", follow: "Follow us",
-    search: "Search a product…", filters: "Filters",
+    search: "Search deals…", filters: "Filters",
     c_all: "All", c_top: "Top score", c_first: "New all-time lows", c_flash: "Lightning deals", c_new: "New",
     c_gifts: "Gift ideas", c_u25: "Under $25",
     c_bf: "⚡ Black Friday", c_hol: "🎄 Holidays",

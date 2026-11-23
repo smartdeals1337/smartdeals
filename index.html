@@ -171,7 +171,8 @@
      size on phones, bigger and centred beside the photo on wider cards. The copy in the
      price row is no longer shown. */
   .score.big { display: none; }   /* the old top-right copy: the badge now lives in the price row */
-  .info .buy { flex-direction: column; align-items: flex-start; gap: 0; margin-top: 6px; }
+  .info .buy { flex-direction: column; align-items: flex-start; gap: 0; margin-top: auto; padding-top: 6px; }
+  .deal .head { flex: 1; }   /* a shorter card in a row grows its photo + text instead of leaving a gap above the button */
   .buy .score { display: flex; margin: 16px 0 0; }
   .buy .score .logo { width: 44px; height: 44px; border-radius: 12px; border-width: 2px; }
   .buy .score .fl { font-size: 17px; bottom: 33px; letter-spacing: -5px; }
@@ -271,7 +272,19 @@
         border: 1.5px solid var(--teal); border-radius: 14px; color: inherit; text-decoration: none; }
   a.t5:active { transform: scale(.97); }
   @media (hover: hover) { a.t5:hover { background: #d3e9ec; } }
-  .t5-pic { position: relative; width: 58px; height: 58px; border-radius: 10px; background: #fff;
+  /* 2026-11-23 (owner, arrows: "tons of white space"): bigger photo, bigger price and badge, so nothing is left empty */
+  .t5 { --t5pic: 66px; grid-template-columns: var(--t5pic) 1fr; }
+  .t5-price { font-size: 1.2rem; }
+  @media (min-width: 900px) {
+    .t5 { --t5pic: 96px; padding: 10px; column-gap: 12px; }
+    .t5-price { font-size: 1.55rem; }
+    .t5 .score.mini .logo { width: 34px; height: 34px; border-radius: 9px; }
+    .t5 .score.mini .fl { font-size: 14px; bottom: 25px; }
+    .t5 .score.mini .num { font-size: 1rem; padding: 6px 9px 5px 13px; margin-left: -8px; border-radius: 0 9px 9px 0; }
+    .t5 .score.mini { margin-top: 12px; }
+    .t5-name { font-size: .86rem; }
+  }
+  .t5-pic { position: relative; width: var(--t5pic); height: var(--t5pic); border-radius: 10px; background: #fff;
             border: 1px solid var(--line); display: grid; place-items: center; }
   /* absolute: a tall photo (Blue Yeti) made the grid row grow, since the % max-height had nothing definite to resolve against */
   .t5-pic img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 1px; box-sizing: border-box; object-fit: contain; border-radius: 10px; }

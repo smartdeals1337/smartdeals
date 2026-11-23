@@ -118,8 +118,8 @@
   @media (hover: hover) { a.deal:hover { box-shadow: 0 6px 18px rgba(15, 23, 42, .09); } a.deal:hover .go { background: var(--teal-dark); } }
   .head { display: flex; gap: 12px; }
   .pic { flex: none; width: 92px; height: 92px; border-radius: 12px; background: #fff; border: 1px solid var(--line);
-         display: grid; place-items: center; overflow: hidden; }
-  .pic img { max-width: 88%; max-height: 88%; object-fit: contain; }
+         display: grid; place-items: center; overflow: hidden; position: relative; }
+  .pic img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 6%; box-sizing: border-box; object-fit: contain; }
   .info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
   .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; }
   .tag { font-size: .66rem; font-weight: 800; letter-spacing: .3px; padding: 3px 7px; border-radius: 6px; text-transform: uppercase; }
@@ -259,7 +259,8 @@
   @media (hover: hover) { a.t5:hover { background: #d3e9ec; } }
   .t5-pic { position: relative; width: 58px; height: 58px; border-radius: 10px; background: #fff;
             border: 1px solid var(--line); display: grid; place-items: center; }
-  .t5-pic img { max-width: 86%; max-height: 86%; object-fit: contain; }
+  /* absolute: a tall photo (Blue Yeti) made the grid row grow, since the % max-height had nothing definite to resolve against */
+  .t5-pic img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 4px; box-sizing: border-box; object-fit: contain; border-radius: 10px; }
   .t5-rank { position: absolute; top: -6px; left: -6px; width: 20px; height: 20px; border-radius: 50%;
              background: var(--teal); color: #fff; font-size: .72rem; font-weight: 900; display: grid; place-items: center; }
   .t5-side { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }

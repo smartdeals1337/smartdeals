@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T20:47:40-05:00",
+ "updated": "2026-11-23T21:04:44-05:00",
  "deals": [
   {
    "asin": "B0FLYG9C4N",
@@ -91,7 +91,7 @@
    "name_en": "Franklin Sports Dartboard",
    "type": "Cible de fléchettes en sisal",
    "type_en": "Sisal dartboard, 18 inch",
-   "checked": "2026-11-23T19:47:51-05:00",
+   "checked": "2026-11-23T21:04:40-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-23T13:48:27.949878-05:00",
@@ -139,7 +139,7 @@
    "name_en": "Samsung S85H 48\" OLED TV",
    "type": "Téléviseur OLED intelligent 48 pouces",
    "type_en": "48-inch OLED smart TV",
-   "checked": "2026-11-23T19:32:13-05:00",
+   "checked": "2026-11-23T21:04:40-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-23T09:04:15.339462-05:00",
@@ -446,7 +446,7 @@
    "name_en": "JBL Live 680NC Headphones",
    "type": "Casque sans fil à réduction de bruit",
    "type_en": "Wireless noise-cancelling headphones",
-   "checked": "2026-11-23T19:32:13-05:00",
+   "checked": "2026-11-23T21:04:40-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-21T07:34:27.336028-05:00",
@@ -634,7 +634,7 @@
    "name_en": "Oral-B iO Series 9 Black",
    "type": "Brosse à dents électrique",
    "type_en": "Electric toothbrush",
-   "checked": "2026-11-23T19:32:13-05:00",
+   "checked": "2026-11-23T21:04:40-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-19T20:49:28.392782-05:00",
@@ -656,7 +656,7 @@
    "name_en": "Maxi-Cosi Mico Luxe+ Seat",
    "type": "Siège d'auto pour bébé",
    "type_en": "Infant car seat",
-   "checked": "2026-11-23T19:32:13-05:00",
+   "checked": "2026-11-23T21:04:40-05:00",
    "state": "up",
    "now_price": null,
    "posted": "2026-11-19T20:03:46.852132-05:00",
@@ -702,7 +702,7 @@
    "name_en": "Schlage Keypad Lock",
    "type": "Serrure électronique à clavier",
    "type_en": "Electronic keypad door lock",
-   "checked": "2026-11-23T19:47:51-05:00",
+   "checked": "2026-11-23T21:04:40-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-19T18:03:23.254337-05:00",
@@ -914,7 +914,7 @@
    "name_en": "Shark CarpetXpert EX251",
    "type": "Nettoyeur de tapis et meubles",
    "type_en": "Carpet and upholstery cleaner",
-   "checked": "2026-11-23T19:32:13-05:00",
+   "checked": "2026-11-23T21:04:40-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-17T19:33:34.741233-05:00",
@@ -962,7 +962,7 @@
    "name_en": "LEGO Speed Champions SF-24",
    "type": "Voiture de course LEGO à construire",
    "type_en": "LEGO race car building set",
-   "checked": "2026-11-23T19:32:13-05:00",
+   "checked": "2026-11-23T21:04:40-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-17T13:27:42.902845-05:00",
@@ -1039,53 +1039,53 @@
   }
  ],
  "recap": {
-  "kind": "am",
-  "at": "2026-11-23T10:02:29-05:00",
+  "kind": "pm",
+  "at": "2026-11-23T21:02:30-05:00",
   "items": [
    {
-    "asin": "B0GSBXP3XB",
-    "name": "Barre de son Sony HT-A8",
-    "image": "https://m.media-amazon.com/images/I/51MpjIUxFQL.jpg",
-    "price": 1498.0,
-    "score": 88,
-    "link": "https://amazon.ca/dp/B0GSBXP3XB?tag=sonline02-20",
-    "name_en": "Sony BRAVIA Theatre Trio"
+    "asin": "B0091DKL4W",
+    "name": "Cible fléchettes Franklin",
+    "image": "https://m.media-amazon.com/images/I/91ioe7XhPJL.jpg",
+    "price": 27.29,
+    "score": 87,
+    "link": "https://amazon.ca/dp/B0091DKL4W?tag=sonline02-20",
+    "name_en": "Franklin Sports Dartboard"
    },
    {
-    "asin": "B002VA464S",
-    "name": "Micro Logitech Blue Yeti",
-    "image": "https://m.media-amazon.com/images/I/61vI0Zii07L.jpg",
-    "price": 99.98,
-    "score": 82,
-    "link": "https://amazon.ca/dp/B002VA464S?tag=sonline02-20",
-    "name_en": "Logitech Blue Yeti Mic"
+    "asin": "B0FLYG9C4N",
+    "name": "Casque Bose QuietComfort",
+    "image": "https://m.media-amazon.com/images/I/51EqSJkNhmL.jpg",
+    "price": 249.0,
+    "score": 86,
+    "link": "https://amazon.ca/dp/B0FLYG9C4N?tag=sonline02-20",
+    "name_en": "Bose QuietComfort Headphones"
    },
    {
-    "asin": "B0HDVZRVTQ",
-    "name": "Dyson Airwrap i.d. Prune",
-    "image": "https://m.media-amazon.com/images/I/61VUJ-07i1L.jpg",
-    "price": 599.99,
+    "asin": "B07W6Z2Y8W",
+    "name": "Eau de parfum Calvin Klein",
+    "image": "https://m.media-amazon.com/images/I/61EXYyPWqTL.jpg",
+    "price": 63.45,
+    "score": 85,
+    "link": "https://amazon.ca/dp/B07W6Z2Y8W?tag=sonline02-20",
+    "name_en": "Calvin Klein Eternity EDP"
+   },
+   {
+    "asin": "B075BL334F",
+    "name": "Four Cuisinart TOA-60C",
+    "image": "https://m.media-amazon.com/images/I/618v+BT8VdL.jpg",
+    "price": 147.99,
+    "score": 83,
+    "link": "https://amazon.ca/dp/B075BL334F?tag=sonline02-20",
+    "name_en": "Cuisinart Air Fryer Oven"
+   },
+   {
+    "asin": "B0GSC73Y7Z",
+    "name": "Téléviseur Samsung 48po",
+    "image": "https://m.media-amazon.com/images/I/81qzf7OuBVL.jpg",
+    "price": 1099.99,
     "score": 81,
-    "link": "https://amazon.ca/dp/B0HDVZRVTQ?tag=sonline02-20",
-    "name_en": "Dyson Airwrap i.d. Plum"
-   },
-   {
-    "asin": "B0DGR1VDTB",
-    "name": "Robot MOVA P10 Pro Ultra",
-    "image": "https://m.media-amazon.com/images/I/51hZCxzcoqL.jpg",
-    "price": 379.0,
-    "score": 81,
-    "link": "https://amazon.ca/dp/B0DGR1VDTB?tag=sonline02-20",
-    "name_en": "MOVA P10 Pro Ultra Vacuum"
-   },
-   {
-    "asin": "B07MVLYF7L",
-    "name": "Taille-haies WORX WG261",
-    "image": "https://m.media-amazon.com/images/I/61JyN-hSeZL.jpg",
-    "price": 105.99,
-    "score": 79,
-    "link": "https://amazon.ca/dp/B07MVLYF7L?tag=sonline02-20",
-    "name_en": "WORX WG261 Hedge Trimmer"
+    "link": "https://amazon.ca/dp/B0GSC73Y7Z?tag=sonline02-20",
+    "name_en": "Samsung S85H 48\" OLED TV"
    }
   ]
  }

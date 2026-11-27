@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T09:47:21-05:00",
+ "updated": "2026-11-27T10:04:21-05:00",
  "deals": [
   {
    "asin": "B0GDSC8K2H",
@@ -234,7 +234,7 @@
    "name_en": "LEGO Sunflowers 40524",
    "type": "Ensemble de fleurs LEGO",
    "type_en": "LEGO flower building set",
-   "checked": "2026-11-27T08:47:51-05:00",
+   "checked": "2026-11-27T10:04:19-05:00",
    "state": "out",
    "now_price": null,
    "posted": "2026-11-26T09:38:18.087830-05:00",
@@ -282,7 +282,7 @@
    "name_en": "Dyson V15 Detect Plus",
    "type": "Aspirateur-balai sans fil",
    "type_en": "Cordless stick vacuum",
-   "checked": "2026-11-27T08:47:51-05:00",
+   "checked": "2026-11-27T10:04:19-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-26T00:05:30.424929-05:00",
@@ -450,7 +450,7 @@
    "name_en": "Nespresso Vertuo Pop+",
    "type": "Machine à café et espresso",
    "type_en": "Coffee and espresso machine",
-   "checked": "2026-11-27T08:47:51-05:00",
+   "checked": "2026-11-27T10:04:19-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-24T18:03:17.584080-05:00",
@@ -569,7 +569,7 @@
    "name_en": "Britax Juniper Stroller",
    "type": "Poussette compacte de voyage",
    "type_en": "Compact travel stroller",
-   "checked": "2026-11-27T08:47:51-05:00",
+   "checked": "2026-11-27T10:04:19-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-24T11:04:14.345351-05:00",
@@ -758,7 +758,7 @@
    "name_en": "Calvin Klein Eternity EDP",
    "type": "Eau de parfum pour homme",
    "type_en": "Men's eau de parfum",
-   "checked": "2026-11-27T08:47:51-05:00",
+   "checked": "2026-11-27T10:04:19-05:00",
    "state": "out",
    "now_price": null,
    "posted": "2026-11-23T11:19:05.653362-05:00",
@@ -1018,7 +1018,7 @@
    "name_en": "Greenworks 80V 4.0Ah Batt",
    "type": "Batterie lithium-ion 80V",
    "type_en": "80V lithium-ion battery pack",
-   "checked": "2026-11-27T08:47:51-05:00",
+   "checked": "2026-11-27T10:04:19-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-21T15:18:18.106959-05:00",
@@ -1064,7 +1064,7 @@
    "name_en": "Graco 4Ever 4-in-1 Seat",
    "type": "Siège d'auto 4-en-1",
    "type_en": "4-in-1 convertible car seat",
-   "checked": "2026-11-27T08:47:51-05:00",
+   "checked": "2026-11-27T10:04:19-05:00",
    "state": "ok",
    "now_price": null,
    "posted": "2026-11-21T10:48:17.990119-05:00",
@@ -1135,7 +1135,7 @@
    "name_en": "DEWALT 20V Transfer Pump",
    "type": "Pompe de transfert sans fil",
    "type_en": "Cordless transfer pump",
-   "checked": "2026-11-27T08:47:51-05:00",
+   "checked": "2026-11-27T10:04:19-05:00",
    "state": "out",
    "now_price": null,
    "posted": "2026-11-20T20:18:20.348799-05:00",
@@ -1192,8 +1192,8 @@
   }
  ],
  "recap": {
-  "kind": "pm",
-  "at": "2026-11-26T21:02:36-05:00",
+  "kind": "am",
+  "at": "2026-11-27T10:02:38-05:00",
   "items": [
    {
     "asin": "B0F1H9F4CB",
@@ -1215,7 +1215,7 @@
    },
    {
     "asin": "B0GFPX4WHV",
-    "name": "Oral-B iO Brosse à dents",
+    "name": "Oral-B iO Bleu Saphir",
     "image": "https://m.media-amazon.com/images/I/71UXQ3h4N7L.jpg",
     "price": 159.97,
     "score": 89,
@@ -1224,7 +1224,7 @@
    },
    {
     "asin": "B0FQ5TMTTF",
-    "name": "Montre Garmin vívoactive 6",
+    "name": "Garmin vívoactive 6 Rose",
     "image": "https://m.media-amazon.com/images/I/61p9lRbPJ5L.jpg",
     "price": 329.99,
     "score": 84,

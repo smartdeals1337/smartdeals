@@ -254,6 +254,10 @@
     .bfbanner .go { font-size: .95rem; padding: 12px 18px; }
   }
   /* Black Friday chip: same yellow + black, so it can't be missed in the filter row */
+  /* the lightning emoji is yellow: on the yellow Black Friday chip/tag/banner it vanished, so it sits in a black disc */
+  .bolt { display: inline-flex; align-items: center; justify-content: center; width: 1.5em; height: 1.5em; border-radius: 50%;
+          background: #000; font-size: .78em; line-height: 1; vertical-align: middle; margin-right: 2px; }
+  .tag.bf .bolt { width: 1.35em; height: 1.35em; }
   .chip.bf { background: #ffd400; border: 2px solid #000; color: #000; font-weight: 900; }
   .chip.bf[aria-pressed="true"] { background: #000; border-color: #000; color: #ffd400; }
   .chip.hol { background: #15803d; border-color: #15803d; color: #fff; font-weight: 800; }
@@ -475,7 +479,7 @@
     </div>
     <nav class="chips" aria-label="Filtres" data-i18n-aria="filters">
       <button class="chip" data-f="all" aria-pressed="true" data-i18n="c_all">Tous</button>
-      <button class="chip bf" data-f="bf" aria-pressed="false" data-i18n="c_bf">⚡ Black Friday</button>
+      <button class="chip bf" data-f="bf" aria-pressed="false" data-i18n="c_bf"><span class='bolt'>⚡</span> Black Friday</button>
       <button class="chip hol" data-f="hol" aria-pressed="false" data-i18n="c_hol">🎄 Fêtes</button>
       <button class="chip" data-f="top" aria-pressed="false" data-i18n="c_top">Meilleur score</button>
       <button class="chip" data-f="flash" aria-pressed="false" data-i18n="c_flash">Ventes éclair</button>
@@ -498,7 +502,7 @@
 <main class="wrap wide">
   <!-- Black Friday banner: shown until the end of Cyber Monday (see BF_END); a tap opens the Black Friday filter -->
   <button class="bfbanner" id="bfbanner" type="button" hidden>
-    <span><b data-i18n="bfTitle">⚡ Mode Black Friday à fond</b><small data-i18n="bfSub">Nouveaux deals Amazon.ca toute la journée, notés sur 100.</small></span>
+    <span><b data-i18n="bfTitle"><span class='bolt'>⚡</span> Mode Black Friday à fond</b><small data-i18n="bfSub">Nouveaux deals Amazon.ca toute la journée, notés sur 100.</small></span>
     <span class="go" data-i18n="bfGo">Voir les deals ›</span>
   </button>
   <!-- The hot score in one line, always visible (owner, 2026-11-02): tap = full explanation below -->
@@ -584,8 +588,8 @@ const I18N = {
     search: "Chercher un deal…", filters: "Filtres",
     c_all: "Tous", c_top: "Meilleur score", c_first: "Premier bas prix", c_flash: "Ventes éclair", c_new: "Nouveaux",
     c_gifts: "Idées cadeaux", c_u25: "Moins de 25$",
-    c_bf: "⚡ Black Friday", c_hol: "🎄 Fêtes",
-    bfTitle: "⚡ Mode Black Friday à fond", bfSub: "Nouveaux deals Amazon.ca toute la journée, notés sur 100.", bfGo: "Voir les deals ›",
+    c_bf: "<span class='bolt'>⚡</span> Black Friday", c_hol: "🎄 Fêtes",
+    bfTitle: "<span class='bolt'>⚡</span> Mode Black Friday à fond", bfSub: "Nouveaux deals Amazon.ca toute la journée, notés sur 100.", bfGo: "Voir les deals ›",
     c_u50: "Moins de 50$", c_u100: "Moins de 100$", c_lui: "Pour lui", c_elle: "Pour elle", c_enfants: "Enfants",
     c_ados: "Ados", c_maison: "Maison", c_gamers: "Gamers",
     legendAria: "Score SmartDeals : 1 flamme dès 80, 2 flammes dès 85, 3 flammes dès 90. Voir l'explication",
@@ -641,8 +645,8 @@ const I18N = {
     search: "Search deals…", filters: "Filters",
     c_all: "All", c_top: "Top score", c_first: "New all-time lows", c_flash: "Lightning deals", c_new: "New",
     c_gifts: "Gift ideas", c_u25: "Under $25",
-    c_bf: "⚡ Black Friday", c_hol: "🎄 Holidays",
-    bfTitle: "⚡ Full Black Friday mode", bfSub: "New Amazon.ca deals all day long, scored out of 100.", bfGo: "See the deals ›",
+    c_bf: "<span class='bolt'>⚡</span> Black Friday", c_hol: "🎄 Holidays",
+    bfTitle: "<span class='bolt'>⚡</span> Full Black Friday mode", bfSub: "New Amazon.ca deals all day long, scored out of 100.", bfGo: "See the deals ›",
     c_u50: "Under $50", c_u100: "Under $100", c_lui: "For him", c_elle: "For her", c_enfants: "Kids",
     c_ados: "Teens", c_maison: "Home", c_gamers: "Gamers",
     legendAria: "SmartDeals Score: 1 flame from 80, 2 flames from 85, 3 flames from 90. See the explanation",
@@ -813,7 +817,7 @@ const FILTERS = {
 let deals = [], filter = "all";
 function card(d) {
   const faded = d.dead || d.state !== "ok";
-  const tags = (isBF(d) && !faded ? `<span class="tag bf">⚡ Black Friday</span>` : "")
+  const tags = (isBF(d) && !faded ? `<span class="tag bf"><span class='bolt'>⚡</span> Black Friday</span>` : "")
     + (d.dead ? `<span class="tag dead">${d.ends ? T.flashOver : T.dead}</span>`
       : d.state === "up" ? `<span class="tag off-tag">${T.up}</span>`
       : d.state === "out" ? `<span class="tag off-tag">${T.out}</span>` : "")
